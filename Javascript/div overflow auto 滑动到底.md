@@ -1,0 +1,14 @@
+# 滑动到底
+
+有一个 div，里面是一个 input，下面创建按钮。点击创建按钮后在按钮上面创建新的 input。这样可以添加多个 input。div 高度固定，overflow auto。我想在添加新的 input 后 scroll 到底部，这样能一直看到新添加的 input 和创建按钮。
+
+```javascript
+let newInput = document.createElement('input')
+newInput.type = 'text'
+newInput.classList.add('form-control')
+newInput.placeholder = '请输入要素'
+
+parentDiv.insertBefore(newInput, createButtonElement)
+newInput.focus()
+parentDiv.scrollTop = divEle.scrollHeight
+```
