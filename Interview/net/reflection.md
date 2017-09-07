@@ -549,5 +549,3 @@ namespace Project.DAL
     }
 }
 ```
-
-

@@ -16,34 +16,36 @@ Chrome postman, SOAPUI tool for SOAP WS and Firefox "poster" plugin for RESTFUL 
 
 ### what are the HTTP methods supported by REST?
 
-GET: It requests a resource at the request URL. It should not contain a request body as it will be discarded. May be it can be cached locally or on the server.
-POST: It submits information to the service for processing; it should typically return the modified or new resource
-PUT: At the request URL it update the resource 
-DELETE: At the request URL it removes the resource 
-OPTIONS: It indicates which techniques are supported
-HEAD: About the request URL it returns meta information
+* GET: It requests a resource at the request URL. It should not contain a request body as it will be discarded. May be it can be cached locally or on the server.
+* POST: It submits information to the service for processing; it should typically return the modified or new resource
+* PUT: At the request URL it update the resource 
+* DELETE: At the request URL it removes the resource 
+* OPTIONS: It indicates which techniques are supported
+* HEAD: About the request URL it returns meta information
 
 ###  Mention what is the difference between SOAP and REST?
    
-SOAP is a protocol through which two computer communicates by sharing XML document
-SOAP permits only XML
-SOAP based reads cannot be cached
-SOAP is like custom desktop application, closely connected to the server
-SOAP is slower than REST
-It runs on HTTP but envelopes the message
+* SOAP is a protocol through which two computer communicates by sharing XML document
+* SOAP permits only XML
+* SOAP based reads cannot be cached
+* SOAP is like custom desktop application, closely connected to the server
+* SOAP is slower than REST
+* It runs on HTTP but envelopes the message
 
-Rest is a service architecture and design for network-based software architectures
-REST supports many different data formats
-REST reads can be cached
-A REST client is more like a browser; it knows how to standardized methods and an application has to fit inside it REST is faster than SOAP
-It uses the HTTP headers to hold meta information
+---
+
+* Rest is a service architecture and design for network-based software architectures
+* REST supports many different data formats
+* REST reads can be cached
+* A REST client is more like a browser; it knows how to standardized methods and an application has to fit inside it REST is faster than SOAP
+* It uses the HTTP headers to hold meta information
 
 
 ### Explain Web API Routing?
 
 Routing is the mechanism of pattern matching as we have in MVC. These routes will get registered in Route Tables. Below is the sample route in Web API –
 
-```Csharp
+```csharp
 Routes.MapHttpRoute(
 	Name: "MyFirstWebAPIRoute",
 	routeTemplate: "api/{controller}/{id}
@@ -113,7 +115,7 @@ No. We cannot return view from Web API.
 
 Attribute programming is used for this functionality. Web API will support to restrict access of calling methods with specific HTTP verbs. We can define HTTP verbs as attribute over method as shown below
 
-```Csharp
+```csharp
 [HttpPost]
 public void UpdateTestCustomer(Customer c)
 {
@@ -466,12 +468,3 @@ public HttpResponseMessage Post([FromBody] int customerid, [FromBody] string cus
 ### Why to use "IValueprovider" interface in Web API?
 
 This interface is used to implement custom value provider.
-
-
-
-
-
-
-
-
-

@@ -83,4 +83,3 @@ IComparer<string> obj2 = obj1;
 **Variance can be applied only to reference types, generic interfaces, and generic delegates. These cannot be applied to value types and generic types.**
 
 ### httpHandler, httpModule
-

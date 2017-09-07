@@ -2,7 +2,7 @@
 
 控制反转（Inversion of Control）目的是解耦合
 
-DI基本原理本质上是通过容器来反射创建实例
+==DI基本原理本质上是通过容器来反射创建实例==
 
 ```csharp
 class Person
@@ -355,4 +355,3 @@ protected void Application_Start()
 ```
 
 这样Unity就接管了Controller的创建
-

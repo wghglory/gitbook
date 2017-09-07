@@ -16,25 +16,32 @@ for (int i = 0; i < data.Length; i++) {
 
 ### StringBuilder vs string
 
-
 ```csharp
 string joinWords(string[] words) 
 { 
-    string sentence ="";    foreach (string w in words) 
-    {        sentence += w;
-    }    return sentence; 
+    string sentence ="";
+    foreach (string w in words) 
+    {
+        sentence += w;
+    }
+    return sentence; 
 }
 ```
-On each concatenation, a new copy of the string is created, and the two strings are copied over, character by character. The first iteration requires us to copy x characters. The second iteration requires copying 2x characters. The third iteration requires3x, and so on. The total time is O(x + 2x + ... + nx) => O(n^2 ).
-StringBuilder simply **creates a resizable array of all the strings, copying them back to a string** only when necessary. **O(n)**
+
+On each concatenation, a new copy of the string is created, and the two strings are copied over, character by character. The first iteration requires us to copy x characters. The second iteration requires copying 2x characters. The third iteration requires 3x, and so on. The total time is O(x + 2x + ... + nx) => O(n^2).
+
+StringBuilder simply **creates a resizable array of all the strings, copying them back to a string** only when necessary. **O(n)**
 
 ```csharp
-using System.Text;string joinWords(String[] words) 
+using System.Text;
+string joinWords(string[] words) 
 { 
     StringBuilder sentence = new StringBuilder(); 
     foreach (string w in words) 
-    {        sentence.append(w);
-    }    return sentence.toString(); 
+    {
+        sentence.append(w);
+    }
+    return sentence.toString(); 
 }
 ```
 
@@ -82,10 +89,10 @@ static属性里面new，构造函数private，如果是要求多线程情况，�
   }
   ```
 
-  适用：单/多线程
-  模式：饿汉式（静态常量）[可用]
-  优点：写法比较简单，避免了线程同步问题
-  缺点：没能实现延迟加载
+  * 适用：单/多线程
+  * 模式：饿汉式（静态常量）[可用]
+  * 优点：写法比较简单，避免了线程同步问题
+  * 缺点：没能实现延迟加载
 
 - **静态代码块**
 
@@ -108,10 +115,10 @@ static属性里面new，构造函数private，如果是要求多线程情况，�
   }
   ```
 
-  适用：单/多线程
-  模式：饿汉式（静态代码块）[可用]
-  优点：写法比较简单，避免了线程同步问题
-  缺点：没能实现延迟加载
+  * 适用：单/多线程
+  * 模式：饿汉式（静态代码块）[可用]
+  * 优点：写法比较简单，避免了线程同步问题
+  * 缺点：没能实现延迟加载
 
 #### 懒汉式
 
@@ -131,10 +138,10 @@ static属性里面new，构造函数private，如果是要求多线程情况，�
   }
   ```
 
-  适用：单线程
-  模式：懒汉式(线程不安全)[不可用]
-  优点：适用于单线程，实现简单，延迟加载
-  缺点：多线程不安全，违背了单列模式的原则
+  * 适用：单线程
+  * 模式：懒汉式(线程不安全)[不可用]
+  * 优点：适用于单线程，实现简单，延迟加载
+  * 缺点：多线程不安全，违背了单列模式的原则
 
 - **线程安全**
 
@@ -161,8 +168,11 @@ static属性里面new，构造函数private，如果是要求多线程情况，�
   ```
 
   适用：单线程
+
   模式：懒汉式(线程安全)[不推荐]
+
   优点：线程安全；延迟加载；
+  
   缺点：这种实现方式增加了额外的开销，损失了性能(当有多个调用时，第一个调用的会进入lock，而其他的则等待第一个结束后才能调用，后面的依次访问、等待……)
 
 - **双重检查锁定**
@@ -193,8 +203,11 @@ static属性里面new，构造函数private，如果是要求多线程情况，�
   ```
 
   适用：单/多线程
+
   模式：双重检查锁定(Double-Check Locking)(线程安全)[推荐]
+
   优点：线程安全；延迟加载；效率较高(只会实例化一次，首先会判断是否实例化过，如果实例化了，直接返回实例，不需要进入lock；如果未实例化，进入lock，就算是多个调用也无妨，第一次调用的会实例化，第二个进入lock时会再次判断是否实例化，这样线程就不会阻塞了。)
+
   缺点：基本没有
 
 - **静态内部类**
@@ -217,8 +230,11 @@ static属性里面new，构造函数private，如果是要求多线程情况，�
   ```
 
   适用：单/多线程
+
   模式：静态内部类(线程安全)[推荐]
+
   优点：避免了线程不安全；延迟加载；效率高(这种方式跟饿汉式方式采用的机制类似：都是采用了类装载的机制来保证初始化实例时只有一个线程。不同的地方是：饿汉式只要Singleton类被装载就会实例化，没有Lazy-Loading的作用；而静态内部类方式在Singleton类被装载时并不会立即实例化，而是在需要实例化时，调用Instance方法，才会装载SingletonInstance类，从而完成Singleton的实例化。)
+
   缺点：基本没有
 
 

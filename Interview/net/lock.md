@@ -37,72 +37,72 @@ lock (objlock)
 
 通过字面的意思就是锁的当前实例对象。那是否对其他实例对象产生影响？那下面看一个例子：
 
-```Csharp
- 1 namespace Wolfy.LockDemo
- 2 {
- 3     class Program
- 4     {
- 5         static void Main(string[] args)
- 6         {
- 7             Test t = new Test();
- 8             Test t2 = new Test();
- 9             Thread[] threads = new Thread[10];
-10             for (int i = 0; i < threads.Length; i++)
-11             {
-12                 //通过循环创建10个线程。
-13                 threads[i] = new Thread(() =>
-14                 {
-15                     t2.Print();
-16                 });
-17                 //为每个线程设置一个名字
-18                 threads[i].Name = "thread" + i;
-19 
-20             }
-21             //开启创建的十个线程
-22             for (int i = 0; i < threads.Length; i++)
-23             {
-24                 threads[i].Start();
-25             }
-26 
-27             Console.Read();
-28         }
-29     }
-30     class Test
-31     {
-32         public void Print()
-33         {
-34             lock (this)
-35             {
-36                 for (int i = 0; i < 5; i++)
-37                 {
-38                     Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
-39                 }
-40             }
-41         }
-42     }
-43 }
+```csharp
+namespace Wolfy.LockDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Test t = new Test();
+            Test t2 = new Test();
+            Thread[] threads = new Thread[10];
+            for (int i = 0; i < threads.Length; i++)
+            {
+                //通过循环创建10个线程。
+                threads[i] = new Thread(() =>
+                {
+                    t2.Print();
+                });
+                //为每个线程设置一个名字
+                threads[i].Name = "thread" + i;
+
+            }
+            //开启创建的十个线程
+            for (int i = 0; i < threads.Length; i++)
+            {
+                threads[i].Start();
+            }
+
+            Console.Read();
+        }
+    }
+    class Test
+    {
+        public void Print()
+        {
+            lock (this)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
+                }
+            }
+        }
+    }
+}
 ```
 
 如果在不加锁的情况下输出如下：
 
 ![img-c](http://images.cnitblog.com/blog/511616/201501/082136069846335.png)
 
-从上面的输出结果也可以看出，线程出现了争抢的现象，而这并不是我们想要的结果，我们想要的是，每次只有一个线程去执行Print方法。那我们就尝试一下lock(this)
+从上面的输出结果也可以看出，线程出现了争抢的现象，而这并不是我们想要的结果，我们想要的是，每次只有一个线程去执行Print方法。那我们就尝试一下 `lock(this)`
 
-```Csharp
- 1     class Test
- 2     {
- 3         public void Print()
- 4         {
- 5             lock (this)
- 6             {
- 7                 for (int i = 0; i < 5; i++)
- 8                 {
- 9                     Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
-10                 }
-11             }
-12         }
-13     }
+```csharp
+class Test
+{
+    public void Print()
+    {
+        lock (this)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
+            }
+        }
+    }
+}
 ```
 
 输出结果
@@ -111,55 +111,54 @@ lock (objlock)
 
 从输出结果，觉得大功告成了，可是现在情况又来了，在项目中的其他的地方，有同事也这样写了这样的代码，又创建了一个Test对象，而且他也知道使用多线程执行耗时的工作，那么就会出现类似下面的代码。
 
-```Csharp
- 1 namespace Wolfy.LockDemo
- 2 {
- 3     class Program
- 4     {
- 5         static void Main(string[] args)
- 6         {
- 7             Test t = new Test();
- 8             Test t2 = new Test();
- 9             t2.Age = 20;
-10             Thread[] threads = new Thread[10];
-11             for (int i = 0; i < threads.Length; i++)
-12             {
-13                 //通过循环创建10个线程。
-14                 threads[i] = new Thread(() =>
-15                 {
-16                     t.Print();
-17                     t2.Print();
-18                 });
-19                 //为每个线程设置一个名字
-20                 threads[i].Name = "thread" + i;
-21 
-22             }
-23 
-24 
-25             //开启创建的十个线程
-26             for (int i = 0; i < threads.Length; i++)
-27             {
-28                 threads[i].Start();
-29             }
-30 
-31             Console.Read();
-32         }
-33     }
-34     class Test
-35     {
-36         public int Age { get; set; }
-37         public void Print()
-38         {
-39             lock (this)
-40             {
-41                 for (int i = 0; i < 5; i++)
-42                 {
-43                     Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
-44                 }
-45             }
-46         }
-47     }
-48 }
+```csharp
+namespace Wolfy.LockDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Test t = new Test();
+            Test t2 = new Test();
+            t2.Age = 20;
+            Thread[] threads = new Thread[10];
+            for (int i = 0; i < threads.Length; i++)
+            {
+                //通过循环创建10个线程。
+                threads[i] = new Thread(() =>
+                {
+                    t.Print();
+                    t2.Print();
+                });
+                //为每个线程设置一个名字
+                threads[i].Name = "thread" + i;
+
+            }
+
+            //开启创建的十个线程
+            for (int i = 0; i < threads.Length; i++)
+            {
+                threads[i].Start();
+            }
+
+            Console.Read();
+        }
+    }
+    class Test
+    {
+        public int Age { get; set; }
+        public void Print()
+        {
+            lock (this)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
+                }
+            }
+        }
+    }
+}
 ```
 
 这里为Test加了一个Age属性，为了区别当前创建的对象不是同一个对象。
@@ -174,56 +173,56 @@ lock (objlock)
 
 那么我们现在使用一个全局的私有的对象试一试。
 
-```Csharp
- 1 namespace Wolfy.LockDemo
- 2 {
- 3     class Program
- 4     {
- 5         private static object objLock = new object();
- 6         static void Main(string[] args)
- 7         {
- 8             Test t = new Test();
- 9             Test t2 = new Test();
-10             t2.Age = 20;
-11             Thread[] threads = new Thread[10];
-12             for (int i = 0; i < threads.Length; i++)
-13             {
-14                 //通过循环创建10个线程。
-15                 threads[i] = new Thread(() =>
-16                 {
-17                     lock (objLock)
-18                     {
-19                         t.Print();
-20                         t2.Print();
-21                     }
-22                 });
-23                 //为每个线程设置一个名字
-24                 threads[i].Name = "thread" + i;
-25 
-26             }
-27 
-28 
-29             //开启创建的十个线程
-30             for (int i = 0; i < threads.Length; i++)
-31             {
-32                 threads[i].Start();
-33             }
-34 
-35             Console.Read();
-36         }
-37     }
-38     class Test
-39     {
-40         public int Age { get; set; }
-41         public void Print()
-42         {
-43             for (int i = 0; i < 5; i++)
-44             {
-45                 Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
-46             }
-47         }
-48     }
-49 }
+```csharp
+namespace Wolfy.LockDemo
+{
+    class Program
+    {
+        private static object objLock = new object();
+        static void Main(string[] args)
+        {
+            Test t = new Test();
+            Test t2 = new Test();
+            t2.Age = 20;
+            Thread[] threads = new Thread[10];
+            for (int i = 0; i < threads.Length; i++)
+            {
+                //通过循环创建10个线程。
+                threads[i] = new Thread(() =>
+                {
+                    lock (objLock)
+                    {
+                        t.Print();
+                        t2.Print();
+                    }
+                });
+                //为每个线程设置一个名字
+                threads[i].Name = "thread" + i;
+
+            }
+
+
+            //开启创建的十个线程
+            for (int i = 0; i < threads.Length; i++)
+            {
+                threads[i].Start();
+            }
+
+            Console.Read();
+        }
+    }
+    class Test
+    {
+        public int Age { get; set; }
+        public void Print()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("\t" + Thread.CurrentThread.Name.ToString() + "\t" + i.ToString() + " ");
+            }
+        }
+    }
+}
 ```
 
 输出的结果
@@ -236,7 +235,7 @@ lock (objlock)
 
 也就有了类似下面的代码
 
-```Csharp
+```csharp
 private static readonly object objLock = new object();
 ```
 
@@ -263,6 +262,6 @@ string也是应用类型，从语法上来说是没有错的。
 ### 总结
 
 1. lock的是引用类型的对象，string类型除外。
-2. lock推荐的做法是使用静态的、只读的、私有的对象。
-3. 保证lock的对象在外部无法修改才有意义，如果lock的对象在外部改变了，对其他线程就会畅通无阻，失去了lock的意义。
+1. ==lock推荐的做法是使用静态的、只读的、私有的对象。==
+1. 保证lock的对象在外部无法修改才有意义，如果lock的对象在外部改变了，对其他线程就会畅通无阻，失去了lock的意义。
 
