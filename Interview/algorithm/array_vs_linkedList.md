@@ -1,7 +1,5 @@
 # Array vs Linked list
 
- 
-
 |                              | Array                                    | Linked List                              |
 | :--------------------------- | :--------------------------------------- | :--------------------------------------- |
 | Cost of accessing an element | O(1)                                     | O(n)                                     |
@@ -11,9 +9,4 @@
 | Ease of use                  | Easy                                     | hard                                     |
 
 
-
-​    
- 
-
 Dynamic list: first allocating a fixed size array in memory. When adding extra elements which above the size, it creates a double size array in new memory address and copies original array to new array, so this is costing.
-

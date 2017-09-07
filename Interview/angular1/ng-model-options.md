@@ -1,10 +1,9 @@
 # [angular-1.3 之ng-model-options指令](http://www.cnblogs.com/liulangmao/p/4105157.html)
 
-
 **ng-model-options**是angular-1.3新出的一个指令，允许我们控制ng-model何时进行同步。比如:
 
-1. 当某个确定的事件被触发的时候 
-2. 在指定的防抖动延迟时间之后，这样视图值就会在指定的时间之后被同步到模型. 
+1. 当某个确定的事件被触发的时候
+1. 在指定的防抖动延迟时间之后，这样视图值就会在指定的时间之后被同步到模型.
 
 在angular-1.2版本就可以实现的ng-model双向绑定的核心代码:
 
@@ -12,6 +11,7 @@
 <input type="text" ng-model="name">
 <p>Hello {{name}}</p>
 ```
+
 它是实时同步更新的，input中每输入一个字，就立刻同步到数据模型。这是因为每次输入input都会触发一个input的事件，然后angular就会执行的$digest循环，直到模型稳定下来。我们不用手动设置任何事件监听来同步更新视图和模型。
 
 然而由于每次键盘按下都会触发$digest循环，所以当你在输入input内容的时候，angular不得不处理所有绑定在scope上的watch监听。这样它执行的效率就取决于你在scope上绑定了多少watch监听、以及这些监听的回调函数是怎样的，这个代价是十分昂贵的。
@@ -24,22 +24,22 @@ ng-model-options提供了一系列的选项去控制ng-model的更新。
 
 通过updateOn参数我们可以定义input触发$digest的事件。举个栗子，我们希望当input失去焦点的时候更新模型，只需要按照如下的配置来实现:
 
-
 ```html
 <input type="text" ng-model="name" ng-model-options="{ updateOn: 'blur' }">
 <p>Hello {{name}}</p>
 ```
 
 `ng-model-options="{ updateOn: 'blur' }"`告诉angular在input触发了onblur事件的时候再更新ng-model，而不是每次按下键盘就立即更新model。
+
 [http://plnkr.co/edit/URMCoON9qDFnxdlyiDSS?p=preview ](http://plnkr.co/edit/URMCoON9qDFnxdlyiDSS?p=preview)
 
 如果我们想要保留默认的更新模型事件，另外再给它添加其它触发$digest的事件，可以使用一个特殊的事件: default。通过空格分隔的字符串来给它添加多个事件。下面这段代码能够在输入的时候同步更新模型，并且当input失去焦点的时候也更新模型.
-
 
 ```html
 <input type="text" ng-model="name" ng-model-options="{ updateOn: 'default blur' }"/>
 <p>Hello {{name}}</p>
 ```
+
 [http://plnkr.co/edit/6VtaJrCIuO5ePfoz8UXA?p=preview](http://plnkr.co/edit/6VtaJrCIuO5ePfoz8UXA?p=preview) 
 
 (效果其实不太看不出来的...因为虽然blur的时候它在同步，但是其实输入的时候已经同步完了)
@@ -61,7 +61,6 @@ ng-model-options提供了一系列的选项去控制ng-model的更新。
 
 下面这个栗子实现了这样的模型: 当用户在input里输入的时候，延迟1000毫秒更新模型，但是当input元素失去焦点的时候，立刻更新模型:
 
-
 ```html
 <input type="search" ng-model="searchQuery" ng-model-options="{updateOn:'default blur'，debounce:{default:1000，blur:0}}">
 <p>Search results for: {{searchQuery}}</p>
@@ -74,7 +73,6 @@ ng-model-options提供了一系列的选项去控制ng-model的更新。
 由于我们通过ng-model-options来控制了模型的更新时间，所有在很多时候模型和视图就会出现不同步的情况。举个栗子，我们配置ng-model-options，让input在失去焦点的时候同步数据模型，当用户正在输入内容时，数据模型没有发生更新。
 
 假设在这种情境下，你希望在数据模型更新前把视图上的值回滚到它真实的值。这时，$rollbackViewValue可以同步数据模型到视图。这个方法会把数据模型的值返回给视图，同时取消所有的将要发生的延迟同步更新事件。
-
 
 ```html
 <div class="container" ng-controller="Rollback">
@@ -94,7 +92,6 @@ ng-model-options提供了一系列的选项去控制ng-model的更新。
 </div>
 ```
 
-
 ```javascript
 app.controller('Rollback'，function($scope) {
     $scope.resetWithRollback = function(e) {
@@ -113,9 +110,7 @@ app.controller('Rollback'，function($scope) {
 
 myValue1使用了$rollbackViewValue()方法，可以回滚文本域里的值和数据模型同步，但是myValue2是不能的。
 
-
 > 需要特别注意的一点是，在使用了ng-model-options这种情况下，如果直接修改模型值，有时可能让视图同步，有时却不能，什么意思，看这个栗子:
-
 
 ```javascript
 app.controller('Rollback'，function($scope) {
@@ -132,6 +127,7 @@ app.controller('Rollback'，function($scope) {
     }
 });
 ```
+
 [http://plnkr.co/edit/vve2Xh7LROQLQFa6FFrn?p=preview](http://plnkr.co/edit/vve2Xh7LROQLQFa6FFrn?p=preview)
 
 按Esc的时候，不是直接回滚视图值到当前的数据模型，而是先设置数据模型为空，然后再回滚视图值。而myValue2，直接设置数据模型为空，不使用回滚。
@@ -139,10 +135,3 @@ app.controller('Rollback'，function($scope) {
 在demo里多试几次就会发现，在这种情况下，在myValue2的input里按Esc，有时可以同步视图值为空，有时则不能。
 
 所以，在用了ng-model-opitons的时候，如果在模型没有被视图同步之前需要让视图被模型同步，不能简单通过设置模型，必须使用$rollbackViewValue()方法。
-
-
-
-
-
-
-

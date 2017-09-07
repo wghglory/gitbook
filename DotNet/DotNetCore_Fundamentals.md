@@ -1,19 +1,5 @@
 # .Net Core Fundamentals (.net core v1.1.2)
 
-<!-- TOC -->
-
-- [.Net Core Fundamentals (.net core v1.1.2)](#net-core-fundamentals-net-core-v112)
-  - [Get Started](#get-started)
-  - [Adding a Configuration Source](#adding-a-configuration-source)
-  - [Features of Asp.net core](#features-of-aspnet-core)
-  - [Startup.cs -- Entry point](#startupcs----entry-point)
-  - [Request Pipeline & Middleware](#request-pipeline--middleware)
-  - [ViewComponents VS PartialView](#viewcomponents-vs-partialview)
-  - [MVC cons and pros](#mvc-cons-and-pros)
-  - [Web Api in .Net Core](#web-api-in-net-core)
-
-<!-- /TOC -->
-
 ## Get Started
 
 Follow Official website: <https://docs.microsoft.com/en-us/aspnet/core/getting-started>

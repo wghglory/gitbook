@@ -20,8 +20,8 @@ gitbook serve   # localhost:4000
     "description": "前端规范 简介",
     "language": "zh-hans",
     "plugins": [
-        "-lunr", 
-        "-search", 
+        "-lunr",
+        "-search",
         "search-plus",       //支持中文搜索  上面 search 是默认的   “-”  是去掉的意思
         "splitter",               // 这个侧边可以拉伸
         "tbfed-pagefooter",    //这个是底部加 信息  下面可以看到具体的配置

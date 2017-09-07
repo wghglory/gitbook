@@ -1,69 +1,69 @@
 Interviewer 1: Coding & Algorithms & Data Structures
 Interviewer 2: Coding & Problem Solving
 Interviewer 3: Problem Solving & Design (logical & maintainable/software)
-Interviewer 4: Architecture & System Design – This interview will test your understanding of distributed systems, concurrency/multi-threading, etc. Asking clarifying questions and gathering requirements is KEY for this interview. Please use this link to prepare 
-~~https://www.hackerrank.com/domains/distributed-systems/client-server/page:1~~ 
+Interviewer 4: Architecture & System Design – This interview will test your understanding of distributed systems, concurrency/multi-threading, etc. Asking clarifying questions and gathering requirements is KEY for this interview. Please use this link to prepare
+<https://www.hackerrank.com/domains/distributed-systems/client-server/page:1>
 
 ```csharp
 namespace TcpEchoServer
 {
-	public class TcpEchoServer
-	{
-		public static void Main()
-		{
-			Console.WriteLine("Starting echo server...");
+    public class TcpEchoServer
+    {
+        public static void Main()
+        {
+            Console.WriteLine("Starting echo server...");
 
-			int port = 1234;
-			TcpListener listener = new TcpListener(IPAddress.Loopback, port);
-			listener.Start();
+            int port = 1234;
+            TcpListener listener = new TcpListener(IPAddress.Loopback, port);
+            listener.Start();
 
-			TcpClient client = listener.AcceptTcpClient();
-			NetworkStream stream = client.GetStream();
-			StreamWriter writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = true };
-			StreamReader reader = new StreamReader(stream, Encoding.ASCII);
+            TcpClient client = listener.AcceptTcpClient();
+            NetworkStream stream = client.GetStream();
+            StreamWriter writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = true };
+            StreamReader reader = new StreamReader(stream, Encoding.ASCII);
 
-			while (true)
-			{
-				string inputLine = "";
-				while (inputLine != null)
-				{
-					inputLine = reader.ReadLine();
-					writer.WriteLine("Echoing string: " + inputLine);
-					Console.WriteLine("Echoing string: " + inputLine);
-				}
-				Console.WriteLine("Server saw disconnect from client.");
-			}
-		}
-	}
+            while (true)
+            {
+                string inputLine = "";
+                while (inputLine != null)
+                {
+                    inputLine = reader.ReadLine();
+                    writer.WriteLine("Echoing string: " + inputLine);
+                    Console.WriteLine("Echoing string: " + inputLine);
+                }
+                Console.WriteLine("Server saw disconnect from client.");
+            }
+        }
+    }
 }
 
 namespace TcpEchoClient
 {
-	class TcpEchoClient
-	{
-		public static void Main(string[] args)
-		{
-			Console.WriteLine("Starting echo client...");
+    class TcpEchoClient
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Starting echo client...");
 
-			int port = 1234;
+            int port = 1234;
 
-			TcpClient client = new TcpClient("localhost", port);
-			NetworkStream stream = client.GetStream();
-			StreamReader reader = new StreamReader(stream);
-			StreamWriter writer = new StreamWriter(stream) { AutoFlush = true };
+            TcpClient client = new TcpClient("localhost", port);
+            NetworkStream stream = client.GetStream();
+            StreamReader reader = new StreamReader(stream);
+            StreamWriter writer = new StreamWriter(stream) { AutoFlush = true };
 
-			while (true)
-			{
-				Console.Write("Enter text to send: ");
-				string lineToSend = Console.ReadLine();
-				Console.WriteLine("Sending to server: " + lineToSend);
-				writer.WriteLine(lineToSend);
-				string lineReceived = reader.ReadLine();
-				Console.WriteLine("Received from server: " + lineReceived);
-			}
-		}
+            while (true)
+            {
+                Console.Write("Enter text to send: ");
+                string lineToSend = Console.ReadLine();
+                Console.WriteLine("Sending to server: " + lineToSend);
+                writer.WriteLine(lineToSend);
+                string lineReceived = reader.ReadLine();
+                Console.WriteLine("Received from server: " + lineReceived);
+            }
+        }
 
-	}
+    }
 }
 ```
 
@@ -80,11 +80,10 @@ namespace TcpEchoClient
 * ~~https://www.hackerrank.com/challenges/contacts~~
 * ~~https://www.hackerrank.com/challenges/find-the-running-median~~
 * ~~https://www.hackerrank.com/challenges/swap-nodes-algo~~
- 
- 
+
 Please also review:
-https://www.hiredintech.com/classrooms/system-design/lesson/52
- 
+<https://www.hiredintech.com/classrooms/system-design/lesson/52>
+
 Leadership Principles – The principles are an important aspect who we are at Amazon and the culture we maintain. As you review the 14 principles be prepared to answer a question about your work delivering on a project, challenges you might have faced, problems you had to work through, meeting a deadline, etc. You will be expected to walk us through various example in your life in which you exhibited the leadership principles. You can use this link in preparing for the questions to expect. https://careerservices.wayne.edu/behavioralinterviewinfo.pdf
  
 
@@ -96,14 +95,11 @@ microservice
 sharding
 large scale
 
-
 map-reduce, SOA, loading balance
 
 DNS lookups, TCP/IP
 
-
 一道是anagrams, 另一道是group anagram的变形, 最后问了一下hashmap出现collision会发生什么。leetcode 49和242原题. hashmap的题目说出来hashcode, bucket, linkedlist, key-value pair基本就可以了.
-
 
 关注一亩三分地微博：
 Warald
@@ -226,7 +222,7 @@ namespace Chapter01
     }
 }
 ```
+
 第三轮: Two sum, multiple pairs.
 第四轮: System design. 跪的妥妥的. 10000 cameras, 100 hours of video each. 30 fps. Police need to input a plate number and find the path of a suspicious vehicle. (Estimate the size of the video, e.g., blueray disc is 2 hours and 20 GB. No need to scan all of the videos. Estimate the time that a vehicle can be seen between 2 traffic cameras, e.g., 0.3 miles and 30 miles per hour, then select 1 out of 100). Web client, load balancer, servers, db.
 第五轮: 纯粹Behavior questions,要结合工作中实际的例子说明.
-

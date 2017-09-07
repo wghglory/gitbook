@@ -1,3 +1,6 @@
+# HighChart Demo
+
+```javascript
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uid from 'uid';
@@ -212,3 +215,4 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
 }
 
 export default ChanpinjiazhilianJiazhiquxian;
+```

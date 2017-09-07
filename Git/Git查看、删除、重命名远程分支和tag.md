@@ -51,9 +51,9 @@ git push origin :refs/tags/<tagname>
 假设这样一种情况：
 
 1. 我创建了本地分支b1并pull到远程分支 `origin/b1`；
-2. 其他人在本地使用fetch或pull创建了本地的b1分支；
-3. 我删除了 `origin/b1` 远程分支；
-4. 其他人再次执行fetch或者pull并不会删除这个他们本地的 `b1` 分支，运行 `git branch -a` 也不能看出这个branch被删除了，如何处理？
+1. 其他人在本地使用 fetch 或 pull 创建了本地的b1分支；
+1. 我删除了 `origin/b1` 远程分支；
+1. 其他人再次执行 fetch 或者 pull 并不会删除这个他们本地的 `b1` 分支，运行 `git branch -a` 也不能看出这个branch被删除了，如何处理？
 
 使用下面的代码查看b1的状态：
 

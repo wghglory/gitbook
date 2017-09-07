@@ -1,5 +1,3 @@
-[toc]
-
 # 布局-JavaScript
 
 ## 大小

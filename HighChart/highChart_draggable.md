@@ -1,3 +1,6 @@
+# HighChart Draggable
+
+```javascript
 // <script src="https://code.highcharts.com/highcharts.js"></script>
 // <script src="https://rawgithub.com/highcharts/draggable-points/master/draggable-points.js"></script>
 // <div id="container" style="height: 400px"></div>
@@ -13,7 +16,7 @@ var chart = new Highcharts.Chart({
   },
 
   xAxis: {
-    categories: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   },
 
   yAxis: {
@@ -36,7 +39,7 @@ var chart = new Highcharts.Chart({
     series: {
       point: {
         events: {
-          drag: function(e) {
+          drag: function (e) {
             // Returning false stops the drag and drops. Example:
             /*
               if (e.newY > 300) {
@@ -47,25 +50,25 @@ var chart = new Highcharts.Chart({
             e.y = Math.round(e.y);
             $('#drag').html(
               'Dragging <b>' +
-                this.series.name +
-                '</b>, <b>' +
-                this.category +
-                '</b> to <b>' +
-                Highcharts.numberFormat(e.y, 2) +
-                '</b>'
+              this.series.name +
+              '</b>, <b>' +
+              this.category +
+              '</b> to <b>' +
+              Highcharts.numberFormat(e.y, 2) +
+              '</b>'
             );
           },
-          drop: function(e) {
+          drop: function (e) {
             // this.update(Math.round(this.y));
             this.update(Math.round(e.y));
             $('#drop').html(
               'In <b>' +
-                this.series.name +
-                '</b>, <b>' +
-                this.category +
-                '</b> was set to <b>' +
-                Highcharts.numberFormat(this.y, 2) +
-                '</b>'
+              this.series.name +
+              '</b>, <b>' +
+              this.category +
+              '</b> was set to <b>' +
+              Highcharts.numberFormat(this.y, 2) +
+              '</b>'
             );
           }
         }
@@ -84,13 +87,12 @@ var chart = new Highcharts.Chart({
     yDecimals: 2
   },
 
-  series: [
-    {
-      data: [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-      draggableY: true,
-      dragMinY: 0,
-      dragMaxY: 5,
-      minPointLength: 1
-    }
-  ]
+  series: [{
+    data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    draggableY: true,
+    dragMinY: 0,
+    dragMaxY: 5,
+    minPointLength: 1
+  }]
 });
+```

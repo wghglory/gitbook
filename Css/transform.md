@@ -1,5 +1,3 @@
-[toc]
-
 # CSS 动画：transform
 
 ## 2D 变换

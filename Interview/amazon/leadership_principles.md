@@ -1,26 +1,26 @@
-#### Customer Obsession 
+#### Customer Obsession
 
 > realtime chat
 > Upmc mapquest
 
 Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.
 
-#### Ownership 
+#### Ownership
 
 > Ub tahoe: instead of a beautiful dropdownlist, accordion, implement a reusable plugin, although the layout stays ugly for a while, long-term, easy to maintain, more efficient to use in future.
 > 
 > in SNH, SMS message, angular issue, other teams, they ask for help and I help
 
-Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job". 
+Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job".
 
-#### Invent and Simplify 
+#### Invent and Simplify
 
 > Unity xml T4
 > log4net + redis/queue
 
 Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by “not invented here". As we do new things, we accept that we may be misunderstood for long periods of time.
 
-#### Are Right, A Lot 
+#### Are Right, A Lot
 
 > performance UnitOfWork, Cache
 > reusable dropdown plugin
@@ -29,7 +29,7 @@ Leaders are right a lot. They have strong judgment and good instincts. They seek
 
 #### Learn and Be Curious
 
-> how memcache achieve distribute cache? 
+> how memcache achieve distribute cache?
 > how to use nosql to improve db performance instead of too many joins?
 
 Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.
@@ -59,7 +59,7 @@ Thinking small is a self-fulfilling prophecy. Leaders create and communicate a b
 
 > Upmc chart.js, open-source to create charts instead of microsoft server-generated images
 
-Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking. 
+Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking.
 
 #### Frugality
 
@@ -93,6 +93,3 @@ Leaders are obligated to respectfully challenge decisions when they disagree, ev
 > log4net + redis, has setbacks/obstacles, but carry on
 
 Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never settle.
-
-
-

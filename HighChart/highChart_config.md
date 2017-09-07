@@ -1,3 +1,6 @@
+# HighChart config
+
+```javascript
 export const config = {
   title: '',
   legend: {
@@ -88,3 +91,4 @@ export const config = {
     yDecimals: 2
   }
 };
+```
