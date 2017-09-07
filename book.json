@@ -3,17 +3,16 @@
   "description": "笔记",
   "language": "en",
   "plugins": [
-    "include-codeblock",
-    "ace",
     "anchor-navigation-ex",
-    "-lunr",
-    "-search",
     "atoc",
-    "-highlight",
-    "prism",
+    "highlight",
+    "-prism",
+    "-prism-themes",
     "fontsettings",
     "livereload",
     "sharing",
+    "-lunr",
+    "-search",
     "search-plus",
     "splitter",
     "tbfed-pagefooter",
@@ -23,29 +22,12 @@
   ],
   "pluginsConfig": {
     "theme-default": {
-      "showLevel": true
-    },
-    "include-codeblock": {
-      "template": "ace",
-      "unindent": "true",
-      "theme": "monokai"
-    },
-    "prism": {
-      "css": [
-        "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-      ]
+      "showLevel": false
     },
     "tbfed-pagefooter": {
       "copyright": "Copyright &copy Guanghui Wang",
       "modify_label": "File Modified：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
-    },
-    "anchor-navigation-ex": {
-      "isRewritePageTitle": true,
-      "isShowTocTitleIcon": true,
-      "tocLevel1Icon": "fa fa-hand-o-right",
-      "tocLevel2Icon": "fa fa-hand-o-right",
-      "tocLevel3Icon": "fa fa-hand-o-right"
     }
   },
   "links": {

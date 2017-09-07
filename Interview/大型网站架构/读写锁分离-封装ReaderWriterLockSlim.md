@@ -28,7 +28,7 @@ ExitWriteLock        减少写入模式的递归计数，并在生成的计数�
 
 来对比一个老式的lock写法
 
-```Csharp
+```csharp
 private object _Lock = new object();
 
 private void Read()
@@ -42,7 +42,7 @@ private void Read()
 
 **读写锁分离**
 
-```Csharp
+```csharp
 private ReaderWriterLockSlim _LockSlim = new ReaderWriterLockSlim();
 
 private void Read()

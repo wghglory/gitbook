@@ -12,3 +12,5 @@
   * [DotNetCore_Fundamentals](DotNet/DotNetCore_Fundamentals.md)
   * [log4net_redis](DotNet/log4net_redis.md)
   * [ORM](DotNet/ORM.md)
+  * [Helpers](DotNet/helpers/README.md)
+    * [PinyinHelper](DotNet/helpers/PinyinHelper.md)
