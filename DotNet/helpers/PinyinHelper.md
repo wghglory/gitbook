@@ -26,4 +26,3 @@ public static string GetPinyinFirstLetter(string str) {
     return pinyin.ToString();
 }
 ```
-

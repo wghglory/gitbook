@@ -1,4 +1,4 @@
-[TOC]
+[toc]
 
 # 布局-JavaScript
 

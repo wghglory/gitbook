@@ -50,11 +50,11 @@ Request --> Middleware --> Middleware --> ... --> Response
 
 ViewComponent is a upgrade of PartialView.
 
-Partial View:
+**Partial View:**
 
-Usually contains only html code and a model. Render PartialView in Parent View: `@Html.Partial("partialview", model)`
+Usually contains only html code and the model which has to be the one passed in calling page. Render PartialView in Parent View: `@Html.Partial("partialview", model)`
 
-ViewComponent:
+**ViewComponent:**
 
 Contains logic! It has a `Invoke` method which will be called and render its ViewComponent
 

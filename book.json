@@ -1,0 +1,60 @@
+{
+  "title": "我的技术栈",
+  "description": "笔记",
+  "language": "en",
+  "plugins": [
+    "include-codeblock",
+    "ace",
+    "anchor-navigation-ex",
+    "-lunr",
+    "-search",
+    "atoc",
+    "-highlight",
+    "prism",
+    "fontsettings",
+    "livereload",
+    "sharing",
+    "search-plus",
+    "splitter",
+    "tbfed-pagefooter",
+    "expandable-chapters-small",
+    "advanced-emoji",
+    "emphasize"
+  ],
+  "pluginsConfig": {
+    "theme-default": {
+      "showLevel": true
+    },
+    "include-codeblock": {
+      "template": "ace",
+      "unindent": "true",
+      "theme": "monokai"
+    },
+    "prism": {
+      "css": [
+        "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+      ]
+    },
+    "tbfed-pagefooter": {
+      "copyright": "Copyright &copy Guanghui Wang",
+      "modify_label": "File Modified：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "anchor-navigation-ex": {
+      "isRewritePageTitle": true,
+      "isShowTocTitleIcon": true,
+      "tocLevel1Icon": "fa fa-hand-o-right",
+      "tocLevel2Icon": "fa fa-hand-o-right",
+      "tocLevel3Icon": "fa fa-hand-o-right"
+    }
+  },
+  "links": {
+    "gitbook": false,
+    "sharing": {
+      "google": false,
+      "facebook": false,
+      "twitter": false,
+      "all": false
+    }
+  }
+}

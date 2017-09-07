@@ -10,4 +10,3 @@ Entity Framework/ NHibernate / Dapper / Petapoco / MyBatis.net / CYQData / MonoS
 
 1. 执行效率相对纯 sqlDataReader 低
 2. EF 对项目侵入性较高
-

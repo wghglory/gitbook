@@ -56,7 +56,7 @@ public class FilterConfig {
 }
 ```
 
-## 方式二：使用Redis与Log4Net完成分布式日志记录
+## 方式二：使用 Redis 与 Log4Net 完成分布式日志记录
 
 在程序最开始加入`log4net.Config.XmlConfigurator.Configure()`
 
