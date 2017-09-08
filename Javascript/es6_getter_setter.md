@@ -1,3 +1,6 @@
+# ES2015 class getter setter
+
+```javascript
 class Rectangle {
   constructor (width, height) {
       this._width  = width
@@ -11,3 +14,4 @@ class Rectangle {
 }
 var r = new Rectangle(50, 20)
 r.area === 1000
+```

@@ -1,3 +1,6 @@
+# getStyle
+
+```javascript
 function getStyle(obj, attr) {
   if (obj.currentStyle) {
     return obj.currentStyle[attr];
@@ -5,3 +8,4 @@ function getStyle(obj, attr) {
     return getComputedStyle(obj, false)[attr];
   }
 }
+```

@@ -1,3 +1,6 @@
+# Proxying
+
+```javascript
 // Meta-Programming
 // Hooking into runtime-level object meta-operations.
 
@@ -9,5 +12,6 @@ let proxy = new Proxy(target, {
     return name in receiver ? receiver[name] : `Hello, ${name}`;
   }
 });
-proxy.foo === 'Welcome, foo';
-proxy.world === 'Hello, world';
+proxy.foo === 'Welcome, foo';  // true
+proxy.world === 'Hello, world';   // true
+```

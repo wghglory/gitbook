@@ -1,4 +1,4 @@
-### [Difference between `for...of` and `for...in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+# [Difference between `for...of` and `for...in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
 
 The `for...in` loop will iterate over all enumerable properties of an object.
 
@@ -7,7 +7,7 @@ The `for...of` syntax is specific to **collections**, rather than all objects. I
 The following example shows the difference between a `for...of` loop and a `for...in` loop.
 
 ```javascript
-Object.prototype.objCustom = function() {}; 
+Object.prototype.objCustom = function() {};
 Array.prototype.arrCustom = function() {};
 
 let iterable = [3, 5, 7];
@@ -21,4 +21,3 @@ for (let i of iterable) {
   console.log(i); // logs 3, 5, 7
 }
 ```
-

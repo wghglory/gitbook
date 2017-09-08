@@ -1,3 +1,8 @@
+# React 中的 async 和 await
+
+使用了蚂蚁金服 antd
+
+```jsx
 import React, { Component } from 'react';
 import { Table, Pagination, Popconfirm, Button } from 'antd';
 import moment from 'moment';
@@ -60,7 +65,7 @@ export default class UserList extends Component {
     fetchUsers(pageIndex, pageSize) {
         getUsers(pageIndex, pageSize).then(res => {
             this.fetchOrganizations(res.content).then((formattedUsers) => this.setState({
-                loading: false, 
+                loading: false,
                 users: formattedUsers, // added organization name
                 last: res.last,
                 totalPages: res.totalPages,
@@ -72,13 +77,13 @@ export default class UserList extends Component {
                 pageIndex: res.number + 1 // 后台number从0开始，pageIndex从1，展示pagination
             }))
         })
-    } 
-    
+    }
+
     // method 2: 没有 then 的嵌套，但如果不用 Promise.all, 第二个 then 如何获取到第一个 then 的变量？
     fetchUsers(pageIndex, pageSize) {
         getUsers(pageIndex, pageSize).then(res => {
             this.setState({
-                loading: false, 
+                loading: false,
                 last: res.last,
                 totalPages: res.totalPages,
                 totalElements: res.totalElements,
@@ -242,3 +247,4 @@ export default class UserList extends Component {
     );
   }
 }
+```
