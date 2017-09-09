@@ -1,4 +1,4 @@
-# declaretively programming demo
+# Declaretively Programming Demo
 
 ```javascript
 const oneSecond = () => 1000;

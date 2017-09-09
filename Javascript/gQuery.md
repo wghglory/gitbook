@@ -1,3 +1,5 @@
+# gQuery
+
 ```javascript
 //定义一个对象 - 名字是$$
 var $$ = function () {};
@@ -18,7 +20,7 @@ $$.prototype = {
       });
     };
 
-    /*trim是ES5新增的*/
+    /*trim是 ES5 新增的*/
     String.prototype.trim = function () {
       return this.replace(/(^\s*)|(\s*$)/g, "");
     };
@@ -57,7 +59,7 @@ $$.prototype = {
     };
 
     /* 检测字符串是否包含特定的字符串 */
-    String.prototype.contains = function (target) {
+    String.prototype.includes = function (target) {
       return this.indexOf(target) !== -1;
     };
 

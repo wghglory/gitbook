@@ -1,8 +1,8 @@
-### 对于Set结构， 也可以使用数组的解构赋值。
+# 对于Set结构， 也可以使用数组的解构赋值
 
 ```javascript
-[a, b, c] = new Set(["a", "b", "c"])
-a // "a"
+let [a, b, c] = new Set(["a", "b", "c"])
+console.log(a) // "a"
 ```
 
 > 事实上，只要某种数据结构具有`Iterator`接口，都可以采用数组形式的解构赋值。
@@ -22,15 +22,15 @@ sixth // 5
 
 上面代码中， fibs是一个`Generator`函数，原生具有`Iterator`接口。 解构赋值会依次从这个接口获取值。
 
-### 只有undefined才能触发默认值
+## 只有 undefined 才能触发默认值
 
 ```javascript
 [1, undefined, 3].map((x = 'yes') => x); // [ 1, 'yes', 3 ]
 ```
 
-### 主要用途: 
+### 主要用途
 
-1. 交换变量的值: `[x, y] = [y, x];` 
+1. 交换变量的值: `[x, y] = [y, x];`
 
 1. 从函数返回多个值: 将它们放在数组或对象里返回
 
@@ -39,7 +39,7 @@ sixth // 5
       return [1, 2, 3];
     }
     var [a, b, c] = example();
-     
+
     // 返回一个对象
     function example() {
       return {
@@ -56,7 +56,7 @@ sixth // 5
     // 参数是一组有次序的值
     function f([x, y, z]) { ... }
     f([1, 2, 3])
-     
+
     // 参数是一组无次序的值
     function f({x, y, z}) { ... }
     f({x:1, y:2, z:3})
@@ -70,9 +70,9 @@ sixth // 5
       status: "OK",
       data: [867, 5309]
     }
-     
+
     let { id, status, data: number } = jsonData;
-     
+
     console.log(id, status, number) // 42, OK, [867, 5309]
     ```
 
@@ -99,7 +99,7 @@ sixth // 5
     var map = new Map();
     map.set('first', 'hello');
     map.set('second', 'world');
-     
+
     for (let [key, value] of map) {
       console.log(key + " is " + value);
     }
@@ -111,7 +111,7 @@ sixth // 5
     for (let [key] of map) {
       // ...
     }
-     
+
     // 获取键值
     for (let [,value] of map) {
       // ...

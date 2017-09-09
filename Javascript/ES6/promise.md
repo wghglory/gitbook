@@ -1,4 +1,6 @@
-# Promise 回调在 react 中的应用
+# Promise
+
+## Promise 回调在 react 中的应用
 
 在 react component 中经常需要执行一个函数去 setHigherLevelComponentState，而等到高层 component 状态更新完毕后去进行当前 component 的一些操作
 
@@ -36,7 +38,7 @@ setOutlines(obj, actionType) {
 }
 ```
 
-**低层 component：** 在提交表单更新了 outlines 数据后，会 rerender，此时滚动滚动条到最低端看到刚添加的数据
+**低层 component：** 在提交表单更新了 outlines 数据后，会 re-render，此时滚动滚动条到最低端看到刚添加的数据
 
 ```javascript
 submitAddForm() {
@@ -58,7 +60,6 @@ submitAddForm() {
 ```
 
 ### Promise 链
-
 
 ```javascript
 function foo(result) {
@@ -132,7 +133,6 @@ Promise.all([3, promise, foo]).then(res => console.log(res)).catch(reject => {
 // [ 3, 'hello', [Function: foo] ]
 ```
 
-
 ### Promise.race
 
 ```javascript
@@ -181,4 +181,3 @@ Promise.all([
   }
 );
 ```
-

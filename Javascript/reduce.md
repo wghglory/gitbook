@@ -14,7 +14,7 @@ var average = total / scores.length
 
 You'll notice .reduce takes in two values, a callback function and an initial value. The callback (reducer) function has two parameters.
 
-The very first time the reducer function is called, it's going to be passed the initialValue you gave it (the 2nd argument to .reduce) and the first item in the actual array. So in our example above the first time that our reducer function runs, accumulator is going to be 0 and item is going to be 89. Remember, the goal is to transform an array into a single value. We currently have two numbers, 0 and 89, and are goal is to get that to one value. Because we're wanting to find the sum of every item in the array, we'll add 89 + 0 to get 89. That brings up a very important step. The thing that gets returned from the reducer function will then be passed as the accumulator the next time the function runs. So when reducer runs again, accumulator will be 89 and item will now be the second item in the array, 76. This pattern continues until we have no more items in the array and we get the summation of all of our reducer functions, which is 307.
+The first time the reducer function is called, it's going to be passed the initialValue you gave it (the 2nd argument to .reduce) and the first item in the actual array. So in our example above the first time that our reducer function runs, accumulator is going to be 0 and item is going to be 89. Remember, the goal is to transform an array into a single value. We currently have two numbers, 0 and 89, and are goal is to get that to one value. Because we're wanting to find the sum of every item in the array, we'll add 89 + 0 to get 89. That brings up a very important step. The thing that gets returned from the reducer function will then be passed as the accumulator the next time the function runs. So when reducer runs again, accumulator will be 89 and item will now be the second item in the array, 76. This pattern continues until we have no more items in the array and we get the summation of all of our reducer functions, which is 307.
 
 .reduce can be used for more than transforming an array of numbers. It's all about that initialValue that you pass to reduce. **If you want the end result to be an object (therefore converting an array into an object), have the initialValue be an object and add properties to that object as you go**.
 
@@ -53,7 +53,7 @@ function getStarCount(repos) {
 }
 ```
 
-### map and reduce
+## map is 阉割版的 reduce
 
 ```javascript
 // map
@@ -90,4 +90,3 @@ const values = product.analysis.reduce((accu, current, index) => {
   ]
 }, [])
 ```
-

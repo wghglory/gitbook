@@ -1,8 +1,10 @@
 # Inheritance(继承)
 
-### Compose Inheritance
+## Compose Inheritance
 
-##### example 1:
+### example 1
+
+> prop in function, method in prototype
 
 ```javascript
 // Base
@@ -41,7 +43,7 @@ console.log(xiaoWang.say === xiaoLi.say);  //true
 console.log(xiaoWang.getTeacher === xiaoLi.getTeacher);  //true
 ```
 
-##### example 2:
+### example 2
 
 ```javascript
 // 教师类,继承自人
@@ -64,7 +66,7 @@ tc.say(); //'Hello Everyone!'
 console.log(tc.say === xiaoWang.say);   //true
 ```
 
-##### example 3:
+### example 3
 
 ```javascript
 //定义产品对象
@@ -110,7 +112,6 @@ Base.prototype = {
 
 //继承的固定格式
 /*构造函数中写法*/
-
 var Book = function () {
   Base.call(this, arguments);
   this.author = '糖葫芦';
@@ -176,35 +177,6 @@ class ColorPoint extends Point {
         this.color = color; // 正确
     }
 }
-// 子类的constructor方法没有调用super之前就使用this关键字会报错，而放在super方法之后就是正确的。
-// 下面是生成子类实例的代码。
-
-let cp = new ColorPoint(25, 8, 'green');
-console.log(cp.x);
-console.log(cp.y);
-console.log(cp.color);
-```
-
-
-# Inheritance -- ES2015 class
-
-原文地址 <http://es6.ruanyifeng.com/>
-
-```javascript
-class Point {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
-
-class ColorPoint extends Point {
-  constructor(x, y, color) {
-    // this.color = color; // ReferenceError
-    super(x, y);
-    this.color = color; // 正确
-  }
-}
 // 子类的 constructor 方法没有调用 super 之前就使用 this 关键字会报错，而放在 super 方法之后就是正确的。
 // 下面是生成子类实例的代码。
 
@@ -213,3 +185,5 @@ console.log(cp.x);
 console.log(cp.y);
 console.log(cp.color);
 ```
+
+原文地址 <http://es6.ruanyifeng.com/>

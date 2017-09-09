@@ -1,6 +1,4 @@
-# HTTP
-
-## XMLHttpRequest
+# XMLHttpRequest
 
 HTTP API 通过 `XMLHttpRequest` 类实现。该类的每个实例表示一个请求/响应对。
 
@@ -224,4 +222,3 @@ XHR2 允许监控上传 HTTP 请求的进度。`XMLHttpRequest` 的 `upload` 属
 调用 `XMLHttpRequest` 对象的 `abort()` 方法可以取消正在进行的请求。并且在 `XHR2` 中调用 `abort()` 方法会触发 `abort` 事件。
 
 XHR2 定义了一个 `timeout` 属性，指定超时（毫秒）后自动放弃请求，并触发 `timeout` 事件。目前还没有浏览器支持这一点。但我们可以通过 `setTimeout()` 和 `abort()` 自己模拟。
-
