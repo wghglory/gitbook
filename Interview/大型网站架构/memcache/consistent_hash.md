@@ -10,13 +10,13 @@ Given *n* cache hosts, an intuitive hash function is `key % n`. It is simple and
 
   In real world, it is less likely that the data is uniformly distributed. Then for the caching system, it results that **some caches are hot and saturated while the others idle and almost empty**. In such situations, consistent hashing is a good way to improve the caching system.
 
-### What is Consistent Hashing?
+## What is Consistent Hashing
 
 [Consistent Hashing](http://en.wikipedia.org/wiki/Consistent_hashing) is a hashing strategy such that when the hash table is resized (e.g. a new cache host is added to the system), only *k/n* keys need to be remapped, where *k* is the number of keys and *n* is the number of caches. Recall that in a caching system using the mod as hash function, all keys need to be remapped.
 
 Consistent hashing maps an object to the same cache host if possible. If a cache host is removed, the objects on that host will be shared by other hosts; If a new cache is added, it takes its share from other hosts without touching other shares.
 
-### When to use Consistent Hashing?
+## When to use Consistent Hashing
 
 Consistent hashing is a very useful strategy for distributed caching system and [distributed hash tables](http://en.wikipedia.org/wiki/Distributed_hash_table).
 It can reduce the impact of host failures. It can also make the caching system more easier to scale up (and scale down).
@@ -29,9 +29,9 @@ Example of uses include:
 
 Suppose the output of the hash function are in the range of [0, 2^128) (e.g. [MD5](http://en.wikipedia.org/wiki/MD5) hash). Image that the integers in the range are placed on a ring such that the values are wrapped around.
 
-### Here's how consistent hashing works:
+## Here's how consistent hashing works
 
-Given a list of cache servers, hash them to integers in the range. To map a key to a server, hash it to a single integer. Move clockwise on the ring until finding the first cache it encounters. That cache is the one that contains the key. See animation below as an example: key1 maps to cache A; key2 maps to cache C. 
+Given a list of cache servers, hash them to integers in the range. To map a key to a server, hash it to a single integer. Move clockwise on the ring until finding the first cache it encounters. That cache is the one that contains the key. See animation below as an example: key1 maps to cache A; key2 maps to cache C.
 
 [![img](http://2.bp.blogspot.com/-FoDbp5aJxmo/Uj9IbZgCMpI/AAAAAAAAEjw/gIacbrT174s/s1600/feiche_6.gif)](http://2.bp.blogspot.com/-FoDbp5aJxmo/Uj9IbZgCMpI/AAAAAAAAEjw/gIacbrT174s/s1600/feiche_6.gif)
 
@@ -39,7 +39,7 @@ To add a new cache, say D, keys that were originally falling to C will be split 
 
 To remove a cache or if a cache failed, say C, all keys that were originally mapping to C will fall into A and only those keys need to be moved to A. Other keys don't need to be touched.
 
-### Now let's consider the load balance issue.
+## Now let's consider the load balance issue
 
 As we discussed at the beginning, the real data are essentially randomly distributed and thus may not be uniform. It may cause the keys on caches are unbalanced.
 
@@ -50,7 +50,6 @@ For each cache, instead of mapping it to a single point on the ring, we map it t
 
 If the hash function "[mixes well](http://en.wikipedia.org/wiki/Hash_function#Uniformity)", as the number of replicas increases, the keys will be more balanced. 
 
-### Monotone Keys
+## Monotone Keys
 
 If keys are known to be monotonically increased, binary searching can be used to improve the performance of locating a cache for a given key. Then the locate time can be reduced to O(logn).
-
