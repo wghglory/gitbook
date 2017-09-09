@@ -1,4 +1,4 @@
-## [Nginx](http://cnt1992.xyz/2016/03/18/simple-intro-to-nginx/)
+# [Nginx](http://cnt1992.xyz/2016/03/18/simple-intro-to-nginx/)
 
 <http://www.jianshu.com/p/e24d676060c1>
 
@@ -14,7 +14,7 @@ Nginx主要以**事件驱动**的方式编写，有兴趣可以移步[这里](ht
 - 模块化的结构，包括gzipping,byte ranges,chunked responses,以及SSI-filter等filter。
 - 支持SSL和TLSSNI.
 
-## 安装并启动Nginx
+## 安装并启动 Nginx
 
 由于我是用Mac办公的，所以安装`Nginx`是采用`brew`进行的，在`终端`输入下面命令安装好`Nginx`：
 
@@ -167,7 +167,7 @@ server {
     # 代码放置的根目录
     root /var/www/;
     # 编码
-    charset utf-8;    
+    charset utf-8;
 
     location / {
         # index字段声明了解析的后缀名的先后顺序
@@ -177,7 +177,7 @@ server {
         autoindex on;
         # 这里引入了解析PHP的东西
         include /usr/local/etc/nginx/conf.d/php-fpm;
-    }    
+    }
 
     # 404页面跳转到404.html，相对于上面的root目录
     error_page  404              /404.html;

@@ -23,7 +23,7 @@ http {
     sendfile        on;
     keepalive_timeout  65;
 
-	  gzip on;
+    gzip on;
     gzip_min_length 1k;
     gzip_buffers 4 16k;
     #gzip_http_version 1.0;
@@ -37,8 +37,8 @@ http {
         listen 8093;
 
         location / {
-    	    #需要修改成你本地项目的build文件夹地址
-          root /Users/derek/Work/Hifox/ch-frontend/jc-pgc/build/;
+            #需要修改成你本地项目的build文件夹地址
+            root /Users/derek/Work/Hifox/ch-frontend/jc-pgc/build/;
         }
 
         location /api/ {
@@ -49,7 +49,7 @@ http {
         }
 
         location /r/ {
-    		#上传目录
+            #上传目录
             alias D:\\dir;
         }
     }
