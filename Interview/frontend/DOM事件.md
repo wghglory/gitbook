@@ -1,6 +1,8 @@
+# DOM 事件
+
 ## 事件级别
 
-```
+```javascript
 DOM0: element.onclick = function(){}
 DOM2: element.addEventListener('click', function(){}, false)
 DOM3: element.addEventListener('keyup', function(){}, false)

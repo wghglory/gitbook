@@ -26,7 +26,7 @@ HTTP/2 Server Push allows the server to send assets to the browser before it has
 
 In HTTP/1 the client sends a request to the server, which replies with the requested content, usually with an HTML file that contains links to many assets *(.js, .css, etc. files)*. As the browser processes this initial HTML file, it starts to resolve these links and makes separate requests to fetch them.
 
-Check out the following image that demonstrates the process. Pay extra attention to the independent requests on the timeline and to the initiatior of those requests:
+Check out the following image that demonstrates the process. Pay extra attention to the independent requests on the timeline and to the initiator of those requests:
 
 ![HTTP 1.1 in Node.js](https://blog-assets.risingstack.com/2017/08/http_1-in-nodejs.png)*HTTP/1 assets loading*
 
@@ -49,13 +49,13 @@ With requiring the built-in `http2` module, we can create our server just like w
 The interesting part is that we push other resources when the `index.html` is requested:
 
 ```javascript
-const http2 = require('http2')  
-const server = http2.createSecureServer(  
+const http2 = require('http2')
+const server = http2.createSecureServer(
   { cert, key },
   onRequest
 )
 
-function push (stream, filePath) {  
+function push (stream, filePath) {
   const { file, headers } = getFile(filePath)
   const pushHeaders = { [HTTP2_HEADER_PATH]: filePath }
 
@@ -64,7 +64,7 @@ function push (stream, filePath) {
   })
 }
 
-function onRequest (req, res) {  
+function onRequest (req, res) {
   // Push files with index.html
   if (reqPath === '/index.html') {
     push(res.stream, 'bundle1.js')
