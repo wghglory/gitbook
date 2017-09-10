@@ -1,3 +1,6 @@
+# 面向对象删除选中 li(阿里面试)
+
+```html
 <!DOCTYPE html>
 <html>
 
@@ -51,9 +54,9 @@
   <script type="text/javascript">
     class List {
       constructor(sel) {
-        this.el = Array.from(document.querySelectorAll(sel));
+        this.ulElements = Array.from(document.querySelectorAll(sel));
         let self = this;
-        this.el.forEach(item => {
+        this.ulElements.forEach(item => {
           item.addEventListener('click', function (e) {
             if (e.target.className.indexOf('del') > -1) {
               self.removeItem.call(self, e.target);
@@ -65,8 +68,8 @@
         let self = this;
         let findParent = function (node) {
           let parent = node.parentNode;
-          let root = self.el.find(item => item === parent);
-          if (root) {
+          let root = self.ulElements.find(item => item === parent); 
+          if (root) {  // 当能从 ul 中找到时，删除 ul 下结点 li
             root.removeChild(node);
           } else {
             findParent(parent);
@@ -83,3 +86,4 @@
 </body>
 
 </html>
+```
