@@ -1,7 +1,8 @@
-# 1. Database Partitioning Options
+# Database Scale
+
+## 1. Database Partitioning Options
 
 ![master-slave](http://om1o84p1p.bkt.clouddn.com/2017-04-12-master-slave.png)
-
 
 ### Cluster Computing
 
@@ -10,52 +11,51 @@ Cluster computing utilizes many servers operating in a group, with shared messag
 * For high-availability, many nodes in the cluster can be used for reads, but only one for write (CRUD) operations. This can make reads faster, but write transactions do not see any benefit. If a failure of one node occurs, then another node in the cluster takes over, again continuing to operating against the shared disk facility. This approach has limited scalability due to the single bottleneck for CRUD operations. Even the reads will ultimately hit a performance limit as the centralized shared disk facility can only spread the load so much before diminishing returns are experienced. The read limitations are particularly evident when an application requires complex joins or contains non-optimized SQL statements.
 
 * More advanced clustering techniques rely on real-time memory replication between nodes, keeping the memory image of nodes in the cluster up to date via a real-time messaging system. This allows each node to operate in both read or write mode, but is ultimately limited by the amount of traffic that can be transmitted between nodes (using a typical network or other high-speed communication mechanism). Therefore, as nodes are added, the communication and memory replication overhead increases geometrically, thus hitting severe scalability limits, often with a relatively small number of nodes. This solution also suffers from the same shared disk limitations of a traditional cluster, given that a growing, single large database has increasingly intensive disk I/O.
-    
+
 ![cluster-computing](http://om1o84p1p.bkt.clouddn.com/2017-04-12-cluster-computing.png)
 
 ### Table Partitioning
 
-data in a single large table can be split across multiple disks for improved disk I/O utilization. The partitioning is typically done horizontally (separating rows by range across disk partitions), but can be vertical in some systems as well (placing different columns on separate partitions). This approach can help reduce the disk I/O bottleneck for a given table, 
+data in a single large table can be split across multiple disks for improved disk I/O utilization. The partitioning is typically done horizontally (separating rows by range across disk partitions), but can be vertical in some systems as well (placing different columns on separate partitions). This approach can help reduce the disk I/O bottleneck for a given table.
 
 **disadvantage:**
 
-1. make joins and other operations slower. 
-2. since the approach relies on a single server instance of the database management system, all other CPU and memory contention limitations apply
+1. make joins and other operations slower.
+1. since the approach relies on a single server instance of the database management system, all other CPU and memory contention limitations apply
 
 ![](http://om1o84p1p.bkt.clouddn.com/2017-04-12-14897731429376.jpg)
 
-
 ### Federated Tables
 
-An offshoot of Table Partitioning is the Federated Table approach, where tables can be accessed across multiple servers. 
+An offshoot of Table Partitioning is the Federated Table approach, where tables can be accessed across multiple servers.
 
-**disadvantage:** 
+**disadvantage:**
 
-1. complex to administer, and lacks efficiency as the federated tables must be accessed over the network. 
-2. This approach may work for some reporting or analytical tasks, but for general read/write transactions it is not a very likely choice.
+1. complex to administer, and lacks efficiency as the federated tables must be accessed over the network.
+1. This approach may work for some reporting or analytical tasks, but for general read/write transactions it is not a very likely choice.
 
 ### Sum of Partitioning Options
 
 The common drawback is reliance on shared facilities and resources. Whether relying on shared memory, centralized disk, or processor capacity they each suffer with scalability limitations, not to mention many other drawbacks, including complex administration, lack of support for critical business requirements, and high availability limitations.
 
-# 2. Database Sharding, The “Shared-Nothing” Approach
+## 2. Database Sharding, The “Shared-Nothing” Approach
 
 ==breaking up big database into many smaller databases that share nothing and can be spread across multiple servers.==
 
 [![database sharding figure 2](http://om1o84p1p.bkt.clouddn.com/2017-04-12-300x300xdatabase-sharding-figure-2-300x300.jpg.pagespeed.ic.PfKCz_tFoS.jpg)](http://www.agildata.com/wp-content/uploads/2016/05/database-sharding-figure-2.jpg)
 
-### Usage: 
+### Usage
 
 customerWest vs customerEast; customerEurope vs customerUS
 
-### advantage:
+### Advantage
 
 * **improved scalability**, growing in a near-linear fashion as more servers are added to the network
 * **Smaller databases are easier to manage.** 
 * **Smaller databases are faster.** By hosting each shard database on its own server, the ratio between memory and data on disk is greatly improved, thereby reducing disk I/O. This results in less contention for resources, *greater join performance, faster index searches, and fewer database locks*. 
 * **Database Sharding can reduce costs.** Most Database Sharding implementations take advantage of lower-cost open source databases, or can even take advantage of “workgroup” versions of commercial databases. Additionally, sharding works well with commodity multi-core server hardware, far less expensive than high-end multi-CPU servers and expensive SANs. The overall reduction in cost due to savings in license fees, software maintenance and hardware investment is substantial, in some cases 70% or more when compared to other solutions.
 
-### things to be considered
+### Things to be considered
 
 * **Reliability.**
     * Automated backups of individual Database Shards.
@@ -66,7 +66,7 @@ customerWest vs customerEast; customerEurope vs customerUS
 * **Distributed queries.**
     * Aggregation of statistics, requiring a broad sweep of data across the entire system. Such an example is the computation of sales by product, which ordinarily requires evaluation of the entire database.
     * Queries that support comprehensive reports, such as listings of all individual customers that purchased a given product in the last day, week or month.
-* **Avoidance of cross-shard joins.**The primary technique to avoid this is the replication of Global Tables, the relatively static lookup tables that are common utilized when joining to much larger primary tables. Tables containing values as Status Codes, Countries, Types, and even Products fall into this category. What is required is an automated replication mechanism that ensures values for Global Tables are in synch across all shards, minimizing or eliminating the need for cross-shard joins.
+* **Avoidance of cross-shard joins.** The primary technique to avoid this is the replication of Global Tables, the relatively static lookup tables that are common utilized when joining to much larger primary tables. Tables containing values as Status Codes, Countries, Types, and even Products fall into this category. What is required is an automated replication mechanism that ensures values for Global Tables are in synch across all shards, minimizing or eliminating the need for cross-shard joins.
 * **Auto-increment key management.** Typical auto-increment functionality provided by database management systems generate a sequential key for each new row inserted into the database. This is fine for a single database application, but when using Database Sharding, keys must be managed across all shards in a coordinated fashion. The requirement here is to provide a seamless, automated method of key generation to the application, one that operates across all shards, ensuring that keys are unique across the entire system.
 * **Support for multiple Shard Schemes.** It is important to note that Database Sharding is effective because it offers an application specific technique for massive scalability and performance improvements. In fact it can be said that the degree of effectiveness is directly related to how well the sharding algorithms themselves are tailored to the application problem at hand. What is required is a set of multiple, flexible shard schemes, each designed to address a specific type of application problem. Each scheme has inherent performance and/or application characteristics and advantages when applied to a specific problem domain. In fact, using the wrong shard scheme can actually inhibit performance and the very results you are trying to obtain. It is also not uncommon for a single application to use more than one shard scheme, each applied to a specific portion of the application to achieve optimum results. Here is a list of some common shard schemes:
     * Session-based sharding, where each individual user or process interacts with a specific shard for the duration of the user or process session. This is the simplest technique to implement, and adds virtually zero overhead to overall performance, since the sharding decision is made only once per session. Applications which can benefit from this approach are often customer-centric, where all data for a given customer is contained in a single shard, and that is all the data that the customer requires.
@@ -114,9 +114,3 @@ Sharding a database table before it has been optimized locally causes premature 
 - **Failover servers more complex** - Failover servers must themselves have copies of the fleets of database shards.
 - **Backups more complex** - Database backups of the individual shards must be coordinated with the backups of the other shards.
 - **Operational complexity added** - Adding/removing indexes, adding/deleting columns, modifying the schema becomes much more difficult.
-
-
-
-
-
-

@@ -1,3 +1,5 @@
+# Questions that I can ask
+
 1. What is the ratio of testers to developers to program managers? What is the interaction like? How does project planning happen on the team?
 1. 我未来期望做项目经理，带领团队做出优秀的产品，您觉得如何才能成为一名出色的项目经理？需要掌握什么技能？
 1. 技术总监／项目经理很忙，新技术更新很快，在没时间没精力学习这些技术的情况下如何管理和指导团队
@@ -7,11 +9,11 @@
 1. 您能介绍下你们团队规模以及如何分配任务的吗？
 1. 公司未来三年最重要的新产品线、新策略、新市场有哪些？
 1. 公司如何帮助我们多了解每个部门的业务（好让我们更能做出贡献）？
-1. What are the necessary skills to do this job? 
-1. What makes a successful candidate?1. What would make an unsuccessful candidate? 
-1. Why have people left this position previously? 
+1. What are the necessary skills to do this job?
+1. What makes a successful candidate?
+1. What would make an unsuccessful candidate?
+1. Why have people left this position previously?
 1. What is the most difficult part of this job?
-
 
 ---
 
@@ -27,4 +29,3 @@
 1. What brought you to this company? What has been most challenging for you?
 1. I'm very interested in scalability, and I'd love to learn more about it. What opportunities are there at this company to learn about this?
 1. I'm not familiar with technology X, but it sounds like a very interesting solution. Could you tell me a bit more about how it works?
-
