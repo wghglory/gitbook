@@ -101,7 +101,7 @@
 }
 ```
 
-## Running commands
+### Useful Commands
 
 ```bash
 npm run # show a log of the available commands in package.json
@@ -116,11 +116,17 @@ npm start
 npm install mocha should --save-dev
 ```
 
-在运行 `npm version` 之前，最好把 git repository 远程连接配置好。这样 `npm version patch` 时，package.json version 和 git tag 会同步都更新。再通过下面命令把 tag 推送到远端。
+在运行 `npm version` 之前，最好把 git repository 远程连接配置好。这样 `npm version patch` 时，package.json version 和 `git tag` 会同步都更新。再通过下面命令把 tag 推送到远端。
 
 ```bash
 npm version major/minor/patch  # increments both package.json and sets a tag in git repository if package.json indicates repository
 git push --tags origin HEAD:master
+```
+
+**See installed tools**:
+
+```bash
+ls node_modules/.bin
 ```
 
 ### reference
