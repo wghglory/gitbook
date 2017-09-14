@@ -1,6 +1,6 @@
 # 创狐 Nginx 配置
 
-mac ngix path: `/usr/local/etc/nginx/nginx.conf`
+mac nginx path: `/usr/local/etc/nginx/nginx.conf`
 
 ```
 worker_processes  1;

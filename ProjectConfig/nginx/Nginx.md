@@ -19,7 +19,7 @@ Nginx主要以**事件驱动**的方式编写，有兴趣可以移步[这里](ht
 由于我是用Mac办公的，所以安装`Nginx`是采用`brew`进行的，在`终端`输入下面命令安装好`Nginx`：
 
 ```bash
-# 强烈建议每次brew安装软件的时候先执行brew update保持软件依赖包都是最新的
+# 强烈建议每次 brew 安装软件的时候先执行 rew update 保持软件依赖包都是最新的
 brew install nginx
 ```
 
