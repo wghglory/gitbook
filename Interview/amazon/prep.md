@@ -67,7 +67,6 @@ namespace TcpEchoClient
 }
 ```
 
-
 * [x] [Google Amazon parking lot example design](https://github.com/wghglory/system-design-demo)
 * [x] https://www.careercup.com/page?pid=trees-and-graphs-interview-questions
 * Google “solve boggle board algorithm”
@@ -85,13 +84,11 @@ Please also review:
 <https://www.hiredintech.com/classrooms/system-design/lesson/52>
 
 Leadership Principles – The principles are an important aspect who we are at Amazon and the culture we maintain. As you review the 14 principles be prepared to answer a question about your work delivering on a project, challenges you might have faced, problems you had to work through, meeting a deadline, etc. You will be expected to walk us through various example in your life in which you exhibited the leadership principles. You can use this link in preparing for the questions to expect. https://careerservices.wayne.edu/behavioralinterviewinfo.pdf
- 
-
 
 Design Pattern
 SOA
 Distributed system: https://www.hackerrank.com/domains/distributed-systems/client-server/page:1
-microservice
+microService
 sharding
 large scale
 
@@ -99,7 +96,7 @@ map-reduce, SOA, loading balance
 
 DNS lookups, TCP/IP
 
-一道是anagrams, 另一道是group anagram的变形, 最后问了一下hashmap出现collision会发生什么。leetcode 49和242原题. hashmap的题目说出来hashcode, bucket, linkedlist, key-value pair基本就可以了.
+一道是anagrams, 另一道是group anagram的变形, 最后问了一下 hashmap 出现 collision 会发生什么。leetcode 49和242原题. hashmap 的题目说出来 hashCode, bucket, linkedList, key-value pair基本就可以了.
 
 关注一亩三分地微博：
 Warald

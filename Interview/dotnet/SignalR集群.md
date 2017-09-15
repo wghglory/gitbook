@@ -17,7 +17,7 @@
 
 ## redis来做底板
 
-需要下载nuget包 Microsoft.AspNet.SignalR.Redis
+需要下载 nuget 包 Microsoft.AspNet.SignalR.Redis
 同样在startup类中进行配置，
 
 ```csharp

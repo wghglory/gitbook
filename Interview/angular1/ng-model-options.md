@@ -12,24 +12,24 @@
 <p>Hello {{name}}</p>
 ```
 
-它是实时同步更新的，input中每输入一个字，就立刻同步到数据模型。这是因为每次输入input都会触发一个input的事件，然后angular就会执行的$digest循环，直到模型稳定下来。我们不用手动设置任何事件监听来同步更新视图和模型。
+它是实时同步更新的，input中每输入一个字，就立刻同步到数据模型。这是因为每次输入 input 都会触发一个 input 的事件，然后angular就会执行的$digest循环，直到模型稳定下来。我们不用手动设置任何事件监听来同步更新视图和模型。
 
-然而由于每次键盘按下都会触发$digest循环，所以当你在输入input内容的时候，angular不得不处理所有绑定在scope上的watch监听。这样它执行的效率就取决于你在scope上绑定了多少watch监听、以及这些监听的回调函数是怎样的，这个代价是十分昂贵的。
+然而由于每次键盘按下都会触发$digest循环，所以当你在输入input内容的时候，angular 不得不处理所有绑定在 scope 上的watch监听。这样它执行的效率就取决于你在 scope 上绑定了多少 watch 监听、以及这些监听的回调函数是怎样的，这个代价是十分昂贵的。
 
 如果我们能够自己控制$digest的触发，比如当用户停止输入300毫秒后触发，又或者是当input元素失去焦点的时候再触发，那不是更好么? 于是angular-1.3的ng-model-options就为我们做了这件事。
 
 ### 通过 updataOn 指定同步ng-model的时间
 
-ng-model-options提供了一系列的选项去控制ng-model的更新。
+ng-model-options 提供了一系列的选项去控制 ng-model 的更新。
 
-通过updateOn参数我们可以定义input触发$digest的事件。举个栗子，我们希望当input失去焦点的时候更新模型，只需要按照如下的配置来实现:
+通过 updateOn 参数我们可以定义 input 触发$digest的事件。举个栗子，我们希望当input失去焦点的时候更新模型，只需要按照如下的配置来实现:
 
 ```html
 <input type="text" ng-model="name" ng-model-options="{ updateOn: 'blur' }">
 <p>Hello {{name}}</p>
 ```
 
-`ng-model-options="{ updateOn: 'blur' }"`告诉angular在input触发了onblur事件的时候再更新ng-model，而不是每次按下键盘就立即更新model。
+`ng-model-options="{ updateOn: 'blur' }"`告诉 angular 在 input 触发了 onblur 事件的时候再更新 ng-model，而不是每次按下键盘就立即更新model。
 
 [http://plnkr.co/edit/URMCoON9qDFnxdlyiDSS?p=preview ](http://plnkr.co/edit/URMCoON9qDFnxdlyiDSS?p=preview)
 
@@ -106,6 +106,7 @@ app.controller('Rollback'，function($scope) {
     }
 });
 ```
+
 [http://plnkr.co/edit/iMY8IqH5f8NLuIAxY8zN?p=preview ](http://plnkr.co/edit/iMY8IqH5f8NLuIAxY8zN?p=preview%20)
 
 myValue1使用了$rollbackViewValue()方法，可以回滚文本域里的值和数据模型同步，但是myValue2是不能的。
@@ -132,6 +133,6 @@ app.controller('Rollback'，function($scope) {
 
 按Esc的时候，不是直接回滚视图值到当前的数据模型，而是先设置数据模型为空，然后再回滚视图值。而myValue2，直接设置数据模型为空，不使用回滚。
 
-在demo里多试几次就会发现，在这种情况下，在myValue2的input里按Esc，有时可以同步视图值为空，有时则不能。
+在demo里多试几次就会发现，在这种情况下，在myValue2的 input 里按 Esc，有时可以同步视图值为空，有时则不能。
 
-所以，在用了ng-model-opitons的时候，如果在模型没有被视图同步之前需要让视图被模型同步，不能简单通过设置模型，必须使用$rollbackViewValue()方法。
+所以，在用了 ng-model-opitons 的时候，如果在模型没有被视图同步之前需要让视图被模型同步，不能简单通过设置模型，必须使用$rollbackViewValue()方法。

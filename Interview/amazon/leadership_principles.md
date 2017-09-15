@@ -1,13 +1,15 @@
+# Amazon leadership principles
+
 #### Customer Obsession
 
-> realtime chat
-> Upmc mapquest
+> real-time chat
+> UPMC mapQuest
 
 Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.
 
 #### Ownership
 
-> Ub tahoe: instead of a beautiful dropdownlist, accordion, implement a reusable plugin, although the layout stays ugly for a while, long-term, easy to maintain, more efficient to use in future.
+> Ub tahoe: instead of a beautiful dropdownList, accordion, implement a reusable plugin, although the layout stays ugly for a while, long-term, easy to maintain, more efficient to use in future.
 > 
 > in SNH, SMS message, angular issue, other teams, they ask for help and I help
 
@@ -37,27 +39,27 @@ Leaders are never done learning and always seek to improve themselves. They are 
 #### Hire and Develop the Best
 
 > no hire experience, but in Tahoe, I ES2015, naming convention, coding style to coach others
-> help new employees (vishal) with angular
+> help new employees (Vishal) with angular
 
 Leaders raise the performance bar with every hire and promotion. They recognize exceptional talent, and willingly move them throughout the organization. Leaders develop leaders and take seriously their role in coaching others. We work on behalf of our people to invent mechanisms for development like Career Choice.
 
 #### Insist on the Highest Standards
 
-> upmc mapquest, based on customer feedback
-> perfomance Cache, best user experience
+> UPMC mapQuest, based on customer feedback
+> performance Cache, best user experience
 
 Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually raising the bar and driving their teams to deliver high quality products, services and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed.
 
 #### Think Big
 
-> instead of single beautiful dropdownlist, create reusable, maintainable plugin
+> instead of single beautiful dropdownList, create reusable, maintainable plugin
 > create a jquery-like helper library, helperClass
 
 Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.
 
 #### Bias for Action
 
-> Upmc chart.js, open-source to create charts instead of microsoft server-generated images
+> UPMC chart.js, open-source to create charts instead of microsoft server-generated images
 
 Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking.
 
@@ -76,20 +78,20 @@ Leaders listen attentively, speak candidly, and treat others respectfully. They 
 
 #### Dive Deep
 
-> realtime chat, discuss with peers about database design
+> real-time chat, discuss with peers about database design
 > log4net + redis
 
 Leaders operate at all levels, stay connected to the details, audit frequently, and are skeptical when metrics and anecdote differ. No task is beneath them.
 
 #### Have Backbone; Disagree and Commit
 
-> Jay devides ui and func
+> Jay decides ui and func
 
 Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting. Leaders have conviction and are tenacious. They do not compromise for the sake of social cohesion. Once a decision is determined, they commit wholly.
 
 #### Deliver Results
 
-> upmc mapquest result satisfied customer
+> UPMC mapQuest result satisfied customer
 > log4net + redis, has setbacks/obstacles, but carry on
 
 Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never settle.

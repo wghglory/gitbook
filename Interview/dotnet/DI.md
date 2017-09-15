@@ -1,4 +1,4 @@
-# DI原理解析及Castle、Unity框架使用
+# DI 原理解析及 Castle、Unity 框架使用
 
 控制反转（Inversion of Control）目的是解耦合
 
@@ -62,7 +62,7 @@ static void Main(string[] args)
 }
 ```
 
-DI框架流行的有Castle Windsor, Unity...(Autofac Spring.Net)
+DI 框架流行的有 Castle Windsor, Unity...(Autofac, Spring.Net)
 
 ==在DI框架中，一般需要将对象注册到容器中，然后从容器解析出来。==
 
@@ -74,22 +74,21 @@ DI框架流行的有Castle Windsor, Unity...(Autofac Spring.Net)
 //待注入类
 interface ITransient
 {
-   
+
 }
- 
+
 interface IPerson
 {
     void Say();
 }
 class Person : IPerson, ITransient
 {
-     public void Say()
-     {
-         Console.WriteLine("Person's say method is Called");
-     }
+    public void Say()
+    {
+        Console.WriteLine("Person's say method is Called");
+    }
 }
 ```
-
 
 ```csharp
 //注册解析方式一
@@ -157,7 +156,6 @@ static void Main(string[] args)
 
 属性注入
 
-
 ```csharp
 class Task : ITransient
 {
@@ -188,7 +186,6 @@ MVC集成
 
 Application_Start注册
 
-
 ```csharp
 protected void Application_Start()
 {
@@ -201,7 +198,7 @@ protected void Application_Start()
 
 ```
 
-Installer注册
+Installer 注册
 
 ```csharp
 public class AssmInstaller : IWindsorInstaller
@@ -221,7 +218,7 @@ public class AssmInstaller : IWindsorInstaller
 }
 ```
 
-这样Castle Windsor就能接管解析Controller了.
+这样 Castle Windsor 就能接管解析 Controller 了
 
 ---
 
@@ -246,7 +243,6 @@ public class Person : IPerson
 ```
 
 注册解析一
-
 
 ```csharp
 static void Main(string[] args)
@@ -278,7 +274,6 @@ static void Main(string[] args)
 
 构造函数注入
 
-
 ```csharp
 class Task : ITask
 {
@@ -289,10 +284,10 @@ class Task : ITask
         Person.Say();
     }
 }
- 
+
 public interface ITask
 {
- 
+
 }
 
 static void Main(string[] args)
@@ -308,7 +303,6 @@ static void Main(string[] args)
 ```
 
 属性注入
-
 
 ```csharp
 class Task : ITask
@@ -354,4 +348,4 @@ protected void Application_Start()
 }
 ```
 
-这样Unity就接管了Controller的创建
+这样 Unity 就接管了 Controller 的创建

@@ -102,14 +102,14 @@ vipUser can subscribe all channels while regularUser can subscribe most 5.
 
 features:
 1. read txt, epub formats in device
-2. sync: add these documents to cloud
-3. sign in, read repositories from cloud
-4. categorize books, news, docs for cloud all documents
-5. discover and push books to user based on search result, payment history
-6. search a book and read 1st chapter to trial, buy books
-7. help: ask an issue, feedback
-8. share book to facebook
-9. reading editor: font, theme, process, bookmark, table of content
+1. sync: add these documents to cloud
+1. sign in, read repositories from cloud
+1. categorize books, news, docs for cloud all documents
+1. discover and push books to user based on search result, payment history
+1. search a book and read 1st chapter to trial, buy books
+1. help: ask an issue, feedback
+1. share book to facebook
+1. reading editor: font, theme, process, bookmark, table of content
 
 others:
 1. resolution for different mobiles
@@ -137,8 +137,8 @@ create 10 groups and assign masters in groups, those masters sync with the centr
 **Way 3:**
 
 1. central server have a list of unsynced, syncing and synced servers.
-2. the central server can start with a random 10 servers and change their state from to be unsynced to syncing and update the lists.
-3. When a server finished syncing, its state is changed to synced and added to the synced list. Next, a new server can be synced if space is available.
+1. the central server can start with a random 10 servers and change their state from to be unsynced to syncing and update the lists.
+1. When a server finished syncing, its state is changed to synced and added to the synced list. Next, a new server can be synced if space is available.
 
 pros:
 
@@ -153,12 +153,12 @@ if central server fails, need to redo syncing. To combat this each server can st
 ### How will you design the backend of product recommender system on amazon.com
 
 1. Depending upon what he is searching on
-2. Relating that searched Item to what he Purchased in the history
-3. Respecting User preference on Public Review of the Product
-4. Products that People who bought the same product along with the product searched by the current User.
-5. Best Brand Products that matches the searched product.
-6. Sort according to the best discount on the product searched
-7. Product which offers Free Shipping
+1. Relating that searched Item to what he Purchased in the history
+1. Respecting User preference on Public Review of the Product
+1. Products that People who bought the same product along with the product searched by the current User.
+1. Best Brand Products that matches the searched product.
+1. Sort according to the best discount on the product searched
+1. Product which offers Free Shipping
 
 Coming to the Design
 

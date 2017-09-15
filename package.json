@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "gitbook serve && open http://localhost:4000",
+    "build": "gitbook build",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",

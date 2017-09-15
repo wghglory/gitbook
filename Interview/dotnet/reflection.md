@@ -8,10 +8,10 @@
 * SqlHelper SqlDataReader读取数据库，表明通过反射加载
 * 开发windows form插件：
     1. 创建接口项目，通过接口定义插件实现方式
-    2. 创建插件项目，创建两个插件一个实现汉英翻译功能，一个实现定时关机功能。插件项目要引用接口项目。编译时让插件项目生成在主程序的debug/plugin目录下
-    3. 创建主程序，主程序要添加对接口项目的引用(不需要对插件引用，对插件的调用是动态的)
-    4. 主程序中读取Plugin目录下的所有dll文件，加载成Assembly。Ass.GetExportedTypes读取Assembly中的公共类型。
-    5. IsAssignableFrom判断对象能否委派给某类型，是否是类并且不能使抽象类
+    1. 创建插件项目，创建两个插件一个实现汉英翻译功能，一个实现定时关机功能。插件项目要引用接口项目。编译时让插件项目生成在主程序的debug/plugin目录下
+    1. 创建主程序，主程序要添加对接口项目的引用(不需要对插件引用，对插件的调用是动态的)
+    1. 主程序中读取 Plugin 目录下的所有dll文件，加载成Assembly。Ass.GetExportedTypes 读取 Assembly中的公共类型。
+    1. IsAssignableFrom判断对象能否委派给某类型，是否是类并且不能使抽象类
 
 ### 反射中经常使用的类
 
@@ -192,23 +192,23 @@ public partial class _Default : System.Web.UI.Page
 
 缺点：
 
-- 编译器无法对对象进行类型检查
-- 编写更多的代码来实现
-- 速度慢
+* 编译器无法对对象进行类型检查
+* 编写更多的代码来实现
+* 速度慢
 
 优势：
 
-- 为创建对象和调用其他方法提供了替代方案。比如为了提高代码的灵活性
-- 将指定具体类推迟到了运行时刻。
+* 为创建对象和调用其他方法提供了替代方案。比如为了提高代码的灵活性
+* 将指定具体类推迟到了运行时刻。
 
 ### 使用反射机制调用方法的四步曲
 
 1. 加载程序集
-2. 获取类的类型
-3. 创建该类的实例
-4. 调用该实例的方法
+1. 获取类的类型
+1. 创建该类的实例
+1. 调用该实例的方法
 
-System.Reflection.Assembly类中有两个静态方法Assembly.Load(string assemblyName)和Assembly.LoadFrom(string fileName)来把程序集加载到应用程序序域中。
+System.Reflection.Assembly 类中有两个静态方法 Assembly.Load(string assemblyName)和Assembly.LoadFrom(string fileName)来把程序集加载到应用程序序域中。
 
 在.NET中当一个对象被创建时，幕后到底发生了什么？当我们运行某一个应用程序时，.NET CLR会首先创建一个应用程序域来容纳这个应用程序，接着将应该引用的程序集加载到应用程序域中。其中MSCorLib.dll是一个程序集，它包含了很多系统命名空间及其子命名空间中的类：System;System.Text,System.IO等。然后CLR加载正在运行的应用程序所属的程序集。
 
@@ -307,8 +307,6 @@ namespace ConsoleAssemblyTest
 | ParameterInfo | 该类保存给定的参数信息                              |
 | PropertyInfo  | 该类保存给定的属性信息                              |
 
- 
-
 ### System.Reflection.Assembly类
 
 通过Assembly可以动态加载程序集，并查看程序集的内部信息，其中最常用的就是Load()这个方法。
@@ -325,12 +323,12 @@ Type是最常用到的类，通过Type可以得到一个类的内部信息，也
 
    Type type=typeof(Example);
 
-2. 利用System.Object.GetType() 得到Type对象
+1. 利用System.Object.GetType() 得到Type对象
 
    Example example=new Example();
    Type type=example.GetType();
 
-3. 利用System.Type.GetType() 得到Type对象
+1. 利用System.Type.GetType() 得到Type对象
 
    Type type=Type.GetType("MyAssembly.Example",false,true);
 
@@ -352,9 +350,9 @@ object obj=Activator.CreateInstance(type);
 
     ```csharp
     Type type=typeof(Example);
-    
+
     MethodInfo[] listMethodInfo=type.GetMethods();
-    
+
     foreach(MethodInfo methodInfo in listMethodInfo)
         Cosole.WriteLine("Method name is "+methodInfo.Name);
     ```
@@ -363,13 +361,9 @@ object obj=Activator.CreateInstance(type);
 
     ```csharp
     Assembly assembly= Assembly.Load("MyAssembly");
-    
     Type type=assembly.GetType("Example");
-    
     object obj=Activator.CreateInstance(type);
-    
     MethodInfo methodInfo=type.GetMethod("Hello World");  //根据方法名获取MethodInfo对象
-    
     methodInfo.Invoke(obj,null);  //参数1类型为object[]，代表Hello World方法的对应参数，输入值为null代表没有参数
     ```
 
@@ -379,34 +373,27 @@ object obj=Activator.CreateInstance(type);
 
     常用的方法有GetValue（object,object[]) 获取属性值和 SetValue(object,object,object[]) 设置属性值
 
-
     ```csharp
     Type type=typeof(Example);
-    
+
     PropertyInfo[] listPropertyInfo=type.GetProperties();
-    
+
     foreach(PropertyInfo propertyInfo in listPropertyInfo)
-    ​    Cosole.WriteLine("Property name is "+ propertyInfo.Name);
+    ​    Console.WriteLine("Property name is "+ propertyInfo.Name);
     ```
 
-2. 我们也可以通过以下方法设置或者获取一个对象的属性值
+1. 我们也可以通过以下方法设置或者获取一个对象的属性值
 
     ```csharp
     Assembly assembly=Assembly.Load("MyAssembly");
-    
     Type type=assembly.GetType("Example");
-    
     object obj=Activator.CreateInstance(type);
-    
     PropertyInfo propertyInfo=obj.GetProperty("Name");    //获取Name属性对象
-    
     var name=propertyInfo.GetValue(obj,null）;                //获取Name属性的值
-    
     PropertyInfo propertyInfo2=obj.GetProperty("Age");     //获取Age属性对象
-    
-    propertyInfo.SetValue(obj,34,null);                              //把Age属性设置为34   
+    propertyInfo.SetValue(obj,34,null);                       //把Age属性设置为34
     ```
- 
+
 ### 五、反射字段
 
 通过 System.Reflection.FieldInfo 能查找到类里面的字段
@@ -424,9 +411,8 @@ object[] typeAttributes=type.GetCustomAttributes(false);       //获取Example�
 foreach(object attribute in typeAttributes)
     Console.WriteLine("Attributes description is "+attribute.ToString());
 ```
-  
 
-通过下面例子，可以获取Example类Name属性的所有特性
+通过下面例子，可以获取 Example 类Name属性的所有特性
 
 ```csharp
 public class Example
@@ -440,9 +426,9 @@ PropertyInfo propertyInfo = type.GetProperty("Name");    //获取Example类的Na
 foreach (object attribute in propertyInfo.GetCustomAttributes(false)) {
 	  //遍历Name属性的所有特性
       Console.WriteLine("Property attribute: "+attribute.ToString());
-}     
+}
 ```
- 
+
 ### 七、常用实例
 
 虽然反射有很多奥妙之处，但要注意使用反射生成对象会耗费很多性能，所能必须了解反射的特性，在合适的地方使用。最常见例子就是利用单体模式与反射一并使用，在BLL调用DAL的时候，通过一个反射工厂生成DAL实例。

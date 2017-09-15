@@ -103,7 +103,7 @@ namespace MyCollections
       // Contains method is O(1) for HashSet<T>
       if (knownMovies.Contains(movie)) return;
 
-      // Add method is O(1) for HashSet<T> 
+      // Add method is O(1) for HashSet<T>
       knownMovies.Add(movie);
 
       foreach (var similarMovie in movie.getSimilarMovies())

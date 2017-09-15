@@ -34,7 +34,7 @@ event.currentTarget  // 事件委托的父级元素
 
 ```javascript
 let ev = new Event('customEvent')
-dom.addEventListener('customEvent', ()=>{})
+dom.addEventListener('customEvent', () => {})
 
 // fire the event
 dom.dispatchEvent(ev)

@@ -175,7 +175,7 @@ $scope.$eval('b+a');
 
 ### Isolate scope
 
-by default, a custom directive has access to parent scope. If we don't have access to parent scope, only access to current directive's scope. 
+by default, a custom directive has access to parent scope. If we don't have access to parent scope, only access to current directive's scope.
 
 ```javascript
 angular.module('myapp').directive('hi',function(){
