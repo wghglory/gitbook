@@ -1,4 +1,4 @@
-## Middleware
+# Middleware
 
 Redux also has middleware. It acts on the store’s dispatch pipeline. In Redux, middleware consists of a series of functions that are executed in a row in the process of dispatching an action.
 
@@ -27,8 +27,8 @@ When we create the store, we create two pieces of middleware: the *logger* and t
 ##### Example 8-9. storeFactory: ./store/index.js
 
 ```Javascript
-import { createStore, 
-         combineReducers, 
+import { createStore,
+         combineReducers,
          applyMiddleware } from 'redux'
 import { colors, sort } from './reducers'
 import stateData from './initialState'
@@ -42,7 +42,7 @@ const logger = store => next => action => {
     console.log('next state', store.getState())
     console.groupEnd()
 }
-    
+
 const saver = store => next => action => {
     let result = next(action)
     localStorage['redux-store'] = JSON.stringify(store.getState())

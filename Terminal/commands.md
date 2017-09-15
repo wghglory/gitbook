@@ -5,7 +5,14 @@ ls  # list files
 ls -a # list files including .gitignore, _book, etc
 ```
 
-## Npm commands
+## npm commands
+
+```bash
+npm install -g packagename --save-dev
+npm start
+npm t/test/tst
+npm version major/minor/patch
+```
 
 ### npm-check-updates
 

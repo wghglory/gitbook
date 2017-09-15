@@ -1,4 +1,4 @@
-### Compose
+# Compose
 
 Redux also comes with a `compose` function that you can use to compose several functions into a single function. It also composes functions from right to left as opposed to from left to right.
 

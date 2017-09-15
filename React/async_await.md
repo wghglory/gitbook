@@ -1,4 +1,4 @@
-# async, await in React component 
+# async, await in React component
 
 ```javascript
 import React, {Component} from 'react'
