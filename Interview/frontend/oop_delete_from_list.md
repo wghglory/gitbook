@@ -68,7 +68,7 @@
         let self = this;
         let findParent = function (node) {
           let parent = node.parentNode;
-          let root = self.ulElements.find(item => item === parent); 
+          let root = self.ulElements.find(item => item === parent);
           if (root) {  // 当能从 ul 中找到时，删除 ul 下结点 li
             root.removeChild(node);
           } else {

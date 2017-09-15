@@ -4,14 +4,14 @@
 
     ```bash
     memcached.exe -d install
-    ``` 
+    ```
 
 - start
 
     ```bash
     memcached.exe -d start
     ```
-    
+
 - stop
 
     ```bash
@@ -60,7 +60,7 @@ cmd 命令 `services.msc`
 >
 > ![img](http://upload-images.jianshu.io/upload_images/1845730-49418587e7e6e1b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 先把memcached用起来
+## 先把memcached用起来
 
 下载客户端的4个dll，ICSharpCode.SharpZipLib.dll，log4net.dll，Memcached.ClientLibrary.dll，Commons.dll
 
@@ -108,8 +108,8 @@ namespace Tdf.RedisCacheTest
             cache = new MemcachedClient();
             // 是否启用压缩数据：如果启用了压缩，数据压缩长于门槛的数据将被储存在压缩的形式
             cache.EnableCompression = false;
-            // 压缩设置，超过指定大小的都压缩 
-            cache.CompressionThreshold = 1024 * 1024;           
+            // 压缩设置，超过指定大小的都压缩
+            cache.CompressionThreshold = 1024 * 1024;
         }
     }
 
@@ -152,7 +152,7 @@ pool.SetWeights(new int[] { 1, 10 });
 ```Csharp
 // 是否启用压缩数据：如果启用了压缩，数据压缩长于门槛的数据将被储存在压缩的形式
 cache.EnableCompression = false;
-// 压缩设置，超过指定大小的都压缩 
+// 压缩设置，超过指定大小的都压缩
 cache.CompressionThreshold = 1024 * 1024;
 ```
 
@@ -205,8 +205,8 @@ namespace Tdf.RedisCacheTest
             cache = new MemcachedClient();
             // 是否启用压缩数据：如果启用了压缩，数据压缩长于门槛的数据将被储存在压缩的形式
             cache.EnableCompression = false;
-            // 压缩设置，超过指定大小的都压缩 
-            cache.CompressionThreshold = 1024 * 1024;           
+            // 压缩设置，超过指定大小的都压缩
+            cache.CompressionThreshold = 1024 * 1024;
         }
     }
 
@@ -237,17 +237,17 @@ pool.Failover = true;
 
 > Note：memcached的鼓掌转移是一套正常节点发生故障变为死节点时的处理机制。
 >
-> - 开启故障转移：如果发生socket异常，则该节点被添加到存放死节点属性的_hostDead中，新请求被映射到dead server，检测尝试连接死节点的时间间隔属性_hostDeadDuration（默认设置为100ms），如果没有达到设定的间隔时间则key会被映射到可用的server处理，如果达到了时间间隔，则尝试重新链接，连接成功将此节点从_hostDead中去除，连接失败则间隔时间翻倍存放，下次重新连接时间会被拉长。
+> - 开启故障转移：如果发生socket异常，则该节点被添加到存放死节点属性的_hostDead中，新请求被映射到dead server，检测尝试连接死节点的时间间隔属性_hostDeadDuration（默认设置为100ms），如果没有达到设定的间隔时间则 key 会被映射到可用的server处理，如果达到了时间间隔，则尝试重新链接，连接成功将此节点从_hostDead中去除，连接失败则间隔时间翻倍存放，下次重新连接时间会被拉长。
 > - 不开启故障转移：新的请求都会被映射到dead server上，尝试重新建立socket链接，如果连接失败，返回null或者操作失败。
 
-### 说说key-value中的key与value
+### 说说key-value 中的 key 与 value
 
-> - key在服务端的长度限制为250个字符，建议使用较短的key但不要重复。
-> - value的大小限制为1mb，如果大拉，可以使用压缩，如果还大，那可能拆分到多个key中。
+- key在服务端的长度限制为250个字符，建议使用较短的key但不要重复。
+- value的大小限制为1mb，如果大拉，可以使用压缩，如果还大，那可能拆分到多个key中。
 
-# Memcached 客户端使用封装
+## Memcached 客户端使用封装
 
-### 抽象出来了一个接口：
+### 抽象出来了一个接口
 
 ```Csharp
 using System;
@@ -279,7 +279,7 @@ using System.Configuration;
 namespace Tdf.Memcached
 {
     /// <summary>
-    /// 基于Memcached.ClientLibrary封装使用Memchached信息
+    /// 基于Memcached.ClientLibrary 封装使用 Memchached 信息
     /// 读取缓存存放在服务器
     /// </summary>
     public class MemcacheHelper
@@ -528,7 +528,7 @@ namespace Tdf.MemcachedTest
 }
 ```
 
-到此，我们已经完成了一个最小化的memcached集群读写测试Demo。但是，在实际的开发场景中，远不仅仅是存储一个字符串，更多的是存储一个自定义的类的实例对象。这就需要使用到序列化，下面我们来新加一个类Claim，让其作为可序列化的对象来存储进Memcached中。注意：**需要为该类加上[Serializable]的特性**！
+到此，我们已经完成了一个最小化的 memcached 集群读写测试Demo。但是，在实际的开发场景中，远不仅仅是存储一个字符串，更多的是存储一个自定义的类的实例对象。这就需要使用到序列化，下面我们来新加一个类Claim，让其作为可序列化的对象来存储进Memcached中。注意：**需要为该类加上 [Serializable] 的特性**！
 
 ```csharp
 using System;
@@ -568,4 +568,3 @@ namespace Tdf.MemcachedTest
 ```
 
 ![img](http://upload-images.jianshu.io/upload_images/1845730-0934f0d56246f898.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-

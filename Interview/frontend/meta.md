@@ -18,6 +18,7 @@
     <meta http-equiv="refresh" content="2；URL=http://www.lxxyx.win/">
     <meta http-equiv="Set-Cookie" content="User=Lxxyx; path=/; expires=Sunday, 10-Jan-16 10:00:00 GMT">
 
+    <meta http-equiv="x-dns-prefetch-control" content="on"><!--DNS预解析，网站性能提升之一-->
     <link rel="dns-prefetch" href="//static.360buy.com"><!--DNS预解析，网站性能提升之一-->
 
     <title>meta</title>

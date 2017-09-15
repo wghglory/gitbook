@@ -1,6 +1,6 @@
 # 一、Redis API For .Net
 
-　　首先，不得不说Redis官方提供了众多的API开发包，但是**目前Redis官方版本不支持.Net直接进行连接，需要使用一些第三方的开源类库**。目前最流行的就是**ServiceStack.Redis**这个开源项目，其在GitHub上的下载地址为：[https://github.com/ServiceStack/ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis)
+　　首先，不得不说 Redis 官方提供了众多的API开发包，但是**目前Redis官方版本不支持.Net直接进行连接，需要使用一些第三方的开源类库**。目前最流行的就是**ServiceStack.Redis**这个开源项目，其在GitHub上的下载地址为：[https://github.com/ServiceStack/ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis)
 
 　　进入下载页面，点击“**Download Zip**”按钮，即可下载该API包。解压该Zip包后，其实我们所用到的只是其中的几个DLL而已，打开build/release/MonoDevelop文件夹，看到里边还有一个zip包，这里边就是我们所需的DLL了。
 
@@ -14,9 +14,9 @@
 
 ![img-c](http://images.cnitblog.com/i/381412/201407/031447581529920.jpg)
 
-# 二、Redis中常用数据类型
+## 二、Redis中常用数据类型
 
-　    Redis目前提供五种数据类型：string(字符串)、list（链表）、Hash（哈希）、set（集合）及zset(sorted set)  （有序集合）。现在，我们一一来看看这五种数据类型的基本使用方法。在开始介绍之前，我们先使用刚刚引入的Redis API建立一个Redis客户端对象，有了这个客户端对象，我们才能和Redis服务端进行通信，且看下面的一行代码。我们需要事先指定好Redis服务端的IP地址和端口号，然后根据这两个信息建立一个RedisClient的对象实例，通过这个实例所带的方法和服务端通信。
+　    Redis目前提供五种数据类型：string(字符串)、list（链表）、Hash（哈希）、set（集合）及zset(sorted set)  （有序集合）。现在，我们一一来看看这五种数据类型的基本使用方法。在开始介绍之前，我们先使用刚刚引入的Redis API建立一个 Redis 客户端对象，有了这个客户端对象，我们才能和Redis服务端进行通信，且看下面的一行代码。我们需要事先指定好Redis服务端的IP地址和端口号，然后根据这两个信息建立一个RedisClient的对象实例，通过这个实例所带的方法和服务端通信。
 
 ```Csharp
 using System;
@@ -30,7 +30,7 @@ namespace RedisDemo.FirstStart
         //Redis服务器IP地址
         static string localHostIP = "127.0.0.1";
         //Redis服务端口号
-        static int redisServicePort = 6379;           
+        static int redisServicePort = 6379;
 
         static void Main(string[] args)
         {
@@ -99,7 +99,7 @@ static void HashTypeDemo(RedisClient redisClient)
 
 ![img-c](http://images.cnitblog.com/i/381412/201407/041041240591462.jpg)
 
-## 2.3 List 链表
+### 2.3 List 链表
 
 　　List是一个链表结构，主要功能是push与pop，获取一个范围的所有的值等，操作中key理解为链表名字。 Redis的List类型其实就是一个每个子元素都是string类型的**双向链表，**我们可以通过push或pop操作从链表的头部或者尾部添加删除元素，这样**List既可以作为栈，又可以作为队列**。它即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。Redis内部的很多实现，包括发送缓冲队列等也都是用的这个数据结构。
 
@@ -154,7 +154,7 @@ static void QueueTypeDemo(RedisClient redisClient)
 
 ![img-c](http://images.cnitblog.com/i/381412/201407/041104299348821.jpg)
 
-## 2.4 Set 集合
+### 2.4 Set 集合
 
 　　Set是string类型的**无序集合**。set是通过hash table实现的，添加、删除和查找，对集合我们可以取并集、交集、差集，可以非常方便的实现如共同关注、共同喜好、二度好友等功能，对上面的所有集合操作，你还可以使用不同的命令选择将结果返回给客户端还是存集到一个新的集合中。
 
@@ -214,7 +214,7 @@ static void SetTypeDemo(RedisClient redisClient)
 
 ![img-c](http://images.cnitblog.com/i/381412/201407/041110362775407.jpg)
 
-## 2.5 Sorted Set 有序集合
+### 2.5 Sorted Set 有序集合
 
 　　Sorted Set 是set的一个升级版本，又被称为ZSet，它在set的基础上增加了一个顺序的属性，这一属性在添加修改。元素的时候可以指定，每次指定后，zset(表示有序集合)会自动重新按新的值调整顺序。**可以理解为有列的表，一列存 value，一列存顺序**。操作中key理解为zset的名字。
 
@@ -243,15 +243,12 @@ static void SortedSetTypeDemo(RedisClient redisClient)
 
 ![img-c](http://images.cnitblog.com/i/381412/201407/041115396053376.jpg)
 
-# 参考文献
+### 参考文献
 
 （1）传智播客公开课，王承伟主讲，http://bbs.itcast.cn/thread-26525-1-1.html
 
 （2）群叔，《Redis数据类型详解及Redis适用场景》，http://www.cnblogs.com/qunshu/p/3196972.html
 
-# 附件下载
+### 附件下载
 
-（1）ServiceStack.Redis：[http://pan.baidu.com/s/1sjtxe5v](http://pan.baidu.com/s/1sjtxe5v)
-
-
-
+ServiceStack.Redis：[http://pan.baidu.com/s/1sjtxe5v](http://pan.baidu.com/s/1sjtxe5v)
