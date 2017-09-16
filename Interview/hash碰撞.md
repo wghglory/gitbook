@@ -4,12 +4,12 @@
 
 `equals()`方法是用来判断其他的对象是否和该对象相等.
 
-  equals()方法在object类中定义如下： 
+  equals()方法在object类中定义如下：
 
 ```Java
-public boolean equals(Object obj) {  
-    return (this == obj);  
-}  
+public boolean equals(Object obj) {
+    return (this == obj);
+}
 ```
 
 很明显是对两个对象的地址值进行的比较（即比较引用是否相同）。但是我们知道，String 、Math、Integer、Double等这些封装类在使用equals()方法时，已经覆盖了object类的equals()方法。
@@ -17,30 +17,30 @@ public boolean equals(Object obj) {
 比如在String类中如下：
 
 ```java
-public boolean equals(Object anObject) {  
-    if (this == anObject) {  
-        return true;  
-    }  
-    if (anObject instanceof String) {  
-        String anotherString = (String)anObject;  
-        int n = count;  
-        if (n == anotherString.count) {  
-            char v1[] = value;  
-            char v2[] = anotherString.value;  
-            int i = offset;  
-            int j = anotherString.offset;  
-            while (n– != 0) {  
-                if (v1[i++] != v2[j++])  
-                    return false;  
-            }  
-            return true;  
-        }  
-    }  
-    return false;  
-}  
+public boolean equals(Object anObject) {
+    if (this == anObject) {
+        return true;
+    }
+    if (anObject instanceof String) {
+        String anotherString = (String)anObject;
+        int n = count;
+        if (n == anotherString.count) {
+            char v1[] = value;
+            char v2[] = anotherString.value;
+            int i = offset;
+            int j = anotherString.offset;
+            while (n– != 0) {
+                if (v1[i++] != v2[j++])
+                    return false;
+            }
+            return true;
+        }
+    }
+    return false;
+}
 ```
 
-很明显，这是进行的内容比较，而已经不再是地址的比较。依次类推Math、Integer、Double等这些类都是重写了equals()方法的，从而进行的是内容的比较。当然，基本类型是进行值的比较。
+很明显，这是进行的内容比较，而已经不再是地址的比较。依次类推Math、Integer、Double 等这些类都是重写了equals()方法的，从而进行的是内容的比较。当然，基本类型是进行值的比较。
 
 它的性质有：
 
@@ -75,20 +75,19 @@ public native int hashCode();
  说明是一个本地方法，它的实现是根据本地机器相关的。当然我们可以在自己写的类中覆盖hashcode()方法，比如String、Integer、Double等这些类都是覆盖了hashcode()方法的。例如在String类中定义的hashcode()方法如下
 
 ```Java
-public int hashCode() {  
-    int h = hash;  
-    if (h == 0) {  
-        int off = offset;  
-        char val[] = value;  
-        int len = count;  
-  
-        for (int i = 0; i < len; i++) {  
-            h = 31 * h + val[off++];  
-        }  
-        hash = h;  
-    }  
-    return h;  
-}  
+public int hashCode() {
+    int h = hash;
+    if (h == 0) {
+        int off = offset;
+        char val[] = value;
+        int len = count;
+        for (int i = 0; i < len; i++) {
+            h = 31 * h + val[off++];
+        }
+        hash = h;
+    }
+    return h;
+}
 ```
 
 解释一下这个程序（String的API中写到）：s[0]*31^(n-1) + s[1]*31^(n-2) + … + s[n-1]
@@ -96,11 +95,11 @@ public int hashCode() {
 
 ​       想要弄明白hashCode的作用，必须要先知道Java中的集合。　　
 ​       总的来说，Java中的集合（Collection）有两类，一类是List，再有一类是Set。前者集合内的元素是有序的，元素可以重复；后者元素无序，但元素不可重复。这里就引出一个问题：要想保证元素不重复，可两个元素是否重复应该依据什么来判断呢？
-​        这就是Object.equals方法了。但是，如果每增加一个元素就检查一次，那么当元素很多时，后添加到集合中的元素比较的次数就非常多了。也就是说，如果集合中现在已经有1000个元素，那么第1001个元素加入集合时，它就要调用1000次equals方法。这显然会大大降低效率。   
-​       于是，Java采用了哈希表的原理。哈希（Hash）实际上是个人名，由于他提出一哈希算法的概念，所以就以他的名字命名了。哈希算法也称为散列算法，是将数据依特定算法直接指定到一个地址上，初学者可以简单理解，hashCode方法实际上返回的就是对象存储的物理地址（实际可能并不是）。  
-​       这样一来，当集合要添加新的元素时，先调用这个元素的hashCode方法，就一下子能定位到它应该放置的物理位置上。如果这个位置上没有元素，它就可以直接存储在这个位置上，不用再进行任何比较了；如果这个位置上已经有元素了，就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址。所以这里存在一个冲突解决的问题。这样一来实际调用equals方法的次数就大大降低了，几乎只需要一两次。  
+​        这就是Object.equals方法了。但是，如果每增加一个元素就检查一次，那么当元素很多时，后添加到集合中的元素比较的次数就非常多了。也就是说，如果集合中现在已经有1000个元素，那么第1001个元素加入集合时，它就要调用1000次equals方法。这显然会大大降低效率。
+​       于是，Java采用了哈希表的原理。哈希（Hash）实际上是个人名，由于他提出一哈希算法的概念，所以就以他的名字命名了。哈希算法也称为散列算法，是将数据依特定算法直接指定到一个地址上，初学者可以简单理解，hashCode方法实际上返回的就是对象存储的物理地址（实际可能并不是）。
+​       这样一来，当集合要添加新的元素时，先调用这个元素的hashCode方法，就一下子能定位到它应该放置的物理位置上。如果这个位置上没有元素，它就可以直接存储在这个位置上，不用再进行任何比较了；如果这个位置上已经有元素了，就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址。所以这里存在一个冲突解决的问题。这样一来实际调用equals方法的次数就大大降低了，几乎只需要一两次。
 
-简而言之，在集合查找时，hashcode能大大降低对象比较次数，提高查找效率
+简而言之，在集合查找时，hashcode 能大大降低对象比较次数，提高查找效率
 
 Java对象的eqauls方法和hashCode方法是这样规定的：
 
@@ -116,7 +115,7 @@ Java对象的eqauls方法和hashCode方法是这样规定的：
 
 也就是说，不同对象的hashCode可能相同；假如两个Java对象A和B，A和B不相等（eqauls结果为false），但A和B的哈希码相等，将A和B都存入HashMap时会发生哈希冲突，也就是A和B存放在HashMap内部数组的位置索引相同这时HashMap会在该位置建立一个链接表，将A和B串起来放在该位置，显然，该情况不违反HashMap的使用原则，是允许的。当然，哈希冲突越少越好，尽量采用好的哈希算法以避免哈希冲突。
 
- 所以，Java对于eqauls方法和hashCode方法是这样规定的：     
+ 所以，Java对于eqauls方法和hashCode方法是这样规定的：
 
 > 1.如果两个对象相同，那么它们的hashCode值一定要相同；
 >
@@ -147,30 +146,30 @@ Hashset是继承Set接口，Set接口又实现Collection接口，这是层次关
 例1：
 
 ```java
- 1 package com.bijian.study;
- 2 
- 3 import java.util.HashSet;
- 4 import java.util.Iterator;
- 5 import java.util.Set;
- 6 
- 7 public class HashSetTest {
- 8 
- 9     public static void main(String args[]) {
-10         String s1 = new String("aaa");
-11         String s2 = new String("aaa");
-12         System.out.println(s1 == s2);
-13         System.out.println(s1.equals(s2));
-14         System.out.println(s1.hashCode());
-15         System.out.println(s2.hashCode());
-16         Set hashset = new HashSet();
-17         hashset.add(s1);
-18         hashset.add(s2);
-19         Iterator it = hashset.iterator();
-20         while (it.hasNext()) {
-21             System.out.println(it.next());
-22         }
-23     }
-24 }
+package com.bijian.study;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class HashSetTest {
+
+    public static void main(String args[]) {
+        String s1 = new String("aaa");
+        String s2 = new String("aaa");
+        System.out.println(s1 == s2);
+        System.out.println(s1.equals(s2));
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
+        Set hashset = new HashSet();
+        hashset.add(s1);
+        hashset.add(s2);
+        Iterator it = hashset.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+}
 ```
 
 运行结果：
@@ -188,49 +187,49 @@ aaa
 例2
 
 ```java
- 1 package com.bijian.study;
- 2 
- 3 import java.util.HashSet;
- 4 import java.util.Iterator;
- 5 
- 6 public class HashSetTest {
- 7 
- 8     public static void main(String[] args) {
- 9         HashSet hs = new HashSet();
-10         hs.add(new Student(1, "zhangsan"));
-11         hs.add(new Student(2, "lisi"));
-12         hs.add(new Student(3, "wangwu"));
-13         hs.add(new Student(1, "zhangsan"));
-14 
-15         Iterator it = hs.iterator();
-16         while (it.hasNext()) {
-17             System.out.println(it.next());
-18         }
-19     }
-20 }
-21 
-22 class Student {
-23     int num;
-24     String name;
-25 
-26     Student(int num, String name) {
-27         this.num = num;
-28         this.name = name;
-29     }
-30 
-31     public String toString() {
-32         return num + ":" + name;
-33     }
-34 }
+package com.bijian.study;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class HashSetTest {
+
+    public static void main(String[] args) {
+        HashSet hs = new HashSet();
+        hs.add(new Student(1, "zhangsan"));
+        hs.add(new Student(2, "lisi"));
+        hs.add(new Student(3, "wangwu"));
+        hs.add(new Student(1, "zhangsan"));
+
+        Iterator it = hs.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+}
+
+class Student {
+    int num;
+    String name;
+
+    Student(int num, String name) {
+        this.num = num;
+        this.name = name;
+    }
+
+    public String toString() {
+        return num + ":" + name;
+    }
+}
 ```
 
 运行结果：
 
 ```
-1:zhangsan  
-3:wangwu  
-2:lisi  
-1:zhangsan 
+1:zhangsan
+3:wangwu
+2:lisi
+1:zhangsan
 ```
 
 为什么hashset添加了相等的元素呢，这是不是和hashset的原则违背了呢？回答是：没有。因为在根据hashcode()对两次建立的new Student(1,“zhangsan”)对象进行比较时，生成的是不同的哈希码值，所以hashset把他当作不同的对象对待了，当然此时的equals()方法返回的值也不等。
@@ -267,9 +266,9 @@ class Student {
 运行结果：
 
 ```
-1:zhangsan  
-3:wangwu  
-2:lisi  
+1:zhangsan
+3:wangwu
+2:lisi
 ```
 
 可以看到重复元素的问题已经消除，根据重写的方法，即便两次调用了new Student(1,"zhangsan")，我们在获得对象的哈希码时，根据重写的方法hashcode()，获得的哈希码肯定是一样的，当然根据equals()方法我们也可判断是相同的，所以在向hashset集合中添加时把它们当作重复元素看待了。
@@ -277,14 +276,13 @@ class Student {
 **重写equals()和hashcode()小结：**
 
 1. 重点是equals，重写hashCode只是技术要求（为了提高效率）
-2. 为什么要重写equals呢？因为在java的集合框架中，是通过equals来判断两个对象是否相等的
-3. 在hibernate中，经常使用set集合来保存相关对象，而set集合是不允许重复的。在向HashSet集合中添加元素时，其实只要重写equals()这一条也可以。但当hashset中元素比较多时，或者是重写的equals()方法比较复杂时，我们只用equals()方法进行比较判断，效率也会非常低，所以引入了hashCode()这个方法，只是为了提高效率，且这是非常有必要的。比如可以这样写：
+1. 为什么要重写equals呢？因为在java的集合框架中，是通过equals来判断两个对象是否相等的
+1. 在hibernate中，经常使用set集合来保存相关对象，而set集合是不允许重复的。在向HashSet集合中添加元素时，其实只要重写equals()这一条也可以。但当hashset中元素比较多时，或者是重写的equals()方法比较复杂时，我们只用equals()方法进行比较判断，效率也会非常低，所以引入了hashCode()这个方法，只是为了提高效率，且这是非常有必要的。比如可以这样写：
 
 ```java
-public int hashCode(){  
-   return 1; //等价于hashcode无效  
-}  
+public int hashCode(){
+   return 1; //等价于hashcode无效
+}
 ```
 
 这样做的效果就是在比较哈希码的时候不能进行判断，因为每个对象返回的哈希码都是1，每次都必须要经过比较equals()方法后才能进行判断是否重复，这当然会引起效率的大大降低。
-

@@ -1,10 +1,10 @@
 # Self Introduction
 
-1. I have involved in system development life cycle for 7 years, especially web development. I'm working as CTO in a startup company. Before I was a technical lead in unionbank, US.
+1. I have involved in system development life cycle for 7 years, especially web development. I'm working as CTO in a startup company. Before I was a technical lead in UnionBank, US.
 
 1. *College*: I'm interested in designing web application for a long time, but I don't choose computer science as my major because I don't want exams, classes ruin my interest, and I learnt computer science class by myself in Dalian University of Technology. I did part-time job to learn and strengthen my programming skills during college life.
 
-1. *Post College & Onwards*: After college, I worked in several companies in US. Most of my work is about how to build web application. my skillsets include frontend(html,css,js and latest frameworks and libraries like angular, React + redux, jquery), backend(.net latest MVC core, WebForm, MVC, nodejs), database(mongodb, MSSQL).
+1. *Post College & Onwards*: After college, I worked in several companies in US. Most of my work is about how to build web application. my skill sets include frontend(html,css,js and latest frameworks and libraries like angular, React + redux, jquery), backend(.net latest MVC core, WebForm, MVC, nodejs), database(mongodb, MSSQL).
 
 1. *Current Role [Details]*: Now I'm leading both frontend and backend teams. I designed system architecture, do some coding, code review and some managements. I give free time every to team so everybody can share and learn what they want if they finish tasks very efficiently.
 
@@ -28,19 +28,19 @@
 
 需要增加图形化创建，数据保存，团队多人协作。react 深层不可变。redux 源码 applyMiddleware 等觉得难。
 
-| common questions | Ub tahoe, mpower | SNH avandas | UPMC panelAccess |
+| common questions | Ub tahoe, MPower | SNH Avandas | UPMC panelAccess |
 | --- | --- | --- | --- |
-| challenges | Optimization: SPA, unitOfWork, Cache, Thread; Unity: T4; Mpower: log4net+redis | realTime chat | mapQuest, chart.js, pdf |
+| challenges | Optimization: SPA, unitOfWork, Cache, Thread; Unity: T4; MPower: log4net+redis | real-time chat | mapQuest, chart.js, pdf |
 | Mistake  | A link click error after SPA | NA | NA |
-| Leadership | ESlint, naming convention, coding style |  |  |
-| Conflicts | not mine: Raya asks too much; opinion conflicts: Jay ui-controller/func-controller | scrum master realtime chat task slow |  |
-| What do you do differently | high-level architecture refactor, cacheHelper(memcache,regular) | realtime chat | mapQuest, chart.js, pdf |
+| Leadership | ESLint, naming convention, coding style |  |  |
+| Conflicts | not mine: Raya asks too much; opinion conflicts: Jay ui-controller/func-controller | scrum master real-time chat task slow |  |
+| What do you do differently | high-level architecture refactor, cacheHelper(memcache,regular) | real-time chat | mapQuest, chart.js, pdf |
 
-#### Unionbank challenges 1: Performance, UnitOfWork, CacheHelper with memcache
+#### UnionBank challenges 1: Performance, UnitOfWork, CacheHelper with memcache
 
-As the application get larger and we have more and more data, the system response time increased. 
+As the application get larger and we have more and more data, the system response time increased.
 
-My goal/challenge is to find the bottleneck and speed up the whole system. 
+My goal/challenge is to find the bottleneck and speed up the whole system.
 
 You know, there're too many things that need to be considered when we talk about performance (frontend, application, and database). For frontend part, we already used CDN, and js minification/compress, and some other techniques before. But to improve user experience, instead of redirecting from one page to another, I discussed with my manager and suggested to make our application a SPA.
 

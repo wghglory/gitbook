@@ -4,7 +4,7 @@
 1. how to set cookie expire time
 1. angular directives usage
 1. server rendering, client rendering
-1. realtime chat
+1. real-time chat
 1. array [1,2,3,4,2], find values that appears more than once
 1. website optimization
 1. cross domain, jsonp
@@ -13,7 +13,7 @@
 1. angular service, factory, provider, why use service?
 1. css priority, red, blue, green.
 1. bootstrap uses important?
-1. some js needs to put in front, resulting loading DOM slow, how to solve?
+1. some js needs to put in front, resulting loading DOM slow, how to solve? async, defer
 1. less, sass
 1. pack tools, grunt
 1. testing: mocha, should.js, supertest, PhantomJS

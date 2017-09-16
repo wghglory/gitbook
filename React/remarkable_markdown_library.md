@@ -1,6 +1,6 @@
 # [remarkable, an external Markdown library](https://facebook.github.io/react/)
 
-convert markdown text in realtime
+convert markdown text in real-time
 
 ```jsx
 class MarkdownEditor extends React.Component {

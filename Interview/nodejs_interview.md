@@ -13,14 +13,12 @@
 - How can you secure your HTTP cookies against XSS attacks?
 - How can you make sure your dependencies are safe?
 
-
-
 ### What is an error-first callback?
 
 Error-first callbacks are used to pass errors and data. The first argument is always an error object that the programmer has to check if something went wrong. Additional arguments are used to pass data.
 
 ```javascript
-fs.readFile(filePath, function(err, data) {  
+fs.readFile(filePath, function(err, data) {
     if (err) {
       //handle the error
     }
@@ -134,7 +132,7 @@ Still, if you want to have your Node.js application listen on port 80, here is w
 
 ### What's the event loop?
 
-Node.js runs using a single thread. when you call sync functions, they will be pushed into call stack, and execute on javascript runtime. When calling async functions like setTimeout, it won't be execute on call stack immediately, brower webapi will execute it, and when it finishes, the result will be pushed to task queue. Event loop will check the status of call stack and task queue. When all sync functions on call stack are done, Event loop will send results on task queue to call stack and show results.
+Node.js runs using a single thread. when you call sync functions, they will be pushed into call stack, and execute on javascript runtime. When calling async functions like setTimeout, it won't be execute on call stack immediately, browser webapi will execute it, and when it finishes, the result will be pushed to task queue. Event loop will check the status of call stack and task queue. When all sync functions on call stack are done, Event loop will send results on task queue to call stack and show results.
 
 Every I/O requires a callback - once they are done they are pushed onto the event loop for execution.
 
