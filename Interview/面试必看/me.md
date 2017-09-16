@@ -26,9 +26,26 @@
 
 ### my projects
 
-需要增加图形化创建，数据保存，团队多人协作。react 深层不可变。redux 源码 applyMiddleware 等觉得难。
+对公司现有的系统的优化和重构:
 
-| common questions | Ub tahoe, MPower | SNH Avandas | UPMC panelAccess |
+* 项目没有 lint 工具导致大家代码不统一，使用 ESLint。
+* react state 管理问题，react state 和 redux store 混合使用
+* react 不可变性理解不到位，有些人在 setState 里面修改了状态。还有得 deepClone 后赋值。我推荐 immutability-helper
+* 每个 component 都是用 class 的方式去定义。我推荐了 functional/stateless component。
+
+改进：
+
+* webpack tree-shaking 和 bundle splitting。
+* Modal、select 组件库的优化和扩展
+* HighChart 配置统一、可拖拽配置。
+* Stylus 缩进不方便。
+
+难点：
+
+* 需要增加图形化创建，数据保存，团队多人协作。
+* redux 源码 applyMiddleware 等觉得难。
+
+| common questions | Ub tahoe, MPower | SNH Avendas | UPMC panelAccess |
 | --- | --- | --- | --- |
 | challenges | Optimization: SPA, unitOfWork, Cache, Thread; Unity: T4; MPower: log4net+redis | real-time chat | mapQuest, chart.js, pdf |
 | Mistake  | A link click error after SPA | NA | NA |

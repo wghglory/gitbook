@@ -1,5 +1,9 @@
 # gQuery
 
+jquery原理 源码 核心架构 事件委托 插件机制
+
+原型上 有对于 string、array、math 工具方法。选择器。模板引擎。extend。通过 extend 又扩充了对事件的封装。
+
 ```javascript
 //定义一个对象 - 名字是$$
 var $$ = function () {};
@@ -225,7 +229,7 @@ $$.prototype = {
       var l = this.length;
       for (var i = 0; i < l; i++) {
         for (var j = i + 1; j < l; j++) {
-          if (this[i] === this[j]) 
+          if (this[i] === this[j])
             j = ++i;
           }
         a.push(this[i]);
@@ -311,10 +315,10 @@ $$.prototype = {
     Array.prototype.indexOf = function (target, start) {
       var l = this.length,
         start = ~~start; //可以指定一个搜索起始位置。默认为0。start不传，默认为undefined,~~undefined -> 0
-      if (start < 0) 
+      if (start < 0)
         start = 0; //如果指定的搜索位置小于0，则设置其开始搜索位置为0
       for (; start < l; ++start) {
-        if (this[start] === target) 
+        if (this[start] === target)
           return start;
         }
       return -1;
@@ -326,12 +330,12 @@ $$.prototype = {
      */
     Array.prototype.lastIndexOf = function (target, start) {
       var l = this.length;
-      if (start === void 0) 
+      if (start === void 0)
         start = this.length;
-      else if (start < 0) 
+      else if (start < 0)
         start = 0;
       for (; start >= 0; --start) {
-        if (this[start] === target) 
+        if (this[start] === target)
           return start;
         }
       return -1;
@@ -514,15 +518,11 @@ $$.prototype = {
   },
   //arttemplate语法
   bindTemplate: function (json, renderContainerId, tempId) {
-    document
-      .getElementById(renderContainerId)
-      .innerHTML = template(tempId, json);
+    document.getElementById(renderContainerId).innerHTML = template(tempId, json);
   },
   artTemplate: function (id, html, json) {
     var render = template.compile(html);
-    document
-      .getElementById(id)
-      .innerHTML = render(json);
+    document.getElementById(id).innerHTML = render(json);
   },
   //给一个对象扩充功能
   extendMany: function () {
@@ -725,6 +725,3 @@ $$.extend($$, {
   }
 });
 ```
-
-
-
