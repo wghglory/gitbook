@@ -16,7 +16,7 @@ vue源码 阿里经常问
 
 <https://github.com/wwwebman/front-end-interview-questions>
 
-https://segmentfault.com/a/1190000010880049
+<https://segmentfault.com/a/1190000010880049>
 
 vue react 源码解析
 

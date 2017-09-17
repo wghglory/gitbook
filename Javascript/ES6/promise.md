@@ -181,3 +181,7 @@ Promise.all([
   }
 );
 ```
+
+## reference
+
+手写一个 promise：<https://github.com/panyifei/Front-end-learning/blob/master/框架以及规范/Promise.md>
