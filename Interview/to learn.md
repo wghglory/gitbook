@@ -4,11 +4,17 @@
 前端动画：
 * DOM动画，位置变化
 * svg path 动画
+  * <http://www.cnblogs.com/coco1s/p/6225973.html>
+  * <http://isux.tencent.com/svg-animate.html>
 * css3动画
 
 微信开发、小程序
 
 vue源码 阿里经常问
+
+<https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/ch1.md>
+
+<https://github.com/wwwebman/front-end-interview-questions>
 
 https://segmentfault.com/a/1190000010880049
 
