@@ -27,7 +27,7 @@ event.preventDefault()
 event.stopPropagation()
 event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件处罚，在一个事件中调用此方法
 event.target         // 被点击的子元素
-event.currentTarget  // 事件委托的父级元素
+event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gkdeocd6/
 ```
 
 ## 自定义事件

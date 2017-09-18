@@ -12,6 +12,10 @@ js 运行分为同步任务和异步任务，同步任务先执行，都执行�
 
 js 引擎把所有同步任务放到**运行栈**中，异步任务不会放在运行栈中。浏览器 timer模块 拿走 setTimeout，到了时间后（下面例子1s时）才会把任务放到异步队列中（注意：不是遇到 setTimeout就把异步任务放到异步队列中，即使 setTimeout 时间设置0，浏览器一般默认给 4ms）。单线程的js 执行完所有运行栈中的同步任务后，异步队列中 setTimeout 函数体被放到了运行栈中并执行。运行栈不断监听异步队列是否有任务需要执行，有的话就拿过来执行，这个循环过程就是**事件循环** Event loop.
 
+So when exactly can functions in the event queue move over to the call stack?
+
+Well, the JavaScript engine follows a very simple rule: there’s a process that constantly checks whether the call stack is empty, and **whenever it’s empty, it checks if the event queue has any functions waiting to be invoked**. If it does, then the first function in the queue gets invoked and moved over into the call stack. If the event queue is empty, then this monitoring process just keeps on running indefinitely. And voila — what I just described is the infamous Event Loop!
+
 ## 哪些语句被会在异步队列
 
 开启异步任务：
@@ -22,7 +26,7 @@ js 引擎把所有同步任务放到**运行栈**中，异步任务不会放在�
 
 ## 理解放入到异步队列的时机
 
-是 setTimeout 传入的时间，不是立马放入。
+异步任务放入到异步队列的时机是 setTimeout 传入的时间，不是立马放入。即使时间传入0，默认 4ms。
 
 ## 例子
 
@@ -43,6 +47,7 @@ while (1) {
 
 }
 // 结果为：A
+// B 永远不会输出。运行栈 while 没执行完毕，不会去查看异步队列。
 
 for (var i = 0; i < 4; i++) {
     setTimeout(function () {
