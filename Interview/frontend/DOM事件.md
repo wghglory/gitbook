@@ -16,6 +16,18 @@ DOM3: element.addEventListener('keyup', function(){}, false)
 
 捕获阶段 --> 目标阶段 --> 冒泡阶段
 
+**Capture**: When you clicked, browser knows a click event occurred. It starts from the `window` (lowest level/root of your website), then goes to `document`, then html root tag, then `body`, then `table`... its trying to reach the the as lowest level of element as possible. This is called capture phase. (从上到下到达目标元素)
+
+Target: When browser reach the lowest level of element. In this case, you have clicked on a table cell (table data) hence target would be `td` tag. Then browser checks whether you have any click handler attached to this element. If there is any, browser executes that click handler. This is called target phase. (执行目标元素的事件)
+
+Bubbling: After firing click handler attached to `td`, browser walks toward root. One level upward and check whether there is any click handler attached with table row (`tr` element). If there is any it will execute that. Then it goes to `tbody, table, body, html, document, window`. In this stage its moving upward and this is called event bubbling or bubbling phase. (从目标元素向上直到 window, 所有注册的事件都会一次由内向外执行)
+
+### 为何会有事件委托？它有什么好处？
+
+You clicked on cell but all the event handler with parent elements will be fired. This is actually very powerful (check event delegation)
+
+好处：不需要为每个子元素 li 注册事件。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。
+
 ## 描述事件捕获流程
 
 window --> document --> html (document.documentElement) --> body (document.body) --> ... --> target
@@ -25,7 +37,7 @@ window --> document --> html (document.documentElement) --> body (document.body)
 ```javascript
 event.preventDefault()
 event.stopPropagation()
-event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件处罚，在一个事件中调用此方法
+event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件处罚，在一个事件中调用此方法。 prevent multiple event handler to be fired for an event?
 event.target         // 被点击的子元素
 event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gkdeocd6/
 ```
