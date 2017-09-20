@@ -1,4 +1,4 @@
-# Testing for Javascript
+# Testing 测试 for Javascript
 
 ## JavaScript testing styles
 
@@ -54,7 +54,7 @@ assert(2+2).equals(4)
 
 #### JSDOM
 
-* Simulate the browser’s DOM
+* Simulate the browser's DOM
 * Run DOM-related tests without a browser
 
 #### Cheerio

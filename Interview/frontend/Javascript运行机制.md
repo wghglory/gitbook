@@ -10,7 +10,7 @@
 
 js 运行分为同步任务和异步任务，同步任务先执行，都执行完了才会执行异步任务。以下前2个例子就是先执行同步任务 `console, while` ，之后才执行 `setTimeout` 。
 
-js 引擎把所有同步任务放到**运行栈**中，异步任务不会放在运行栈中。浏览器 timer模块 拿走 setTimeout，到了时间后（下面例子1s时）才会把任务放到异步队列中（注意：不是遇到 setTimeout就把异步任务放到异步队列中，即使 setTimeout 时间设置0，浏览器一般默认给 4ms）。单线程的js 执行完所有运行栈中的同步任务后，异步队列中 setTimeout 函数体被放到了运行栈中并执行。运行栈不断监听异步队列是否有任务需要执行，有的话就拿过来执行，这个循环过程就是**事件循环** Event loop.
+js 引擎把所有同步任务放到**运行栈**中，异步任务不会放在运行栈中，而是放到 `event table`。浏览器 timer模块 拿走 setTimeout，到了时间后（下面例子1s时）从 `event table` 把任务放到 `异步队列event queue` 中（注意：不是遇到 setTimeout 就把异步任务放到异步队列中，即使 setTimeout 时间设置0，浏览器一般默认给 4ms。setTimeout 的时间就是 `event table` 把任务放到 `event loop` 的时间）。单线程的js 执行完所有运行栈中的同步任务后，异步队列中的任务被放到了运行栈中并执行。运行栈不断监听异步队列是否有任务需要执行，有的话就拿过来执行，这个循环过程就是**事件循环** Event loop.
 
 So when exactly can functions in the event queue move over to the call stack?
 

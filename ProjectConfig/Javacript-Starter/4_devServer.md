@@ -1,4 +1,4 @@
-# _Development_ Webservers
+# _Development_ Web Servers
 
 * **http-server**: Ultra -simple, Single command serves current directory
 * **live-server**: Lightweight, Support live-reloading
