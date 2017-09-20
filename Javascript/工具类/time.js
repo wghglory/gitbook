@@ -1,7 +1,6 @@
 /**
  * 其他参考 Javascript/declaretively_timeHelper.md and moment.js
  */
-
 export function formatDate(date) {
   let day = date.getDate();
   if (day < 10) {
@@ -14,4 +13,3 @@ export function formatDate(date) {
   let year = date.getFullYear();
   return year + '-' + month + '-' + day + ' ' + [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
 }
-

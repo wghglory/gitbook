@@ -23,6 +23,8 @@ export function getStyle(obj, attr) {
  */
 export function sortByAlphaIgnoreCase(arr) {
   arr.sort((a, b) => {
-    return a.localeCompare(b, undefined /* Ignore language */, { sensitivity: 'base' });
+    return a.localeCompare(b, undefined /* Ignore language */, {
+      sensitivity: 'base'
+    });
   });
 }

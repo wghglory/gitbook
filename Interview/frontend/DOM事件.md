@@ -22,9 +22,9 @@ Target: When browser reach the lowest level of element. In this case, you have c
 
 Bubbling: After firing click handler attached to `td`, browser walks toward root. One level upward and check whether there is any click handler attached with table row (`tr` element). If there is any it will execute that. Then it goes to `tbody, table, body, html, document, window`. In this stage its moving upward and this is called event bubbling or bubbling phase. (从目标元素向上直到 window, 所有注册的事件都会一次由内向外执行)
 
-### 为何会有事件委托？它有什么好处？
+### 事件委托(event delegation)？为何有事件委托存在？它有什么好处？
 
-You clicked on cell but all the event handler with parent elements will be fired. This is actually very powerful (check event delegation)
+You clicked on cell but all the event handler with parent elements will be fired. This is actually very powerful (check event delegation). 因为有事件冒泡，才会有事件委托出现。
 
 好处：不需要为每个子元素 li 注册事件。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。
 
