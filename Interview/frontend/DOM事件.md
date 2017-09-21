@@ -44,6 +44,8 @@ event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gk
 
 ## 自定义事件
 
+浏览器：
+
 ```javascript
 let ev = new Event('customEvent')
 dom.addEventListener('customEvent', () => {})
@@ -53,6 +55,21 @@ dom.dispatchEvent(ev)
 ```
 
 也可以使用 `new CustomEvent('name', obj)` 传递数据
+
+Node端自定义事件：
+
+```javascript
+// 使用 EventEmitter 模块
+const EventEmitter = require('events');
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () => {
+  console.log('an event occurred!');
+});
+myEmitter.emit('event');
+```
 
 ## document.DOMContentLoaded, window.onload, document.readyState
 
