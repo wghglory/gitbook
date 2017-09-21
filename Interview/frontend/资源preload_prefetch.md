@@ -11,7 +11,7 @@ preload is a declarative fetch, allowing you to force the browser to make a requ
 
 Prefetch is a hint to the browser that a resource might be needed, but delegates deciding whether and when loading it is a good idea or not to the browser.
 
-> Preload resources you have high-confidence will be used in the current page. Prefetch resources likely to be used for future navigations across multiple navigation boundaries.
+> Preload resources you have high-confidence will be used in the current page. Prefetch resources likely to be used for future navigation across multiple navigation boundaries.
 
 ## Cache Behavior
 

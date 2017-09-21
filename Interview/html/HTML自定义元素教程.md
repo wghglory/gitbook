@@ -51,9 +51,7 @@ greeting {
 
 ```javascript
 function customTag(tagName, fn){
-  Array
-    .from(document.getElementsByTagName(tagName))
-    .forEach(fn);
+  Array.from(document.getElementsByTagName(tagName)).forEach(fn);
 }
 
 function greetingHandler(element) {
@@ -97,7 +95,6 @@ tabs instanceof HTMLElement // true
     <a href="...">微信</a>
   </social-button>
 </share-buttons>
->
 ```
 
 上面的代码，一眼就能看出语义。
@@ -181,9 +178,7 @@ class MyElement extends HTMLElement {
 
 ```javascript
 function customTag(tagName, fn){
-  Array
-    .from(document.getElementsByTagName(tagName))
-    .forEach(fn);
+  Array.from(document.getElementsByTagName(tagName)).forEach(fn);
 }
 
 function myElementHandler(element) {
