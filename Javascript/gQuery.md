@@ -1,6 +1,6 @@
 # gQuery
 
-jquery原理 源码 核心架构 事件委托 插件机制
+jquery原理 源码 核心架构 事件委托 插件机制：<http://www.zhangxinxu.com/wordpress/2013/07/jquery-%E5%8E%9F%E7%90%86-%E6%9C%BA%E5%88%B6/>
 
 原型上 有对于 string、array、math 工具方法。选择器。模板引擎。extend。通过 extend 又扩充了对事件的封装。
 

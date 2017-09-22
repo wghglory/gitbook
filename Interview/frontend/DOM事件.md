@@ -101,3 +101,26 @@ myEmitter.emit('event');
     * `complete`(`load`): The document and all sub-resources have finished loading. The state indicates that the load event is about to fire.
 
 <https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState>
+
+### IE 和 Chrome 标准浏览器事件处理的解决办法(老题目，了解)
+
+IE 只有事件只能在冒泡阶段触发。标准浏览器通过 addEventListener('click', function(){}, true/false) 来指定触发阶段。false 为冒泡阶段触发。
+
+IE:
+
+* attachEvent('click', function(){}) 添加事件
+* detachEvent('click', function(){}) 删除事件
+
+标准浏览器 DOM 中的事件对象
+
+* type：获取事件类型
+* target：事件目标
+* stopPropagation() 阻止事件冒泡
+* preventDefault() 阻止事件的默认行为
+
+IE中的事件对象
+
+* type：获取事件类型
+* srcElement：事件目标
+* cancelBubble=true 阻止事件冒泡
+* returnValue=false 阻止事件的默认行为

@@ -185,3 +185,7 @@ This defines the ability for a flex item to shrink if necessary.
 ```
 
 > Negative numbers are invalid.
+
+## reference
+
+<http://www.jqhtml.com/6319.html>
