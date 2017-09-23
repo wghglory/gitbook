@@ -1,20 +1,71 @@
 /**
- * 获取某个 DOM 元素的某个属性
- * @param {*} obj
- * @param {*} attr
+ * 判断一个对象是否是数组，参数不是对象或者不是数组，返回false
+ *
+ * @param {Object} obj 需要测试是否为数组的对象
+ * @return {Boolean} 传入参数是数组返回true，否则返回false
  */
-export function getStyle(obj, attr) {
-  if (attr == 'rotate') {
-    return obj.rotate;
+// 如果浏览器支持 Array.isArray() 可以直接判断否则需进行必要判断
+function isArray(obj) {
+  if (typeof obj === 'object') {
+    return Object.prototype.toString.call(obj) === '[object Array]';
   }
-  let i = parseFloat(
-    obj.currentStyle ? obj.currentStyle[attr] : document.defaultView.getComputedStyle(obj, false)[attr]
-  );
-  let val = i ? i : 0;
-  if (attr == 'opacity') {
-    val *= 100;
+  return false;
+}
+
+/**
+ * 判断对象是否为函数，如果当前运行环境对可调用对象（如正则表达式）的 typeof 返回' function'，采用通用方法，否则采用优化方法
+ *
+ * @param {Any} arg 需要检测是否为函数的对象
+ * @return {boolean} 如果参数是函数，返回true，否则false
+ */
+function isFunction(arg) {
+  if (arg) {
+    if (typeof /./ !== 'function') {
+      return typeof arg === 'function';
+    } else {
+      return Object.prototype.toString.call(arg) === '[object Function]';
+    }
   }
-  return val;
+  return false;
+}
+
+/**
+ * 解析一个 url 并生成 window.location 对象中包含的域
+ * console.log(parseUrl('http://google.com?s=fdf&g=guang'));
+ *
+ * location:
+ * {
+ *      href: '包含完整的url',
+ *      origin: '包含协议到pathname之前的内容',
+ *      protocol: 'url使用的协议，包含末尾的:',
+ *      username: '用户名', // 暂时不支持
+ *      password: '密码',  // 暂时不支持
+ *      host: '完整主机名，包含:和端口',
+ *      hostname: '主机名，不包含端口'
+ *      port: '端口号',
+ *      pathname: '服务器上访问资源的路径/开头',
+ *      search: 'query string，?开头',
+ *      hash: '#开头的fragment identifier'
+ * }
+ *
+ * @param {string} url 需要解析的url
+ * @return {Object} 包含url信息的对象
+ */
+function parseUrl(url) {
+  var result = {};
+  var keys = ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'];
+  var i, len;
+  var regexp = /(([^:]+:)\/\/(([^:\/\?#]+)(:\d+)?))(\/[^?#]*)?(\?[^#]*)?(#.*)?/;
+
+  var match = regexp.exec(url);
+
+  if (match) {
+    for (i = keys.length - 1; i >= 0; --i) {
+      result[keys[i]] = match[i] ? match[i] : '';
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -39,4 +90,59 @@ function deepClone(obj) {
     temp[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
   }
   return temp;
+}
+
+/**
+ * var a = {
+    name: 'qiu',
+    birth: new Date(),
+    pattern: /qiu/gim,
+    container: document.body,
+    hobbys: ['book', new Date(), /aaa/gim, 111]
+  };
+
+  var b = deepClone(a)
+ * @param {object} obj
+ */
+function deepClone(obj) {
+  var _toString = Object.prototype.toString;
+
+  // null, undefined, non-object, function
+  if (!obj || typeof obj !== 'object') {
+    return obj;
+  }
+
+  // DOM Node
+  if (obj.nodeType && 'cloneNode' in obj) {
+    return obj.cloneNode(true);
+  }
+
+  // Date
+  if (_toString.call(obj) === '[object Date]') {
+    return new Date(obj.getTime());
+  }
+
+  // RegExp
+  if (_toString.call(obj) === '[object RegExp]') {
+    var flags = [];
+    if (obj.global) {
+      flags.push('g');
+    }
+    if (obj.multiline) {
+      flags.push('m');
+    }
+    if (obj.ignoreCase) {
+      flags.push('i');
+    }
+
+    return new RegExp(obj.source, flags.join(''));
+  }
+
+  var result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : {};
+
+  for (var key in obj) {
+    result[key] = deepClone(obj[key]);
+  }
+
+  return result;
 }

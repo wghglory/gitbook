@@ -38,49 +38,39 @@
   * 请求体: querystring 数据
 
 ```
-GET /s?wd=123 HTTP/1.1
-Host: www.baidu.com
+请求行 GET /Protocols/rfc2616/rfc2616-sec5.html HTTP/1.1
+请求头 Host: www.w3.org
 Connection: keep-alive
 Cache-Control: max-age=0
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4
-Cookie: BAIDUID=018F6C542AEBDD4BABBF2C9676C0A403:FG=1; BIDUPSID=018F6C542AEBDD4BABBF2C9676C0A403; PSTM=1500562781; BDUSS=JvVTRJREhSMU5hYzI1YXdxTlJ-MmpleG5FWWRhaEpqfkdCdU1wQ2xQV1o1SnRaTUFBQUFBJCQAAAAAAAAAAAEAAADhSHEId2dod2dod2doMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJlXdFmZV3RZS3; FP_UID=635a3378dd9e2582a7e9586bec6f5eef; BD_HOME=1; BD_UPN=123253; H_PS_645EC=5b16fh1nNVxPkD6rR22rlqdK5ervWuwkuAVls33WqmXJ%2BKNe%2BmW%2FWS3YQKXZYSDmdYd%2F; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; BD_CK_SAM=1; PSINO=1; BDSVRTM=249; H_PS_PSSID=1464_21121_17001_20928
-
-[Query String Parameters below]
-
-wd=%E5%85%89%E8%BE%89&rsv_spt=1&rsv_iqid=0x872d077600036af2&issp=1&f=8&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_sug3=9&rsv_sug1=6&rsv_sug7=101&rsv_sug2=0&inputT=1495&rsv_sug4=2335
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36
+Referer: https://www.google.com.hk/
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6
+Cookie: authorstyle=yes
+If-None-Match: "2cc8-3e3073913b100"
+请求头结束 If-Modified-Since: Wed, 01 Sep 2004 13:24:52 GMT
+空行
+请求体 name=qiu&age=25
 ```
 
 * 响应报文：状态行、响应头、空行、响应体
   * 状态行：200 ok
 
 ```
-HTTP/1.1 200 OK
-Bdpagetype: 3
-Bdqid: 0xe68631a400033973
-Bduserid: 141641953
-Cache-Control: private
-Ckpacknum: 2
-Ckrndstr: 400033973
-Connection: Keep-Alive
-Content-Encoding: gzip
-Content-Type: text/html;charset=utf-8
-Date: Sat, 23 Sep 2017 04:55:44 GMT
-P3p: CP=" OTI DSP COR IVA OUR IND COM "
-Server: BWS/1.1
-Set-Cookie: BDRCVFR[feWj1Vr5u3D]=mk3SLVN4HKm; path=/; domain=.baidu.com
-Set-Cookie: BD_CK_SAM=1;path=/
-Set-Cookie: PSINO=1; domain=.baidu.com; path=/
-Set-Cookie: BDSVRTM=24; path=/
-Set-Cookie: H_PS_PSSID=1464_21121_17001_20928; path=/; domain=.baidu.com
-Strict-Transport-Security: max-age=172800
-Vary: Accept-Encoding
-X-Powered-By: HPHP
-X-Ua-Compatible: IE=Edge,chrome=1
-Transfer-Encoding: chunked
+状态行 HTTP/1.1 200 OK
+响应头 Date: Tue, 08 Jul 2014 05:28:43 GMT
+Server: Apache/2
+Last-Modified: Wed, 01 Sep 2004 13:24:52 GMT
+ETag: "40d7-3e3073913b100"
+Accept-Ranges: bytes
+Content-Length: 16599
+Cache-Control: max-age=21600
+Expires: Tue, 08 Jul 2014 11:28:43 GMT
+P3P: policyref="http://www.w3.org/2001/05/P3P/p3p.xml"
+响应头结束 Content-Type: text/html; charset=iso-8859-1
+空行
+响应体 {"name": "qiu", "age": 25}
 ```
 
 ## 方法

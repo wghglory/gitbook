@@ -28,6 +28,13 @@ W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包�
 1. 请求数太多，页面性能不佳，对服务器压力也会相对大一些。
 1. 不同的浏览器以及不同的书写形式可能会有不同的加载顺序。
 
+link 与 @import 的区别:
+
+* link 是 HTML方式， @import 是CSS方式
+* link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现 FOUC
+* @import必须在样式规则之前，可以在css文件中引用其他文件
+* 总体来说：link优于@import
+
 ```css
 /*xxx 页面入口样式文件 style.css*/
 @import './css/base.css';/*页面基础样式*/
