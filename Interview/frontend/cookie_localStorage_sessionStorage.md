@@ -151,3 +151,22 @@ for (var i = 0, len = localStorage.length; i < len; i++) {
 localStorage.removeItem('x'); // remove x
 localStorage.clear(); // remove all data
 ```
+
+多个标签页通信主要是利用了 localStorage 的增删改事件监听
+
+页面A发送事件:
+
+```javascript
+function sendMsg(text) {
+    window.localStorage.setItem('msg', text);
+}
+```
+
+页面B接收事件:
+
+```javascript
+window.addEventListener('storage', function (evt) {
+    if(evt.key === 'msg')
+       console.log(evt.newValue);
+});
+```

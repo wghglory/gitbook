@@ -10,6 +10,9 @@ function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
   }
   return false;
+
+  // return obj instanceof Array; //method 2
+  // return obj.constructor == Array; //method 3
 }
 
 /**
