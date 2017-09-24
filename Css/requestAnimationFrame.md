@@ -34,12 +34,12 @@
 
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = function(callback, element) {
-      var currTime = new Date().getTime();
-      var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+      var currentTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16.7 - (currentTime - lastTime));
       var id = window.setTimeout(function() {
-        callback(currTime + timeToCall);
+        callback(currentTime + timeToCall);
       }, timeToCall);
-      lastTime = currTime + timeToCall;
+      lastTime = currentTime + timeToCall;
       return id;
     };
   }

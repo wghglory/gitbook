@@ -194,7 +194,6 @@ animation-iteration-count: 10;
 
 `animation` 属性组合了以下属性：animation-name, animation-duration, animation-timing-function, animation-iteration-count, animation-direction, animation-delay, animation-fill-mode。
 
-
 ```css
 .fade {
     animation-name: fadeOut;

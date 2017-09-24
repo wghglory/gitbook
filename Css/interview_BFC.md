@@ -6,7 +6,7 @@
 
 ## 原理，渲染规则
 
-* BFC 内部的盒会在垂直方向一个接一个排列（可以看作BFC中有一个的常规流），他们相互影响，可能会发生margin collapse；
+* BFC 内部的盒会在垂直方向一个接一个排列（可以看作BFC中有一个的常规流），他们相互影响，可能会发生 margin collapse
 * BFC 的区域不会与浮动元素重叠
 * BFC 在页面上是一个独立的容器，外面元素和里面的元素不会相互影响。
 * 计算 BFC 高度时浮动元素也会参与计算
@@ -73,7 +73,7 @@
         background: red;
       }
     </style>
-    <p>如果是3个p并列，他们margin重叠。解决办法，在其中一个p套上div，让他BFC，此时margin会相加 </p>
+    <p>如果是3个p并列，他们margin重叠。解决办法，在其中一个 p 套上 div，让他BFC，此时margin会相加 </p>
     <div style="overflow:hidden">
       <p>2</p>
     </div>
@@ -82,7 +82,7 @@
   </section>
 
   <hr style="padding: 20px 0;">
-  <!-- BFC不与float重叠 -->
+  <!-- BFC 不与 float 重叠 -->
   <section id="layout">
     <style media="screen">
       #layout .left {
@@ -103,7 +103,7 @@
   </section>
 
   <hr style="padding: 20px 0;">
-  <!-- BFC子元素即使是float也会参与计算 -->
+  <!-- BFC 子元素即使是 float 也会参与计算 -->
   <section id="float">
     <style media="screen">
       #float {
