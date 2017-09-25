@@ -1,10 +1,10 @@
-# webpack 热插拔 hot reloading 原理
+## webpack 热插拔 hot reloading 原理
 
-webpack-hot-middleware 中间件是 webpack 的一个 plugin，通常结合 webpack-dev-middleware 一起使用。借助它可以实现浏览器的无刷新更新（热更新），即 webpack 里的 HMR（Hot Module Replacement）。内部使用 Server-sent event(SSE)。
+`webpack-hot-middleware` 中间件是 webpack 的一个 plugin，通常结合 `webpack-dev-middleware` 一起使用。借助它可以实现浏览器的无刷新更新（热更新），即 webpack 里的 HMR（Hot Module Replacement）。内部使用 Server-sent event(SSE)。
 
 SSE 参看 `Websocket_vs_polling.md`
 
-# browser-sync 原理
+## browser-sync 原理
 
 一个网页里的所有交互动作（包括滚动，输入，点击等等），可以实时地同步到其他所有打开该网页的设备，能够节省大量的手工操作时间，从而带来流畅的开发调试体验。目前 browser-sync 可以结合 Gulp 或 Grunt 一起使用，其 API 请参考：[Browser-sync API](http://www.browsersync.cn/docs/api/)。
 

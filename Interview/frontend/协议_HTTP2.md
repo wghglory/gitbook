@@ -2,7 +2,7 @@
 
 node 8.4 `--expose-http2`
 
-server push: 通过 full request 和 多路响应大大减少请求响应时间。不像 http 1 时代 浏览器加载html，再分别加载里面的 js, css, image 资源。http 2 得多路响应、加上server push 甚至在浏览器没有向服务端发送请求时 服务端都能迅速返回所需要的资源。
+`server push`: 通过 full request 和 多路响应大大减少请求响应时间。不像 http 1 时代 浏览器加载html，再分别加载里面的 js, css, image 资源。并且 http 1 每次浏览器从一个 domain 下载的资源数受限，chrome/firefox 最多同时下载8个。 http 2 的多路响应、加上 `server push` 甚至在浏览器没有向服务端发送请求时 服务端都能迅速返回所需要的资源。
 
 ---
 

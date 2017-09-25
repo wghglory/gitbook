@@ -32,17 +32,13 @@ WebSocket 协议在2008年诞生，2011年成为国际标准。所有浏览器�
 
 其他特点包括：
 
-（1）建立在 TCP 协议之上，服务器端的实现比较容易。
-
-（2）与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
-
-（3）数据格式比较轻量，性能开销小，通信高效。
-
-（4）可以发送文本，也可以发送二进制数据。
-
-（5）没有同源限制，客户端可以与任意服务器通信。
-
-（6）协议标识符是`ws`（如果加密，则为`wss`），服务器网址就是 URL。
+* **real-time 双全工双向通信**
+* 建立在 **TCP 协议**之上，服务器端的实现比较容易。
+* **可以发送文本，也可以发送二进制数据。**
+* **没有同源限制，客户端可以与任意服务器通信。**
+* 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+* 数据格式比较轻量，性能开销小，通信高效。
+* 协议标识符是`ws`（如果加密，则为`wss`），服务器网址就是 URL。
 
 ```bash
 ws://example.com:80/some/path
@@ -59,8 +55,8 @@ WebSocket 的用法相当简单。
 ```javascript
 var ws = new WebSocket("wss://echo.websocket.org");
 
-ws.onopen = function(evt) { 
-  console.log("Connection open ..."); 
+ws.onopen = function(evt) {
+  console.log("Connection open ...");
   ws.send("Hello WebSockets!");
 };
 
@@ -219,9 +215,7 @@ ws.send('your message');
 发送 Blob 对象的例子。
 
 ```javascript
-var file = document
-  .querySelector('input[type="file"]')
-  .files[0];
+var file = document.querySelector('input[type="file"]')w.files[0];
 ws.send(file);
 ```
 

@@ -40,12 +40,7 @@
 
 EventSource 不是一个新鲜的技术，正式一点应该叫`Server-sent events`，即 `SSE`。
 
-EventSource 本质上还是 HTTP，通过 response 流实时推送服务器信息到客户端。
-
-```javascript
-// 新建一个EventSource对象
-const es = new EventSource('/message'); // message 是服务端支持 EventSource 的接口
-```
+EventSource **本质上还是 HTTP，基于流，**通过 response 流实时推送服务器信息到客户端。
 
 新创建的 EventSource 对象拥有如下属性：
 
@@ -58,6 +53,7 @@ const es = new EventSource('/message'); // message 是服务端支持 EventSourc
 服务端实现`/message`接口，需要返回类型为 `text/event-stream`的响应头。
 
 ```javascript
+// 服务端：
 var http = require('http');
 http.createServer(function(req，res){
   if(req.url === '/message'){
@@ -67,7 +63,7 @@ http.createServer(function(req，res){
       'Connection': 'keep-alive'
     });
     setInterval(function(){
-      res.write('data: ' + +new Date() + '\n\n');
+      res.write('data: ' + new Date() + '\n\n');
     }, 1000);
   }
 }).listen(8888);
@@ -78,6 +74,10 @@ http.createServer(function(req，res){
 以上，服务器每隔1s主动向客户端发送当前时间戳，为了接受这个信息，客户端需要监听服务器。如下：
 
 ```javascript
+// 客户端:
+// 新建一个EventSource对象
+const es = new EventSource('/message'); // message 是服务端支持 EventSource 的接口
+
 es.onmessage = function(e){
   console.log(e.data); // 打印服务器推送的信息
 }
@@ -127,13 +127,13 @@ es.onerror = function(e){// 出错时的回调(网络问题,或者服务下线�
 }
 ```
 
-使用EventSource技术实时更新网页信息十分高效。实际使用中，我们几乎不用担心兼容性问题，主流浏览器都了支持EventSource，当然，除了掉队的IE系。对于不支持的浏览器，其PolyFill方案请参考[HTML5 Cross Browser Polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#eventsource)。
+使用 EventSource 技术实时更新网页信息十分高效。实际使用中，我们几乎不用担心兼容性问题，主流浏览器都了支持EventSource，当然，除了掉队的IE系。对于不支持的浏览器，其PolyFill方案请参考[HTML5 Cross Browser Polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#eventsource)。
 
-#### **CORS**
+#### SSE 配合 CORS 实现跨域
 
 另外，如果需要支持跨域调用，请设置响应头 `Access-Control-Allow-Origin': '*'`。
 
-如需支持发送cookie，请设置响应头 `Access-Control-Allow-Origin': req.headers.origin` 和 `Access-Control-Allow-Credentials:true`，并且创建es对象时，需要明确指定是否发送凭证。如下：
+如需支持发送cookie，请设置响应头 `Access-Control-Allow-Origin': req.headers.origin` 和 `Access-Control-Allow-Credentials: true`，并且创建es对象时，需要明确指定是否发送凭证。如下：
 
 ```javascript
 var es = new EventSource('/message', {
@@ -155,21 +155,21 @@ var es = new EventSource('/message', {
 
 ![HTML5 WebSockets](https://i.stack.imgur.com/CgDlc.png)
 
-WebSocket 是基于 TCP 的全双工通讯的协议，它与 EventSource 有着本质上的不同.(前者基于TCP，后者依然基于HTTP)
+WebSocket 是基于 **TCP 的全双工通讯**的协议，它与 EventSource 有着本质上的不同.(前者基于TCP，后者依然基于HTTP)
 
-WebSocket 使用和 HTTP 相同的 TCP 端口，默认为80， 统一资源标志符为ws，运行在TLS之上时，默认使用443，统一资源标志符为wss。它通过`101 switch protocol`进行一次TCP握手，即从 HTTP 协议切换成 WebSocket 通信协议。
+WebSocket 使用和 HTTP 相同的 TCP 端口，默认为80， 统一资源标志符为 ws，运行在 TLS 之上时，默认使用443，统一资源标志符为 wss。它通过 `101 switch protocol` 进行一次TCP握手，即**从 HTTP 协议切换成 WebSocket 通信协议**。
 
-相对于HTTP协议，WebSocket拥有如下优点：
+相对于 HTTP 协议，WebSocket 拥有如下优点：
 
 - 全双工，实时性更强。
 - 相对于 http 携带完整的头部，WebSocket 请求头部明显减少。
 - 保持连接状态，不用再验权了。
 - 二进制支持更强，Websocket 定义了二进制帧，处理更轻松。
-- Websocket协议支持扩展，可以自定义的子协议，如 `permessage-deflate` 扩展。
+- Websocket 协议支持扩展，可以自定义的子协议，如 `permessage-deflate` 扩展。
 
 #### **Frame**
 
-WebSocket 协议基于 Frame 而非 Stream（EventSource 是基于 Stream的）。因此其传输的数据都是Frame（帧）。如下便是Frame的结构：
+**WebSocket 协议基于 Frame 而非 Stream**（EventSource 是基于 Stream 的）。因此其传输的数据都是Frame（帧）。如下便是Frame的结构：
 
 ```
  0                   1                   2                   3
@@ -390,7 +390,7 @@ try{
 }
 ```
 
-ws 对象还拥有 onclose 和 onerror 监听器，分别监听关闭和错误事件。（注：EventSource 没有onclose监听）
+ws 对象还拥有 onclose 和 onerror 监听器，分别监听关闭和错误事件。（注：EventSource 没有 onclose 监听）
 
 #### **拥有的属性**
 
@@ -492,13 +492,13 @@ server.on('connection', function(wsServer){
 
 根据规范[RFC 6455](https://tools.ietf.org/html/rfc6455#section-5.5.2)，Ping Frame包含一个值为9的opcode，它可能携带数据。收到Ping Frame后，Pong Frame必须被作为响应发出。Pong Frame包含一个值为10的opcode，它将包含与Ping Frame中相同的数据。
 
-借助ws包，服务端可以这么来发送Ping Frame。
+借助ws包，服务端可以这么来发送 Ping Frame。
 
 ```javascript
 wsServer.ping();
 ```
 
-同时，需要监听客户端响应的pong Frame.
+同时，需要监听客户端响应的 pong Frame.
 
 ```javascript
 wsServer.on('pong', function(data, flags) {
@@ -511,7 +511,7 @@ wsServer.on('pong', function(data, flags) {
 
 #### **Socket.IO**
 
-WebSocket出世已久，很多优秀的大神基于此开发出了各式各样的库。其中 [Socket.IO](http://socket.io/) 是一个非常不错的开源WebSocket 库，旨在抹平浏览器之间的兼容性问题。它基于 Node.js，支持以下方式优雅降级：
+WebSocket 出世已久，很多优秀的大神基于此开发出了各式各样的库。其中 [Socket.IO](http://socket.io/) 是一个非常不错的开源 WebSocket 库，旨在抹平浏览器之间的兼容性问题。它基于 Node.js，支持以下方式优雅降级：
 
 - Websocket
 - Adobe® Flash® Socket
@@ -520,15 +520,15 @@ WebSocket出世已久，很多优秀的大神基于此开发出了各式各样�
 - Forever Iframe
 - JSONP Polling
 
-如何在项目中使用Socket.IO，请参考[第一章 socket.io 简介及使用](https://github.com/nswbmw/N-chat/wiki/%E7%AC%AC%E4%B8%80%E7%AB%A0-socket.io-%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8)。
+如何在项目中使用 Socket.IO，请参考[第一章 socket.io 简介及使用](https://github.com/nswbmw/N-chat/wiki/%E7%AC%AC%E4%B8%80%E7%AB%A0-socket.io-%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8)。
 
 ### **小结**
 
-EventSource，本质依然是 HTTP，它仅提供服务端到客户端的单向文本数据传输，不需要心跳连接，连接断开会持续触发重连。
+EventSource，本质依然是 HTTP，基于流，它仅提供服务端到客户端的单向文本数据传输，不需要心跳连接，连接断开会持续触发重连。
 
-WebSocket协议，基于TCP协议，它提供双向数据传输，支持二进制，需要心跳连接，连接断开不会重连。
+WebSocket 双全工通信方式，基于 TCP 协议，基于帧 frame，它提供双向数据传输，支持二进制，需要心跳连接，连接断开不会重连。
 
-EventSource 更轻量和简单，WebSocket 支持性更好（因其支持IE10+）。通常来说，使用 EventSource 能够完成的功能，使用WebSocket一样能够做到，反之却不行，使用时若遇到连接断开或抛错，请及时调用各自的`close`方法主动释放资源。
+EventSource 更轻量和简单，WebSocket 支持性更好（因其支持IE10+）。通常来说，使用 EventSource 能够完成的功能，使用 WebSocket 一样能够做到，反之却不行，使用时若遇到连接断开或抛错，请及时调用各自的`close` 方法主动释放资源。
 
 ## Comet:
 

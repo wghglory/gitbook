@@ -34,7 +34,7 @@ new 构造函数 --> 实例对象
     person.work();
     ```
 
-1. 用 function 来模拟参构造函数来实现（用this关键字定义构造的上下文属性。每个实例属性不同，方法一般不在这定义，应定义到原型中）
+1. 用 function 来模拟参构造函数来实现（用 this 关键字定义构造的上下文属性。每个实例属性不同，方法一般不在这定义，应定义到原型中）
 
     ```javascript
     function Pet(name, age, hobby) {
@@ -76,7 +76,7 @@ new 构造函数 --> 实例对象
     camry.sell();
     ```
 
-1. `Object.create` 传入对象 x，得到对象 y 是 x 原型链下一级（创建新空对象，继承自原型对象 `构造函数.prototype`，这里继承 p）
+1. `Object.create` 传入原型对象 x，得到对象 y 是 x 原型链下一级（创建新空对象，继承自原型对象，这里继承 p）
 
     ```javascript
     var p = {name: 'hello'}
@@ -90,7 +90,7 @@ new 构造函数 --> 实例对象
 Object.create = function(obj) {
   function F() {}
   F.prototype = obj;
-  return new F();  // 返回 obj 的上层原型对象
+  return new F();  // 返回 F 的原型对象是 obj
 };
 ```
 
@@ -114,7 +114,7 @@ o2.__proto__ === F.prototype // 实例的__proto__ 指向构造函数的prototyp
 
 ### 原型链
 
-实例通过 `__proto__` 向上找到对应的原型对象，原型对象还可以通过 `__proto` 找到上一级原型对象，一直到`Object.prototype`顶端停止。原型链依靠的是 `__proto__` 而不是 prototype
+实例通过 `__proto__` 向上找到对应的原型对象，原型对象还可以通过 `__proto__` 找到上一级原型对象，一直到 `Object.prototype` 顶端停止。原型链依靠的是 `__proto__` 而不是 prototype
 
 一些公用的方法不要放在构造函数中，因为那样实例化后每个实例都在内存中拷贝了一份。公共的方法和属性放在原型对象上。实例都可以通过原型链找到原型对象，原型对象上的方法被所有实例所共有。先找自己实例内部，没找到找最近一层原型对象，没找到的话一层一层向上查找。如果都没找到，原路返回告诉他没找到。如果中间找到了就不再向上查找
 
