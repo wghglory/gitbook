@@ -26,7 +26,7 @@ Bubbling: After firing click handler attached to `td`, browser walks toward root
 
 You clicked on cell but all the event handler with parent elements will be fired. This is actually very powerful (check event delegation). 因为有事件冒泡，才会有事件委托出现。
 
-好处：不需要为每个子元素 li 注册事件。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。
+好处：不需要循环为每个子元素 li 注册事件，节省空间和运算效率。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。
 
 ## 描述事件捕获流程
 
@@ -47,8 +47,8 @@ event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gk
 浏览器：
 
 ```javascript
-let ev = new Event('customEvent')
-dom.addEventListener('customEvent', () => {})
+let ev = new Event('myEvent')
+dom.addEventListener('myEvent', () => {})
 
 // fire the event
 dom.dispatchEvent(ev)
@@ -104,23 +104,23 @@ myEmitter.emit('event');
 
 ### IE 和 Chrome 标准浏览器事件处理的解决办法(老题目，了解)
 
-IE 只有事件只能在冒泡阶段触发。标准浏览器通过 addEventListener('click', function(){}, true/false) 来指定触发阶段。false 为冒泡阶段触发。
+IE 只有事件只能在冒泡阶段触发。标准浏览器通过 `addEventListener('click', function(){}, true/false)` 来指定触发阶段。false 为冒泡阶段触发。
 
 IE:
 
-* attachEvent('click', function(){}) 添加事件
-* detachEvent('click', function(){}) 删除事件
+* `attachEvent('click', function(){})` 添加事件
+* `detachEvent('click', function(){})` 删除事件
 
 标准浏览器 DOM 中的事件对象
 
 * type：获取事件类型
 * target：事件目标
-* stopPropagation() 阻止事件冒泡
-* preventDefault() 阻止事件的默认行为
+* `stopPropagation()` 阻止事件冒泡
+* `preventDefault()` 阻止事件的默认行为
 
 IE中的事件对象
 
 * type：获取事件类型
 * srcElement：事件目标
-* cancelBubble=true 阻止事件冒泡
-* returnValue=false 阻止事件的默认行为
+* `cancelBubble = true` 阻止事件冒泡
+* `returnValue = false` 阻止事件的默认行为

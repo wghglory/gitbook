@@ -5,7 +5,7 @@ CSS Transition 是最简单形式的动画：从一个可视状态变换到另�
 例子：鼠标以上后，图片旋转。
 
 ```css
-img.tilt:hover {
+img:hover {
     transform: rotate(7.5deg);
     transition: 2s all;
 }
@@ -72,12 +72,12 @@ transition-delay: 0, 0, 1s;
 在某些浏览器中左右移动的动画可能不够流畅。使用 `translateX` 替代 `left`，会更流畅，适合移动绝对或相对定位的元素。
 
 ```css
-img.tilt {
+img {
     width: 300px; height: 300px; float: left;
     transition-property: opacity, translateX;
     transition-duration: 2s, 4s;
 }
-img.tilt:hover {
+img:hover {
     opacity: .2;
     transform: translateX(60px);
 }

@@ -1,4 +1,4 @@
-# Angular2的数据绑定
+# Angular2 的数据绑定
 
 ## 分类
 
@@ -24,7 +24,7 @@
 
 绑定属性时需要分清属性(property)和特性(attribute)绑定，绑定样式时有四种可选操作
 
-#### property绑定
+#### property 绑定
 
 property 是存在于 DOM 里的，例如 input 元素的 value属性。
 
@@ -35,7 +35,7 @@ property 是存在于 DOM 里的，例如 input 元素的 value属性。
 - 为了防止表达式返回 null，在表达式后面跟上一个?
 - 每个元素的property可以参考[文档](http://developer.mozilla.org/en-US/docs/Web/API/)
 
-#### attribute绑定
+#### attribute 绑定
 
 attribute 是存在于 HTML元素里的，不是所有的 HTML元素的 property 都和 attribute 相符，比如说  colspan。NG 提供了绑定 attribute 属性的解决办法。
 

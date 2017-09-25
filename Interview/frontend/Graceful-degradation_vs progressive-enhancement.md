@@ -1,11 +1,13 @@
 # Graceful degradation versus Progressive enhancement (优雅降级和渐进增强)
 
-## Graceful degradation
+都试图兼顾软件在不同环境下的运行状态。渐进增强是从一个基本的功能点出发，不断扩充新的特性功能，越好的浏览器得到越好的效果，是在向前看。优雅降级是一开始就想好一个相对较为完整的解决方案，当遇到老的浏览器时，可能效果和特性有所折损，是一种想回看的思维。现代开发渐进增强更有优势。
+
+## Graceful degradation(╮(╯﹏╰)╭)
 
 graceful degradation is the practice of building your web functionality so that it provides a certain level of user experience in more modern browsers, but it will also degrade gracefully to a lower level of user in experience in older browsers. This lower level is not as nice to use for your site visitors, but it does still provide them with the basic functionality that they came to your site to use; things do not break for them.
 
 ```html
-<p id="printthis">
+<p id="print">
   <a href="javascript:window.print()">Print this page</a>
 </p>
 <noscript>
@@ -17,7 +19,7 @@ graceful degradation is the practice of building your web functionality so that 
 </noscript>
 ```
 
-## Progressive enhancement
+## Progressive enhancement(✌️)
 
 Starting with a baseline of usable functionality, then increasing the richness of the user experience step by step by testing for support for enhancements before applying them.
 
@@ -26,12 +28,12 @@ Progressive enhancement is similar, but it does things the other way round. You 
 example: gmail, better browser has better experience.
 
 ```html
-<p id="printthis">Thank you for your order. Please print this page for your records.</p>
+<p id="print">Thank you for your order. Please print this page for your records.</p>
 <script>
 (function(){
   // true means javascript enabled
   if(document.getElementById){
-    var pt = document.getElementById('printthis');
+    var pt = document.getElementById('print');
     if(pt && typeof window.print === 'function'){
       var but = document.createElement('input');
       but.setAttribute('type','button');

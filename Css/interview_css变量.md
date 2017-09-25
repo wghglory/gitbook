@@ -1,10 +1,6 @@
 # CSS 变量教程
 
-作者： [阮一峰](http://www.ruanyifeng.com/)
-
-日期： [2017年5月 9日](http://www.ruanyifeng.com/blog/2017/05/)
-
-![img](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017050901.jpg)
+<http://www.ruanyifeng.com/blog/2017/05/css-variables.html>
 
 ## 一、变量的声明
 
@@ -17,9 +13,9 @@ body {
 }
 ```
 
-上面代码中，`body`选择器里面声明了两个变量：`--foo`和`--bar`。
+上面代码中，`body` 选择器里面声明了两个变量：`--foo` 和 `--bar`。
 
-它们与`color`、`font-size`等正式属性没有什么不同，只是没有默认含义。所以 CSS 变量（CSS variable）又叫做**"CSS 自定义属性"**（CSS custom properties）。因为变量与自定义的 CSS 属性其实是一回事。
+它们与 `color`、`font-size` 等正式属性没有什么不同，只是没有默认含义。所以 CSS 变量（CSS variable）又叫做**"CSS 自定义属性"**（CSS custom properties）。因为变量与自定义的 CSS 属性其实是一回事。
 
 你可能会问，为什么选择两根连词线（`--`）表示变量？因为`$foo`被 Sass 用掉了，`@foo`被 Less 用掉了。为了不产生冲突，官方的 CSS 变量就改用两根连词线了。
 
@@ -43,7 +39,7 @@ body {
 
 ## 二、var() 函数
 
-`var()`函数用于读取变量。
+`var()` 函数用于读取变量。
 
 ```css
 a {
@@ -52,7 +48,7 @@ a {
 }
 ```
 
-`var()`函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。
+`var()` 函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。
 
 ```css
 color: var(--foo, #7F583F);
@@ -65,7 +61,7 @@ var(--font-stack, "Roboto", "Helvetica");
 var(--pad, 10px 15px 20px);
 ```
 
-`var()`函数还可以用在变量的声明。
+`var()` 函数还可以用在变量的声明。
 
 ```css
 :root {
@@ -84,7 +80,7 @@ var(--pad, 10px 15px 20px);
 }
 ```
 
-上面代码中，变量`--side`用作属性名，这是无效的。
+上面代码中，变量 `--side` 用作属性名，这是无效的。
 
 ## 三、变量值的类型
 
@@ -99,7 +95,7 @@ var(--pad, 10px 15px 20px);
 
 ```css
 body:after {
-  content: '--screen-category : 'var-screen-category);
+  content: '--screen-category : 'var(--screen-category);
 }
 ```
 
@@ -270,6 +266,6 @@ document.addEventListener('mousemove', (e) => {
 --foo: if(x > 5) this.width = 10;
 ```
 
-上面代码中，`--foo`的值在 CSS 里面是无效语句，但是可以被 JavaScript 读取。这意味着，可以把样式设置写在 CSS 变量中，让 JavaScript 读取。
+上面代码中，`--foo` 的值在 CSS 里面是无效语句，但是可以被 JavaScript 读取。这意味着，可以把样式设置写在 CSS 变量中，让 JavaScript 读取。
 
 所以，CSS 变量提供了 JavaScript 与 CSS 通信的一种途径。

@@ -2,7 +2,7 @@
 
 * cookie 在浏览器和服务器间来回传递。 sessionStorage 和 localStorage不会
 * cookie 有 secure 属性要求 HTTPS 传输
-* cookie 属性有名，值，max-age，path, domain，secure；
+* cookie 属性有名，值，max-age，path, domain，secure
 * cookie 默认有效期为浏览器会话，一旦用户关闭浏览器，数据就丢失，通过设置 max-age=seconds 属性告诉浏览器cookie 有效期
 * cookie 作用域通过文档源和文档路径来确定，通过 path 和 domain 进行配置，web页面同目录或子目录文档都可访问
 * 浏览器不能保存超过300个cookie，单个服务器不能超过20个，每个 cookie 不能超过4k。web storage 大小支持能达到5M
@@ -134,7 +134,7 @@ var cookieUtil = (function(window, undefined) {
 
 如果静态文件都放在主域名下，那静态文件请求的时候都带有的 cookie 的数据提交给 server 的，非常浪费流量，所以不如隔离开。
 
-因为 cookie 有域的限制，因此不能跨域提交请求，**故使用非主域名**的时候，请求头中就不会带有 cookie 数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将 cookie 传入 Web Server，也减少了Web Server 对 cookie的处理分析环节，提高了 webserver 的 http 请求的解析速度。
+因为 cookie 有域的限制，因此不能跨域提交请求，**故使用非主域名**的时候，请求头中就不会带有 cookie 数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将 cookie 传入 Web Server，也减少了 Web Server 对 cookie的处理分析环节，提高了 webserver 的 http 请求的解析速度。
 
 ## localStorage
 

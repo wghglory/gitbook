@@ -28,12 +28,12 @@ W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包�
 1. 请求数太多，页面性能不佳，对服务器压力也会相对大一些。
 1. 不同的浏览器以及不同的书写形式可能会有不同的加载顺序。
 
-link 与 @import 的区别:
+#### link 与 @import 的区别
 
 * link 是 HTML方式， @import 是CSS方式
 * link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现 FOUC
-* @import必须在样式规则之前，可以在css文件中引用其他文件
-* 总体来说：link优于@import
+* @import 必须在样式规则之前，可以在css文件中引用其他文件
+* 总体来说：link 优于 @import
 
 ```css
 /*xxx 页面入口样式文件 style.css*/
@@ -144,9 +144,9 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 命名规范是从 BEM 扩展而来。
 
-- Block: 对应模块名 `[name]`
-- Element: 对应节点名 `[local]`
-- Modifier: 对应节点状态 `[hash:base64:5]`
+* Block: 对应模块名 `[name]`
+* Element: 对应节点名 `[local]`
+* Modifier: 对应节点状态 `[hash:base64:5]`
 
 使用 __ 和 -- 是为了区块内单词的分割节点区分开来。最终 class 名为 `styles__title--3zyde`。
 
@@ -190,7 +190,9 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 }
 ```
 
-有时候，一个元素有多个 class 名，可以通过 `join(" ")` 或字符串模版的方式来给元素添加多个 class 名。
+### 多个 class
+
+#### 有时候，一个元素有多个 class 名，可以通过 `join(" ")` 或字符串模版的方式来给元素添加多个 class 名。
 
 ```jsx
 // join-react.jsx
@@ -204,11 +206,11 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 </h1>
 ```
 
-### 多个 class
-
 如果只写一个 class 就能把样式定义好，那么最好把所有样式写在一个 class 中。如果我们使用了多个 class 定义样式，通常会带一些一些逻辑判断。这个时候写起来就会麻烦不少。
 
-引入 [classnames](https://github.com/JedWatson/classnames) ，即可以解决给元素写多个 class 名的问题，也可以解决写逻辑判断的麻烦问题。
+#### 引入 [classnames](https://github.com/JedWatson/classnames)
+
+即可以解决给元素写多个 class 名的问题，也可以解决写逻辑判断的麻烦问题。
 
 ```javascript
 classNames('foo', 'bar'); // => 'foo bar'

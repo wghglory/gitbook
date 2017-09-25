@@ -1,14 +1,14 @@
-# 边距重叠解决方案(BFC -- block format context)
+# 边距重叠解决方案(BFC -- block format context 块级格式化上下文)
 
 边距重叠包含父子、兄弟
 
-父子关系，子元素高度100px，margin-top 10px，这时容器高度也是100px，如果想让容器高度也是110px，需要创建BFC，常见是给容器加上 overflow hidden
+父子关系，子元素高度 100px，margin-top 10px，这时容器高度也是 100px，如果想让容器高度也是 110px，需要创建 BFC，常见是给容器加上 overflow hidden
 
 ## 原理，渲染规则
 
 * BFC 内部的盒会在垂直方向一个接一个排列（可以看作BFC中有一个的常规流），他们相互影响，可能会发生 margin collapse
-* BFC 的区域不会与浮动元素重叠（清除浮动原理）
 * BFC 在页面上是一个独立的容器，外面元素和里面的元素不会相互影响。
+* BFC 的区域不会与浮动元素重叠（清除浮动原理）
 * 计算 BFC 高度时浮动元素也会参与计算
 
 ## 如何创建 BFC

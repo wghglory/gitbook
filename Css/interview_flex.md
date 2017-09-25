@@ -83,7 +83,9 @@ This defines the default behavior for how flex items are laid out along the cros
 * `baseline`: items are aligned such as their baselines align
 * `stretch` (default): stretch to fill the container (still respect min-width/max-width)
 
-### align-content (多行才起作用)
+### align-content (多行才起作用，即 flex-wrap: wrap/wrap-reverse 配合使用)
+
+多行之间的间隔、分配方式
 
 ![align-content](https://css-tricks.com/wp-content/uploads/2013/04/align-content.svg)
 

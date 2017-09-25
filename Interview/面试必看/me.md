@@ -1,5 +1,20 @@
 # Self Introduction
 
+现在在一家中小型公司做技术经理，主要负责前端。最近一直在用 react。我是中途接手一个项目，发现了很多问题，我负责帮助团队不断改进推动项目
+
+1. react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
+1. 提取相似组件，封装成公共组件，提高复用性
+1. 改进 Modal, Select 等组件，原来 Modal 里面没有状态控制，是通过引用该 Modal 的组件状态决定开关，现在在 Modal 里面有 state 控制。职责单一
+1. 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能。
+1. eslint 工具，editorConfig
+1. 加入测试、mock-server、持续集成
+
+下一步改进：
+
+1. css 模块化
+
+---
+
 1. I have involved in system development life cycle for 7 years, especially web development. I'm working as CTO in a startup company. Before I was a technical lead in UnionBank, US.
 
 1. *College*: I'm interested in designing web application for a long time, but I don't choose computer science as my major because I don't want exams, classes ruin my interest, and I learnt computer science class by myself in Dalian University of Technology. I did part-time job to learn and strengthen my programming skills during college life.

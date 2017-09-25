@@ -4,7 +4,7 @@
 
 Gulp 优势：
 
-1. **代码优于配置策略**
+1. **代码优于配置策略**，写代码控制而不是像 grunt 传入大 json 配置
 1. 高效：核心设计基于Unix流的概念。通过利用Node.js强大的**流，通过管道连接，不需要往磁盘写中间文件**，可以更快地完成构建。
 1. **插件纯粹**：Gulp 的每个插件只完成一个功能，这也是Unix的设计原则之一，各个功能通过流进行整合并完成复杂的任务。
 1. Gulp 的核心 API 只有5个
@@ -195,6 +195,3 @@ module.exports = function(grunt) {
     grunt.registerTask('lint', ['jshint', 'csslint']);
 };
 ```
-
-## Gulp
-

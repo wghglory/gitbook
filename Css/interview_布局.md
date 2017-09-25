@@ -92,7 +92,7 @@
   </section>
 
 
-  <!-- flexbox布局 -->
+  <!-- flexbox 布局 -->
   <section class="layout flexbox">
     <style>
       .layout.flexbox {

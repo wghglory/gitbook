@@ -383,18 +383,18 @@ li {
 
 ## 6. @import引入
 
-CSS中原本就有不常用的`@import`语法，但是有两个弊端：
+CSS 中原本就有不常用的`@import`语法，但是有两个弊端：
 
 1. 引入语句一定要卸载代码最前面才会生效；
-1. 影响性能。如果A文件要引入B文件，当浏览器读到A文件时会再去下载B，阻塞进程。
+1. 影响性能。如果 A 文件要引入 B 文件，当浏览器读到 A 文件时会再去下载 B，阻塞进程。
 
 而Sass中的`@import`会在生成CSS文件时就把引入的所有文件先导入进来，也就是所有相关的样式会被编译到同一个CSS文件中，无需发起额外的请求。
 当然，Sass的`@import`也支持导入远程的CSS文件。那效果跟普通CSS导入样式文件一样，导入的css文件不会合并到编译后的文件中，而是以@import方式存在。
 一般来说基础的文件命名需要以’_’ 开头，如 `_partial.scss`。这种文件在导入的时候可以不写下划线及后缀，可写成@import “partial”。但是倒入CSS文件的话，就需要“文件名+后缀”了。
 
 ```scss
-@import 'partial'       //导入名为“_partial.scss”的文件
-@import 'toolbar.css'       //导入名toolbar.css”的文件
+@import 'partial';      //导入名为“_partial.scss”的文件
+@import 'toolbar.css';       //导入名toolbar.css”的文件
 
 {
     margin: 0;
@@ -406,11 +406,11 @@ CSS中原本就有不常用的`@import`语法，但是有两个弊端：
 
 下列三种情况下会生成原生的CSS@import：
 
-1. 被导入文件的名字以.css结尾；
+1. 被导入文件的名字以. css 结尾；
 1. 被导入文件的名字是一个URL地址（例如[http://www.sass.hk/css/css.css](http://www.sass.hk/css/css.css) ），由此可用谷歌字体API提供的相应服务；
-1. 被导入文件的名字是CSS的url()值。
+1. 被导入文件的名字是 CSS 的 url() 值。
 
-也就是说，你不能用Sass的@import直接导入一个原始的CSS文件，因为sass会认为你想用CSS原生的@import。但是，因为sass的语法完全兼容css，所以你可以把原始的css文件改名为.scss后缀，即可直接导入了。
+也就是说，你不能用 Sass的 @import 直接导入一个原始的CSS文件，因为 sass 会认为你想用 CSS 原生的 @import。但是，因为 sass 的语法完全兼容 css，所以你可以把原始的css文件改名为.scss后缀，即可直接导入了。
 
 ---
 
@@ -420,9 +420,9 @@ CSS中原本就有不常用的`@import`语法，但是有两个弊端：
 
 Sass (Syntactically Awesome Stylesheets)是一种动态样式语言，Sass语法属于缩排语法，比css比多出好些功能(如变量、嵌套、运算,混入(Mixin)、继承、颜色处理，函数等)，更容易阅读。
 
-#### Sass与Scss是什么关系?
+#### Sass 与 Scss是什么关系?
 
-Sass的缩排语法，对于写惯css前端的web开发者来说很不直观，也不能将css代码加入到Sass里面，因此sass语法进行了改良，Sass 3就变成了Scss(sassy css)。与原来的语法兼容，只是用{}取代了原来的缩进。
+Sass的缩排语法，对于写惯css前端的web开发者来说很不直观，也不能将 css 代码加入到 Sass里面，因此sass语法进行了改良，Sass 3就变成了Scss(sassy css)。与原来的语法兼容，只是用{}取代了原来的缩进。
 
 Less也是一种动态样式语言。对CSS赋予了动态语言的特性，如变量，继承，运算， 函数.  Less 既可以在客户端上运行 (支持IE 6+, Webkit, Firefox)，也可在服务端运行 (借助 Node.js)。
 
@@ -430,7 +430,7 @@ Less也是一种动态样式语言。对CSS赋予了动态语言的特性，如�
 
 1. 编译环境不一样
 
-    Sass的安装需要Ruby环境，是在服务端处理的，而Less是需要引入less.js来处理Less代码输出css到浏览器，也可以在开发环节使用Less，然后编译成css文件，直接放到项目中，也有 Less.app、SimpleLess、CodeKit.app这样的工具，也有在线编译地址。
+    Sass 的安装需要 Ruby 环境，是在服务端处理的，而 Less 是需要引入 less.js 来处理 Less 代码输出 css 到浏览器，也可以在开发环节使用Less，然后编译成css文件，直接放到项目中，也有 Less.app、SimpleLess、CodeKit.app这样的工具，也有在线编译地址。
 
 1. 变量符不一样，Less是@，而Scss是$
 
@@ -461,7 +461,7 @@ Less也是一种动态样式语言。对CSS赋予了动态语言的特性，如�
     }
     ```
 
-1. 输出设置，Less没有输出设置，Sass提供4中输出选项：nested, compact, compressed 和 expanded。
+1. 输出设置，Less 没有输出设置，Sass 提供4中输出选项：nested, compact, compressed 和 expanded。
 
     输出样式的风格可以有四种选择，默认为nested
 
@@ -488,7 +488,7 @@ Less也是一种动态样式语言。对CSS赋予了动态语言的特性，如�
 
 1. 引用外部CSS文件
 
-    scss引用的外部文件命名必须以_开头, 如下例所示: 其中_test1.scss、_test2.scss、_test3.scss 文件分别设置的h1 h2 h3。文件名如果以下划线_开头的话，Sass会认为该文件是一个引用文件，不会将其编译为css文件
+    scss引用的外部文件命名必须以\_开头, 如下例所示: 其中\_test1.scss、\_test2.scss、\_test3.scss 文件分别设置的h1 h2 h3。文件名如果以下划线_开头的话，Sass会认为该文件是一个引用文件，不会将其编译为css文件
 
     ```scss
     // 源代码：
@@ -512,12 +512,12 @@ Less也是一种动态样式语言。对CSS赋予了动态语言的特性，如�
 
     Less 引用外部文件和css中的@import没什么差异。
 
-1. Sass和Less的工具库不同
+1. Sass 和 Less 的工具库不同
 
-    - Sass 有工具库Compass, 简单说，Sass 和 Compass 的关系有点像 Javascript 和 jQuery 的关系, Compass 是 Sass 的工具库。在它的基础上，封装了一系列有用的模块和模板，补充强化了Sass的功能。
+    - Sass 有工具库Compass, 简单说，Sass 和 Compass 的关系有点像 Javascript 和 jQuery 的关系, Compass 是 Sass 的工具库。在它的基础上，封装了一系列有用的模块和模板，补充强化了Sass的功能。bootstrap v4
 
-    - Less 有UI组件库 Bootstrap, Bootstrap 是 web前端开发中一个比较有名的前端UI组件库，Bootstrap 的样式文件部分源码就是采用Less语法编写。
+    - Less 有UI组件库 Bootstrap v3
 
 ### 三. 总结
 
-不管是 Sass 还是 Less，都可以视为一种基于CSS之上的高级语言，其目的是使得CSS开发更灵活和更强大，Sass 的功能比 Less 强大，基本可以说是一种真正的编程语言了，Less 则相对清晰明了，易于上手，对编译环境要求比较宽松。
+不管是 Sass 还是 Less，都可以视为一种基于 CSS 之上的高级语言，其目的是使得 CSS 开发更灵活和更强大，Sass 的功能比 Less 强大，基本可以说是一种真正的编程语言了，Less 则相对清晰明了，易于上手，对编译环境要求比较宽松。

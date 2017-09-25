@@ -31,7 +31,7 @@ public class MyErrorAttribute: HandleErrorAttribute {
 ```csharp
 public class FilterConfig {
     public static void RegisterGlobalFilters(GlobalFilterCollection filters){
-        //filters.Add(new HandleErrorAttribute());      
+        //filters.Add(new HandleErrorAttribute());
         filters.Add(new MyErrorAttribute());
     }
 
@@ -60,57 +60,55 @@ public class FilterConfig {
 
 在程序最开始加入`log4net.Config.XmlConfigurator.Configure()`
 
-在要打印日志的地方`LogManager.GetLogger(typeof(Program)).Debug(“信息”);` 。通过LogManager.GetLogger传递要记录的日志类类名获得这个类的ILog（这样在日志文件中就能看到这条日志是哪个类输出的了），然后调用Debug方法输出消息。因为一个类内部不止一个地方要打印日志，所以一般把ILog声明为一个static字段。
+在要打印日志的地方`LogManager.GetLogger(typeof(Program)).Debug(“信息”);` 。通过LogManager.GetLogger传递要记录的日志类类名获得这个类的 ILog（这样在日志文件中就能看到这条日志是哪个类输出的了），然后调用Debug方法输出消息。因为一个类内部不止一个地方要打印日志，所以一般把ILog声明为一个 static 字段。
 
 `Private static ILog logger = LogManager.GetLogger(typeof(Test))`
 
 输出错误信息用ILog.Error方法，第二个参数可以传递Exception对象。log.Error("错误"+ex)，log.Error("错误",ex)
 
-- Appender：可以将日志输出到不同的地方，不同的输出目标对应不同的Appender：RollingFileAppender（滚动文件）、AdoNetAppender（数据库）、SmtpAppender （邮件）等。
+- Appender：可以将日志输出到不同的地方，不同的输出目标对应不同的 Appender：RollingFileAppender（滚动文件）、AdoNetAppender（数据库）、SmtpAppender （邮件）等。
 - level（级别）：标识这条日志信息的重要级别None>Fatal>ERROR>WARN>DEBUG>INFO>ALL，设定一个Level，那么低于这个Level的日志是不会被写到Appender中的.
 
-Log4Net还可以设定多个Appender，可以实现同时将日志记录到文件、数据、发送邮件等；可以设定不同的Appender的不同的Level，可以实现普通级别都记录到文件，Error以上级别发送邮件；可以实现对不同的类设定不同的Appender；还可以自定义Appender，这样可以自己实现将Error信息发短信等.
-
-
+Log4Net 还可以设定多个 Appender，可以实现同时将日志记录到文件、数据、发送邮件等；可以设定不同的 Appender 的不同的 Level，可以实现普通级别都记录到文件，Error以上级别发送邮件；可以实现对不同的类设定不同的Appender；还可以自定义Appender，这样可以自己实现将Error信息发短信等.
 
 1. 配置Log4Net，在Web.config中添加如下配置：
 
     ```xml
-    <configSections>  
-        <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->  
-        <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0,   
-    Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />  
-        <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>  
-    </configSections>  
-    <log4net>  
-        <!-- OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL -->  
-        <!-- Set root logger level to ERROR and its appenders -->  
-        <root>  
-          <level value="ALL"/>  
-          <appender-ref ref="SysAppender"/>  
-        </root>  
-        <!-- Print only messages of level DEBUG or above in the packages -->  
-        <logger name="WebLogger">  
-          <level value="DEBUG"/>  
-        </logger>  
-        <appender name="SysAppender" type="log4net.Appender.RollingFileAppender,log4net" >  
-          <param name="File" value="App_Data/" />  
-          <param name="AppendToFile" value="true" />  
-          <param name="RollingStyle" value="Date" />  
-          <param name="DatePattern" value=""Logs_"yyyyMMdd".txt"" />  
-          <param name="StaticLogFileName" value="false" />  
-          <layout type="log4net.Layout.PatternLayout,log4net">  
-            <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />  
-            <param name="Header" value="----------------------header--------------------------" />  
-            <param name="Footer" value="----------------------footer--------------------------" />  
-          </layout>  
-        </appender>  
-        <appender name="consoleApp" type="log4net.Appender.ConsoleAppender,log4net">  
-          <layout type="log4net.Layout.PatternLayout,log4net">  
-            <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />  
-          </layout>  
-        </appender>  
-    </log4net>  
+    <configSections>
+        <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+        <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0,
+    Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
+    </configSections>
+    <log4net>
+        <!-- OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL -->
+        <!-- Set root logger level to ERROR and its appenders -->
+        <root>
+          <level value="ALL"/>
+          <appender-ref ref="SysAppender"/>
+        </root>
+        <!-- Print only messages of level DEBUG or above in the packages -->
+        <logger name="WebLogger">
+          <level value="DEBUG"/>
+        </logger>
+        <appender name="SysAppender" type="log4net.Appender.RollingFileAppender,log4net" >
+          <param name="File" value="App_Data/" />
+          <param name="AppendToFile" value="true" />
+          <param name="RollingStyle" value="Date" />
+          <param name="DatePattern" value=""Logs_"yyyyMMdd".txt"" />
+          <param name="StaticLogFileName" value="false" />
+          <layout type="log4net.Layout.PatternLayout,log4net">
+            <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+            <param name="Header" value="----------------------header--------------------------" />
+            <param name="Footer" value="----------------------footer--------------------------" />
+          </layout>
+        </appender>
+        <appender name="consoleApp" type="log4net.Appender.ConsoleAppender,log4net">
+          <layout type="log4net.Layout.PatternLayout,log4net">
+            <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+          </layout>
+        </appender>
+    </log4net>
     ```
 
 1. ServiceStack.dll、ServiceStack.Interfaces.dll、ServiceStack.ServiceInterface.dll、log4net.dll的引用，然后新建一个类MyErrorAttribute
@@ -120,7 +118,7 @@ Log4Net还可以设定多个Appender，可以实现同时将日志记录到文�
     using ServiceStack.Redis;
     public static IRedisClientsManager clientsManager = new PooledRedisClientManager(new string[] { "127.0.0.1:6379" });
     public static IRedisClient         redisClient    = clientsManager.GetClient();
-    
+
     public override void OnException(ExceptionContext filterContext)
     {
         redisClient.EnqueueItemOnList("errorMsg", filterContext.Exception.ToString());
@@ -137,14 +135,14 @@ Log4Net还可以设定多个Appender，可以实现同时将日志记录到文�
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             //filters.Add(new HandleErrorAttribute());
-    
+
             //filters.Add(new MyErrorAttribute());
             filters.Add(new MyExceptionAttribute());
         }
     }
     ```
 
-1. 在Gobal.asax.cs中的Application_Start事件里添加如下代码：
+1. 在 Gobal.asax.cs 中的 Application_Start 事件里添加如下代码：
 
     ```cSharp
     log4net.Config.XmlConfigurator.Configure(); //获取Log4Net配置信息
@@ -172,8 +170,3 @@ Log4Net还可以设定多个Appender，可以实现同时将日志记录到文�
         }
     });
     ```
-
-
-
-
-

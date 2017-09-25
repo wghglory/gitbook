@@ -21,6 +21,7 @@ Suppose we have an image of 200px by 400px (CSS pixels) and we want to display i
 1. Using JavaScript to replace all the images with double sized image. 弊端是 retina 屏幕会把1倍图片、2倍图片都下载，速度慢。
 
 ```javascript
+// 检测屏幕像素比
 $(document).ready(function() {
   if (window.devicePixelRatio > 1) {
     var lowResolutionImages = $('img');

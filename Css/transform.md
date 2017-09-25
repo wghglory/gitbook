@@ -50,7 +50,7 @@ img.tilt {
 }
 ```
 
-![](http://om1o84p1p.bkt.clouddn.com/2017-08-28-f23.png)
+![rotate](http://om1o84p1p.bkt.clouddn.com/2017-08-28-f23.png)
 
 ### 缩放
 
@@ -62,7 +62,7 @@ img.tilt {
 <img src="lincoln.jpg" style="width: 389px; height: 480px; transform: scaleX(−1);">
 ```
 
-![](http://om1o84p1p.bkt.clouddn.com/2017-08-28-f26.png)
+![scale](http://om1o84p1p.bkt.clouddn.com/2017-08-28-f26.png)
 
 水平和垂直方向可以独立缩放，例如：
 
@@ -84,7 +84,7 @@ transform: translate(50px, -4em);
 
 `transform: skewX(21deg)` 设置元素的左右两边相对垂线偏移 21 度，即整个元素向右斜切。
 
-![](http://om1o84p1p.bkt.clouddn.com/2017-08-28-skewx21.png)
+![skew](http://om1o84p1p.bkt.clouddn.com/2017-08-28-skewx21.png)
 
 拉伸也有两个独立的函数：`skewX` 和 `skewY`。
 
