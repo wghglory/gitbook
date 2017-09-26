@@ -12,7 +12,7 @@ public boolean equals(Object obj) {
 }
 ```
 
-很明显是对两个对象的地址值进行的比较（即比较引用是否相同）。但是我们知道，String 、Math、Integer、Double等这些封装类在使用equals()方法时，已经覆盖了object类的equals()方法。
+很明显是对两个对象的地址值进行的比较（即比较引用是否相同）。但是我们知道，String 、Math、Integer、Double 等这些封装类在使用 equals()方法时，已经覆盖了 object 类的 equals() 方法。
 
 比如在String类中如下：
 
@@ -236,7 +236,7 @@ class Student {
 
 ​        为什么会生成不同的哈希码值呢？上面我们在比较s1和s2的时候不是生成了同样的哈希码吗？原因就在于我们自己写的Student类并没有重新自己的hashcode()和equals()方法，所以在比较时，是继承的object类中的hashcode()方法，而object类中的hashcode()方法是一个本地方法，比较的是对象的地址（引用地址），使用new方法创建对象，两次生成的当然是不同的对象了，造成的结果就是两个对象的hashcode()返回的值不一样，所以Hashset会把它们当作不同的对象对待。
 
-​        怎么解决这个问题呢？答案是：在Student类中重新hashcode()和equals()方法。
+​        怎么解决这个问题呢？答案是：在 Student 类中重新 hashcode() 和 equals() 方法。
 
 ```java
 class Student {
@@ -273,7 +273,7 @@ class Student {
 
 可以看到重复元素的问题已经消除，根据重写的方法，即便两次调用了new Student(1,"zhangsan")，我们在获得对象的哈希码时，根据重写的方法hashcode()，获得的哈希码肯定是一样的，当然根据equals()方法我们也可判断是相同的，所以在向hashset集合中添加时把它们当作重复元素看待了。
 
-**重写equals()和hashcode()小结：**
+**重写equals()和hashcode()小结**：
 
 1. 重点是equals，重写hashCode只是技术要求（为了提高效率）
 1. 为什么要重写equals呢？因为在java的集合框架中，是通过equals来判断两个对象是否相等的

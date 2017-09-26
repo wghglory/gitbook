@@ -10,7 +10,7 @@
 * Framework intelligence
 * Built in terminal
 
-## Automated Consistency via Editorconfig
+## Automated Consistency via EditorConfig
 
 **.editorconfig**:
 

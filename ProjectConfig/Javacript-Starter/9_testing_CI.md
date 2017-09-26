@@ -42,8 +42,8 @@ Choose any of these just like choosing a gym.
 Declare what you expect.
 
 ```javascript
-expect(2+2).to.equal(4)
-assert(2+2).equals(4)
+expect(2 + 2).to.equal(4)
+assert(2 + 2).equals(4)
 ```
 
 * Chai
@@ -169,7 +169,7 @@ describe('index.html', () => {
 "scripts": {
   "start": "npm-run-all --parallel security-check start:server lint:watch test:watch",
   "test": "mocha --reporter progress buildScripts/testSetup.js src/**/*.test.js",
-  "test:watch": "npm run test -- -w" // or "npm run test -- -watch"
+  "test:watch": "npm run test -- -w" // or "npm run test -- --watch"
 }
 ```
 

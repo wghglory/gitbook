@@ -30,7 +30,7 @@ fs.readFile(filePath, function(err, data) {
 
 - modularization: break callbacks into independent functions
 - use *Promises*
-- use yield with *Generators* 
+- use yield with *Generators*
 - use a **control flow library**, like [async](https://www.npmjs.com/package/async)
 - use async/await (note that it is only available in the latest v7 release and not in the LTS version - [you can read our experimental async/await how-to here](https://blog.risingstack.com/async-await-node-js-7-nightly/))
 
@@ -163,12 +163,12 @@ A use-case can be a file read, when you do not want to read an actual file:
 ```javascript
 var fs = require('fs');
 
-var readFileStub = sinon.stub(fs, 'readFile', function (path, cb) {  
+var readFileStub = sinon.stub(fs, 'readFile', function (path, cb) {
   	return cb(null, 'filecontent');
 });
 
-expect(readFileStub).to.be.called;  
-readFileStub.restore(); 
+expect(readFileStub).to.be.called;
+readFileStub.restore();
 ```
 
 ### What's a test pyramid? How can you implement it when talking about HTTP APIs?
@@ -188,7 +188,7 @@ Promises are a concurrency primitive. Promises can help you better handle async 
 Also, note the catch, which can be used for error handling. Promises are chainable.
 
 ```javascript
-new Promise((resolve, reject) => {  
+new Promise((resolve, reject) => {
     setTimeout(() => {
       	resolve('result')
     }, 100)
@@ -197,7 +197,7 @@ new Promise((resolve, reject) => {  
 
 ### When are background/worker processes useful? How can you handle worker tasks?
 
-Worker processes are extremely useful if you'd like to do data processing in the background, like sending out emails or processing images. Canvas draw pixels. 
+Worker processes are extremely useful if you'd like to do data processing in the background, like sending out emails or processing images. Canvas draw pixels.
 
 There are lots of options for this like [RabbitMQ](https://www.rabbitmq.com/) or [Kafka](https://kafka.apache.org/).
 
@@ -214,7 +214,7 @@ To mitigate these attacks, you have to set flags on the set-cookie HTTP header:
 - **HttpOnly** - this attribute is used to help prevent attacks such as cross-site scripting since it does not allow the cookie to be accessed via JavaScript.
 - **secure** - this attribute tells the browser to only send the cookie if the request is being sent over HTTPS.
 
-So it would look something like this: Set-Cookie: sid=<cookie-value>; HttpOnly. If you are using Express, with [express-cookie session](https://github.com/expressjs/cookie-session#cookie-options), it is working by default.
+So it would look something like this: Set-Cookie: `sid=<cookie-value>`; HttpOnly. If you are using Express, with [express-cookie session](https://github.com/expressjs/cookie-session#cookie-options), it is working by default.
 
 ### How can you make sure your dependencies are safe?
 
@@ -233,7 +233,7 @@ The only option is to automate the update / security audit of your dependencies.
 ### What's wrong with the code snippet?
 
 ```javascript
-new Promise((resolve, reject) => {  
+new Promise((resolve, reject) => {
     throw new Error('error')
 }).then(console.log)
 ```
@@ -243,7 +243,7 @@ As there is no catch after the then. This way the error will be a silent one, th
 To fix it, you can do the following:
 
 ```Javascript
-new Promise((resolve, reject) => {  
+new Promise((resolve, reject) => {
     throw new Error('error')
 }).then(console.log).catch(console.error)
 ```
@@ -251,7 +251,7 @@ new Promise((resolve, reject) => {  
 If you have to debug a huge codebase, and you don't know which Promise can potentially hide an issue, you can use the unhandledRejection hook. It will print out all unhandled Promise rejections.
 
 ```javascript
-process.on('unhandledRejection', (err) => {  
+process.on('unhandledRejection', (err) => {
     console.log(err)
 })
 ```
@@ -259,7 +259,7 @@ process.on('unhandledRejection', (err) => {  
 ### What's wrong with the following code snippet?
 
 ```javascript
-function checkApiKey (apiKeyFromDb, apiKeyReceived) {  
+function checkApiKey (apiKeyFromDb, apiKeyReceived) {
     if (apiKeyFromDb === apiKeyReceived) {
       return true
     }
@@ -276,7 +276,7 @@ But why does it work like that?
 To solve this issue, you can use the npm module called [cryptiles](https://www.npmjs.com/package/cryptiles).
 
 ```javascript
-function checkApiKey (apiKeyFromDb, apiKeyReceived) {  
+function checkApiKey (apiKeyFromDb, apiKeyReceived) {
     return cryptiles.fixedTimeComparison(apiKeyFromDb, apiKeyReceived)
 }
 ```
@@ -284,7 +284,7 @@ function checkApiKey (apiKeyFromDb, apiKeyReceived) {  
 ### What's the output of following code snippet?
 
 ```javascript
-Promise.resolve(1)  
+Promise.resolve(1)
   .then((x) => x + 1)
   .then((x) => { throw new Error('My Error') })
   .catch(() => 1)
@@ -294,9 +294,9 @@ Promise.resolve(1)  
 ```
 
 1. A new Promise is created, that will resolve to 1.
-2. The resolved value is incremented with 1 (so it is 2 now), and returned instantly.
-3. The resolved value is discarded, and an error is thrown.
-4. The error is discarded, and a new value (1) is returned.
-5. The execution did not stop after the catch, but before the exception was handled, it continued, and a new, incremented value (2) is returned.
-6. The value 2 is printed to the standard output.
-7. This line won't run, as there was no exception.
+1. The resolved value is incremented with 1 (so it is 2 now), and returned instantly.
+1. The resolved value is discarded, and an error is thrown.
+1. The error is discarded, and a new value (1) is returned.
+1. The execution did not stop after the catch, but before the exception was handled, it continued, and a new, incremented value (2) is returned.
+1. The value 2 is printed to the standard output.
+1. This line won't run, as there was no exception.

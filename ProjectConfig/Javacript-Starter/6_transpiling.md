@@ -34,4 +34,4 @@
 }
 ```
 
-Use `babel-node buildScripts/startMessage` instead of `node buildScripts/startMessage`
+Use `babel-node buildScripts/startMessage` instead of `node buildScripts/startMessage` so node.js can use `import` new features.

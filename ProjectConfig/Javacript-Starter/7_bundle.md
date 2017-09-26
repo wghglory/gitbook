@@ -45,7 +45,7 @@
 * Import CSS, images, etc like JS
 * Bundle splitting
 * Built in hot-reloading web server
-* **Webpack 2 offers tree shaking**
+* **Webpack 2 offers tree shaking**: using ES6 import so tree shaking will be ready for you
 
 ### Rollup
 

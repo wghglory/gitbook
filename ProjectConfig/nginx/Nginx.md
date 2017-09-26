@@ -11,8 +11,8 @@ Nginx主要以**事件驱动**的方式编写，有兴趣可以移步[这里](ht
 - 处理静态文件，索引文件以及自动索引；打开文件描述符缓冲
 - 无缓存的反向代理加速，简单的负载均衡和容错
 - FastCGI，简单的负载均衡和容错
-- 模块化的结构，包括gzipping,byte ranges,chunked responses,以及SSI-filter等filter。
-- 支持SSL和TLSSNI.
+- 模块化的结构，包括 gzipping, byte ranges, chunked responses 以及 SSI-filter 等 filter。
+- 支持 SSL 和 TLSSNI.
 
 ## 安装并启动 Nginx
 
@@ -131,7 +131,7 @@ http {
 
 比如我在`/usr/local/etc/nginx/sites-enabled/`下面增加了两个文件，用来配置普通的`HTTP`服务还有`HTTPS`服务：
 
-```
+```bash
 touch /usr/local/etc/nginx/sites-enabled/default
 touch /usr/local/etc/nginx/sites-enabled/default-ssl
 ```
@@ -162,7 +162,7 @@ http {
 server {
     # Nginx监听端口号
     listen       80;
-    # 服务器的名字，默认为localhost，你也可以写成aotu.jd.com，这样子就可以通过aotu.jd.com来访问
+    # 服务器的名字，默认为localhost，你也可以写成 aotu.jd.com，这样子就可以通过 aotu.jd.com来访问
     server_name  localhost;
     # 代码放置的根目录
     root /var/www/;

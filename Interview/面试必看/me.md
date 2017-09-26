@@ -25,7 +25,7 @@
 
 1. Everyday I go over some blogs and technical websites to learn new techniques, and understand what is popular, what will be popular in future. And I also like to learn these new stuff from video tutorials(youtube, codeSchool) and buy books online. Anyway, I'm self-motivated, and I love what I'm doing. I used to stand on the top in college life, now I want to an excellent leader. I'm making a progress everyday to make it happen!
 
-我有7年软件开发经验，包括windows application 和 web application。我更倾向于web开发。现任联合银行任技术指导。
+我有7年软件开发经验，包括 windows application 和 web application。我更倾向于web开发。现任联合银行任技术指导。
 
 我很早就对网站开发产生兴趣，但是我在大学时代并没选择相关专业，因为我不想找考试、强制性的课程毁掉我的兴趣。我在大连理工通过自学和兼职工作去提高自己的编程水平。
 
