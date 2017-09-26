@@ -1,4 +1,4 @@
-# [System Design for Big Data [Consistent Hashing]](http://n00tc0d3r.blogspot.com/2013/09/big-data-consistent-hashing.html)
+# [System Design for Big Data](http://n00tc0d3r.blogspot.com/2013/09/big-data-consistent-hashing.html)
 
 Given *n* cache hosts, an intuitive hash function is `key % n`. It is simple and commonly used. But it has two major drawbacks:
 
@@ -33,7 +33,7 @@ Suppose the output of the hash function are in the range of [0, 2^128) (e.g. [MD
 
 Given a list of cache servers, hash them to integers in the range. To map a key to a server, hash it to a single integer. Move clockwise on the ring until finding the first cache it encounters. That cache is the one that contains the key. See animation below as an example: key1 maps to cache A; key2 maps to cache C.
 
-[![img](http://2.bp.blogspot.com/-FoDbp5aJxmo/Uj9IbZgCMpI/AAAAAAAAEjw/gIacbrT174s/s1600/feiche_6.gif)](http://2.bp.blogspot.com/-FoDbp5aJxmo/Uj9IbZgCMpI/AAAAAAAAEjw/gIacbrT174s/s1600/feiche_6.gif)
+![img](http://2.bp.blogspot.com/-FoDbp5aJxmo/Uj9IbZgCMpI/AAAAAAAAEjw/gIacbrT174s/s1600/feiche_6.gif)
 
 To add a new cache, say D, keys that were originally falling to C will be split and some of them will be moved to D. Other keys don't need to be touched.
 
@@ -46,10 +46,10 @@ As we discussed at the beginning, the real data are essentially randomly distrib
 To resolve this issue, we add "**virtual replicas**" for caches.
 For each cache, instead of mapping it to a single point on the ring, we map it to multiple points on the ring, i.e. replicas. By doing this, each cache is associated with multiple segments of the ring.
 
-[![img](http://2.bp.blogspot.com/-_sG8zBqb4ug/Uj9RLNk7E8I/AAAAAAAAEkA/S8vGVnqdf5M/s1600/feiche_7.gif)](http://2.bp.blogspot.com/-_sG8zBqb4ug/Uj9RLNk7E8I/AAAAAAAAEkA/S8vGVnqdf5M/s1600/feiche_7.gif)
+![img](http://2.bp.blogspot.com/-_sG8zBqb4ug/Uj9RLNk7E8I/AAAAAAAAEkA/S8vGVnqdf5M/s1600/feiche_7.gif)
 
-If the hash function "[mixes well](http://en.wikipedia.org/wiki/Hash_function#Uniformity)", as the number of replicas increases, the keys will be more balanced. 
+If the hash function "[mixes well](http://en.wikipedia.org/wiki/Hash_function#Uniformity)", as the number of replicas increases, the keys will be more balanced.
 
 ## Monotone Keys
 
-If keys are known to be monotonically increased, binary searching can be used to improve the performance of locating a cache for a given key. Then the locate time can be reduced to O(logn).
+If keys are known to be monotonically increased, binary searching can be used to improve the performance of locating a cache for a given key. Then the locate time can be reduced to `O(log(n))`.

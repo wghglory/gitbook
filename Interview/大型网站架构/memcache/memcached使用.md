@@ -24,27 +24,27 @@
     memcached.exe -d uninstall
     ```
 
-以上的安装和启动都是在默认环境下进行的，在安装时可设置如下参数： 
+以上的安装和启动都是在默认环境下进行的，在安装时可设置如下参数：
 
-Memcached**默认使用端口是11211**
-默认**最大连接数是1024个**
-默认最大使用内存是64M
-默认每个键值对，值存储空间为1M
+* Memcached **默认使用端口是11211**
+* 默认**最大连接数是1024个**
+* 默认最大使用内存是64M
+* 默认每个键值对，值存储空间为1M
 
-> -p 监听的端口
-> -l 连接的IP地址, 默认是本机
-> -d start 启动memcached服务
-> -d restart 重起memcached服务
-> -d stop|shutdown 关闭正在运行的memcached服务
-> -d install 安装memcached服务
-> -d uninstall 卸载memcached服务
-> -u 以身份运行 (仅在以root运行的时候有效)
-> -m 最大内存使用，单位MB。**默认64MB **
-> -M 内存耗尽时返回错误，而不是删除项
-> -c 最大同时连接数，**默认是1024 **
-> -f 块大小增长因子，默认是1.25
-> -n 最小分配空间，key+value+flags默认是48
-> -h 显示帮助
+> * -p 监听的端口
+> * -l 连接的IP地址, 默认是本机
+> * -d start 启动memcached服务
+> * -d restart 重起memcached服务
+> * -d stop|shutdown 关闭正在运行的memcached服务
+> * -d install 安装memcached服务
+> * -d uninstall 卸载memcached服务
+> * -u 以身份运行 (仅在以root运行的时候有效)
+> * -m 最大内存使用，单位MB。**默认64MB **
+> * -M 内存耗尽时返回错误，而不是删除项
+> * -c 最大同时连接数，**默认是1024 **
+> * -f 块大小增长因子，默认是1.25
+> * -n 最小分配空间，key+value+flags默认是48
+> * -h 显示帮助
 
 怎么才知道Memcached服务已经安装成功并启动了呢?
 cmd 命令 `services.msc`
@@ -60,9 +60,9 @@ cmd 命令 `services.msc`
 >
 > ![img](http://upload-images.jianshu.io/upload_images/1845730-49418587e7e6e1b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 先把memcached用起来
+## 先把 memcached 用起来
 
-下载客户端的4个dll，ICSharpCode.SharpZipLib.dll，log4net.dll，Memcached.ClientLibrary.dll，Commons.dll
+下载客户端的4个dll，`IcSharpCode.SharpZipLib.dll，log4net.dll，Memcached.ClientLibrary.dll，Commons.dll`
 
 新建一个简单控制台应用程序
 
@@ -129,9 +129,9 @@ namespace Tdf.RedisCacheTest
 }
 ```
 
-### memcached分布式缓存的设置与应用
+### memcached 分布式缓存的设置与应用
 
-```Csharp
+```csharp
 string[] servers = { "127.0.0.1:11211", "192.168.2.100:11211" };
 // 初始化池
 SockIOPool pool = SockIOPool.GetInstance();
@@ -149,7 +149,7 @@ pool.SetWeights(new int[] { 1, 10 });
 
 ### memcached的数据压缩机制
 
-```Csharp
+```csharp
 // 是否启用压缩数据：如果启用了压缩，数据压缩长于门槛的数据将被储存在压缩的形式
 cache.EnableCompression = false;
 // 压缩设置，超过指定大小的都压缩
@@ -158,12 +158,12 @@ cache.CompressionThreshold = 1024 * 1024;
 
 > Note：
 >
-> - 这个处理是在MemcachedClient对象中，设置这个EnableCompression属性，是否使用压缩的意思，如果启用啦压缩功能 ,则**ICSharpCode.SharpZipLib类库**会在数据超过预设大小时，进行数据压缩处理。
+> - 这个处理是在MemcachedClient对象中，设置这个EnableCompression属性，是否使用压缩的意思，如果启用啦压缩功能 ,则**IcSharpCode.SharpZipLib类库**会在数据超过预设大小时，进行数据压缩处理。
 > - CompressionThreshold这个属性是压缩的阀值，默认是15K，如果超过设定的阀值则使用memcached的通讯协议，存数据时给每个数据项分配一个16为的flag表示，用作记录是否有压缩，如果有压缩则提取数据是进行解压。如果没有超过阀值则不压缩，直接存储。
 
 ### 使用客户端多个SocketIO池
 
-```Csharp
+```csharp
 using Memcached.ClientLibrary;
 using System;
 
@@ -228,19 +228,19 @@ namespace Tdf.RedisCacheTest
 }
 ```
 
-### 说说memcached的故障转移处理
+### 说说 memcached 的故障转移处理
 
-```Csharp
-// 设置SocktIO池的故障标志
+```csharp
+// 设置 SocketIO 池的故障标志
 pool.Failover = true;
 ```
 
-> Note：memcached的鼓掌转移是一套正常节点发生故障变为死节点时的处理机制。
+> Note：memcached 的故障转移是一套正常节点发生故障变为死节点时的处理机制。
 >
-> - 开启故障转移：如果发生socket异常，则该节点被添加到存放死节点属性的_hostDead中，新请求被映射到dead server，检测尝试连接死节点的时间间隔属性_hostDeadDuration（默认设置为100ms），如果没有达到设定的间隔时间则 key 会被映射到可用的server处理，如果达到了时间间隔，则尝试重新链接，连接成功将此节点从_hostDead中去除，连接失败则间隔时间翻倍存放，下次重新连接时间会被拉长。
-> - 不开启故障转移：新的请求都会被映射到dead server上，尝试重新建立socket链接，如果连接失败，返回null或者操作失败。
+> - 开启故障转移：如果发生 socket 异常，则该节点被添加到存放死节点属性的 hostDead 中，新请求被映射到 dead server，检测尝试连接死节点的时间间隔属性 hostDeadDuration（默认设置为100ms），如果没有达到设定的间隔时间则 key 会被映射到可用的 server 处理，如果达到了时间间隔，则尝试重新链接，连接成功将此节点从 hostDead 中去除，连接失败则间隔时间翻倍存放，下次重新连接时间会被拉长。
+> - 不开启故障转移：新的请求都会被映射到 dead server 上，尝试重新建立 socket 链接，如果连接失败，返回null或者操作失败。
 
-### 说说key-value 中的 key 与 value
+### 说说 key-value 中的 key 与 value
 
 - key在服务端的长度限制为250个字符，建议使用较短的key但不要重复。
 - value的大小限制为1mb，如果大拉，可以使用压缩，如果还大，那可能拆分到多个key中。
@@ -249,7 +249,7 @@ pool.Failover = true;
 
 ### 抽象出来了一个接口
 
-```Csharp
+```csharp
 using System;
 
 namespace Tdf.Memcached
@@ -271,7 +271,7 @@ namespace Tdf.Memcached
 
 ### MemcacheHelper.cs
 
-```Csharp
+```csharp
 using Memcached.ClientLibrary;
 using System;
 using System.Configuration;
@@ -279,7 +279,7 @@ using System.Configuration;
 namespace Tdf.Memcached
 {
     /// <summary>
-    /// 基于Memcached.ClientLibrary 封装使用 Memchached 信息
+    /// 基于Memcached.ClientLibrary 封装使用 Memcached 信息
     /// 读取缓存存放在服务器
     /// </summary>
     public class MemcacheHelper
@@ -335,7 +335,7 @@ namespace Tdf.Memcached
                 _client = new MemcachedClient();
                 // 是否启用压缩数据：如果启用了压缩，数据压缩长于门槛的数据将被储存在压缩的形式
                 _client.EnableCompression = false;
-                // 压缩设置，超过指定大小的都压缩 
+                // 压缩设置，超过指定大小的都压缩
                 _client.CompressionThreshold = 1024 * 1024;
             }
             catch (Exception ex)
@@ -476,10 +476,10 @@ namespace Tdf.Memcached
 
 ## App.config
 
-```Csharp
+```csharp
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
-    <startup> 
+    <startup>
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
     </startup>
     <appSettings>
@@ -488,7 +488,7 @@ namespace Tdf.Memcached
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
       <dependentAssembly>
-        <assemblyIdentity name="ICSharpCode.SharpZipLib" publicKeyToken="1b03e6acf1164f73" culture="neutral" />
+        <assemblyIdentity name="IcSharpCode.SharpZipLib" publicKeyToken="1b03e6acf1164f73" culture="neutral" />
         <bindingRedirect oldVersion="0.0.0.0-0.84.0.0" newVersion="0.84.0.0" />
       </dependentAssembly>
     </assemblyBinding>

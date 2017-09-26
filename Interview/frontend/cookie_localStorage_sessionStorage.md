@@ -3,9 +3,9 @@
 * cookie 在浏览器和服务器间来回传递。 sessionStorage 和 localStorage不会
 * cookie 有 secure 属性要求 HTTPS 传输
 * cookie 属性有名，值，max-age，path, domain，secure
-* cookie 默认有效期为浏览器会话，一旦用户关闭浏览器，数据就丢失，通过设置 max-age=seconds 属性告诉浏览器cookie 有效期
+* cookie 默认有效期为浏览器会话，一旦用户关闭浏览器，数据就丢失，通过设置 max-age=seconds 属性告诉浏览器 cookie 有效期
 * cookie 作用域通过文档源和文档路径来确定，通过 path 和 domain 进行配置，web页面同目录或子目录文档都可访问
-* 浏览器不能保存超过300个cookie，单个服务器不能超过20个，每个 cookie 不能超过4k。web storage 大小支持能达到5M
+* 浏览器不能保存超过300个 cookie，单个服务器不能超过20个，每个 cookie 不能超过4k。web storage 大小支持能达到5M
 * sessionStorage 和 localStorage 有更多丰富易用的接口
 * sessionStorage 和 localStorage 各自独立的存储空间
 * sessionStorage 在窗口关闭前有效，关闭窗口而非浏览器就会丢失数据。在新标签或窗口打开一个页面会初始化一个新的会话
