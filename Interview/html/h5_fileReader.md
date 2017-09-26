@@ -30,7 +30,7 @@
   <div id="container"></div>
 
   <script>
-    //监听document的drop事件——取消其默认行为：在新窗口中打开图片
+    //监听 document 的 drop 事件——取消其默认行为：在新窗口中打开图片
     document.ondragover = function(e){
       e.preventDefault(); //使得drop事件可以触发
     }
@@ -38,7 +38,7 @@
       e.preventDefault(); //阻止在新窗口中打开图片，否则仍然会执行下载操作！！！
     }
 
-    //监听div#container的drop事件，设法读取到释放的图片数据，显示出来
+    //监听 div#container 的 drop 事件，设法读取到释放的图片数据，显示出来
     container.ondragover = function(e){
       e.preventDefault();
     }

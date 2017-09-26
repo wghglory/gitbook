@@ -1,16 +1,6 @@
 # HTML 自定义元素教程
 
-作者： [阮一峰](http://www.ruanyifeng.com/)
-
-日期： [2017年6月22日](http://www.ruanyifeng.com/blog/2017/06/)
-
 组件是 Web 开发的方向，现在的热点是 JavaScript 组件，但是 HTML 组件未来可能更有希望。
-
-本文就介绍 HTML 组件的基础知识：自定义元素（custom elements）。
-
-![img](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017062201.png)
-
-文章结尾还有一则 [React 培训消息](http://www.ruanyifeng.com/blog/2017/06/custom-elements.html#support)（含 React Native），欢迎关注。
 
 ## 一、浏览器处理
 

@@ -9,7 +9,7 @@ Think of a template as a content fragment that is being stored for subsequent us
 ```html
 <!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template -->
 
-<table id="producttable">
+<table id="productTable">
   <thead>
     <tr>
       <td>UPC_Code</td>
@@ -21,7 +21,7 @@ Think of a template as a content fragment that is being stored for subsequent us
   </tbody>
 </table>
 
-<template id="productrow">
+<template id="productRow">
   <tr>
     <td class="record"></td>
     <td></td>
@@ -36,7 +36,7 @@ if ('content' in document.createElement('template')) {
 
   // Instantiate the table with the existing HTML tbody
   // and the row with the template
-  var t = document.querySelector('#productrow'),
+  var t = document.querySelector('#productRow'),
   td = t.content.querySelectorAll("td");
   td[0].textContent = "1235646565";
   td[1].textContent = "Stuff";
