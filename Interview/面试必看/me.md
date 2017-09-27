@@ -1,6 +1,9 @@
 # Self Introduction
 
-现在在一家中小型公司做技术经理，主要负责前端。最近一直在用 react。我是中途接手一个项目，发现了很多问题，我负责帮助团队不断改进推动项目
+* 现在在一家中小型公司做技术经理，主要负责前端，搭建框架（yeoman）、封装公共组件、最近开始负责重量级模块--图形化创建。
+* 对 react 比较熟悉。曾经用过 angular1, 今年美国交流之后学习过 angular2。
+* 对前沿技术很感兴趣，如 web components, custom elements, shadow dom, css variables 等。
+* 我是中途接手一个项目，发现了很多问题，我负责帮助团队不断改进推动项目
 
 1. react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
 1. 提取相似组件，封装成公共组件，提高复用性
