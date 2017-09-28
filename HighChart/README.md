@@ -1,4 +1,4 @@
-# HighChart 目录
+# TOC
 
 * [highChart_config](highChart_config.md)
 * [highChart_demo](highChart_demo.md)

@@ -14,6 +14,14 @@ let symbol = function(fpath) {
   return s;
 };
 
+let symbol2 = function(fpath) {
+  let s = '';
+  for (let i = 4; i < fpath.length; i++) {
+    s += '  ';
+  }
+  return s;
+};
+
 function getFilesAndFolders(root) {
   let res = [];
   let fileAndFolders = fs.readdirSync(root).sort((a, b) => {
@@ -36,13 +44,17 @@ function getFilesAndFolders(root) {
     ) {
       let stat = fs.lstatSync(pathname);
 
+      // var temp = [];
+
       if (stat.isDirectory()) {
         let fpath = pathname2.split(sep);
         // console.info(symbol(fpath) + fpath[fpath.length - 1]);
         let folderName = pathname.replace(/.+guanghui.notebook\/(.+)/, '$1');
         res.push(symbol(fpath) + `* [${folderName}](/${folderName}/README.md)`);
-        createReadMe4Folders(pathname, '# TOC\r\n\r\n' + res.join('\n'));
         res = res.concat(getFilesAndFolders(pathname));
+
+        // temp = temp.concat(getFilesAndFolders(pathname));
+        // createReadMe4Folders(pathname, '# TOC\r\n\r\n' + temp.join('\n'));
       } else {
         let fpath = pathname2.split(sep);
         // console.info(symbol(fpath) + fpath[fpath.length - 1]);
@@ -64,12 +76,51 @@ fs.open('SUMMARY.md', 'w', function(err, fd) {
   });
 });
 
+function ini(root) {
+  let res = [];
+  let fileAndFolders = fs.readdirSync(root).sort((a, b) => {
+    return a.localeCompare(b, undefined /* Ignore language */, { sensitivity: 'base' });
+  });
+
+  // 根据时间来排序
+  // fileAndFolders.sort(function(a, b) {
+  //   return fs.statSync(dir + a).mtime.getTime() - fs.statSync(dir + b).mtime.getTime();
+  // });
+
+  fileAndFolders.forEach(function(f) {
+    let pathname = root + '/' + f; // /Users/derek/Library/guanghui.notebook/移动端/viewport.md
+    let pathname2 = pathname.replace(/.+\/(guanghui.notebook.+)/, '$1'); // guanghui.notebook/移动端/viewport.md
+
+    // 不为 README.md 的 markdown 文件；排除 node_modules folder；
+    if (
+      (path.extname(f) === '.md' && f !== 'README.md' && f !== 'SUMMARY.md') ||
+      (path.extname(f) === '' && !f.startsWith('.') && !f.startsWith('_') && f !== 'node_modules' && f !== 'assets')
+    ) {
+      let stat = fs.lstatSync(pathname);
+
+      var temp = [];
+
+      if (stat.isDirectory()) {
+        temp = temp.concat(ini(pathname));
+        createReadMe4Folders(pathname, '# TOC\r\n\r\n' + temp.join('\n'));
+      } else {
+        let bracketName = pathname.replace(/.+\/(.+)\.md/, '$1'); // viewport
+        let parenthesisName = pathname.replace(/.+\/(.+\.md)/, '$1'); // viewport.md
+        res.push(`* [${bracketName}](${parenthesisName})`); // - [viewport](移动端/viewport.md)
+      }
+    }
+  });
+  return res;
+}
+
 // write TOC for every folder
 function createReadMe4Folders(path, toc) {
-  fs.open(path + 'README.md', 'w', function(err, fd) {
+  fs.open(path + '/README.md', 'w', function(err, fd) {
     fs.write(fd, toc, 0, 'utf8', function(e) {
       if (e) throw e;
       fs.closeSync(fd);
     });
   });
 }
+
+ini(root_path);

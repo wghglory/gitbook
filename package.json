@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gitbook serve && open http://localhost:4000",
+    "start": "npm run build && gitbook serve && open http://localhost:4000",
+    "prebuild": "node generateTOC",
     "build": "gitbook build",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
