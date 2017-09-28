@@ -19,6 +19,8 @@
   "author": "Guanghui Wang",
   "license": "MIT",
   "dependencies": {
+    "gitbook": "^3.2.3",
+    "gitbook-cli": "^2.3.2",
     "gitbook-plugin-advanced-emoji": "^0.2.2",
     "gitbook-plugin-anchor-navigation-ex": "^1.0.10",
     "gitbook-plugin-atoc": "^1.0.3",
