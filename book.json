@@ -18,7 +18,8 @@
     "tbfed-pagefooter",
     "expandable-chapters-small",
     "advanced-emoji",
-    "emphasize"
+    "emphasize",
+    "-summary"
   ],
   "pluginsConfig": {
     "theme-default": {
