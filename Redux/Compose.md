@@ -26,4 +26,3 @@ print(store.getState())
 ```
 
 The `compose` function takes in functions as arguments and invokes the rightmost first. First it obtains the colors from state, then it returns a bound `map` function, followed by an array of color titles, which are joined as a comma-delimited list and finally logged to the console.
-

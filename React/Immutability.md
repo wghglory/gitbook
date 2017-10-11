@@ -1,4 +1,15 @@
-## Immutability
+# Immutability
+
+## Why immutability
+
+1. 方便我们追踪对象改变的属性
+1. react 每个状态都不可变，reducer 作为一个纯函数，根据之前的 state 和 action 计算出一下个 state。纯函数不能由负效应，不可改变的 state 使得 reducer 能够输出唯一可以预测的值
+
+> immutability 要求复制对象，复制对象难道不影响性能吗？
+>
+> 首先属性不多，其次并没有过分深层嵌套。比起来检查每个属性是否改变更高效，而且很容易知道改变前和改变后以及改变的因素，能够方便 debug 和追踪状态改变。最后通过 `!==` 检测 `prevStore` 和当前 `store` 是否相等，即是否来自同一个地址，无需检测每一个属性。检测时配合 `shouldComponentUpdate`
+
+---
 
 In a functional program, data is immutable. It never changes. Instead of changing the original data structures, we build changed copies of those data structures and use them instead.
 
@@ -18,7 +29,7 @@ We could build a function that would rate colors, and use that function to chang
 function rateColor(color, rating) {
   color.rating = rating
   return color
-} 
+}
 
 console.log(rateColor(color_lawn, 5).rating)     // 5
 console.log(color_lawn.rating)                   // 5
@@ -29,7 +40,7 @@ In JavaScript, function arguments are references to the actual data. Setting the
 ```javascript
 var rateColor = function(color, rating) {
    return Object.assign({}, color, {rating:rating})
-} 
+}
 
 console.log(rateColor(color_lawn, 5).rating)      // 5
 console.log(color_lawn.rating)                    // 4
@@ -40,7 +51,7 @@ console.log(color_lawn.rating)                    // 4
 We can write the same function using an ES6 arrow function along with the **ES7 object spread operator**. This `rateColor` function uses the spread operator to copy the color into a new object and then overwrite its rating:
 
 ```javascript
-const rateColor = (color, rating) => 
+const rateColor = (color, rating) =>
     ({
         ...color,
         rating
@@ -80,7 +91,7 @@ However, `Array.push` is not an immutable function. This `addColor` function cha
 const addColor = (title, array) => array.concat({title})
 
 console.log(addColor("Glam Green", list).length)        // 4
-console.log(list.length)                                // 3   
+console.log(list.length)                                // 3
 ```
 
 `Array.concat` concatenates arrays. In this case, it takes a new object, with a new color title, and adds it to a copy of the original array.
@@ -92,4 +103,3 @@ const addColor = (title, list) => [...list, {title}]
 ```
 
 This function copies the original list to a new array and then adds a new object containing the color’s title to that copy. It is immutable.
-
