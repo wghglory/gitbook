@@ -1,3 +1,5 @@
+# Something you need to know about react
+
 ### 1. React is MVC's V
 
 ### [2. Keep your components small](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#keep-your-components-small)
@@ -13,7 +15,7 @@ const LatestPostsComponent = props => (
 );
 ```
 
-The component itself is a `<section>`, with only 2 `<div>`s inside it. The first one has a heading, and second one just maps over some data, rendering a `<PostPreview>`for each element. That last part, extracting the `<PostPreview>` as its own component, is the important bit. 
+The component itself is a `<section>`, with only 2 `<div>`s inside it. The first one has a heading, and second one just maps over some data, rendering a `<PostPreview>`for each element. That last part, extracting the `<PostPreview>` as its own component, is the important bit.
 
 ### [3. Write functional components](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-functional-components)
 
@@ -31,8 +33,8 @@ const MyComponent = props => (
 );
 ```
 
-1. cannot use `ref`: ref`s encourage a very imperative, almost jquery-like way of writing components, taking us away from the functional, one-way data flow philosophy for which we chose React in the first place!
-2. cannot use `state`
+1. don't use `ref` often: ref encourage a very imperative, almost jquery-like way of writing components, taking us away from the functional, one-way data flow philosophy for which we chose React in the first place!
+1. don't use `state` if possible
 
 ### [4. Write stateless components](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components)
 
@@ -50,6 +52,8 @@ React is a **view library**, so while *render* logic in the components is OK, *b
 [propTypes](https://facebook.github.io/react/docs/reusable-components.html#prop-validation) offer us a really easy way to add a bit more type safety to our components. They look like this:
 
 ```jsx
+import PropTypes from 'prop-types'
+
 const ListOfNumbers = props => (
   <ol className={props.className}>
     {
@@ -61,8 +65,8 @@ const ListOfNumbers = props => (
 );
 
 ListOfNumbers.propTypes = {
-  className: React.PropTypes.string.isRequired,
-  numbers: React.PropTypes.arrayOf(React.PropTypes.number)
+  className: PropTypes.string.isRequired,
+  numbers: PropTypes.arrayOf(PropTypes.number)
 };
 ```
 
@@ -83,5 +87,3 @@ beforeAll(() => {
   };
 });
 ```
-
-
