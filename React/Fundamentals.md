@@ -20,15 +20,6 @@
 * __Just JavaScript__
     * React takes advantage of the JavaScript programming language’s functionality, api and capabilities (also functional style)
 
----
-
-* __React Router__
-  * A component that allows us to map a url path to a component
-  * Within the Router we declare the routes to be rendered
-  * Each route has a path property and a component property that allows us to map a path to a component
-* __Axios__
-  * Api used to send HTTP requests to different apis
-
 ## Setting up first React component with npm, webpack and babel
 
 A React Component may be composed of the following:
@@ -37,7 +28,7 @@ A React Component may be composed of the following:
 * internal data
 * lifecycle event
 
-Every component is supposed to have a `render` method. The reason is that the `render` method returns the template for that component and it is necessary for a component to have a ui.
+Every component is supposed to have a `render` method. The reason is that the `render` method returns the template for that component and it is necessary for a component to have a UI.
 
 We need to tell ReactDOM to which element the components should be rendered to. You usually have to use `ReactDOM.render` only once in your applications because rendering the most parent element will render all the children as well.
 

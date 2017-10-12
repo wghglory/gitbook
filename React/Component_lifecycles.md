@@ -2,6 +2,8 @@
 
 ![react component's life cycle events](http://i.imgur.com/3LkFtGd.png)
 
+![lifecycle](http://images2017.cnblogs.com/blog/1106982/201708/1106982-20170811224737742-1564011484.jpg)
+
 ## Mounting Lifecycle
 
 When a component gets mounted to the DOM or unmounted from it.
@@ -46,6 +48,8 @@ The updating lifecycle kicks off every time `setState` is called. Calling `setSt
 ### componentWillReceiveProps(nextProps)
 
 Triggered when the component receives new props from its parent component. *This is the only method where `setState` can be called.*
+
+当组件传入的 props 发生变化时调用.例如：父组件状态改变，给子组件传入了新的 prop 值。用于组件 props 变化后，更新 state。
 
 ### shouldComponentUpdate(nextProps, nextState)
 
