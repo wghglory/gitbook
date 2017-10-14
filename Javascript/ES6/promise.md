@@ -2,6 +2,8 @@
 
 ## Promise 回调在 react 中的应用
 
+> 参见 React/SetStateAsync.md
+
 在 react component 中经常需要执行一个函数去 setHigherLevelComponentState，而等到高层 component 状态更新完毕后去进行当前 component 的一些操作
 
 **高层 component：** 通过 props 把该方法传给孩子

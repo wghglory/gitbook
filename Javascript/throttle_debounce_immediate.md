@@ -11,6 +11,7 @@ resize 当节点尺寸发生变化时，触发这个事件。通常用在 window
 当有持续性动作的时候，Throttle 降低频率持续性触发，而 Debounce 和 Immediate 只会触发一次，且 Debounce 在动作之后触发，Immediate 在动作之前触发。
 
 ```javascript
+/* 每次清除之前的定时器，开启新的定时任务，如果规定时间 delta 内再次运行，继续清计时器。直到时间超过规定时间，执行任务 */
 function debounce(fn, delta, context) {
   var timeoutID = null;
 
@@ -43,6 +44,7 @@ function immediate(fn, delta, context) {
   };
 }
 
+/* 首次执行，且立马标记 safe = false。开启定时器，规定时间到了后标记重置，所以规定时间内又想执行无效 */
 function throttle(fn, delta, context) {
   var safe = true;
 

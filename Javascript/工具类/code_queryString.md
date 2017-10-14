@@ -1,3 +1,24 @@
+# queryString
+
+```javascript
+/**
+ * @param {object} data
+ * 表单数据装配成 queryString
+*/
+function encodeFormData(data) {
+  if (!data) return '';
+  var pairs = [];
+  for (var name in data) {
+    if (!data.hasOwnProperty(name)) continue;
+    if (typeof data[name] === 'function') continue;
+    var value = data[name].toString();
+    name = encodeURIComponent(name.replace(' ', '+'));
+    value = encodeURIComponent(value.replace(' ', '+'));
+    pairs.push(name + '=' + value);
+  }
+  return pairs.join('&');
+}
+
 /**
  * usage:
  *  query string: ?foo=lorem&bar=&baz
@@ -76,10 +97,4 @@ function parseQuery(query) {
 
   return result;
 }
-
-function isArray(arg) {
-  if (arg && typeof arg === 'object') {
-    return Object.prototype.toString.call(arg) === '[object Array]';
-  }
-  return false;
-}
+```

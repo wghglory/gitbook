@@ -1,3 +1,6 @@
+# DOM
+
+```javascript
 /**
  * 获取某个 DOM 元素的某个属性
  * @param {*} obj
@@ -15,6 +18,14 @@ export function getStyle(obj, attr) {
     val *= 100;
   }
   return val;
+}
+
+function getStyle(obj, attr) {
+  if (obj.currentStyle) {
+    return obj.currentStyle[attr];  // IE
+  } else {
+    return getComputedStyle(obj, false)[attr];  // standard
+  }
 }
 
 /**
@@ -299,3 +310,4 @@ function getByParent(obj, tagname, classname) { // 通过父级的className以�
   }
 }
 */
+```

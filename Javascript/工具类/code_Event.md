@@ -1,3 +1,6 @@
+# Event
+
+```javascript
 /**
  * 请实现一个MyEvent类, 继承自此类的对象都会拥有两个方法on, off, once, trigger;
  */
@@ -49,3 +52,4 @@ MyEvent.prototype.once = function(type, handler) {
   this.on(type, wrapper);
   return this;
 };
+```

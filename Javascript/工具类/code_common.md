@@ -1,3 +1,6 @@
+# Common
+
+```javascript
 /**
  * 判断一个对象是否是数组，参数不是对象或者不是数组，返回false
  *
@@ -149,3 +152,4 @@ function deepClone(obj) {
 
   return result;
 }
+```

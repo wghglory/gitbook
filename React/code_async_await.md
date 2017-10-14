@@ -1,6 +1,8 @@
-# async, await in React
+# React 中的 async 和 await
 
-```javascript
+使用了蚂蚁金服 antd
+
+```jsx
 import React, { Component } from 'react';
 import { Table, Pagination, Popconfirm, Button } from 'antd';
 import moment from 'moment';

@@ -9,25 +9,25 @@
 ```javascript
 // Base
 var Person = function(name, age) {
-    this.name = name;
-    this.age = age;
-}
+  this.name = name;
+  this.age = age;
+};
 Person.prototype = {
-    constructor: Person,
-    say: function() {
-        console.log('Hello Everyone!');
-    }
+  constructor: Person,
+  say: function() {
+    console.log('Hello Everyone!');
+  }
 };
 
 // 学生类,继承自人
 var Student = function(name, age, lesson) {
-    Person.call(this, name, age);  //继承了构造器属性
-    // Person.apply(this, arguments);
-    this.lesson = lesson;
+  Person.call(this, name, age); //继承了构造器属性
+  // Person.apply(this, arguments);
+  this.lesson = lesson;
 };
-Student.prototype = new Person();  //继承了Person.prototype
+Student.prototype = new Person(); //继承了Person.prototype
 Student.prototype.getTeacher = function() {
-    console.log("Mr Zhang");
+  console.log('Mr Zhang');
 };
 
 //使用
@@ -36,11 +36,11 @@ var xiaoLi = new Student('li', 30, 'javascript');
 console.log(xiaoWang.name); //wang
 console.log(xiaoWang.age); //20
 console.log(xiaoWang.lesson); //javascript
-console.log(xiaoLi.name);  //li
-xiaoWang.say();  //'Hello Everyone!'
-xiaoLi.say();  //'Hello Everyone!'
-console.log(xiaoWang.say === xiaoLi.say);  //true
-console.log(xiaoWang.getTeacher === xiaoLi.getTeacher);  //true
+console.log(xiaoLi.name); //li
+xiaoWang.say(); //'Hello Everyone!'
+xiaoLi.say(); //'Hello Everyone!'
+console.log(xiaoWang.say === xiaoLi.say); //true
+console.log(xiaoWang.getTeacher === xiaoLi.getTeacher); //true
 ```
 
 ### example 2
@@ -48,22 +48,22 @@ console.log(xiaoWang.getTeacher === xiaoLi.getTeacher);  //true
 ```javascript
 // 教师类,继承自人
 var Teacher = function(name, age, subject) {
-    Person.call(this, name, age);
-    this.subject = subject;
+  Person.call(this, name, age);
+  this.subject = subject;
 };
 Teacher.prototype = new Person();
 Teacher.prototype.giveLecture = function() {
-    console.log('网页平面');
+  console.log('网页平面');
 };
 
 //使用
 var tc = new Teacher('zhang', 25, 'javascript');
-console.log(tc.name);  //zhang
-console.log(tc.age);  //25
-console.log(tc.subject);  //javascript
-tc.giveLecture();  //网页平面
+console.log(tc.name); //zhang
+console.log(tc.age); //25
+console.log(tc.subject); //javascript
+tc.giveLecture(); //网页平面
 tc.say(); //'Hello Everyone!'
-console.log(tc.say === xiaoWang.say);   //true
+console.log(tc.say === xiaoWang.say); //true
 ```
 
 ### example 3
@@ -164,18 +164,18 @@ Book.prototype.readAll = function () {};
 ```javascript
 // es6
 class Point {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 }
 
 class ColorPoint extends Point {
-    constructor(x, y, color) {
-        // this.color = color; // ReferenceError
-        super(x, y);
-        this.color = color; // 正确
-    }
+  constructor(x, y, color) {
+    // this.color = color; // ReferenceError
+    super(x, y);
+    this.color = color; // 正确
+  }
 }
 // 子类的 constructor 方法没有调用 super 之前就使用 this 关键字会报错，而放在 super 方法之后就是正确的。
 // 下面是生成子类实例的代码。

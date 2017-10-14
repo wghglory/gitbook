@@ -57,15 +57,15 @@ function getStarCount(repos) {
 
 ```javascript
 // map
-const keys = arr.map(p => p.key)
+const keys = arr.map((p) => p.key);
 
 //reduce
 const keys = arr.reduce((accu, current) => {
-        return [...accu, current.key]
-    }, [])
+  return [...accu, current.key];
+}, []);
 ```
 
-现在 arr 里面有个 categoryId，在他 -1 的时候我不想获取任何值，希望进行下次循环
+现在 arr 里面有个 categoryId，在他 =1 的时候我不想获取值，希望进行下次循环
 
 ```javascript
 const keys = products[0].analysis.reduce((accu, current) => {
@@ -76,7 +76,7 @@ const keys = products[0].analysis.reduce((accu, current) => {
 }, [])
 
 const values = product.analysis.reduce((accu, current, index) => {
-  if (current.categoryId === 1) return accu // 剔除 delete 不显示到 chart
+  if (current.categoryId === 1) return accu
 
   return [
     ...accu,

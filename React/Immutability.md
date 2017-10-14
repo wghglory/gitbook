@@ -2,6 +2,22 @@
 
 通过复制一个新的对象，使得新对象和老对象不引用同一个地址。这样在一个 reducer 函数中不去直接修改老对象的属性，而是创建一个新对象并根据 action 修改其属性并返回。
 
+```javascript
+var player = {
+  score: 1,
+  name: 'Jeff'
+};
+
+var newPlayer = Object.assign({}, player, {score: 2});
+// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+
+// Or if you are using object spread syntax proposal, you can write:
+var newPlayer = {
+  ...player,
+  score: 2
+};
+```
+
 ## Why Immutability
 
 1. 因为我们知道修改之前和修改之后的状态，方便我们追踪对象改变的属性

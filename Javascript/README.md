@@ -1,11 +1,8 @@
 # TOC
 
-* [declaretively_timeHelper](declaretively_timeHelper.md)
-* [getStyle](getStyle.md)
 * [gQuery](gQuery.md)
 * [Inheritance](Inheritance.md)
 * [Inheritance升级版composition](Inheritance升级版composition.md)
-* [Internationalization_localization](Internationalization_localization.md)
 * [oop](oop.md)
 * [reduce](reduce.md)
 * [throttle_debounce_immediate](throttle_debounce_immediate.md)

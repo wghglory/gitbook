@@ -1,3 +1,6 @@
+# 页面展示相关 Helper
+
+```javascript
 /**
  * 获取元素左上角 相对浏览器左上角（0，0）元素的坐标
  * @param {object} element
@@ -82,3 +85,4 @@ function getScrollOffset(w) {
     y: d.body.scrollTop
   };
 }
+```

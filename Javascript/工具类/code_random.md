@@ -1,5 +1,6 @@
-/* 如何实现数组的随机排序？*/
+# 如何实现数组的随机排序？
 
+```javascript
 // 方法一：随意交换某个随机位置和 i 的位置
 var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function randSort1(arr) {
@@ -32,3 +33,4 @@ arr.sort(function() {
   return Math.random() - 0.5;
 });
 console.log(arr);
+```
