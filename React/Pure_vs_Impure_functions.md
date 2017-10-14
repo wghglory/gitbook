@@ -1,3 +1,5 @@
+# Pure vs impure function
+
 pure function 不修改外部变量包括DOM，输入参数唯一则返回值唯一，没有负效应，容易测试。
 
 - The function should take in at least one argument.
@@ -44,17 +46,17 @@ const frederick = {
     canWrite: false
 }
 
-const selfEducate = person => 
-    ({ 
-        ...person, 
-        canRead: true, 
-        canWrite: true 
+const selfEducate = person =>
+    ({
+        ...person,
+        canRead: true,
+        canWrite: true
     })
 
 console.log( selfEducate(frederick) )
 console.log( frederick )
 
-// {name: "Frederick Douglass", canRead: true, canWrite: true} 
+// {name: "Frederick Douglass", canRead: true, canWrite: true}
 // {name: "Frederick Douglass", canRead: false, canWrite: false}
 ```
 
@@ -63,4 +65,3 @@ In React, the UI is expressed with pure functions. In the following sample, `Hea
 ```jsx
 const Header = (props) => <h1>{props.title}</h1>
 ```
-

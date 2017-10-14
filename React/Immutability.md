@@ -5,6 +5,7 @@
 ## Why Immutability
 
 1. 因为我们知道修改之前和修改之后的状态，方便我们追踪对象改变的属性
+1. Because `shouldComponentUpdate` or `PureComponent` does a shallow comparison of old and new values, 即只需要 === 比较引用地址是否相同。如果不遵循 不可变性，在原对象修改属性，=== 永远相同，Then UI won't change.
 1. reducer 作为一个纯函数，根据之前的 state 和 action 计算出一下个 state。纯函数不能有负效应，对象的不可改变性使得 reducer 能够输出唯一可以预测的值
 
 > immutability 要求复制对象，复制对象难道不影响性能吗？

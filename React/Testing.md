@@ -106,10 +106,10 @@ It's a bit of a trivial example, but hopefully you get the idea.
 
 #### Integration testing
 
-So far I've only covered unit testing components in isolation, but you're also going to want some higher level tests in order to ensure that your application connects up properly and actually works. 
+So far I've only covered unit testing components in isolation, but you're also going to want some higher level tests in order to ensure that your application connects up properly and actually works.
 
 1. [Render your entire tree of components](https://facebook.github.io/react/docs/test-utils.html#renderintodocument) (instead of shallow rendering).
-2. Reach into the DOM (using the [React TestUtils](https://facebook.github.io/react/docs/test-utils.html), or [jQuery](https://jquery.com/), etc) to find the elements you care about the most, and thenassert on their HTML attributes or contents, or[simulate DOM events](https://facebook.github.io/react/docs/test-utils.html#simulate) and then assert on the side effects (DOM or route changes, AJAX calls, etc)
+1. Reach into the DOM (using the [React TestUtils](https://facebook.github.io/react/docs/test-utils.html), or [jQuery](https://jquery.com/), etc) to find the elements you care about the most, and then assert on their HTML attributes or contents, or[simulate DOM events](https://facebook.github.io/react/docs/test-utils.html#simulate) and then assert on the side effects (DOM or route changes, AJAX calls, etc)
 
 #### On TDD
 
@@ -120,5 +120,3 @@ When working on a component, I often find myself churning its structure quite a 
 The other factor to this is that the components should be so simple that the advantages of test-first are diminished. All of the complex logic and transformations are pulled out into action creators and reducers, which is where I can (and do) reap the benefits of TDD.
 
 Which brings me to my final point about testing. In this whole section, I've been talking about testing the components, and that's because there's no special information needed for testing the rest of a Redux-based app. As a framework, Redux has very little 'magic' that goes on behind the scenes, which I find reduces the need for excessive mocking or other test boilerplate. Everything is just plain old functions (many of them pure), which is a real breath of fresh air when it comes to testing.
-
-

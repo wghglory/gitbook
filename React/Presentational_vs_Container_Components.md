@@ -1,8 +1,9 @@
-### Presentational and Container Components
+# Presentational and Container Components
 
-My **presentational** components:
+## presentational components
 
 - Are concerned with *how things look*.
+- Another advantage of using stateless functional components is that we don't need to consider `this`
 - May contain both presentational and container components inside, and usually have some DOM markup and styles of their own.
 - Often allow containment via `this.props.children`.
 - Have no dependencies on the rest of the app, such as Flux actions or stores.
@@ -12,9 +13,9 @@ My **presentational** components:
 - Are written as [functional components](https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-functional-components) unless they need state, lifecycle hooks, or performance optimizations.
 - Examples: *Page, Sidebar, Story, UserInfo, List.*
 
-Presentational components are components that only render UI elements. They do not tightly couple with any data architecture. Instead, they receive data as props and send data to their parent component via callback function properties. They are purely concerned with the UI and can be reused across applications that contain different data. 
+Presentational components are components that only render UI elements. They do not tightly couple with any data architecture. Instead, they receive data as props and send data to their parent component via callback function properties. They are purely concerned with the UI and can be reused across applications that contain different data.
 
-My **container** components:
+## container components
 
 - Are concerned with *how things work*.
 - May contain both presentational and container components inside but usually don’t have any DOM markup of their own except for some wrapping divs, and never have any styles.
@@ -43,8 +44,6 @@ Container components are not concerned with the UI at all. Their main focus is c
 
 I suggest you to start building your app with just presentational components first. Eventually you’ll realize that you are passing too many props down the intermediate components. When you notice that some components don’t use the props they receive but merely forward them down and you have to rewire all those intermediate components any time the children need more data, it’s a good time to introduce some container components. This way you can get the data and the behavior props to the leaf components without burdening the unrelated components in the middle of the tree.
 
-This is an ongoing process of refactoring so don’t try to get it right the first time. As you experiment with this pattern, you will develop an intuitive sense for when it’s time to extract some containers, just like you know when it’s time to extract a function. My [free Redux Egghead series](https://egghead.io/series/getting-started-with-redux) might help you with that too!
-
 ### Other Dichotomies
 
 It’s important that you understand that the distinction between the presentational components and the containers is not a technical one. Rather, it is a distinction in their purpose.
@@ -56,4 +55,3 @@ By contrast, here are a few related (but different!) technical distinctions:
 - **Pure and Impure.** People say that a component is pure if it is guaranteed to return the same result given the same props and state. Pure components can be defined both as classes and functions, and can be both stateful and stateless. Another important aspect of pure components is that they don’t rely on deep mutations in props or state, so their rendering performance can be optimized by a shallow comparison in their [*shouldComponentUpdate()* hook](https://facebook.github.io/react/docs/pure-render-mixin.html). Currently only classes can define *shouldComponentUpdate()* but that may change in the future.
 
 Both presentational components and containers can fall into either of those buckets. In my experience, presentational components tend to be stateless pure functions, and containers tend to be stateful pure classes. However this is not a rule but an observation, and I’ve seen the exact opposite cases that made sense in specific circumstances.
-

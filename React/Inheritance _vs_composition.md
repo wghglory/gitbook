@@ -1,10 +1,12 @@
+# React 推荐 composition
+
 > Inheritance is unnecessary in React, and both containment and specialization can be achieved with composition
 
 Because mostly everything that can be accomplished with Mixins (or inheritance) can also be accomplished through composition, but with less side effects.
 
-Inheritance: You have to predict the members you want to inherit carefully. IRobot(CleaningRobot, CookingRobot), IAnimal(Dog, Cat). What if in future we need a CleaningCatRobot? You have to re-struct the interface, maybe have a common IAnimalRobot. When projects get larger, it's painful to do so. Inheritance is difficult to get rid of.
+Inheritance: You have to predict the members you want to inherit carefully. `IRobot(CleaningRobot, CookingRobot), IAnimal(Dog, Cat)`. What if in future we need a CleaningCatRobot? You have to re-struct the interface, maybe have a common IAnimalRobot. When projects get larger, it's painful to do so. Inheritance is difficult to get rid of.
 
-Composition: `CleaningCatAnimal = cleaningRobot + cat`, super clean. 
+Composition: `CleaningCatAnimal = cleaningRobot + cat`, super clean.
 
 I feel, composition is better than inheritance. Inheritance is not needed.
 
@@ -39,9 +41,11 @@ The both function is one function that pipes a value through two separate functi
 A more elegant approach is to create a higher order function we can use to compose functions into larger functions.
 
 ```javascript
+// new Date() 作为 arg，初始值。先 appendAMPM(clockTime)，返回的对象作为 civilianHours 的参数，执行 civilianHours
+
 const both = compose(
-    civilianHours,
-    appendAMPM
+  appendAMPM,
+  civilianHours
 )
 
 both(new Date())
@@ -52,16 +56,30 @@ This approach looks much better. It is easy to scale because we can add more fun
 The compose function is a higher order function. It takes functions as arguments and returns a single value.
 
 ```javascript
-const compose = (...fns) => 
-  (arg) => 
+// very important!!!
+// reduce first para: function
+// second para: initial value
+// cb first para is initial value(arg in this case)
+// cb second para is a item(one item of fns in this case)
+// 目的是执行第一个函数，得到结果再交给第二个函数执行
+// compose(f1, f2) 是构建传入 function，compose(f1, f2)(initialValue) 是返回最终结果
+const compose = (...fns) =>
+  (arg) =>
     fns.reduce(
       (composed, f) => f(composed),
       arg
-    )  
-
+    )
 ```
 
 Compose takes in functions as arguments and returns a single function. In this implementation, the spread operator is used to turn those function arguments into an array called fns. A function is then returned that expects one argument, arg. When this function is invoked, the fns array is piped starting with the argument we want to send through the function. The argument becomes the initial value for composed and then each iteration of the reduced callback returns. Notice that the callback takes two arguments: composed and a function f. Each function is invoked with compose which is the result of the previous functions output. Eventually, the last function will be invoked and the last result returned.
 
 Other implementations of compose may use `reduceRight` which would compose the functions in reverse order.
 
+```javascript
+const composeRight = (...fns) =>
+  (arg) =>
+    fns.reverse().reduce(
+      (composed, f) => f(composed),
+      arg
+    )
+```

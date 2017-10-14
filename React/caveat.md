@@ -46,7 +46,6 @@ When components are just functions of input props, testing is a lot easier. (Mor
 
 React is a **view library**, so while *render* logic in the components is OK, *business* logic is a massive code smell. But when so much of your application's state is right there in the component, easily accessible by `this.state`, it can become really tempting to start putting things like calculations or validation into the component, where it does not belong. Revisiting my earlier point, this makes testing that much harder - you can't test render logic without the business logic getting in the way, and vice versa!
 
-
 ### [6. Always use propTypes](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#always-use-proptypes)
 
 [propTypes](https://facebook.github.io/react/docs/reusable-components.html#prop-validation) offer us a really easy way to add a bit more type safety to our components. They look like this:

@@ -18,8 +18,13 @@ this.setState(
 It's better to use Promise than callback:
 
 ```javascript
-class AwesomeProject extends Component {
-  state = {}
+class AwesomeProject extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      ipAddress: ''
+    }
+  }
 
   setStateAsync(state) {
     return new Promise((resolve) => {
