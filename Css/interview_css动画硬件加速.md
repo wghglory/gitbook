@@ -1,4 +1,4 @@
-# [用CSS开启硬件加速来提高网站性能](http://www.cnblogs.com/rubylouvre/p/3471490.html)
+# [用 CSS 开启硬件加速来提高网站性能](http://www.cnblogs.com/rubylouvre/p/3471490.html)
 
 * 只允许改变 transform、opacity，其它属性不要动，避免重新计算布局(reflow)
 * 对动画元素应用 transform: translate3d(0, 0, 0)、will-change: transform 等，开启硬件加速
