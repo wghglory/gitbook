@@ -16,7 +16,7 @@ gitbook serve   # localhost:4000
 
 配置文件，不必须
 
-```json
+```javascript
 {
   "title": "前端规范",
   "description": "前端规范 简介",

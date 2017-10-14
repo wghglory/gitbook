@@ -220,7 +220,6 @@
   - [Imperative_vs_Declarative](React/Imperative_vs_Declarative.md)
   - [Inheritance _vs_composition](React/Inheritance _vs_composition.md)
   - [lifecycle](React/lifecycle.md)
-  - [pageTemplate](React/pageTemplate.md)
   - [Presentational_vs_Container_Components](React/Presentational_vs_Container_Components.md)
   - [Pure_vs_Impure_functions](React/Pure_vs_Impure_functions.md)
   - [react-router](React/react-router.md)

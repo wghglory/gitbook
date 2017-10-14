@@ -5,6 +5,13 @@ ls  # list files
 ls -a # list files including .gitignore, _book, etc
 ```
 
+## kill port
+
+```bash
+lsof -i:3000
+kill -9 <previous processId>
+```
+
 ## npm commands
 
 ```bash

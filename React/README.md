@@ -12,7 +12,6 @@
 * [Imperative_vs_Declarative](Imperative_vs_Declarative.md)
 * [Inheritance _vs_composition](Inheritance _vs_composition.md)
 * [lifecycle](lifecycle.md)
-* [pageTemplate](pageTemplate.md)
 * [Presentational_vs_Container_Components](Presentational_vs_Container_Components.md)
 * [Pure_vs_Impure_functions](Pure_vs_Impure_functions.md)
 * [react-router](react-router.md)
