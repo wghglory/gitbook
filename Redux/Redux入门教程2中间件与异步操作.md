@@ -1,20 +1,12 @@
 # Redux 入门教程（二）：中间件与异步操作
 
-作者： [阮一峰](http://www.ruanyifeng.com/)
-
-日期： [2016年9月20日](http://www.ruanyifeng.com/blog/2016/09/)
-
-[上一篇文章](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)，我介绍了 Redux 的基本做法：用户发出 Action，Reducer 函数算出新的 State，View 重新渲染。
-
-![img](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016092001.jpg)
-
-但是，一个关键问题没有解决：异步操作怎么办？Action 发出以后，Reducer 立即算出 State，这叫做同步；Action 发出以后，过一段时间再执行 Reducer，这就是异步。
+异步操作怎么办？Action 发出以后，Reducer 立即算出 State，这叫做同步；Action 发出以后，过一段时间再执行 Reducer，这就是异步。
 
 怎么才能 Reducer 在异步操作结束后自动执行呢？这就要用到新的工具：中间件（middleware）。
 
 ![img](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016092002.jpg)
 
-## 一、中间件的概念
+## 中间件的概念
 
 为了理解中间件，让我们站在框架作者的角度思考问题：如果要添加功能，你会在哪个环节添加？
 
@@ -37,7 +29,7 @@ store.dispatch = function dispatchAndLog(action) {
 
 中间件就是一个函数，对`store.dispatch`方法进行了改造，在发出 Action 和执行 Reducer 这两步之间，添加了其他功能。
 
-## 二、中间件的用法
+## 中间件的用法
 
 本教程不涉及如何编写中间件，因为常用的中间件都有现成的，只要引用别人写好的模块即可。比如，上一节的日志中间件，就有现成的[redux-logger](https://github.com/evgenyrodionov/redux-logger)模块。这里只介绍怎么使用中间件。
 
@@ -77,7 +69,7 @@ const store = createStore(
 
 上面代码中，`applyMiddleware`方法的三个参数，就是三个中间件。有的中间件有次序要求，使用前要查一下文档。比如，`logger`就一定要放在最后，否则输出结果会不正确。
 
-## 三、applyMiddlewares()
+## applyMiddlewares()
 
 看到这里，你可能会问，`applyMiddlewares`这个方法到底是干什么的？
 
@@ -100,9 +92,9 @@ export default function applyMiddleware(...middlewares) {
 }
 ```
 
-上面代码中，所有中间件被放进了一个数组`chain`，然后嵌套执行，最后执行`store.dispatch`。可以看到，中间件内部（`middlewareAPI`）可以拿到`getState`和`dispatch`这两个方法。
+上面代码中，所有中间件被放进了一个数组`chain`，然后嵌套执行，最后执行`store.dispatch`。可以看到，中间件内部（`middlewareAPI`）可以拿到 `getState `和 `dispatch` 这两个方法。
 
-## 四、异步操作的基本思路
+## 异步操作的基本思路
 
 理解了中间件以后，就可以处理异步操作了。
 
@@ -144,7 +136,7 @@ let state = {
 - 操作开始时，送出一个 Action，触发 State 更新为"正在操作"状态，View 重新渲染
 - 操作结束后，再送出一个 Action，触发 State 更新为"操作结束"状态，View 再一次重新渲染
 
-## 五、redux-thunk 中间件
+## redux-thunk 中间件
 
 异步操作至少要送出两个 Action：用户触发第一个 Action，这个跟同步操作一样，没有问题；如何才能在操作结束时，系统自动送出第二个 Action 呢？
 
@@ -210,7 +202,7 @@ const store = createStore(
 
 因此，异步操作的第一种解决方案就是，写出一个返回函数的 Action Creator，然后使用`redux-thunk`中间件改造`store.dispatch`。
 
-## 六、redux-promise 中间件
+## redux-promise 中间件
 
 既然 Action Creator 可以返回函数，当然也可以返回其他值。另一种异步操作的解决方案，就是让 Action Creator 返回一个 Promise 对象。
 
@@ -229,7 +221,7 @@ const store = createStore(
 这个中间件使得`store.dispatch`方法可以接受 Promise 对象作为参数。这时，Action Creator 有两种写法。写法一，返回值是一个 Promise 对象。
 
 ```javascript
-const fetchPosts = 
+const fetchPosts =
   (dispatch, postTitle) => new Promise(function (resolve, reject) {
      dispatch(requestPosts(postTitle));
      return fetch(`/some/API/${postTitle}.json`)
@@ -251,7 +243,7 @@ class AsyncApp extends Component {
     dispatch(requestPosts(selectedPost));
     // 发出异步 Action
     dispatch(createAction(
-      'FETCH_POSTS', 
+      'FETCH_POSTS',
       fetch(`/some/API/${postTitle}.json`)
         .then(response => response.json())
     ));

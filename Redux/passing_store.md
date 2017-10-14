@@ -1,4 +1,51 @@
-# Explicitly Passing the Store
+# Passing store
+
+## Provider from `react-redux` ✅
+
+React Redux is a library that contains some tools to help ease the complexity involved with implicitly passing the store via context. Redux does not require that you use this library. However, using React Redux reduces your code’s complexity and may help you build apps a bit faster.
+
+`react-redux` supplies us with a component that we can use to set up our store in the context, the *provider*. We can wrap any React element with the provider and that element’s children will have access to the store via context.
+
+Instead of setting up the store as a context variable in the `App` component, we can keep the `App` component stateless:
+
+```javascript
+import { Menu, NewColor, Colors } from './containers';
+
+const App = () => (
+  <div className="app">
+    <Menu />
+    <NewColor />
+    <Colors />
+  </div>
+);
+
+export default App;
+```
+
+The provider adds the store to the context and updates the `App` component when actions have been dispatched. The provider expects a single child component:
+
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import storeFactory from './store';
+
+const store = storeFactory();
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('react-container')
+);
+```
+
+The provider requires that we pass the store as a property. It adds the store to the context so that it can be retrieved by any child of the `App` component. Simply using the provider can save us some time and simplify our code.
+
+Once we’ve incorporated the provider, we can retrieve the store via context in child container components. However, React Redux provides us with another way to quickly create container components that work with the provider: the `connect` function.
+
+## Explicitly Passing the Store
 
 The first, and most logical, way to incorporate the store into your UI is to pass it down the component tree explicitly as a property. This approach is simple and works very well for smaller apps that only have a few nested components.
 
@@ -132,7 +179,7 @@ The store is also used to obtain the original colors. Those colors are duplicate
 
 This approach is great if your component tree is rather small, like this color organizer. The drawback of using this approach is that we have to explicitly pass the store to child components, which means slightly more code and slightly more headaches than with other approaches. Additionally, the `SortMenu`, `AddColorForm`, and `ColorList` components require this specific store. It would be hard to reuse them in another application.
 
-# Passing the Store via Context
+## Passing the Store via Context
 
 In the last section, we created a store and passed it all the way down the component tree from the `App` component to the `ColorList` component. This approach required that we pass the store through every component that comes between the `App` and the `ColorList`.
 
@@ -296,3 +343,4 @@ export default Color
 `ColorList` is now a component class, and can access context via `this.context`. Colors are now read directly from the store via `store.getState`. The same rules apply that do for stateless functional components. `contextTypes` must be defined on the instance.
 
 Retrieving the store from the context is a nice way to reduce your boilerplate, but this is not something that is required for every application. Dan Abramov, the creator of Redux, even suggests that these patterns do not need to be religiously followed.
+

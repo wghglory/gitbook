@@ -27,37 +27,33 @@ When we create the store, we create two pieces of middleware: the *logger* and t
 ##### Example 8-9. storeFactory: ./store/index.js
 
 ```Javascript
-import { createStore,
-         combineReducers,
-         applyMiddleware } from 'redux'
-import { colors, sort } from './reducers'
-import stateData from './initialState'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { colors, sort } from './reducers';
+import stateData from './initialState';
 
-const logger = store => next => action => {
-    let result
-    console.groupCollapsed("dispatching", action.type)
-    console.log('prev state', store.getState())
-    console.log('action', action)
-    result = next(action)
-    console.log('next state', store.getState())
-    console.groupEnd()
-}
+const logger = (store) => (next) => (action) => {
+  let result;
+  console.groupCollapsed('dispatching', action.type);
+  console.log('prev state', store.getState());
+  console.log('action', action);
+  result = next(action);
+  console.log('next state', store.getState());
+  console.groupEnd();
+};
 
-const saver = store => next => action => {
-    let result = next(action)
-    localStorage['redux-store'] = JSON.stringify(store.getState())
-    return result
-}
+const saver = (store) => (next) => (action) => {
+  let result = next(action);
+  localStorage['redux-store'] = JSON.stringify(store.getState());
+  return result;
+};
 
-const storeFactory = (initialState=stateData) =>
-    applyMiddleware(logger, saver)(createStore)(
-        combineReducers({colors, sort}),
-        (localStorage['redux-store']) ?
-            JSON.parse(localStorage['redux-store']) :
-            stateData
-    )
+const storeFactory = (initialState = stateData) =>
+  applyMiddleware(logger, saver)(createStore)(
+    combineReducers({ colors, sort }),
+    localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : stateData
+  );
 
-export default storeFactory
+export default storeFactory;
 ```
 
 Both the logger and the saver are middleware functions. In Redux, middleware is defined as a higher-order function: it’s a function that returns a function that returns a function. The last function returned is invoked every time an action is dispatched. When this function is invoked, you have access to the action, the store, and the function for sending the action to the next middleware.

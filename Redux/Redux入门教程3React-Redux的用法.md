@@ -1,17 +1,5 @@
 # Redux 入门教程（三）：React-Redux 的用法
 
-作者： [阮一峰](http://www.ruanyifeng.com/)
-
-日期： [2016年9月21日](http://www.ruanyifeng.com/blog/2016/09/)
-
-前两篇教程介绍了 Redux 的[基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)和[异步操作](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html)，今天是最后一部分，介绍如何在 React 项目中使用 Redux。
-
-为了方便使用，Redux 的作者封装了一个 React 专用的库 [React-Redux](https://github.com/reactjs/react-redux)，本文主要介绍它。
-
-这个库是可以选用的。实际项目中，你应该权衡一下，是直接使用 Redux，还是使用 React-Redux。后者虽然提供了便利，但是需要掌握额外的 API，并且要遵守它的组件拆分规范。
-
-![img](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016092101.jpg)
-
 ## 一、UI 组件
 
 React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。
@@ -376,14 +364,14 @@ ReactDOM.render(
 
 ## 八、React-Router 路由库
 
-使用`React-Router`的项目，与其他项目没有不同之处，也是使用`Provider`在`Router`外面包一层，毕竟`Provider`的唯一功能就是传入`store`对象。
+使用`React-Router`的项目，与其他项目没有不同之处，也是使用 `Provider` 在 `BrowserRouter` 外面包一层，毕竟 `Provider` 的唯一功能就是传入 `store` 对象。
 
 ```javascript
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Router>
+    <BrowserRouter>
       <Route path="/" component={App} />
-    </Router>
+    </BrowserRouter>
   </Provider>
 );
 ```
