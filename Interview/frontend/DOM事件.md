@@ -30,7 +30,7 @@ You clicked on cell but all the event handler with parent elements will be fired
 
 ## 描述事件捕获流程
 
-window --> document --> html (document.documentElement) --> body (document.body) --> ... --> target
+window --> document --> html (document.documentElement) --> body --> ... --> target
 
 ## Event 对象常见应用
 
