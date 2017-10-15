@@ -14,7 +14,8 @@
     "prepush:origin": "echo 'Pushing code to GitHub'",
     "push:origin": "git push --tags origin HEAD:master",
     "prepublish": "npm run build",
-    "publish": "bash ./publish.sh"
+    "publish": "bash ./publish.sh",
+    "postpublish": "git checkout master"
   },
   "repository": {
     "type": "git",
