@@ -1,4 +1,4 @@
-git checkout --orphan gh-pages &&
+git checkout gh-pages &&
 git rm --cached -r . &&
 git clean -df &&
 rm -rf *~ &&

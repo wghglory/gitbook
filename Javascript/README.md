@@ -1,8 +1,8 @@
 # TOC
 
 * [gQuery](gQuery.md)
-* [Inheritance](Inheritance.md)
-* [Inheritance升级版composition](Inheritance升级版composition.md)
+* [inheritance](inheritance.md)
+* [inheritance升级版composition](inheritance升级版composition.md)
 * [oop](oop.md)
 * [reduce](reduce.md)
 * [throttle_debounce_immediate](throttle_debounce_immediate.md)
