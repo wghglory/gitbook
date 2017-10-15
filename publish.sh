@@ -5,6 +5,7 @@ git clean -df &&
 rm -rf *~ &&
 cp -r _book/* . &&  # 复制 _book 下的内容到分支中
 echo "*~" > .gitignore && # 添加 gitignore
+echo "_book" > .gitignore && # 添加 gitignore
 echo ".DS_Store" >> .gitignore &&
 echo ".editorconfig" >> .gitignore &&
 echo "publish.sh" >> .gitignore &&
