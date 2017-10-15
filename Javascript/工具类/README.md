@@ -1,6 +1,7 @@
 # TOC
 
 * [code_common](code_common.md)
+* [code_cookie](code_cookie.md)
 * [code_dom](code_dom.md)
 * [code_Event](code_Event.md)
 * [code_Internationalization_localization](code_Internationalization_localization.md)

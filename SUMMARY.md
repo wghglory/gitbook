@@ -175,6 +175,7 @@
   - [前端知识目录](Javascript/前端知识目录.md)
   * [Javascript/工具类](/Javascript/工具类/README.md)
     - [code_common](Javascript/工具类/code_common.md)
+    - [code_cookie](Javascript/工具类/code_cookie.md)
     - [code_dom](Javascript/工具类/code_dom.md)
     - [code_Event](Javascript/工具类/code_Event.md)
     - [code_Internationalization_localization](Javascript/工具类/code_Internationalization_localization.md)
