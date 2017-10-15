@@ -16,7 +16,7 @@ DOM3: element.addEventListener('keyup', function(){}, false)
 
 捕获阶段 --> 目标阶段 --> 冒泡阶段
 
-**Capture**: When you clicked, browser knows a click event occurred. It starts from the `window` (lowest level/root of your website), then goes to `document`, then html root tag, then `body`, then `table`... its trying to reach the the as lowest level of element as possible. This is called capture phase. (从上到下到达目标元素)
+**Capture**: When you clicked, browser knows a click event occurred. It starts from the `window` (lowest level/root of your website), then goes to `document`, then html root tag, then `body`, then `table`... its trying to reach as the lowest level of element as possible. This is called capture phase. (从上到下到达目标元素)
 
 Target: When browser reach the lowest level of element. In this case, you have clicked on a table cell (table data) hence target would be `td` tag. Then browser checks whether you have any click handler attached to this element. If there is any, browser executes that click handler. This is called target phase. (执行目标元素的事件)
 
@@ -37,7 +37,7 @@ window --> document --> html (document.documentElement) --> body --> ... --> tar
 ```javascript
 event.preventDefault()
 event.stopPropagation()
-event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件处罚，在一个事件中调用此方法。 prevent multiple event handler to be fired for an event?
+event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件触发，在一个事件中调用此方法。 prevent multiple event handler to be fired for an event?
 event.target         // 被点击的子元素
 event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gkdeocd6/
 ```
