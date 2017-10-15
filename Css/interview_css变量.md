@@ -1,6 +1,4 @@
-# CSS 变量教程
-
-<http://www.ruanyifeng.com/blog/2017/05/css-variables.html>
+# [CSS 变量教程](http://www.ruanyifeng.com/blog/2017/05/css-variables.html)
 
 ## 一、变量的声明
 

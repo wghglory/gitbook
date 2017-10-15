@@ -233,7 +233,7 @@
 * [Redux](/Redux/README.md)
   - [Compose](Redux/Compose.md)
   - [Introduction](Redux/Introduction.md)
-  - [middleware](Redux/middleware.md)
+  - [Middleware](Redux/Middleware.md)
   - [passing_store](Redux/passing_store.md)
   - [Redux入门教程1](Redux/Redux入门教程1.md)
   - [Redux入门教程2中间件与异步操作](Redux/Redux入门教程2中间件与异步操作.md)

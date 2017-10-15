@@ -37,10 +37,15 @@ function getFilesAndFolders(root) {
     let pathname = root + '/' + f; // /Users/derek/Library/guanghui.notebook/移动端/viewport.md
     let pathname2 = pathname.replace(/.+\/(guanghui.notebook.+)/, '$1'); // guanghui.notebook/移动端/viewport.md
 
-    // 不为 README.md 的 markdown 文件；排除 node_modules folder；
+    // 不为 README.md 的 markdown 文件；排除 node_modules folder gitbook；
     if (
       (path.extname(f) === '.md' && f !== 'README.md' && f !== 'SUMMARY.md') ||
-      (path.extname(f) === '' && !f.startsWith('.') && !f.startsWith('_') && f !== 'node_modules' && f !== 'assets')
+      (path.extname(f) === '' &&
+        !f.startsWith('.') &&
+        !f.startsWith('_') &&
+        f !== 'node_modules' &&
+        f !== 'assets' &&
+        f !== 'gitbook')
     ) {
       let stat = fs.lstatSync(pathname);
 

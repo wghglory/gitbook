@@ -2,7 +2,7 @@
 
 * [Compose](Compose.md)
 * [Introduction](Introduction.md)
-* [middleware](middleware.md)
+* [Middleware](Middleware.md)
 * [passing_store](passing_store.md)
 * [Redux入门教程1](Redux入门教程1.md)
 * [Redux入门教程2中间件与异步操作](Redux入门教程2中间件与异步操作.md)

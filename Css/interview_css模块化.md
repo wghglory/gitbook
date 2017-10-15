@@ -4,7 +4,7 @@
 
 几种 css 模块化实践:
 
-## 1. style 标签位置，由于 scoped 不再被支持，淘汰
+## style 标签位置，由于 scoped 不再被支持，淘汰
 
 html 页面样式文件的引入主要有三种方式：
 
@@ -20,7 +20,7 @@ W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包�
 
 如此一来，我们不仅实现了模块的移植便利，还很好的控制了模块的css作用范围，再也不用担心选择器冲突导致的各种样式混乱啦。
 
-## 2. css @import 语法，和 scss less @import 一个思路，模块化思想第一步
+## css @import 语法，和 scss less @import 一个思路，模块化思想第一步
 
 首先我们知道 @import 很少用，有些缺点：
 
@@ -28,7 +28,7 @@ W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包�
 1. 请求数太多，页面性能不佳，对服务器压力也会相对大一些。
 1. 不同的浏览器以及不同的书写形式可能会有不同的加载顺序。
 
-#### link 与 @import 的区别
+### link 与 @import 的区别
 
 * link 是 HTML方式， @import 是CSS方式
 * link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现 FOUC
@@ -77,7 +77,7 @@ CSS Combo：CSS模块打包利器
 
 css 全局样式的特点，导致 css 难以维护，所以需要一种 css "局部"样式的解决方案。也就是彻底的 css 模块化，@import 进来的 css 模块不能影响覆盖其他模块。
 
-## 3. 实际项目解决方法，模块化思路
+## 实际项目解决方法，模块化思路 ✅
 
 所有模块都有一个唯一的 id，模块内的所有样式的选择器前都会加上所在模块的 id，这样就避免了模块间的 css 样式到处跑了。或者通过在每个 class 名后带一个独一无二 hash 值，这样就不有存在全局命名冲突的问题了。这样就相当于伪造了"局部"样式。
 
@@ -196,7 +196,7 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 ```jsx
 // join-react.jsx
-<h1 className={[styles.title,styles.bold].join(" ")}>
+<h1 className={[styles.title, styles.bold].join(" ")}>
   Hello World
 </h1>
 
