@@ -15,9 +15,8 @@
     "push:origin": "git push --tags origin HEAD:master",
     "initPublish": "bash ./initPublish.sh",
     "postinitPublish": "git checkout master && cnpm i",
-    "prepublish": "npm run build",
     "publish": "bash ./publish.sh",
-    "postpublish": "git checkout master && cnpm i"
+    "postpublish": "git checkout master"
   },
   "repository": {
     "type": "git",
