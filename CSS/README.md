@@ -1,6 +1,7 @@
 # TOC
 
 * [animation](animation.md)
+* [code_reset](code_reset.md)
 * [code_清除浮动](code_清除浮动.md)
 * [css3各种图形](css3各种图形.md)
 * [interview_BFC](interview_BFC.md)

@@ -2,6 +2,7 @@
 
 * [CSS](/CSS/README.md)
   - [animation](CSS/animation.md)
+  - [code_reset](CSS/code_reset.md)
   - [code_清除浮动](CSS/code_清除浮动.md)
   - [css3各种图形](CSS/css3各种图形.md)
   - [interview_BFC](CSS/interview_BFC.md)
