@@ -19,6 +19,8 @@ git branch -a
 
 ## 2. 删除远程分支和tag
 
+`git branch -D gh-pages` 删除本地分支
+
 在Git v1.7.0 之后，可以使用这种语法删除远程分支：
 
 ```bash
