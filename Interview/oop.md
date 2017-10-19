@@ -2,6 +2,8 @@
 
 ## Give me an example you used OOP
 
+封装、继承、多态
+
 OOP: abstraction, Encapsulation, inheritance, polymorphism.
 
 In a .net core project, I used repository pattern. So there is an abstract BaseRepository, which includes Add, Remove, Update methods, etc. Any repository that inherits from this baseRepo will have these common methods. And we can also add some new properties or methods for a specific class.

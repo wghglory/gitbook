@@ -1,3 +1,5 @@
+# nodejs interview
+
 - What is an error-first callback?
 - How can you avoid callback hells?
 - How can you listen on port 80 with Node?
@@ -163,8 +165,8 @@ A use-case can be a file read, when you do not want to read an actual file:
 ```javascript
 var fs = require('fs');
 
-var readFileStub = sinon.stub(fs, 'readFile', function (path, cb) {
-  	return cb(null, 'filecontent');
+var readFileStub = sinon.stub(fs, 'readFile', function(path, cb) {
+  return cb(null, 'filecontent');
 });
 
 expect(readFileStub).to.be.called;
