@@ -180,6 +180,7 @@
     - [code_dom](Javascript/工具类/code_dom.md)
     - [code_Event](Javascript/工具类/code_Event.md)
     - [code_Internationalization_localization](Javascript/工具类/code_Internationalization_localization.md)
+    - [code_modal](Javascript/工具类/code_modal.md)
     - [code_money](Javascript/工具类/code_money.md)
     - [code_queryString](Javascript/工具类/code_queryString.md)
     - [code_random](Javascript/工具类/code_random.md)
