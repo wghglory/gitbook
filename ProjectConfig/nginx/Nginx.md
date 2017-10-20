@@ -46,6 +46,13 @@ nginx -t && nginx -s reload
 
 > 如果遇到问题nginx: [emerg] open() "/usr/local/Cellar/nginx/1.12.1/logs/access.log" failed (2: No such file or directory)
 > 手动创建 logs 文件夹和 access.log 文件
+>
+> 在 Mac 上用 brew 安装 Nginx，然后修改Nginx配置文件，再重启时报出如下错误：
+> nginx: [error] invalid PID number "" in "/usr/local/var/run/nginx/nginx.pid"
+> 解决办法：
+> sudo nginx -c /usr/local/etc/nginx/nginx.conf
+> sudo nginx -s reload
+
 
 更多关于`Nginx`命令的帮助可以输入`nginx -h`查看，若想每次开机自动开启`Nginx`，在`终端`执行下面命令即可：
 
