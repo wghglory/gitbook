@@ -52,27 +52,27 @@ public boolean equals(Object anObject) {
 
 对于`Object`类来说，`equals()`方法在对象上实现的是差别可能性最大的等价关系，即，对于任意非`null`的引用值`x`和`y`，当且仅当`x`和`y`引用的是同一个对象，该方法才会返回`true`。
 
-**需要注意的是当equals()方法被override时，hashCode()也要被override。按照一般hashCode()方法的实现来说，相等的对象，它们的hash code一定相等。**
+**需要注意的是当 equals() 方法被 override 时，hashCode() 也要被 override。按照一般 hashCode() 方法的实现来说，相等的对象，它们的 hash code 一定相等。**
 
 ## **hashcode() 方法详解**
 
-`hashCode()`方法给对象返回一个hash code值。这个方法被用于hash tables，例如HashMap。
+`hashCode()` 方法给对象返回一个 hash code 值。这个方法被用于 hash tables，例如 HashMap。
 
 它的性质是：
 
-- 在一个Java应用的执行期间，如果一个对象提供给equals做比较的信息没有被修改的话，该对象多次调用`hashCode()`方法，该方法必须始终如一返回同一个integer。
-- 如果两个对象根据`equals(Object)`方法是相等的，那么调用二者各自的`hashCode()`方法必须产生同一个integer结果。
-- 并不要求根据`equals(java.lang.Object)`方法不相等的两个对象，调用二者各自的`hashCode()`方法必须产生不同的integer结果。然而，程序员应该意识到对于不同的对象产生不同的integer结果，有可能会提高hash table的性能。
+- 在一个 Java 应用的执行期间，如果一个对象提供给 equals做比较的信息没有被修改的话，该对象多次调用 `hashCode()` 方法，该方法必须始终如一返回同一个integer。
+- 如果两个对象根据 `equals(Object)` 方法是相等的，那么调用二者各自的 `hashCode()` 方法必须产生同一个integer结果。
+- 并不要求根据 `equals(java.lang.Object)` 方法不相等的两个对象，调用二者各自的 `hashCode()` 方法必须产生不同的 integer 结果。然而，程序员应该意识到对于不同的对象产生不同的 integer 结果，有可能会提高 hash table 的性能。
 
-大量的实践表明，由`Object`类定义的`hashCode()`方法对于不同的对象返回不同的integer。
+大量的实践表明，由 `Object` 类定义的 `hashCode()` 方法对于不同的对象返回不同的 integer。
 
-在object类中，hashCode定义如下：
+在 object 类中，hashCode 定义如下：
 
 ```Java
 public native int hashCode();
 ```
 
- 说明是一个本地方法，它的实现是根据本地机器相关的。当然我们可以在自己写的类中覆盖hashcode()方法，比如String、Integer、Double等这些类都是覆盖了hashcode()方法的。例如在String类中定义的hashcode()方法如下
+ 说明是一个本地方法，它的实现是根据本地机器相关的。当然我们可以在自己写的类中覆盖 `hashcode()` 方法，比`String、Integer、Double` 等这些类都是覆盖了 `hashcode()` 方法的。例如在 String 类中定义的 `hashcode()` 方法如下
 
 ```Java
 public int hashCode() {
