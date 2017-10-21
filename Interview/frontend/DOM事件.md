@@ -16,7 +16,7 @@ DOM3: element.addEventListener('keyup', function(){}, false)
 
 捕获阶段 --> 目标阶段 --> 冒泡阶段
 
-**Capture**: When you clicked, browser knows a click event occurred. It starts from the `window` (lowest level/root of your website), then goes to `document`, then html root tag, then `body`, then `table`... its trying to reach as the lowest level of element as possible. This is called capture phase. (从上到下到达目标元素)
+**Capture**: When you clicked, browser knows a click event occurred. It starts from the `window` (lowest level/root of your website), then goes to `document`, then `html` root tag, then `body`, then `table`... its trying to reach as the lowest level of element as possible. This is called capture phase. (从上到下到达目标元素)
 
 Target: When browser reach the lowest level of element. In this case, you have clicked on a table cell (table data) hence target would be `td` tag. Then browser checks whether you have any click handler attached to this element. If there is any, browser executes that click handler. This is called target phase. (执行目标元素的事件)
 
@@ -26,11 +26,11 @@ Bubbling: After firing click handler attached to `td`, browser walks toward root
 
 You clicked on cell but all the event handler with parent elements will be fired. This is actually very powerful (check event delegation). 因为有事件冒泡，才会有事件委托出现。
 
-好处：不需要循环为每个子元素 li 注册事件，节省空间和运算效率。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。
+好处：不需要循环为每个子元素 li 注册事件，节省空间和运算效率。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。`e.target` 拿到当前被点击的 li。
 
 ## 描述事件捕获流程
 
-window --> document --> html (document.documentElement) --> body --> ... --> target
+`window --> document --> html (document.documentElement) --> body --> ... --> target`
 
 ## Event 对象常见应用
 
@@ -81,7 +81,9 @@ myEmitter.emit('event');
     });
 
     for(var i=0; i<1000000000; i++)
-    {} // this synchronous script is going to delay parsing of the DOM. So the DOMContentLoaded event is going to launch later.
+    {
+      // this synchronous script is going to delay parsing of the DOM. So the DOMContentLoaded event is going to launch later.
+    }
     ```
 
 1. The `load` event is fired when everything has finished loading.

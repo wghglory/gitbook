@@ -7,8 +7,8 @@
 
 1. react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
 1. 提取相似组件，封装成公共组件，提高复用性
-1. 改进 Modal, Select 等组件，原来 Modal 里面没有状态控制，是通过引用该 Modal 的组件状态决定开关，现在在 Modal 里面有 state 控制。职责单一
-1. 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能。
+1. 改进 Modal, Select 等组件
+1. 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能
 1. eslint 工具，editorConfig
 1. 加入测试、mock-server、持续集成
 

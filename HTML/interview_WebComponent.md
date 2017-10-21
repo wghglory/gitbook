@@ -52,11 +52,13 @@ Think of `<video>` tag:
 </video>
 ```
 
+**为什么写个 video 就能能看到 开始、音量调节 等按钮？他们存放在 shadow dom 中**
+
 There's a play button, a scrubber, timecodes and a volume slider. Lots of stuff that you didn't have to write any markup for, it just appeared when you asked for `<video>`.
 
 But what you're actually seeing is an illusion. The browser makers needed a way to guarantee that the tags they implemented would always render the same, regardless of any wacky HTML, CSS or JavaScript we might already have on the page. To do this, they created a secret passageway where they could hide their code and keep it out of our hot little hands. They called this secret place: **the Shadow DOM.**
 
-Use Chrome Developer Tools and enable the `Show user agent shadow DOM` flag. That'll let you inspect the `<video>` element in more detail.
+**Use Chrome Developer Tools and enable the `Show user agent shadow DOM` flag. That'll let you inspect the `<video>` element in more detail.**
 
 ![Enable Show Shadow DOM](https://css-tricks.com/wp-content/uploads/2013/11/enable-shadow-dom.png)
 
@@ -117,7 +119,7 @@ In the `<video>` example, the play button, scrubber, timecode, etc. are all desc
 
 #### Shadow Boundary
 
-Any HTML and CSS inside of the shadow root is protected from the parent document by an invisible barrier called the **Shadow Boundary.** The shadow boundary prevents CSS in the parent document from bleeding into the shadow DOM, and it also prevents external JavaScript from traversing into the shadow root.
+Any HTML and CSS inside of the shadow root is protected from the parent document by an invisible barrier called the _**Shadow Boundary.**_ **The shadow boundary prevents CSS in the parent document from bleeding into the shadow DOM, and it also prevents external JavaScript from traversing into the shadow root.**
 
 Translation: Let's say you have a style tag in the shadow DOM that specifies all h3's should have a `color` of red. Meanwhile, in the parent document, you have a style that specifies h3's should have a `color` of blue. In this instance, h3's appearing within the shadow DOM will be red, and h3's outside of the shadow DOM will be blue. The two styles will happily ignore each other thanks to our friend, the shadow boundary.
 

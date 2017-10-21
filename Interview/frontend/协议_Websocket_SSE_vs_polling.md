@@ -40,7 +40,9 @@
 
 EventSource 不是一个新鲜的技术，正式一点应该叫`Server-sent events`，即 `SSE`。
 
-EventSource **本质上还是 HTTP，基于流，**通过 response 流实时推送服务器信息到客户端。
+webpack hot reloading 就是基于 SSE。
+
+EventSource **本质上还是 HTTP，基于流**，通过 response 流实时推送服务器信息到客户端。
 
 新创建的 EventSource 对象拥有如下属性：
 
@@ -131,9 +133,9 @@ es.onerror = function(e){// 出错时的回调(网络问题,或者服务下线�
 
 #### SSE 配合 CORS 实现跨域
 
-另外，如果需要支持跨域调用，请设置响应头 `Access-Control-Allow-Origin': '*'`。
+另外，如果需要支持跨域调用，请设置响应头 `Access-Control-Allow-Origin: '*'`。
 
-如需支持发送cookie，请设置响应头 `Access-Control-Allow-Origin': req.headers.origin` 和 `Access-Control-Allow-Credentials: true`，并且创建es对象时，需要明确指定是否发送凭证。如下：
+如需支持发送cookie，请设置响应头 `Access-Control-Allow-Origin: req.headers.origin` 和 `Access-Control-Allow-Credentials: true`，并且创建es对象时，需要明确指定是否发送凭证。如下：
 
 ```javascript
 var es = new EventSource('/message', {

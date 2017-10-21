@@ -91,7 +91,7 @@ Keys make this process more efficient when dealing with lists because React can 
 ```
 
 ```javascript
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import fetchUser from 'twitter'
 // fetchUser take in a username returns a promise which will resolve with that username's data.
 
@@ -103,16 +103,17 @@ class Twitter extends Component {
 Take notice of what’s inside the opening and closing `<Twitter>` tags above. Instead of another component as you’ve probably seen before, the *Twitter* component’s child is a function. What this means is that in the implementation of the *Twitter* component, we’ll need to treat *props.children* as a function.
 
 ```javascript
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import fetchUser from 'twitter'
 
 class Twitter extends Component {
-  state = {
-    user: null,
+  constructor(props){
+    super(props)
+    this.state = {
+      user: null
+    }
   }
-  static propTypes = {
-    username: PropTypes.string.isRequired,
-  }
+
   componentDidMount () {
     fetchUser(this.props.username)
       .then((user) => this.setState({user}))
@@ -147,8 +148,11 @@ A **controlled** component is a component where React is in *control* and is the
 
 ```javascript
 class ControlledForm extends Component {
-  state = {
-    username: ''
+  constructor(props){
+    super(props)
+    this.state = {
+      username: ''
+    }
   }
   updateUsername = (e) => {
     this.setState({
@@ -254,7 +258,7 @@ What’s mildly interesting is that React doesn’t actually attach events to th
 
 事件委托：React的事件代理机制不会把事件处理函数直接绑定到真实的结点上，而是把所有事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。
 
-自动绑定：在 React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。在使用ES6 classes和纯函数时，这种自动绑定就不存在了，需要我们手动绑定this：bind方法、双冒号语法、构造器内声明、箭头函数。
+自动绑定：在 React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。在使用 ES6 class 和纯函数时，这种自动绑定就不存在了，需要我们手动绑定 this.bind() 方法、双冒号语法、构造器内声明、箭头函数。
 
 ## What is the difference between _createElement_ and _cloneElement_
 
@@ -314,7 +318,7 @@ React 天生组件化，我们可以将一个大的应用分割成很多小组�
 - 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
 - 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
 
-## 组件的render函数何时被调用
+## 组件的 render 函数何时被调用
 
 - 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
 - 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
@@ -365,6 +369,6 @@ React 组件中存在两类 DOM，render 函数被调用后， React 会根据 p
 ## 如何对组件进行优化
 
 - 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
-- 避免重绘：重写shouldComponentUpdate函数，手动控制是否应该调用render函数进行重绘
-- 尽可能使用Immutable Data不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
-- 在渲染组件时尽可能添加key，这样virtual DOM在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素
+- 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
+- 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
+- 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素

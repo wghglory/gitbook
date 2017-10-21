@@ -1,8 +1,8 @@
-# HTML 自定义元素教程
+# HTML 自定义元素教程 custom elements
 
 组件是 Web 开发的方向，现在的热点是 JavaScript 组件，但是 HTML 组件未来可能更有希望。
 
-## 一、浏览器处理
+## 浏览器处理
 
 我们一般都使用标准的 HTML 元素。
 
@@ -10,16 +10,15 @@
 <p>Hello World</p>
 ```
 
-上面代码中，`<p>`就是标准的 HTML 元素。
+上面代码中，`<p>` 就是标准的 HTML 元素。
 
 如果使用非标准的自定义元素，会有什么结果？
 
 ```html
 <greeting>Hello World</greeting>
-
 ```
 
-上面代码中，`<greeting>`就是非标准元素，浏览器不认识它。这段代码的[运行结果](http://jsbin.com/rifozonomu/edit?html,output)是，浏览器照常显示`Hello World`，这说明浏览器并没有过滤这个元素。
+上面代码中，`<greeting>` 就是非标准元素，浏览器不认识它。这段代码的[运行结果](http://jsbin.com/rifozonomu/edit?html,output)是，浏览器照常显示 `Hello World`，这说明浏览器并没有过滤这个元素。
 
 ![img](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017062202.png)
 
@@ -55,7 +54,7 @@ customTag('greeting', greetingHandler);
 
 ![img](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017062204.png)
 
-这说明，浏览器对待自定义元素，就像对待标准元素一样，只是没有默认的样式和行为。这种处理方式是写入 [HTML5 标准](https://www.w3.org/TR/html5/infrastructure.html#extensibility-0)的。
+这说明，浏览器对待自定义元素，就像对待标准元素一样，只是没有默认的样式和行为。这种处理方式是写入 [HTML5 标准](https://www.w3.org/TR/html5/infrastructure.html#extensibility-0) 的。
 
 "User agents must treat elements and attributes that they do not understand as semantically neutral; leaving them in the DOM (for DOM processors), and styling them according to CSS (for CSS processors), but not inferring any meaning from them."
 
@@ -72,7 +71,7 @@ tabs instanceof HTMLElement // true
 
 上面代码中，`tabs`是一个自定义元素，同时继承了`HTMLUnknownElement`和`HTMLElement`接口。
 
-## 二、HTML import
+## HTML Import
 
 有了自定义元素，就可以写出语义性非常好的 HTML 代码。
 
@@ -109,7 +108,7 @@ tabs instanceof HTMLElement // true
 
 HTML imports 的更多用法可以参考教程（[1](https://www.html5rocks.com/en/tutorials/webcomponents/imports/)，[2](https://www.webcomponents.org/community/articles/introduction-to-html-imports)）。目前只有 Chrome 浏览器支持这个语法。
 
-## 三、Custom Elements 标准
+## Custom Elements 标准
 
 HTML5 标准规定了自定义元素是合法的。然后，W3C 就为自定义元素制定了一个单独的 [Custom Elements 标准](https://w3c.github.io/webcomponents/spec/custom/#custom-elements)。
 

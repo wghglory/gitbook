@@ -33,9 +33,9 @@ C. 如何在拖动的源对象事件和目标对象事件间传递数据:
 
 ---
 
-## 一. 实现拖放的步骤：
+## 实现拖放的步骤
 
-### 步骤1：创建一个可拖拽对象：
+### 创建一个可拖拽对象
 
 #### 如果想要拖动某个元素，需要设置元素的 draggable 属性为 true。
 
@@ -52,7 +52,7 @@ document.getElementById("dragImg").addEventListener("dragstart", function(event)
 }, false);
 ```
 
-### 步骤2：放置对象：
+### 放置对象
 
 假设放置对象的DOM为：
 
@@ -92,9 +92,11 @@ document.getElementById("dragTarget").addEventListener("drop", function(event) {
 }, false);
 ```
 
+---
+
 ### 例子：
 
-（备注： 转载自：[http://www.w3school.com.cn/tiy/t.asp?f=html5_draganddrop](http://www.w3school.com.cn/tiy/t.asp?f=html5_draganddrop)）
+转载自：[http://www.w3school.com.cn/tiy/t.asp?f=html5_draganddrop](http://www.w3school.com.cn/tiy/t.asp?f=html5_draganddrop)
 
 ```html
 <!DOCTYPE HTML>
@@ -136,7 +138,7 @@ document.getElementById("dragTarget").addEventListener("drop", function(event) {
 </html>
 ```
 
-## 二. 拖放的相关事件
+## 拖放的相关事件
 
 | 事件        | 产生事件的元素      | 描述               |
 | --------- | ------------ | ---------------- |
@@ -148,9 +150,9 @@ document.getElementById("dragTarget").addEventListener("drop", function(event) {
 | drop      | 拖放的目标元素      | 有其他元素被拖放到本元素中    |
 | dragend   | 拖放的对象元素      | 拖放操作结束           |
 
-## 三. DataTransfer对象的属性与方法
+## DataTransfer对象的属性与方法
 
-### DataTransfer对象的属性：
+### DataTransfer对象的属性
 
 | 属性            | 描述                                       |
 | ------------- | ---------------------------------------- |
@@ -166,6 +168,6 @@ document.getElementById("dragTarget").addEventListener("drop", function(event) {
 | void clearData(DOMString format)         | 清除DataTransfer对象中的数据。如果省略参数format，则清除全部数据。 |
 | void setDragImage(Element image, long x, long y) | 用img元素来设置拖放图标。                           |
 
-## 四. draggable 属性兼容性
+## draggable 属性兼容性
 
 ![draggable 属性兼容性](http://static.zybuluo.com/dengzhirong/cxbopjk8ctuajycpdu6urmhm/image_1aq4irg51vpoq1j1mnaa9m1dbd9.png)
