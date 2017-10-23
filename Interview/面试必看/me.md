@@ -87,7 +87,7 @@ I found backend c# code makes system run slow, especially when there are multipl
 
 As a result, the response is faster.
 
-#### Ub challenge 2: Unity mappings, xml --> programmatically --> T4 xml
+#### 新奇点，迁移能力 Ub challenge 2: Unity mappings, xml --> programmatically --> T4 xml
 
 We used Unity to decouple layers. Our team had a hard time about the unity object mappings. Initially we used xml files to store the mappings. But there is not any intelligence and developers can spell wrong. They cannot see it wrong until running the solution. So I suggest, why don't we give up the xml and create mappings programmatically? We are quite happy at first. But as we have more controllers, we get tired of creating mappings because every time when you creates a new controller, you have to create a mapping between this controller and the service. And sometimes developers forget to add this mapping, resulting in more debugging time.
 
