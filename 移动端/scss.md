@@ -75,6 +75,7 @@ button {
   outline: none;
   border: 0;
   font-weight: 200;
+  -webkit-appearance: none;
 }
 
 @mixin placeholderMixin {
@@ -109,6 +110,7 @@ textarea {
   resize: none;
   overflow: auto;
   outline: none;
+  -webkit-appearance: none;
 }
 
 .clear {
