@@ -202,23 +202,6 @@ Though uncontrolled components are typically easier to implement since you just 
 
 点击 button 后让鼠标 focus 到某个文本框，这种事件需要原生 API 控制，无法通过 state 去控制的。
 
-## In which lifecycle event do you make AJAX requests and why
-
-AJAX requests should go in the **componentDidMount** lifecycle event.
-
-There are a few reasons for this,
-
-- **Fiber**, the next implementation of React’s reconciliation algorithm, will have the ability to start and stop rendering as needed for performance benefits. One of the trade-offs of this is that **componentWillMount**, the other lifecycle event where it might make sense to make an AJAX request, will be “non-deterministic”. What this means is that React may start calling *componentWillMount* at various times whenever it feels like it needs to. This would obviously be a bad formula for AJAX requests.
-- You can’t guarantee the AJAX request won’t resolve before the component mounts. If it did, that would mean that you’d be trying to setState on an unmounted component, which not only won’t work, but React will yell at you for. Doing AJAX in componentDidMount will guarantee that there’s a component to update.
-
-## What does _shouldComponentUpdate_ do and why is it important
-
-Above we talked about reconciliation and what React does when setState is called. What **shouldComponentUpdate** does is it’s a lifecycle method that allows us to opt out of this reconciliation process for certain components (and their child components).
-
-Why would we ever want to do this?
-
-As mentioned above, “The end goal of reconciliation is to, in the most efficient way possible, update the UI based on new state.” If we know that a certain section of our UI isn’t going to change, there’s no reason to have React go through the trouble of trying to figure out if it should. By returning false from **shouldComponentUpdate**, React will assume that the current component, and all its child components, will stay the same as they currently are.
-
 ## How do you tell React to build in _Production_ mode and what will that do
 
 Typically you’d use Webpack's **DefinePlugin** method to set `NODE_ENV` to **production**. This will strip out things like propType validation and extra warnings. On top of that, it’s also a good idea to minify your code because React uses **Uglify's** dead-code elimination to strip out development only code and comments, which will drastically reduce the size of your bundle.
@@ -331,35 +314,6 @@ React 天生组件化，我们可以将一个大的应用分割成很多小组�
 React 组件中存在两类 DOM，render 函数被调用后， React 会根据 props 或者 state 重新创建一棵 virtual DOM 树，虽然每一次调用都重新创建，但因为创建是发生在内存中，所以很快不影响性能。而 virtual dom 的更新并不意味着真实 DOM 的更新，React 采用 diff算法 将 virtual DOM 和真实 DOM 进行比较，找出需要更新的最小的部分，这时 Real DOM 才可能发生修改。
 
 所以每次 state 的更改都会使得 render 函数被调用，但是页面DOM不一定发生修改。
-
-## 组件的生命周期
-
-组件生命周期有三种阶段：初始化阶段（Mounting）、更新阶段（Updating）、析构阶段（Unmouting）。
-
-**初始化阶段：**
-
-- `constructor()`：初始化 state、绑定事件
-- `componentWillMount()`：在 `render()` 之前执行，除了同构，跟 constructor 没啥差别
-- `render()`：用于渲染 DOM。如果有操作 DOM 或和浏览器打交道的操作，最好在下一个步骤执行。
-- `componentDidMount()`：在 `render()` 之后立即执行，可以在这个函数中对 DOM 就进行操作，可以加载服务器数据，可以使用 `setState()` 方法触发重新渲染
-
-**组件更新阶段：**
-
-- `componentWillReceiveProps(nextProps)`：在已挂载的组件接收到新 props 时触发，传进来的 props 没有变化也可能触发该函数，若需要实现 props 变化才执行操作的话需要自己手动判断
-- `componentShouldUpdate(nextProps，nextState)`：默认返回 true，我们可以手动判断需不需要触发 render，若返回 false，就不触发下一步骤
-- `componentWillUpdate()`：`componentShouldUpdate` 返回 true 时触发，在 render之前，可以在里面进行操作 DOM
-- `render()`：重渲染
-- `componentDidUpdate()`：render 之后立即触发
-
-组件卸载阶段：
-
-- `componentWillUnmount()`：在组件销毁之前触发，可以处理一些清理操作，如无效的timers 等
-
-## 在哪些生命周期中可以修改组件的state
-
-- `componentDidMount` 和 `componentDidUpdate`
-- constructor、componentWillMount 中 setState 会发生错误：setState 只能在mounted 或 mounting 组件中执行
-- componentWillUpdate 中 setState 会导致死循环
 
 ## 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现
 
