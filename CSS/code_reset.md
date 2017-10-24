@@ -1,5 +1,7 @@
 # css reset 重置
 
+见移动端 scss.md
+
 ## 如何修改 chrome 记住密码后自动填充表单的黄色背景 ？
 
 ```css
