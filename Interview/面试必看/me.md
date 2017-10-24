@@ -71,6 +71,28 @@
 | Conflicts | not mine: Raya asks too much; opinion conflicts: Jay ui-controller/func-controller | scrum master real-time chat task slow |  |
 | What do you do differently | high-level architecture refactor, cacheHelper(memcache,regular) | real-time chat | mapQuest, chart.js, pdf |
 
+#### What was the toughest challenge you’ve ever faced?
+
+挑战每隔一段时间就出现，以前觉得困难的挑战，现在回头看可能好多也不困难了，毕竟经验有增长。
+
+上海踏瑞、创狐：简创和 PGC 项目 -- graphics editor, a very important module in project. It includes Tools, Canvas and Properties Area. You can think it as a online Photoshop. Syncing between areas, Grouping, Data Saving format, 创建符合组件。老师分配群组，组长演示的时候其他组员能实时看到组长的操作。多人协同。
+
+SNH: To design a basic chat application like skype/qq. That was the first time that I made a real-time application. First, I did a research about what techniques should be used and SignalR is the one I want. Second, how to design the one to one, one to many chat mode? I researched and used group, room these concepts to implement both client and server side code. Third, what if one is online and the other one is offline. And online person sends a message to offline person. Then when offline person gets online, how can he receive the message? Fourth, how can I retrieve chat histories? Fifth, if one deletes history from his side, the other person should still be able to have the history, how to manage the history? This is more complicated for one to many. I put all possible situations into consideration and design the database. It's a tough task, when I finish this, all colleagues and manager spoke highly of me!
+
+#### Describe a specific problem you solved for your employer or professor. How did you approach the problem? What role did others play? What was the outcome? (decision making)
+
+`UnionBank MPower project log4net + redis`
+
+Initially, tahoe project uses ExceptionFilter to write errors/exceptions into database. When there is an error in test, developers have to look up the error in test db, but some developers don't have access to test db. And it's not convenient to find errors, because you have to open sql client, find that table, and query errors.
+
+So I suggest, why not record errors in txt file? Another developer implemented this feature. One day, I wanted to check the error log, but when I see that log file, it's about 100 megabyte, I don't dare to open it...
+
+I immediately talked with team and pointed out that we cannot record all errors in only one file. We need to control the biggest size of one file, maybe 10mb. My manager decided to let me do it. Then I used Log4net the solve the problem since it can log errors in several files in a reasonable size.
+
+One day, I was pretty sure that an exception was not recorded in our log file. I found the reason is when errors happen in different threads, there will be a problem for multiple threads to access one file. So I added "lock" to solve this issue. Then I tested my code by generating multiple errors in multiple threads. The bad thing happens, when a thread writes error to file, the other threads have to wait, the performance is so bad. Then I used put all errors into queue, and start a new thread, which is responsible to get errors and write them into file. Finally, I used redis instead of traditional queue, so errors are push into redis queues.
+
+多线程操作同一个文件时会出现并发问题。解决的一个办法就是给文件加锁(lock)，但是这样的话，一个线程操作文件时，其它的都得等待，这样的话性能非常差。另外一个解决方案，就是先将数据放在队列中，然后开启一个线程，负责从队列中取出数据，再写到文件中。
+
 #### UnionBank challenges 1: Performance, UnitOfWork, CacheHelper with memcache
 
 As the application get larger and we have more and more data, the system response time increased.

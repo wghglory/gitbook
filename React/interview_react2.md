@@ -12,26 +12,6 @@ What’s mildly interesting is that React doesn’t actually attach events to th
 
 自动绑定：在 React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。在使用 ES6 class 和纯函数时，这种自动绑定就不存在了，需要我们手动绑定 this.bind() 方法、双冒号语法、构造器内声明、箭头函数。用 bind 写在 constructor 里面最好。直接写在 jsx 中在 re-render 会有重新绑定的问题。
 
-## React 解决了什么问题？思想？好在哪？
-
-**a. React 实现了 Virtual DOM，diff 算法使得更新小量数据性能高**
-
-在一定程度上提升了性能，尤其是在进行小量数据更新时。因为 DOM 操作是很耗性能的，而 Virtual DOM 是在内存中进行操作的，当数据发生变化时，通过 diff 算法 比较两棵树之间的变化，再进行必要的 DOM 更新，省去了不必要的高消耗的 DOM 操作。当然，这种性能优化主要体现在有小量数据更新的情况下。因为 React的基本思维模式是每次有变动就重新渲染整个应用，简单想来就是直接重置 innerHTML，比如说在一个大型列表所有数据都变动的情况下，重置 innerHTML 还比较合理，但若是只有一行数据变了，它也需要重置整个 innerHTML，就会造成大量的浪费。而 Virtual DOM 虽然进行了 JS 层面的计算，但是比起DOM操作来说，简直不要太便宜。
-
-> [为什么操作真实 DOM 比 React 更快？](https://www.zhihu.com/question/31809713)
-
-**b. React的一个核心思想是声明式编程。**
-
-命令式编程是解决做什么的问题，就像是下命令一样，关注于WHAT，做什么就调用对象 API。而声明式编程关注于 HOW 如何做才能得到结果。在React中，我们只需要关注“目前的状态是什么”，而不是探究“我如何做才能让页面变成目前的状态”。React 就是不断声明，然后在特定的参数下渲染 UI 界面。这种编程方式可以让我们的代码更容易被理解，从而易于维护。
-
-**c. 组件化**
-
-React 天生组件化，我们可以将一个大的应用分割成很多小组件，这样有好几个优势。首先组件化的代码像一棵树一样清楚干净，比起传统的面条式代码**可读性更高**；其次前端人员在开发过程中可以**并行开发组件而不影响**，大大提高了开发效率；最重要的是，组件化使得**复用性**大大提高，团队可以沉淀一些**公共组件或工具库**。
-
-**d. 单向数据流**
-
-在 React 中数据流是单向的，由父节点流向子节点，如果父节点的 props 发生了变化，那么 React 会递归遍历整个组件树，重新渲染所有使用该属性的子组件。这种单向的数据流一方面比较**清晰**不容易混乱，另一方面是比较好**维护**，出了**问题也比较好定位**。
-
 ## 组件的 render 函数何时被调用
 
 - 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
@@ -204,3 +184,162 @@ this.setState((prevState, props) => {
 ```
 
 Nothing is wrong with it 🙂. It’s rarely used and not well known, but you can also pass a function to **setState** that receives the previous state and props and returns a new state, just as we’re doing above. And not only is nothing wrong with it, but it’s also actively recommended if you’re setting state based on previous state.
+
+
+## What is the difference between a _controlled_ component and an _uncontrolled_ component
+
+* Controlled Component
+  * The controlled way is when we bind the value of the input field to the state of that component
+  * So when the user types in the value, the state updates and then changes the value of the input field
+  * We can see the state change in real time as the user types in the React developer tool
+  * React docs typically recommend that we deal with forms
+  * This is called a controlled component because React is controlling the value of the specific input field
+* Uncontrolled Component (using ref)
+  * The uncontrolled way is a little more traditional, where the user fills the input field
+  * and the state doesn’t change till he presses submit (or a similar event)
+
+A large part of React is this idea of having components control and manage their own state.
+
+What happens when we throw native HTML form elements (input, select, textarea, etc) into the mix? Should we have React be the “single source of truth” like we’re used to doing with React? Or should we allow that form data to live in the DOM like we’re used to typically doing with HTML form elements? These questions are at the heart of controlled vs uncontrolled components.
+
+A **controlled** component is a component where React is in *control* and is the single source of truth for the form data. As you can see below, *username* doesn’t live in the DOM but instead lives in our component state. Whenever we want to update *username*, we call *setState* as we’re used to.
+
+```javascript
+class ControlledForm extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username: ''
+    }
+  }
+  updateUsername = (e) => {
+    this.setState({
+      username: e.target.value,
+    })
+  }
+  handleSubmit = () => {}
+  render () {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type='text'
+          value={this.state.username}
+          onChange={this.updateUsername} />
+        <button type='submit'>Submit</button>
+      </form>
+    )
+  }
+}
+```
+
+An **uncontrolled** component is where your form data is handled by the DOM, instead of inside your React component.
+
+You use *ref* to accomplish this.
+
+```javascript
+class UnControlledForm extends Component {
+  handleSubmit = () => {
+    console.log("Input Value: ", this.input.value)
+  }
+  render () {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type='text'
+          ref={(input) => this.input = input} />
+        <button type='submit'>Submit</button>
+      </form>
+    )
+  }
+}
+```
+
+Though uncontrolled components are typically easier to implement since you just grab the value from the DOM using ref, it’s typically recommended that you favor controlled components over uncontrolled components. The main reasons for this are that **controlled components support instant field validation, allow you to conditionally disable/enable buttons, enforce input formats**, and are more “the React way”.
+
+尽量用 controlled form。
+
+## When to Use ref/uncontrolled components
+
+* Managing focus, text selection, or media playback.
+* Triggering imperative animations.
+* Integrating with third-party DOM libraries.
+
+Avoid using refs for anything that can be done declaratively. For example, instead of exposing `open()` and `close()` methods on a Dialog component, pass an `isOpen` prop to it.
+
+## [Exposing DOM Refs to Parent Components](https://facebook.github.io/react/docs/refs-and-the-dom.html#when-to-use-refs)
+
+In rare cases, you might want to have access to a child's DOM node from a parent component. This is generally not recommended because it breaks component encapsulation, but it can occasionally be useful for triggering focus or measuring the size or position of a child DOM node.
+
+In such cases we recommend exposing a special prop on the child. The child would take a function prop with an arbitrary name (e.g. inputRef) and attach it to the DOM node as a ref attribute. This lets the parent pass its ref callback to the child's DOM node through the component in the middle.
+
+This works both for classes and for functional components.
+
+```javascript
+function CustomTextInput(props) {
+  return (
+    <div>
+      <input ref={props.inputRef} />
+    </div>
+  );
+}
+
+class Parent extends React.Component {
+  render() {
+    return (
+      <CustomTextInput
+        inputRef={el => this.inputElement = el}
+      />
+    );
+  }
+}
+```
+
+> In the example above, Parent passes its ref callback as an inputRef prop to the CustomTextInput, and the CustomTextInput passes the same function as a special `ref` attribute to the `<input>`. As a result, `this.inputElement` in Parent will be set to the DOM node corresponding to the `<input>` element in the CustomTextInput.
+>
+> Note that the name of the inputRef prop in the above example has no special meaning, as it is a regular component prop. However, using the ref attribute on the `<input>` itself is important, as it tells React to attach a `ref` to its DOM node.
+
+## [React.PureComponent](https://facebook.github.io/react/docs/react-api.html#react.Purecomponent)
+
+`React.PureComponent` is exactly like `React.Component` but implements `shouldComponentUpdate()` with a shallow prop and state comparison.
+
+If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
+
+> Note
+>
+> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](https://facebook.github.io/react/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
+>
+> Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
+
+## Setting up first React component with npm, webpack and babel
+
+A React Component may be composed of the following:
+
+* ui
+* internal data
+* lifecycle event
+
+Every component is supposed to have a `render` method. The reason is that the `render` method returns the template for that component and it is necessary for a component to have a UI.
+
+We need to tell ReactDOM to which element the components should be rendered to. You usually have to use `ReactDOM.render` only once in your applications because rendering the most parent element will render all the children as well.
+
+**JSX is converted to `React.createElement` methods** which describes what you see on the screen (notice only describes, doesn’t mean that it is what we see). `React.createElement` **returns an object representation of the DOM node. It is also called virtual DOM node.**
+
+React interprets JSX and transforms it into lightweight javascript objects which are used to create a virtual DOM. Changes in the virtual dom are tracked on only the necessary updates are rendered to the DOM.
+
+`React.createElement` takes 3 arguments:
+
+* element type: `div`, `span`, component
+* properties object
+* children (multiple)
+
+When React encounters a component in any of the above arguments, it replaces that with what the components `React.createElement` returns. Hence when rendering the most parent component using ReactDOM, the entire virtual DOM is created.
+
+This invocation of `React.createElement` to create a virtual DOM node only happens while using `ReactDOM.render` and while changing state using `setState`.
+
+The process looks something like this,
+
+**Signal to notify our app some data has changed -> re-render virtual dom -> diff previous virtual dom with new virtual dom -> only update real dom with necessary changes.** This gives react performance ups.
+
+## this.props.children
+
+`props.children` is whatever is between the `<Opening>` and closing `</Opening>` blocks of a component.
