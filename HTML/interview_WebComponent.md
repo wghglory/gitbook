@@ -77,7 +77,7 @@ So how to use our custom `<img-slider>` tag like `<video>`?
 </template>
 ```
 
-==Everything inside a template is considered inert by the browser. This means **tags with external sources — `<img>`, `<audio>`, `<video>`, etc. — do not make http requests and `<script>` tags do not execute**. It also means that nothing from within the template is rendered on the page until we activate it using JavaScript.==
+<mark>Everything inside a template is considered inert by the browser. This means **tags with external sources — `<img>`, `<audio>`, `<video>`, etc. — do not make http requests and `<script>` tags do not execute**. It also means that nothing from within the template is rendered on the page until we activate it using JavaScript.</mark>
 
 So the first step in creating our `<img-slider>` is to put all of its HTML and CSS into a `<template>`.
 
