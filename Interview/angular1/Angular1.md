@@ -1,6 +1,6 @@
-# Most comes from dotnetTricks
+# AngularJS questions (Most comes from dotnetTricks)
 
-### Service, Factory, Provider
+## Service, Factory, Provider
 
 **Factory** allows you to add some logic before creating the object. It returns the created object.
 
@@ -39,7 +39,7 @@ $scope.Name = myService.setName('wang');
 
 when to use: a singleton object. when needing to share a single object across the application. Authenticated user details
 
-**Provider**: create a configurable service object. 
+**Provider**: create a configurable service object.
 
 ```javascript
 app.provider('configurable', function(){

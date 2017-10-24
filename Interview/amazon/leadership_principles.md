@@ -10,7 +10,7 @@ Leaders start with the customer and work backwards. They work vigorously to earn
 #### Ownership
 
 > Ub tahoe: instead of a beautiful dropdownList, accordion, implement a reusable plugin, although the layout stays ugly for a while, long-term, easy to maintain, more efficient to use in future.
-> 
+>
 > in SNH, SMS message, angular issue, other teams, they ask for help and I help
 
 Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job".
@@ -38,7 +38,7 @@ Leaders are never done learning and always seek to improve themselves. They are 
 
 #### Hire and Develop the Best
 
-> no hire experience, but in Tahoe, I ES2015, naming convention, coding style to coach others
+> no hire experience, but in Tahoe, I introduced ES2015, naming convention, coding style
 > help new employees (Vishal) with angular
 
 Leaders raise the performance bar with every hire and promotion. They recognize exceptional talent, and willingly move them throughout the organization. Leaders develop leaders and take seriously their role in coaching others. We work on behalf of our people to invent mechanisms for development like Career Choice.
