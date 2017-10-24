@@ -2,23 +2,52 @@
 
 ## React
 
+* a library
 * Component-based
 * MVC's V: small view library
+* JSX, transpiled to React.CreateElement, which returns Virtual DOM
 * Virtual DOM: lightweight, representation of actual DOM in memory
 * one way data flow
 * manage state => UI updates automatically by React
 * React is smart to update only necessary UI by comparing previous state and new state
 * Presentational and Container Components
+* many ways to do the same thing, like controlled/unControlled form
+* May need Redux, mobx
+* need other packages - react router, fetch/axios, enzyme, Jest
+* Create react App CLI, which cannot generate components
+
+ecosystem:
+
+* react native
+* material UI
+* next.js
+* mobx
+* storybook
+* react desktop
+* react VR
 
 ## Angular4
 
-* MVVM: full framework with all the tooling
+* big framework, lots to learn
+* slower but powerful, 拥有很多工具(http, Data Validation, rxjs, routing)，也有大量复杂的语法
+* 2 way data binding
+* testing utilities
+* MVVM(angularJS): full framework with all the tooling
 * Component-based too
 * Typescript
 * @Component has template or templateUrl, style or styleUrl. Styles work only in current component
 * 默认支持 css 模块化
-* Data Validation
-* Angular 拥有很多工具，也有大量复杂的语法
+* clear ways to do things
+* Angular 4 is faster than Angular 2
+* Angular CLI, which can generate components, services
+
+ecosystem:
+
+* Ionic hybrid framework
+* nativeScript
+* Material Design
+* Angular Universal
+* @ngrx/store
 
 ## Vue.js
 
