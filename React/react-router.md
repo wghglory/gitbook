@@ -34,6 +34,7 @@ Composed of the component Link, except with additional functionality to make Lin
 __*Query Params*__
 
 The `to` prop of the `Link` component of React Router accepts url path strings or an object with props:
+
 * pathname: which takes a string for the link’s path
 * search: takes a string beginning with ‘?’ for query params followed by the query param name value string
 

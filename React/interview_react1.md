@@ -61,11 +61,29 @@ There’s a few reasons for this.
 
 > Signal to notify our app some data has changed -> Re-render virtual DOM -> Diff previous virtual DOM with new virtual DOM -> Only update real DOM with necessary changes.
 
+## 如何设计一个好组件
+
+SOLID: single responsibility, open-close, 里式替换, Interface segregation(small interface), DI
+
+组件的主要目的是为了更好的复用，所以在设计组件的时候需要遵循**高内聚低耦合**的原则。
+
+- 可以通过遵循几种设计模式原则来达到高复用的目的，比如**单一职责原则：React 推崇的是“组合”而非“继承”**，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事。
+- **开放/封闭原则**，就是常说的对修改封闭，对扩展开放。在 React 中我们可以用高阶组件来实现。使用**高阶组件**来实现组件的复用。高阶组件就是一个包装了另一个 React 组件的 React 组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。
+- 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
+- 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
+
+## 如何对组件进行优化
+
+- 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
+- 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
+- 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
+- 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素
+
 ## [React 优化 Optimization](https://facebook.github.io/react/docs/optimizing-performance.html)
 
 ##### 1. Use the Production Build
 
-默认情况下，React 将会在开发模式，很缓慢，不建议用于生产。要在生产模式下使用 React，设置环境变量 NODE_ENV 为 production （使用 webpack's DefinePlugin）。例如：
+Typically you’d use Webpack's **DefinePlugin** method to set `NODE_ENV` to **production**. This will strip out things like _propType validation and extra warnings_. On top of that, it’s also a good idea to **minify** your code because React uses **Uglify's** dead-code elimination to strip out development only code and comments, which will drastically reduce the size of your bundle. **TreeShaking**
 
 ```javascript
 new webpack.DefinePlugin({
@@ -85,7 +103,7 @@ If you know that in some situations your component doesn't need to update, you c
 
 ###### 4. looping thru -- add `key`
 
-比如我们现在有个 listComponent，每个 item 是个 component，总共有很多10万个吧。新增一条数据时，如果不用`shouldComponentUpdate` 也没加 `key`，react 会重新渲染10万个和这个新加的数据，性能弱。
+比如我们现在有个 listComponent，每个 item 是个 component，总共有很多10万个吧。新增一条数据时，如果不用 `shouldComponentUpdate` 也没加 `key`，react 会重新渲染10万个和这个新加的数据，性能弱。
 
 ```javascript
 //当下一次 props 和当前不同时，return true，告诉react去更新重新渲染。注意这里逻辑必须简洁，不然可能比react自动渲染的逻辑还费时
@@ -94,15 +112,7 @@ shouldComponentUpdate(nextProps, nextState){
 }
 ```
 
-## When to Use ref
-
-* Managing focus, text selection, or media playback.
-* Triggering imperative animations.
-* Integrating with third-party DOM libraries.
-
-Avoid using refs for anything that can be done declaratively. For example, instead of exposing `open()` and `close()` methods on a Dialog component, pass an `isOpen` prop to it.
-
-## Forms
+## What is the difference between a _controlled_ component and an _uncontrolled_ component
 
 * Controlled Component
   * The controlled way is when we bind the value of the input field to the state of that component
@@ -113,6 +123,74 @@ Avoid using refs for anything that can be done declaratively. For example, inste
 * Uncontrolled Component (using ref)
   * The uncontrolled way is a little more traditional, where the user fills the input field
   * and the state doesn’t change till he presses submit (or a similar event)
+
+A large part of React is this idea of having components control and manage their own state.
+
+What happens when we throw native HTML form elements (input, select, textarea, etc) into the mix? Should we have React be the “single source of truth” like we’re used to doing with React? Or should we allow that form data to live in the DOM like we’re used to typically doing with HTML form elements? These questions are at the heart of controlled vs uncontrolled components.
+
+A **controlled** component is a component where React is in *control* and is the single source of truth for the form data. As you can see below, *username* doesn’t live in the DOM but instead lives in our component state. Whenever we want to update *username*, we call *setState* as we’re used to.
+
+```javascript
+class ControlledForm extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username: ''
+    }
+  }
+  updateUsername = (e) => {
+    this.setState({
+      username: e.target.value,
+    })
+  }
+  handleSubmit = () => {}
+  render () {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type='text'
+          value={this.state.username}
+          onChange={this.updateUsername} />
+        <button type='submit'>Submit</button>
+      </form>
+    )
+  }
+}
+```
+
+An **uncontrolled** component is where your form data is handled by the DOM, instead of inside your React component.
+
+You use *ref* to accomplish this.
+
+```javascript
+class UnControlledForm extends Component {
+  handleSubmit = () => {
+    console.log("Input Value: ", this.input.value)
+  }
+  render () {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type='text'
+          ref={(input) => this.input = input} />
+        <button type='submit'>Submit</button>
+      </form>
+    )
+  }
+}
+```
+
+Though uncontrolled components are typically easier to implement since you just grab the value from the DOM using ref, it’s typically recommended that you favor controlled components over uncontrolled components. The main reasons for this are that **controlled components support instant field validation, allow you to conditionally disable/enable buttons, enforce input formats**, and are more “the React way”.
+
+尽量用 controlled form。
+
+## When to Use ref/uncontrolled components
+
+* Managing focus, text selection, or media playback.
+* Triggering imperative animations.
+* Integrating with third-party DOM libraries.
+
+Avoid using refs for anything that can be done declaratively. For example, instead of exposing `open()` and `close()` methods on a Dialog component, pass an `isOpen` prop to it.
 
 ## [Exposing DOM Refs to Parent Components](https://facebook.github.io/react/docs/refs-and-the-dom.html#when-to-use-refs)
 

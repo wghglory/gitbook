@@ -236,7 +236,7 @@ store.subscribe(listener);
 
 显然，只要把 View 的更新函数（对于 React 项目，就是组件的`render`方法或`setState`方法）放入`listen`，就会实现 View 的自动渲染。
 
-`store.subscribe`方法返回一个函数，调用这个函数就可以解除监听。
+`store.subscribe` 方法返回一个函数，调用这个函数就可以解除监听。
 
 ```javascript
 let unsubscribe = store.subscribe(() =>

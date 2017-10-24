@@ -47,7 +47,7 @@ render(
 
 ### 如何发送 action
 
-一般在初始化或者按钮点击的时候，希望能够触发 dispatch(action)。下面讲实现。
+一般在初始化或者按钮点击的时候，希望能够触发 `dispatch(action)`。下面讲实现。
 
 #### App component
 
@@ -75,7 +75,7 @@ container component 核心代码：
 connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
 ```
 
-connect() without any parameter, means to not subscribe to the store.
+`connect()` without any parameter, means to not subscribe to the store.
 
 `connect` is a higher-order function that returns a function that returns a component. `connect` expects two arguments: `mapStateToProps` and `mapDispatchToProps`. Both are functions. It returns a function that expects a presentational component, and wraps it with a container that sends it data via props.
 

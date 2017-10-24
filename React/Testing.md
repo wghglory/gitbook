@@ -44,7 +44,7 @@ Revisiting our `ListOfNumbers` component above, here is how we might test that t
 describe('ListOfNumbers', () => {
   it('renders an item for each provided number', () => {
     const listOfNumbers = shallowRender(<ListOfNumbers className="red" numbers={[3, 4, 5, 6]}/>);
-    expect(listOfNumbers.props.children.length).toEqual(4);
+    expect(listOfNumbers.props.numbers.length).toEqual(4);
   });
 });
 ```

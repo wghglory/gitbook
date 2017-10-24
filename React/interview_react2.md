@@ -32,28 +32,6 @@ React 天生组件化，我们可以将一个大的应用分割成很多小组�
 
 在 React 中数据流是单向的，由父节点流向子节点，如果父节点的 props 发生了变化，那么 React 会递归遍历整个组件树，重新渲染所有使用该属性的子组件。这种单向的数据流一方面比较**清晰**不容易混乱，另一方面是比较好**维护**，出了**问题也比较好定位**。
 
-## 如何设计一个好组件
-
-SOLID: single responsibility, open-close, 里式替换, Interface segregation(small interface), DI
-
-组件的主要目的是为了更好的复用，所以在设计组件的时候需要遵循**高内聚低耦合**的原则。
-
-- 可以通过遵循几种设计模式原则来达到高复用的目的，比如**单一职责原则：React 推崇的是“组合”而非“继承”**，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事。
-- **开放/封闭原则**，就是常说的对修改封闭，对扩展开放。在 React 中我们可以用高阶组件来实现。使用**高阶组件**来实现组件的复用。高阶组件就是一个包装了另一个 React 组件的 React 组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。
-- 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
-- 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
-
-## 如何对组件进行优化
-
-- 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
-- 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
-- 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
-- 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素
-
-## How do you tell React to build in _Production_ mode and what will that do
-
-Typically you’d use Webpack's **DefinePlugin** method to set `NODE_ENV` to **production**. This will strip out things like _propType validation and extra warnings_. On top of that, it’s also a good idea to **minify** your code because React uses **Uglify's** dead-code elimination to strip out development only code and comments, which will drastically reduce the size of your bundle. **TreeShaking**
-
 ## 组件的 render 函数何时被调用
 
 - 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
@@ -92,46 +70,6 @@ For more info, check out [React Elements vs React Components](https://tylermcgin
 ## When would you use a _Class Component_ over a _Functional Component_
 
 If your component has state or a lifecycle method(s), use a Class component. Otherwise, use a Functional component.
-
-## What are _ref_ in React and why are they important
-
-ref are an escape hatch which allow you to get direct access to a DOM element or an instance of a component. In order to use them you add a ref attribute to your component whose value is a callback function which will receive the underlying DOM element or the mounted instance of the component as its first argument.
-
-```javascript
-class UnControlledForm extends Component {
-  handleSubmit = () => {
-    console.log("Input Value: ", this.input.value)
-  }
-  render () {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          ref={(input) => this.input = input} />
-        <button type='submit'>Submit</button>
-      </form>
-    )
-  }
-}
-```
-
-Above notice that our input field has a ref attribute whose value is a function. That function receives the actual DOM element of input which we then put on the instance in order to have access to it inside of the *handleSubmit* function.
-
-It’s often misconstrued that you need to use a class component in order to use ref, but ref can also be used with functional components by leveraging closures in JavaScript.
-
-```javascript
-function CustomForm ({handleSubmit}) {
-  let inputElement
-  return (
-    <form onSubmit={() => handleSubmit(inputElement.value)}>
-      <input
-        type='text'
-        ref={(input) => inputElement = input} />
-      <button type='submit'>Submit</button>
-    </form>
-  )
-}
-```
 
 ## What are _keys_ in React and why are they important
 
@@ -212,72 +150,6 @@ To demonstrate this, let’s say in another file we want to render a *Profile* i
     : <Profile info={user} />}
 </Twitter>
 ```
-
-## What is the difference between a _controlled_ component and an _uncontrolled_ component
-
-A large part of React is this idea of having components control and manage their own state.
-
-What happens when we throw native HTML form elements (input, select, textarea, etc) into the mix? Should we have React be the “single source of truth” like we’re used to doing with React? Or should we allow that form data to live in the DOM like we’re used to typically doing with HTML form elements? These questions are at the heart of controlled vs uncontrolled components.
-
-A **controlled** component is a component where React is in *control* and is the single source of truth for the form data. As you can see below, *username* doesn’t live in the DOM but instead lives in our component state. Whenever we want to update *username*, we call *setState* as we’re used to.
-
-```javascript
-class ControlledForm extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      username: ''
-    }
-  }
-  updateUsername = (e) => {
-    this.setState({
-      username: e.target.value,
-    })
-  }
-  handleSubmit = () => {}
-  render () {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          value={this.state.username}
-          onChange={this.updateUsername} />
-        <button type='submit'>Submit</button>
-      </form>
-    )
-  }
-}
-```
-
-An **uncontrolled** component is where your form data is handled by the DOM, instead of inside your React component.
-
-You use *ref* to accomplish this.
-
-```javascript
-class UnControlledForm extends Component {
-  handleSubmit = () => {
-    console.log("Input Value: ", this.input.value)
-  }
-  render () {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          ref={(input) => this.input = input} />
-        <button type='submit'>Submit</button>
-      </form>
-    )
-  }
-}
-```
-
-Though uncontrolled components are typically easier to implement since you just grab the value from the DOM using ref, it’s typically recommended that you favor controlled components over uncontrolled components. The main reasons for this are that **controlled components support instant field validation, allow you to conditionally disable/enable buttons, enforce input formats**, and are more “the React way”.
-
-尽量用 controlled form。
-
-## When using uncontrolled components
-
-点击 button 后让鼠标 focus 到某个文本框，这种事件需要原生 API 控制，无法通过 state 去控制的。
 
 ## Why would you use `React.Children.map(props.children, () => )` instead of `props.children.map(() => )`
 
