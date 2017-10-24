@@ -2,7 +2,7 @@
 
 ```
 new 构造函数 --> 实例对象
-实例对象.__proto__ === 原型对象 == 构造函数.prototype
+实例对象.__proto__ === 原型对象 === 构造函数.prototype
 原型对象.constructor === 构造函数
 ```
 

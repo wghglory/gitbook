@@ -1,3 +1,78 @@
+# react interview
+
+## Describe how events are handled in React. 事件在React中的处理方式
+
+**In order to solve cross browser compatibility issues, your event handlers in React will be passed instances of *SyntheticEvent***, which is React’s cross-browser wrapper around the browser’s native event. These synthetic events have the same interface as native events you’re used to, except they work identically across all browsers.
+
+What’s mildly interesting is that React doesn’t actually attach events to the child nodes themselves. React will listen to all events at the top level using a single event listener. This is good for performance and it also means that React doesn’t need to worry about keeping track of event listeners when updating the DOM.
+
+在 React 底层，主要对合成事件做了两件事：事件委托和自动绑定。
+
+事件委托：React的事件代理机制不会把事件处理函数直接绑定到真实的结点上，而是把所有事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。
+
+自动绑定：在 React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。在使用 ES6 class 和纯函数时，这种自动绑定就不存在了，需要我们手动绑定 this.bind() 方法、双冒号语法、构造器内声明、箭头函数。用 bind 写在 constructor 里面最好。直接写在 jsx 中在 re-render 会有重新绑定的问题。
+
+## React 解决了什么问题？思想？好在哪？
+
+**a. React 实现了 Virtual DOM，diff 算法使得更新小量数据性能高**
+
+在一定程度上提升了性能，尤其是在进行小量数据更新时。因为 DOM 操作是很耗性能的，而 Virtual DOM 是在内存中进行操作的，当数据发生变化时，通过 diff 算法 比较两棵树之间的变化，再进行必要的 DOM 更新，省去了不必要的高消耗的 DOM 操作。当然，这种性能优化主要体现在有小量数据更新的情况下。因为 React的基本思维模式是每次有变动就重新渲染整个应用，简单想来就是直接重置 innerHTML，比如说在一个大型列表所有数据都变动的情况下，重置 innerHTML 还比较合理，但若是只有一行数据变了，它也需要重置整个 innerHTML，就会造成大量的浪费。而 Virtual DOM 虽然进行了 JS 层面的计算，但是比起DOM操作来说，简直不要太便宜。
+
+> [为什么操作真实 DOM 比 React 更快？](https://www.zhihu.com/question/31809713)
+
+**b. React的一个核心思想是声明式编程。**
+
+命令式编程是解决做什么的问题，就像是下命令一样，关注于WHAT，做什么就调用对象 API。而声明式编程关注于 HOW 如何做才能得到结果。在React中，我们只需要关注“目前的状态是什么”，而不是探究“我如何做才能让页面变成目前的状态”。React 就是不断声明，然后在特定的参数下渲染 UI 界面。这种编程方式可以让我们的代码更容易被理解，从而易于维护。
+
+**c. 组件化**
+
+React 天生组件化，我们可以将一个大的应用分割成很多小组件，这样有好几个优势。首先组件化的代码像一棵树一样清楚干净，比起传统的面条式代码**可读性更高**；其次前端人员在开发过程中可以**并行开发组件而不影响**，大大提高了开发效率；最重要的是，组件化使得**复用性**大大提高，团队可以沉淀一些**公共组件或工具库**。
+
+**d. 单向数据流**
+
+在 React 中数据流是单向的，由父节点流向子节点，如果父节点的 props 发生了变化，那么 React 会递归遍历整个组件树，重新渲染所有使用该属性的子组件。这种单向的数据流一方面比较**清晰**不容易混乱，另一方面是比较好**维护**，出了**问题也比较好定位**。
+
+## 如何设计一个好组件
+
+SOLID: single responsibility, open-close, 里式替换, Interface segregation(small interface), DI
+
+组件的主要目的是为了更好的复用，所以在设计组件的时候需要遵循**高内聚低耦合**的原则。
+
+- 可以通过遵循几种设计模式原则来达到高复用的目的，比如**单一职责原则：React 推崇的是“组合”而非“继承”**，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事。
+- **开放/封闭原则**，就是常说的对修改封闭，对扩展开放。在 React 中我们可以用高阶组件来实现。使用**高阶组件**来实现组件的复用。高阶组件就是一个包装了另一个 React 组件的 React 组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。
+- 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
+- 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
+
+## 如何对组件进行优化
+
+- 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
+- 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
+- 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
+- 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素
+
+## How do you tell React to build in _Production_ mode and what will that do
+
+Typically you’d use Webpack's **DefinePlugin** method to set `NODE_ENV` to **production**. This will strip out things like _propType validation and extra warnings_. On top of that, it’s also a good idea to **minify** your code because React uses **Uglify's** dead-code elimination to strip out development only code and comments, which will drastically reduce the size of your bundle. **TreeShaking**
+
+## 组件的 render 函数何时被调用
+
+- 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
+- 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
+- React 生命周期中有个 componentShouldUpdate 函数，默认返回 true，即允许 render 被调用，我们也可以重写这个函数，判断是否应该调用 render 函数
+
+## 调用 render 时 DOM 就一定会被更新吗
+
+不一定更新。
+
+React 组件中存在两类 DOM，render 函数被调用后， React 会根据 props 或者 state 重新创建一棵 virtual DOM 树，虽然每一次调用都重新创建，但因为创建是发生在内存中，所以很快不影响性能。而 virtual dom 的更新并不意味着真实 DOM 的更新，React 采用 diff算法 将 virtual DOM 和真实 DOM 进行比较，找出需要更新的最小的部分，这时 Real DOM 才可能发生修改。
+
+所以每次 state 的更改都会使得 render 函数被调用，但是页面DOM不一定发生修改。
+
+## 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现
+
+- lifting state to parent of A and B
+- 用 Flux/Redux 管理状态
+
 ## What happens when you call setState
 
 The first thing React will do when setState is called is **merge the object you passed into setState into the current state of the component**. This will kick off a process called **reconciliation**. The end goal of reconciliation is to, in the most efficient way possible, update the UI based on this new state.
@@ -196,15 +271,13 @@ class UnControlledForm extends Component {
 }
 ```
 
-Though uncontrolled components are typically easier to implement since you just grab the value from the DOM using ref, it’s typically recommended that you favor controlled components over uncontrolled components. The main reasons for this are that controlled components support instant field validation, allow you to conditionally disable/enable buttons, enforce input formats, and are more “the React way”.
+Though uncontrolled components are typically easier to implement since you just grab the value from the DOM using ref, it’s typically recommended that you favor controlled components over uncontrolled components. The main reasons for this are that **controlled components support instant field validation, allow you to conditionally disable/enable buttons, enforce input formats**, and are more “the React way”.
+
+尽量用 controlled form。
 
 ## When using uncontrolled components
 
 点击 button 后让鼠标 focus 到某个文本框，这种事件需要原生 API 控制，无法通过 state 去控制的。
-
-## How do you tell React to build in _Production_ mode and what will that do
-
-Typically you’d use Webpack's **DefinePlugin** method to set `NODE_ENV` to **production**. This will strip out things like propType validation and extra warnings. On top of that, it’s also a good idea to minify your code because React uses **Uglify's** dead-code elimination to strip out development only code and comments, which will drastically reduce the size of your bundle.
 
 ## Why would you use `React.Children.map(props.children, () => )` instead of `props.children.map(() => )`
 
@@ -230,18 +303,6 @@ React only makes `props.children` an array if there are more than one child elem
 ```
 
 This is why you want to favor `React.Children.map` because its implementation takes into account that *props.children* may be an array or an object.
-
-## Describe how events are handled in React. 事件在React中的处理方式
-
-**In order to solve cross browser compatibility issues, your event handlers in React will be passed instances of *SyntheticEvent***, which is React’s cross-browser wrapper around the browser’s native event. These synthetic events have the same interface as native events you’re used to, except they work identically across all browsers.
-
-What’s mildly interesting is that React doesn’t actually attach events to the child nodes themselves. React will listen to all events at the top level using a single event listener. This is good for performance and it also means that React doesn’t need to worry about keeping track of event listeners when updating the DOM.
-
-在 React 底层，主要对合成事件做了两件事：事件委托和自动绑定。
-
-事件委托：React的事件代理机制不会把事件处理函数直接绑定到真实的结点上，而是把所有事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。
-
-自动绑定：在 React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。在使用 ES6 class 和纯函数时，这种自动绑定就不存在了，需要我们手动绑定 this.bind() 方法、双冒号语法、构造器内声明、箭头函数。
 
 ## What is the difference between _createElement_ and _cloneElement_
 
@@ -271,58 +332,3 @@ this.setState((prevState, props) => {
 ```
 
 Nothing is wrong with it 🙂. It’s rarely used and not well known, but you can also pass a function to **setState** that receives the previous state and props and returns a new state, just as we’re doing above. And not only is nothing wrong with it, but it’s also actively recommended if you’re setting state based on previous state.
-
-## React解决了什么问题？
-
-**a. React 实现了Virtual DOM**
-
-在一定程度上提升了性能，尤其是在进行小量数据更新时。因为 DOM 操作是很耗性能的，而Virtual DOM 是在内存中进行操作的，当数据发生变化时，通过 diff 算法 比较两棵树之间的变化，再进行必要的 DOM 更新，省去了不必要的高消耗的 DOM 操作。当然，这种性能优化主要体现在有小量数据更新的情况下。因为 React的基本思维模式是每次有变动就重新渲染整个应用，简单想来就是直接重置 innerHTML，比如说在一个大型列表所有数据都变动的情况下，重置 innerHTML 还比较合理，但若是只有一行数据变了，它也需要重置整个 innerHTML，就会造成大量的浪费。而 Virtual DOM 虽然进行了 JS 层面的计算，但是比起DOM操作来说，简直不要太便宜。
-
-> [为什么操作真实 DOM 比 React 更快？](https://www.zhihu.com/question/31809713)
-
-**b. React的一个核心思想是声明式编程。**
-
-命令式编程是解决做什么的问题，就像是下命令一样，关注于怎么做，而声明式编程关注于得到什么结果，在React中，我们只需要关注“目前的状态是什么”，而不是“我需要做什么让页面变成目前的状态”。React就是不断声明，然后在特定的参数下渲染UI界面。这种编程方式可以让我们的代码更容易被理解，从而易于维护。
-
-**c. 组件化**
-
-React 天生组件化，我们可以将一个大的应用分割成很多小组件，这样有好几个优势。首先组件化的代码像一棵树一样清楚干净，比起传统的面条式代码可读性更高；其次前端人员在开发过程中可以并行开发组件而不影响，大大提高了开发效率；最重要的是，组件化使得复用性大大提高，团队可以沉淀一些公共组件或工具库。
-
-**d. 单向数据流**
-
-在 React 中数据流是单向的，由父节点流向子节点，如果父节点的 props 发生了变化，那么React 会递归遍历整个组件树，重新渲染所有使用该属性的子组件。这种单向的数据流一方面比较清晰不容易混乱，另一方面是比较好维护，出了问题也比较好定位。
-
-## 如何设计一个好组件
-
-组件的主要目的是为了更好的复用，所以在设计组件的时候需要遵循高内聚低耦合的原则。
-
-- 可以通过遵循几种设计模式原则来达到高复用的目的，比如**单一职责原则：React 推崇的是“组合”而非“继承”**，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事；开放/封闭原则，就是常说的对修改封闭，对扩展开放。在React中我们可以用高阶组件来实现。
-- 使用**高阶组件**来实现组件的复用。高阶组件就是一个包装了另一个 React 组件的 React 组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。
-- 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
-- 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
-
-## 组件的 render 函数何时被调用
-
-- 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
-- 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
-- React 生命周期中有个 componentShouldUpdate 函数，默认返回 true，即允许 render 被调用，我们也可以重写这个函数，判断是否应该调用 render 函数
-
-## 调用 render 时 DOM 就一定会被更新吗
-
-不一定更新。
-
-React 组件中存在两类 DOM，render 函数被调用后， React 会根据 props 或者 state 重新创建一棵 virtual DOM 树，虽然每一次调用都重新创建，但因为创建是发生在内存中，所以很快不影响性能。而 virtual dom 的更新并不意味着真实 DOM 的更新，React 采用 diff算法 将 virtual DOM 和真实 DOM 进行比较，找出需要更新的最小的部分，这时 Real DOM 才可能发生修改。
-
-所以每次 state 的更改都会使得 render 函数被调用，但是页面DOM不一定发生修改。
-
-## 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现
-
-- lifting state to parent of A and B
-- 用 Flux/Redux 管理状态
-
-## 如何对组件进行优化
-
-- 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
-- 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
-- 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
-- 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素

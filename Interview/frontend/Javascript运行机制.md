@@ -14,7 +14,7 @@ js 引擎把所有同步任务放到**运行栈**中，异步任务不会放在�
 
 So when exactly can functions in the event queue move over to the call stack?
 
-Well, the JavaScript engine follows a very simple rule: there’s a process that constantly checks whether the call stack is empty, and **whenever it’s empty, it checks if the event queue has any functions waiting to be invoked**. If it does, then the first function in the queue gets invoked and moved over into the call stack. If the event queue is empty, then this monitoring process just keeps on running indefinitely. And voila — what I just described is the infamous Event Loop!
+Well, the JavaScript engine follows a very simple rule: there’s a process that constantly checks whether the call stack is empty, and **whenever it’s empty, it checks if the event queue has any function waiting to be invoked**. If it does, then the first function in the queue gets invoked and moved over into the call stack. If the event queue is empty, then this monitoring process just keeps on running indefinitely. And voila — what I just described is the infamous Event Loop!
 
 ## 哪些语句被会在异步队列
 

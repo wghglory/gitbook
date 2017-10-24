@@ -37,7 +37,7 @@ You clicked on cell but all the event handler with parent elements will be fired
 ```javascript
 event.preventDefault()
 event.stopPropagation()
-event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件触发，在一个事件中调用此方法。 prevent multiple event handler to be fired for an event?
+event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件触发，在第一个事件中调用此方法
 event.target         // 被点击的子元素
 event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gkdeocd6/
 ```
@@ -80,7 +80,7 @@ myEmitter.emit('event');
       console.log("DOM fully loaded and parsed. Images might be loading");
     });
 
-    for(var i=0; i<1000000000; i++)
+    for(var i = 0; i < 1000000000; i++)
     {
       // this synchronous script is going to delay parsing of the DOM. So the DOMContentLoaded event is going to launch later.
     }

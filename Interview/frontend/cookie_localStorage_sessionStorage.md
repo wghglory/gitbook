@@ -1,6 +1,6 @@
 # Cookie, localStorage, sessionStorage 区别
 
-* cookie 在浏览器和服务器间来回传递。 sessionStorage 和 localStorage不会
+* cookie 在浏览器和服务器间来回传递。 sessionStorage 和 localStorage 不会
 * cookie 有 secure 属性要求 HTTPS 传输
 * cookie 属性有名，值，`max-age，path, domain，secure`
 * cookie 默认有效期为浏览器会话，一旦用户关闭浏览器，数据就丢失，通过设置 `max-age=seconds` 属性告诉浏览器 cookie 有效期

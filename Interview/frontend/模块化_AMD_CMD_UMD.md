@@ -8,7 +8,7 @@
 
 ## AMD (Asynchronous Module Definition)，代表 RequireJs
 
-==AMD 是 RequireJS 在推广过程中对模块定义的规范化产出，**AMD 是异步加载模块，推崇依赖前置。**==
+<mark>AMD 是 RequireJS 在推广过程中对模块定义的规范化产出，**AMD 是异步加载模块，推崇依赖前置。**</mark>
 
 ```javascript
 define('module1', ['jquery'], ($) => {

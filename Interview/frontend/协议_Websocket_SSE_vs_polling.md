@@ -49,7 +49,7 @@ EventSource **本质上还是 HTTP，基于流**，通过 response 流实时推�
 | 属性              | 描述                                       |
 | --------------- | ---------------------------------------- |
 | url(只读)         | es对象请求的服务器url                            |
-| readyState(只读)  | es对象的状态，初始为0，包含CONNECTING (0)，OPEN (1)，CLOSED (2)三种状态 |
+| readyState(只读)  | es对象的状态，初始为0，包含 CONNECTING(0)，OPEN(1)，CLOSED(2) 三种状态 |
 | withCredentials | 是否允许带凭证等，默认为false，即不支持发送cookie           |
 
 服务端实现`/message`接口，需要返回类型为 `text/event-stream`的响应头。
