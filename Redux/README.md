@@ -1,6 +1,7 @@
 # TOC
 
 * [Compose](Compose.md)
+* [interview_redux](interview_redux.md)
 * [Introduction](Introduction.md)
 * [Middleware](Middleware.md)
 * [passing_store](passing_store.md)

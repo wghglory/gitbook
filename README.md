@@ -1,6 +1,6 @@
 # My Notebook
 
-All my stuff
+Make sure the repository folder name is `guanghui.notebook`.
 
 ## Gitbook Cli
 

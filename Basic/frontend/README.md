@@ -4,7 +4,6 @@
 * [DOM事件](DOM事件.md)
 * [Graceful-degradation_vs progressive-enhancement](Graceful-degradation_vs progressive-enhancement.md)
 * [grunt_vs_gulp](grunt_vs_gulp.md)
-* [interview_react](interview_react.md)
 * [interview_闭包](interview_闭包.md)
 * [Javascript异步编程](Javascript异步编程.md)
 * [Javascript运行机制](Javascript运行机制.md)

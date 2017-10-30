@@ -81,7 +81,7 @@ fs.open('SUMMARY.md', 'w', function(err, fd) {
   });
 });
 
-function ini(root) {
+function init(root) {
   let res = [];
   let fileAndFolders = fs.readdirSync(root).sort((a, b) => {
     return a.localeCompare(b, undefined /* Ignore language */, { sensitivity: 'base' });
@@ -106,7 +106,7 @@ function ini(root) {
       var temp = [];
 
       if (stat.isDirectory()) {
-        temp = temp.concat(ini(pathname));
+        temp = temp.concat(init(pathname));
         createReadMe4Folders(pathname, '# TOC\r\n\r\n' + temp.join('\n'));
       } else {
         let bracketName = pathname.replace(/.+\/(.+)\.md/, '$1'); // viewport
@@ -128,4 +128,4 @@ function createReadMe4Folders(path, toc) {
   });
 }
 
-ini(root_path);
+init(root_path);

@@ -9,7 +9,7 @@
 * [07_bundle_webpack_rollup](07_bundle_webpack_rollup.md)
 * [08_linting](08_linting.md)
 * [09_testing_CI](09_testing_CI.md)
-* [10_httpcalls](10_httpcalls.md)
+* [10_httpcall_mock](10_httpcall_mock.md)
 * [11_structure](11_structure.md)
 * [12_production_build](12_production_build.md)
 * [13_deployment](13_deployment.md)
