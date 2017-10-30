@@ -7,9 +7,19 @@ ls -a # list files including .gitignore, _book, etc
 
 ## kill port
 
+macOS:
+
 ```bash
+ps aux | grep node
 lsof -i:3000
 kill -9 <previous processId>
+```
+
+windows:
+
+```bash
+netstat -a -o -n
+taskkill /F /PID <previous processId>
 ```
 
 ## npm commands
