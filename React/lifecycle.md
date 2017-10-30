@@ -106,3 +106,127 @@ Invoked just before the component updates. Similar to `componentWillMount`, only
 ### componentDidUpdate(prevProps, prevState)
 
 Invoked just after the update takes place, after the call to `render`. It is invoked after each update.
+
+---
+
+Parent.js
+
+```jsx
+import React, { Component } from 'react';
+import Child from './Child';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('Parent - constructor');
+
+    this.state = {
+      number: 100
+    };
+
+    this.addHandler = this.addHandler.bind(this);
+  }
+
+  addHandler() {
+    this.setState((prevState) => ({
+      number: prevState.number + 1
+    }));
+  }
+
+  componentWillMount() {
+    console.log('Parent - componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('Parent - componentDidMount');
+  }
+
+  render() {
+    console.log('Parent - render');
+
+    return (
+      <div>
+        <button onClick={this.addHandler}>{this.state.number}</button>
+        <Child number={this.state.number} />
+      </div>
+    );
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Parent - shouldComponentUpdate');
+    return true;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('Parent - componentWillReceiveProps');
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Parent - componentWillUpdate');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Parent - componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('Parent - componentWillUnmount');
+  }
+}
+```
+
+Child.js
+
+```jsx
+import React, { Component } from 'react';
+
+export default class Child extends Component {
+  constructor(props) {
+    super(props);
+    console.warn('Child - constructor');
+  }
+
+  componentWillMount() {
+    console.warn('Child - componentWillMount');
+  }
+
+  componentDidMount() {
+    console.warn('Child - componentDidMount');
+  }
+
+  render() {
+    console.warn('Child - render');
+
+    return <div>Props from Parent: {this.props.number}</div>;
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.warn('Child - shouldComponentUpdate');
+    return true;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.warn('Child - componentWillReceiveProps');
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.warn('Child - componentWillUpdate');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.warn('Child - componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.warn('Child - componentWillUnmount');
+  }
+}
+```
+
+Initial load:
+
+![initialLoad](http://om1o84p1p.bkt.clouddn.com/initialLoad.png)
+
+点击 parent button：
+
+![parentStateChange](http://om1o84p1p.bkt.clouddn.com/parentStateChange.png)
