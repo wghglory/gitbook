@@ -25,10 +25,14 @@ taskkill /F /PID <previous processId>
 ## npm commands
 
 ```bash
-npm install -g packagename --save-dev
+npm init
+npm install [-g] <packageName> [--save-dev]
 npm start
 npm t/test/tst
 npm version major/minor/patch
+
+yarn init
+yarn add <packageName> [--dev]
 ```
 
 ### npm-check-updates
@@ -37,4 +41,22 @@ npm version major/minor/patch
 npm install -g npm-check-updates
 ncu      # list
 ncu -u   # update package version
+```
+
+### [nvm](https://github.com/creationix/nvm)
+
+```bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash    # install
+nvm --version
+nvm ls-remote  # 查看所有node版本
+nvm use v6.10.2  # 切换node版本
+nvm alias default v6.10.2  # 将此版本设为默认
+```
+
+### File operation
+
+```bash
+mkdir <folderName>
+touch <newFile.js>
+cat <newFile.js>  # review file content
 ```
