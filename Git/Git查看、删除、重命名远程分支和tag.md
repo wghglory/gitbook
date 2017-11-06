@@ -195,7 +195,8 @@ git tag -d v0.1.2    # 删除标签
 打标签不必要在head之上，也可在之前的版本上打，这需要你知道某个提交对象的校验和（通过`git log`获取）。
 
 ```bash
-git tag -a v0.1.1 9fbc3d0
+git log
+git tag -a v0.1.1 9fbc3d0 -m 'some comment'
 ```
 
 ### 标签发布
@@ -204,7 +205,7 @@ git tag -a v0.1.1 9fbc3d0
 
 ```bash
 git push origin v0.1.2 # 将v0.1.2标签提交到git服务器
-git push origin –tags # 将本地所有标签一次性提交到git服务器
+git push origin master --tags # 将本地所有标签一次性提交到git服务器
 ```
 
 > 注意：如果想看之前某个标签状态下的文件，可以这样操作
