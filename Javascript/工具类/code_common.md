@@ -2,6 +2,19 @@
 
 ```javascript
 /**
+array: [{id:1,name:'guanghui'},{id:2,name:'john'}]
+to object: {1:{id:1,name:'guanghui'},2:{id:2,name:'john'}}
+*/
+mapArr2Obj(arr) {
+  return arr.reduce((accu, curr) => {
+    accu[curr.id] = curr;
+    return accu;
+  }, {});
+}
+```
+
+```javascript
+/**
  * 判断一个对象是否是数组，参数不是对象或者不是数组，返回false
  *
  * @param {Object} obj 需要测试是否为数组的对象

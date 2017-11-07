@@ -152,6 +152,18 @@ git fetch origin tag <tagname>
 
 ## git tag — 标签相关操作
 
+常见操作：
+
+```bash
+git log # 查看最新 commit
+git tag -a v1.1.0 9fbc3d0 -m 'some comment'
+git push origin master --tags
+
+git tag  # Show local tags
+git tag -d v1.1.0   # delete local tag
+git push origin --delete tag v1.1.0  # delete remote
+```
+
 ### 列出标签
 
 ```bash
