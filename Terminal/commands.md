@@ -43,6 +43,19 @@ ncu      # list
 ncu -u   # update package version
 ```
 
+### [yarn](https://github.com/yarnpkg/yarn)
+
+```bash
+yarn add <packageName> [--dev]   # will automatically save package to devDependencies
+yarn eslint --init
+
+# use yarn script instead npm run script
+yarn dev
+
+# upgrade all dependencies
+yarn upgrade-interactive
+```
+
 ### [nvm](https://github.com/creationix/nvm)
 
 ```bash
