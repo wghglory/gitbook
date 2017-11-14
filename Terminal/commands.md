@@ -73,3 +73,9 @@ mkdir <folderName>
 touch <newFile.js>
 cat <newFile.js>  # review file content
 ```
+
+### No access
+
+```bash
+sudo chown -R $USER /usr/lib/node_modules
+```
