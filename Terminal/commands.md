@@ -46,6 +46,8 @@ ncu -u   # update package version
 ### [yarn](https://github.com/yarnpkg/yarn)
 
 ```bash
+yarn config set registry https://registry.npm.taobao.org
+
 yarn add <packageName> [--dev]   # will automatically save package to devDependencies
 yarn eslint --init
 
