@@ -16,5 +16,6 @@
 * [Presentational_vs_Container_Components](Presentational_vs_Container_Components.md)
 * [Pure_vs_Impure_functions](Pure_vs_Impure_functions.md)
 * [react-router](react-router.md)
+* [react16](react16.md)
 * [setStateAsync](setStateAsync.md)
 * [Testing](Testing.md)
