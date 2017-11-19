@@ -49,6 +49,7 @@ ncu -u   # update package version
 yarn config set registry https://registry.npm.taobao.org
 
 yarn add <packageName> [--dev]   # will automatically save package to devDependencies
+yarn global add <packageName>
 yarn eslint --init
 
 # use yarn script instead npm run script
@@ -56,6 +57,8 @@ yarn dev
 
 # upgrade all dependencies
 yarn upgrade-interactive
+
+yarn list --depth=0
 ```
 
 ### [nvm](https://github.com/creationix/nvm)
