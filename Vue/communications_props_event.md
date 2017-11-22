@@ -40,7 +40,7 @@ _Child.vue_:
     props: {
       'msg': {
         type: String,
-        required
+        required: true
       }
     },
 
@@ -233,3 +233,11 @@ export default {
 }
 </script>
 ```
+
+## 结合 react 的思考
+
+Vue 的组件间通信简单说就是 props 和 event emit。子级 emit，父级订阅之并在回调函数中修改 props 数据，子级重新渲染。
+
+react 父级向子级通信也是通过 props。子级向父级：子级某个函数调用 setState 去修改父级的 state，而这个 setState 也是通过 props 传递给子级的。react 可能需要把多个子级都需要的数据提取到父级 state 中。
+
+Vue 子组件之间可以通过 Event bus 直接进行通信。React 单项数据流不推荐这种做法，但可以通过 context API 进行跨多个 level 组件间的 props 传输。
