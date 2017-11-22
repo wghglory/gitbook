@@ -2,7 +2,9 @@
 
 #### What two or three things are most important to you in your job?
 
-我喜欢交朋友，喜欢和志同道合的朋友交流、成长。我能学到很多，同时贡献自己的力量。
+环境很重要：我喜欢交朋友，喜欢和志同道合的朋友交流、成长。大家彼此尊重、互相帮助
+提升：我能学到很多，个人发展空间
+贡献：在适合我的位置上贡献自己的力量。
 
 I want to be happy. I want to work in a job that I am passionate about, and for a company that respects and rewards my contributions. I want to have co-workers whom I like and respect. I think these things all work together for a positive work environment — which increases productivity — resulting in happy employees and a happy employer.
 
@@ -49,7 +51,9 @@ My solution is to create a json file, "systemId":1,"url":"a-dev.com". So I load 
 
 My manager suggests we use web.config and transform the url based on environment. I feel this solution works better in this case.
 
-later instead of web.config, it's actionMenu.config and third-party lib to do transform
+Later instead of web.config, it's actionMenu.config and third-party lib to do transform.
+
+也可以在前端根据环境变量进行不同 json 文件的读取，但我们不是前后端分离的项目。前端人员写好了后交给后端。当然我前后端都做。
 
 #### Tell me about a time when you had to analyze facts quickly, define key issues, and respond immediately to a situation. What was the outcome?
 
@@ -69,7 +73,7 @@ a long-term goal: be a technical leader in 5 years.
 
 I seldom set big goal without smaller short-term goals because it may take too long to get there, and there're some uncertain things before going that far. If I don't get there I may lose confidence. I tend to set small goals and once I finish one, I encourage myself and am excited to set next one. But to be a leader is a target I'm pretty sure I will be there. To achieve that, I dig into techniques everyday, review technical news, blogs, books, videos, etc. Also I learn from my manager and teammates. Talk with friends, mentor. Learn from books.
 
-The tasks my leader assigned have first priorities, I like to finish these tasks efficiently with hight quality. And then I use some spare time to work on my goals.
+The tasks my leader assigned have first priorities, I like to finish these tasks efficiently with high quality. And then I use some spare time to work on my goals.
 
 I'm curious. When I see an app working in a different way, I will think how it is working like this under the hood (frontend animation i.e.). When I wait bus in station, I will check how the advertise designed. What if I design it?
 
@@ -105,10 +109,10 @@ ES2015, coding style, name convention. Everyone started to follow rules.
 
 When I started to work on Avendas in SNH, I just knew basics of angular. Although I mainly worked on backend, knowing how angular send ajax call to server is better for me to understand how frontend and backend work together. I felt I need to learn more about angular. Now I'm at middle level of angular 1, and I haven't studied angular 2. I know I need to work on angular 2 or 4 so if next project uses them, I will be more confident.
 
-#### Leadership skills?
+#### Leadership skills? （✔️，我在领导时注重的点）
 
 * give others opportunities to shine
-* think big
+* think big 宏观思维
 * assign tasks accordingly
 * motivate team
 * listen from different opinions and make best decision considering long-term goal
@@ -138,7 +142,7 @@ As a engineer, I'm not strong at history, politics, art, music, etc. Sometimes w
 
 #### 团队合作意见分歧：
 
-处理很多问题的方式很大程度上取决于你的职位、环境等因素。如果我是管理者，每个人在团队中都应该可以自由坦诚地发表意见，我会非常认真的聆听，分析；但对于自己的意见我不会没有原则的轻易放弃。民主过后还需要集中。我的理念是：Meeting 不等于Voting，完全不需要少数服从多数；我是负责人，我相信自己有能力采取最佳方案；假如失败了，我也会承担主要责任。而如果我是团队的普通一员，我会保留自己的意见，但还是认真执行管理者已经做出的决策。只要遵循“对事不对人”的原则，目的是合理高效解决问题。反问面试官你是如何处理意见分歧的呢？
+处理很多问题的方式很大程度上取决于你的职位、环境等因素。如果我是管理者，每个人在团队中都应该可以自由坦诚地发表意见，我会非常认真的聆听，分析；但对于自己的意见我不会没有原则的轻易放弃。民主过后还需要集中。我的理念是：Meeting 不等于 Voting，完全不需要少数服从多数；我是负责人，我相信自己有能力采取最佳方案；假如失败了，我也会承担主要责任。而如果我是团队的普通一员，我会保留自己的意见，但还是认真执行管理者已经做出的决策。只要遵循“对事不对人”的原则，目的是合理高效解决问题。反问面试官你是如何处理意见分歧的呢？
 
 #### 在人际沟通上是否曾经有过不和谐？
 

@@ -1,23 +1,5 @@
 # Self Introduction
 
-* 现在在一家中小型公司做技术经理，主要负责前端，搭建框架（yeoman）、封装公共组件、最近开始负责重量级模块--图形化创建。
-* 对 react 比较熟悉。曾经用过 angular1, 今年美国交流之后学习过 angular2。
-* 对前沿技术很感兴趣，如 web components, custom elements, shadow dom, css variables 等。
-* 我是中途接手一个项目，发现了很多问题，我负责帮助团队不断改进推动项目
-
-1. react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
-1. 提取相似组件，封装成公共组件，提高复用性
-1. 改进 Modal, Select 等组件
-1. 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能
-1. eslint 工具，editorConfig
-1. 加入测试、mock-server、持续集成
-
-下一步改进：
-
-1. css 模块化
-
----
-
 1. I have involved in system development life cycle for 7 years, especially web development. I'm working as CTO in a startup company. Before I was a technical lead in UnionBank, US.
 
 1. *College*: I'm interested in designing web application for a long time, but I don't choose computer science as my major because I don't want exams, classes ruin my interest, and I learnt computer science class by myself in Dalian University of Technology. I did part-time job to learn and strengthen my programming skills during college life.
@@ -28,15 +10,15 @@
 
 1. Everyday I go over some blogs and technical websites to learn new techniques, and understand what is popular, what will be popular in future. And I also like to learn these new stuff from video tutorials(youtube, codeSchool) and buy books online. Anyway, I'm self-motivated, and I love what I'm doing. I used to stand on the top in college life, now I want to an excellent leader. I'm making a progress everyday to make it happen!
 
-我有7年软件开发经验，包括 windows application 和 web application。我更倾向于web开发。现任联合银行任技术指导。
+我有7年软件开发经验，包括 windows application 和 web application。我更倾向于web开发。
 
 我很早就对网站开发产生兴趣，但是我在大学时代并没选择相关专业，因为我不想找考试、强制性的课程毁掉我的兴趣。我在大连理工通过自学和兼职工作去提高自己的编程水平。
 
 在迈阿密大学结束后我在美国3家公司工作过，大部分工作内容都是网站开发，包括前端、后端和数据库开发。前端方面主要是html css js 和一些框架 angular jquery，后端.net mvc, nodejs，数据库主要 MSSQL 和 mongodb。
 
-半年前由于我的贡献和能力得到认可，升为技术指导，领导前端和后端开发。我主要负责重新设计系统架构、code review、还有管理方面的工作。每周我都会给团队一些自由时间，大家可以互相分享和学习他们想学的内容，前提是高质量高效完成任务。
+现在在一家中小型公司做技术经理，主要负责前端，搭建框架（yeoman）、封装公共组件、最近开始负责重量级模块--图形化创建。对 react 比较熟悉。曾经用过 angularjs, angular2，最近学习了 vue。我对前沿技术很感兴趣，如 web components, custom elements, shadow dom, css variables 等。我是中途接手一个项目，发现了很多问题，我负责帮助团队不断改进推动项目。还有重新设计系统架构、code review、还有管理方面的工作。每周我都会给团队一些自由时间，大家可以互相分享和学习他们想学的内容。
 
-每天我会查看浏览一些技术博客、网站去了解最新技术以及未来发展趋势。我也通过一些视频教程和看书去提高自己的水平。总之，我是个主动性很强、对这个行业充满热情的人。我期望以后能够带领团队创造出优秀的产品，为此我每天都在努力，去实现自己的价值！若干年后问心无愧
+每天我会查看浏览一些技术博客、网站去了解最新技术以及未来发展趋势。我也通过一些视频教程 youtube, pluralsight 和看书去提高自己的水平。总之，我是个主动性很强、对这个行业充满热情的人。我期望以后能够带领团队创造出优秀的产品，为此我每天都在努力，去实现自己的价值！若干年后问心无愧
 
 <!--5. Outside of Work: Outside of work, I've been participating in some hackathons - mostly doing iOS development there as a way to learn it more deeply. I'm also active as a moderator on online forums around Android development.
 
@@ -46,13 +28,18 @@
 
 对公司现有的系统的优化和重构:
 
-* 项目没有 lint 工具导致大家代码不统一，使用 ESLint。
-* react state 管理问题，react state 和 redux store 混合使用
+* react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
 * react 不可变性理解不到位，有些人在 setState 里面修改了状态。还有得 deepClone 后赋值。我推荐 immutability-helper
+* 提取相似组件，封装成公共组件，提高复用性
+* 改进 Modal, Select 等组件
+* 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能
+* 加入测试、mock-server、持续集成
+* 项目没有 lint 工具导致大家代码不统一，使用 ESLint and editorConfig。
 * 每个 component 都是用 class 的方式去定义。我推荐了 functional/stateless component。
 
 改进：
 
+* css 模块化
 * webpack tree-shaking 和 bundle splitting。
 * Modal、select 组件库的优化和扩展
 * HighChart 配置统一、可拖拽配置。
@@ -73,9 +60,9 @@
 
 #### What was the toughest challenge you’ve ever faced?
 
-挑战每隔一段时间就出现，以前觉得困难的挑战，现在回头看可能好多也不困难了，毕竟经验有增长。
+挑战每隔一段时间就出现，但当前觉得困难的挑战，现在回头看可能好多也不困难了，毕竟经验有增长。
 
-上海踏瑞、创狐：简创和 PGC 项目 -- graphics editor, a very important module in project. It includes Tools, Canvas and Properties Area. You can think it as a online Photoshop. Syncing between areas, Grouping, Data Saving format, 创建符合组件。老师分配群组，组长演示的时候其他组员能实时看到组长的操作。多人协同。
+上海踏瑞、创狐：简创和 PGC 项目 -- graphics editor, a very important module in project. It includes Tools, Canvas and Properties Area. You can think it as a online Photoshop. Syncing between areas, Grouping, Data Saving format, 创建复合组件。老师分配群组，组长演示的时候其他组员能实时看到组长的操作。多人协同。
 
 SNH: To design a basic chat application like skype/qq. That was the first time that I made a real-time application. First, I did a research about what techniques should be used and SignalR is the one I want. Second, how to design the one to one, one to many chat mode? I researched and used group, room these concepts to implement both client and server side code. Third, what if one is online and the other one is offline. And online person sends a message to offline person. Then when offline person gets online, how can he receive the message? Fourth, how can I retrieve chat histories? Fifth, if one deletes history from his side, the other person should still be able to have the history, how to manage the history? This is more complicated for one to many. I put all possible situations into consideration and design the database. It's a tough task, when I finish this, all colleagues and manager spoke highly of me!
 
@@ -117,7 +104,7 @@ So instead of creating mapping programmatically, I wrote a T4 code template. It 
 
 #### Ub mistake
 
-I redesigned the layout page and make it as a SPA. I thought I checked everywhere, but there is a link in a very latent place. The link click will raise an error. It's dangerous because it's really bad if users see this error. The bad thing is that the production day was tomorrow. I immediately talked with my manager about this and told him this change can be done within 5 minutes. But We don't have enough time to push this fix to test or production. So we delayed our deployment. Thanks god, it doesn't have a serious affect since it is an early release. I took the responsibility and said sorry to my manger. He said it's no a big issue since I found it before deployment and he likes my attitude and indeed, that link is too easy to be ignored.
+I redesigned the layout page and make it as a SPA. I thought I checked everywhere, but there is a link in a very latent place. The link clicking will raise an error. It's dangerous because it's really bad if users see this error. The bad thing is that the production day was tomorrow. I immediately talked with my manager about this and told him this change can be done within 5 minutes. But We don't have enough time to push this fix to test or production. So we delayed our deployment. Thanks god, it doesn't have a serious affect since it is an early release. I took the responsibility and said sorry to my manger. He said it's no a big issue since I found it before deployment and he likes my attitude. Indeed, that link is too easy to be ignored.
 
 #### Ub conflicts
 
@@ -125,7 +112,7 @@ I seldom have behavior conflicts with others since I'm always nice to others. Bu
 
 One conflict with my manager is that he wants to separate controllers by ui and functions while I feel controllers should be separated by modules. His thought is, any controller related to UI, which render a view should be placed into UI-controller folder, and any controller which involves many logic and data retrieving functions should be under func folder. I wrote an email and explained my ideas.
 
-First, some controllers have both UI an logic functions, so they are not clear where to but placed.
+First, some controllers have both UI an logic functions, so they are not clear where to be placed.
 Second, these changes will have to change RoutingConfig, and many ajax calls will be affected since the url changed.
 Third, I estimated the time how long it will take if we really want to do this. And how many files need to be changed.
 At last, I said something like, if you still want to implement this way, I will definitely do it within the estimated time. Please let me know.
