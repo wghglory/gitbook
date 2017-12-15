@@ -49,6 +49,16 @@
 </form>
 ```
 
+```html
+<input type="text" onchange="onChange($event)">
+```
+
+```ts
+onChange(event: Event){
+  this.someVar = (<HTMLInputElement>event.target).value;
+}
+```
+
 ### Reactive Forms
 
 * Template
