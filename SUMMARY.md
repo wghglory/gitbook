@@ -1,9 +1,12 @@
 # SUMMARY
 
 * [Angular](/Angular/README.md)
+  - [angular5new](Angular/angular5new.md)
+  - [components_communication](Angular/components_communication.md)
   - [form](Angular/form.md)
   - [http](Angular/http.md)
   - [route](Angular/route.md)
+  - [something](Angular/something.md)
 * [Basic](/Basic/README.md)
   * [Basic/algorithm](/Basic/algorithm/README.md)
     - [array_vs_linkedList](Basic/algorithm/array_vs_linkedList.md)
@@ -141,6 +144,8 @@
   - [log4net_redis](DotNet/log4net_redis.md)
   - [ORM](DotNet/ORM.md)
 * [Git](/Git/README.md)
+  - [git_cheatsheet](Git/git_cheatsheet.md)
+  - [git_in_work](Git/git_in_work.md)
   - [git1](Git/git1.md)
   - [Gitlab](Git/Gitlab.md)
   - [git删除撤销](Git/git删除撤销.md)

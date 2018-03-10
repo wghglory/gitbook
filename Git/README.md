@@ -1,5 +1,7 @@
 # TOC
 
+* [git_cheatsheet](git_cheatsheet.md)
+* [git_in_work](git_in_work.md)
 * [git1](git1.md)
 * [Gitlab](Gitlab.md)
 * [git删除撤销](git删除撤销.md)
