@@ -22,7 +22,10 @@ git config --global alias.bd "branch -d"
 git config --global alias.bda "\!git branch | grep -v master | grep -v '*' | xargs git branch -d"
 git config --global alias.brda "\!git branch --remotes --merged master | grep -v master | sed -e 's/\// :/' | xargs -n2 git push"
 git config --global alias.cam "commit -am"
+<<<<<<< HEAD
 git config --global alias.cane "commit --amend --no-edit"
+=======
+>>>>>>> add git cheatsheet and toc
 git config --global alias.cm "commit -m"
 git config --global alias.ch "checkout"
 git config --global alias.chb "checkout -b"
@@ -420,4 +423,8 @@ Most common usage is `git stash`, [do some stuff], `git stash pop`
 
 - [**](https://github.com/josh-egan)
 
+<<<<<<< HEAD
 Proudly built with [harp ](http://harpjs.com/)and hosted on [GitHub](https://github.com/josh-egan/tech.joshegan.com/tree/master)
+=======
+Proudly built with [harp ](http://harpjs.com/)and hosted on [GitHub](https://github.com/josh-egan/tech.joshegan.com/tree/master)
+>>>>>>> add git cheatsheet and toc
