@@ -9,9 +9,9 @@ A web worker is a JavaScript that runs in the background, independently of other
 var i = 0;
 
 function timedCount() {
-    i = i + 1;
-    postMessage(i);
-    setTimeout(timedCount, 500);
+  i = i + 1;
+  postMessage(i);
+  setTimeout(timedCount, 500);
 }
 
 timedCount();

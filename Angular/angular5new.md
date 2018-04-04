@@ -12,8 +12,8 @@ Validation on blur and submit:
 
 ## New Router Lifecycle events
 
-1. allow to track the routing cycle
-1. used to do things like show spinners, measure performance of guards
+1.  allow to track the routing cycle
+1.  used to do things like show spinners, measure performance of guards
 
 ```
 GuardsCheckStart
@@ -53,5 +53,7 @@ const names = allUserData.pipe(
 * Zone speed improvements
 
 ```ts
-platformBrowserDynamic().bootstrapModule(AppModule, {ngZone: 'noop'}).then(ref => {});
+platformBrowserDynamic()
+  .bootstrapModule(AppModule, { ngZone: 'noop' })
+  .then((ref) => {});
 ```

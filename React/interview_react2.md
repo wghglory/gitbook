@@ -1,35 +1,35 @@
 # react interview
 
-## Describe how events are handled in React. 事件在React中的处理方式
+## Describe how events are handled in React. 事件在 React 中的处理方式
 
-**In order to solve cross browser compatibility issues, your event handlers in React will be passed instances of *SyntheticEvent***, which is React’s cross-browser wrapper around the browser’s native event. These synthetic events have the same interface as native events you’re used to, except they work identically across all browsers.
+**In order to solve cross browser compatibility issues, your event handlers in React will be passed instances of _SyntheticEvent_**, which is React’s cross-browser wrapper around the browser’s native event. These synthetic events have the same interface as native events you’re used to, except they work identically across all browsers.
 
 What’s mildly interesting is that React doesn’t actually attach events to the child nodes themselves. React will listen to all events at the top level using a single event listener. This is good for performance and it also means that React doesn’t need to worry about keeping track of event listeners when updating the DOM.
 
 在 React 底层，主要对合成事件做了两件事：事件委托和自动绑定。
 
-事件委托：React的事件代理机制不会把事件处理函数直接绑定到真实的结点上，而是把所有事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。
+事件委托：React 的事件代理机制不会把事件处理函数直接绑定到真实的结点上，而是把所有事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。
 
 自动绑定：在 React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。在使用 ES6 class 和纯函数时，这种自动绑定就不存在了，需要我们手动绑定 this.bind() 方法、双冒号语法、构造器内声明、箭头函数。用 bind 写在 constructor 里面最好。直接写在 jsx 中在 re-render 会有重新绑定的问题。
 
 ## 组件的 render 函数何时被调用
 
-- 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
-- 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
-- React 生命周期中有个 componentShouldUpdate 函数，默认返回 true，即允许 render 被调用，我们也可以重写这个函数，判断是否应该调用 render 函数
+* 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
+* 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
+* React 生命周期中有个 componentShouldUpdate 函数，默认返回 true，即允许 render 被调用，我们也可以重写这个函数，判断是否应该调用 render 函数
 
 ## 调用 render 时 DOM 就一定会被更新吗
 
 不一定更新。
 
-React 组件中存在两类 DOM，render 函数被调用后， React 会根据 props 或者 state 重新创建一棵 virtual DOM 树，虽然每一次调用都重新创建，但因为创建是发生在内存中，所以很快不影响性能。而 virtual dom 的更新并不意味着真实 DOM 的更新，React 采用 diff算法 将 virtual DOM 和真实 DOM 进行比较，找出需要更新的最小的部分，这时 Real DOM 才可能发生修改。
+React 组件中存在两类 DOM，render 函数被调用后， React 会根据 props 或者 state 重新创建一棵 virtual DOM 树，虽然每一次调用都重新创建，但因为创建是发生在内存中，所以很快不影响性能。而 virtual dom 的更新并不意味着真实 DOM 的更新，React 采用 diff 算法 将 virtual DOM 和真实 DOM 进行比较，找出需要更新的最小的部分，这时 Real DOM 才可能发生修改。
 
-所以每次 state 的更改都会使得 render 函数被调用，但是页面DOM不一定发生修改。
+所以每次 state 的更改都会使得 render 函数被调用，但是页面 DOM 不一定发生修改。
 
 ## 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现
 
-- lifting state to parent of A and B
-- 用 Flux/Redux 管理状态
+* lifting state to parent of A and B
+* 用 Flux/Redux 管理状态
 
 ## What happens when you call setState
 
@@ -76,16 +76,14 @@ Keys make this process more efficient when dealing with lists because React can 
 ## If you created a React element like _Twitter_ below, what would the component definition of _Twitter_ look like
 
 ```javascript
-<Twitter username='tylermcginnis33'>
-  {(user) => user === null
-    ? <Loading />
-    : <Badge info={user} />}
+<Twitter username="tylermcginnis33">
+  {(user) => (user === null ? <Loading /> : <Badge info={user} />)}
 </Twitter>
 ```
 
 ```javascript
-import React, { Component } from 'react'
-import fetchUser from 'twitter'
+import React, { Component } from 'react';
+import fetchUser from 'twitter';
 // fetchUser take in a username returns a promise which will resolve with that username's data.
 
 class Twitter extends Component {
@@ -93,47 +91,44 @@ class Twitter extends Component {
 }
 ```
 
-Take notice of what’s inside the opening and closing `<Twitter>` tags above. Instead of another component as you’ve probably seen before, the *Twitter* component’s child is a function. What this means is that in the implementation of the *Twitter* component, we’ll need to treat *props.children* as a function.
+Take notice of what’s inside the opening and closing `<Twitter>` tags above. Instead of another component as you’ve probably seen before, the _Twitter_ component’s child is a function. What this means is that in the implementation of the _Twitter_ component, we’ll need to treat _props.children_ as a function.
 
 ```javascript
-import React, { Component } from 'react'
-import fetchUser from 'twitter'
+import React, { Component } from 'react';
+import fetchUser from 'twitter';
 
 class Twitter extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      user: null
-    }
+      user: null,
+    };
   }
 
-  componentDidMount () {
-    fetchUser(this.props.username)
-      .then((user) => this.setState({user}))
+  componentDidMount() {
+    fetchUser(this.props.username).then((user) => this.setState({ user }));
   }
-  render () {
-    return this.props.children(this.state.user)
+  render() {
+    return this.props.children(this.state.user);
   }
 }
 ```
 
-Notice that, just as I mentioned above, I treat *props.children* as a function by invoking it and passing it the user.
+Notice that, just as I mentioned above, I treat _props.children_ as a function by invoking it and passing it the user.
 
 What’s great about this pattern is that we’ve decoupled our parent component from our child component. The parent component manages the state and the consumer of the parent component can decide in which way they’d like to apply the arguments they receive from the parent to their UI.
 
-To demonstrate this, let’s say in another file we want to render a *Profile* instead of a *Badge*, because we’re using the render callback pattern, we can easily swap around the UI without changing our implementation of the parent (*Twitter*) component.
+To demonstrate this, let’s say in another file we want to render a _Profile_ instead of a _Badge_, because we’re using the render callback pattern, we can easily swap around the UI without changing our implementation of the parent (_Twitter_) component.
 
 ```javascript
-<Twitter username='tylermcginnis33'>
-  {(user) => user === null
-    ? <Loading />
-    : <Profile info={user} />}
+<Twitter username="tylermcginnis33">
+  {(user) => (user === null ? <Loading /> : <Profile info={user} />)}
 </Twitter>
 ```
 
 ## Why would you use `React.Children.map(props.children, () => )` instead of `props.children.map(() => )`
 
-It’s not guaranteed that *props.children* will be an array.
+It’s not guaranteed that _props.children_ will be an array.
 
 Take this code for example:
 
@@ -154,11 +149,11 @@ React only makes `props.children` an array if there are more than one child elem
 </Parent>
 ```
 
-This is why you want to favor `React.Children.map` because its implementation takes into account that *props.children* may be an array or an object.
+This is why you want to favor `React.Children.map` because its implementation takes into account that _props.children_ may be an array or an object.
 
 ## What is the difference between _createElement_ and _cloneElement_
 
-*createElement* is what JSX gets transpiled to and is what React uses to create React Elements (object representations of some UI). *cloneElement* is used in order to clone an element and pass it new props. They nailed the naming on these two 🙂.
+_createElement_ is what JSX gets transpiled to and is what React uses to create React Elements (object representations of some UI). _cloneElement_ is used in order to clone an element and pass it new props. They nailed the naming on these two 🙂.
 
 ## What is the second argument that can optionally be passed to _setState_ and what is its purpose
 
@@ -167,10 +162,9 @@ A callback function which will be invoked when setState has finished and the com
 setState is asynchronous, which is why it takes in a second callback function. Typically it’s best to use another lifecycle method rather than relying on this callback function, but it’s good to know it exists.
 
 ```javascript
-this.setState(
-  { username: 'tylermcginnis33' },
-  () => console.log('setState has finished and the component has re-rendered.')
-)
+this.setState({ username: 'tylermcginnis33' }, () =>
+  console.log('setState has finished and the component has re-rendered.'),
+);
 ```
 
 ## What is wrong with this code
@@ -178,13 +172,12 @@ this.setState(
 ```javascript
 this.setState((prevState, props) => {
   return {
-    streak: prevState.streak + props.count
-  }
-})
+    streak: prevState.streak + props.count,
+  };
+});
 ```
 
 Nothing is wrong with it 🙂. It’s rarely used and not well known, but you can also pass a function to **setState** that receives the previous state and props and returns a new state, just as we’re doing above. And not only is nothing wrong with it, but it’s also actively recommended if you’re setting state based on previous state.
-
 
 ## What is the difference between a _controlled_ component and an _uncontrolled_ component
 
@@ -202,54 +195,49 @@ A large part of React is this idea of having components control and manage their
 
 What happens when we throw native HTML form elements (input, select, textarea, etc) into the mix? Should we have React be the “single source of truth” like we’re used to doing with React? Or should we allow that form data to live in the DOM like we’re used to typically doing with HTML form elements? These questions are at the heart of controlled vs uncontrolled components.
 
-A **controlled** component is a component where React is in *control* and is the single source of truth for the form data. As you can see below, *username* doesn’t live in the DOM but instead lives in our component state. Whenever we want to update *username*, we call *setState* as we’re used to.
+A **controlled** component is a component where React is in _control_ and is the single source of truth for the form data. As you can see below, _username_ doesn’t live in the DOM but instead lives in our component state. Whenever we want to update _username_, we call _setState_ as we’re used to.
 
 ```javascript
 class ControlledForm extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      username: ''
-    }
+      username: '',
+    };
   }
   updateUsername = (e) => {
     this.setState({
       username: e.target.value,
-    })
-  }
-  handleSubmit = () => {}
-  render () {
+    });
+  };
+  handleSubmit = () => {};
+  render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          value={this.state.username}
-          onChange={this.updateUsername} />
-        <button type='submit'>Submit</button>
+        <input type="text" value={this.state.username} onChange={this.updateUsername} />
+        <button type="submit">Submit</button>
       </form>
-    )
+    );
   }
 }
 ```
 
 An **uncontrolled** component is where your form data is handled by the DOM, instead of inside your React component.
 
-You use *ref* to accomplish this.
+You use _ref_ to accomplish this.
 
 ```javascript
 class UnControlledForm extends Component {
   handleSubmit = () => {
-    console.log("Input Value: ", this.input.value)
-  }
-  render () {
+    console.log('Input Value: ', this.input.value);
+  };
+  render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          ref={(input) => this.input = input} />
-        <button type='submit'>Submit</button>
+        <input type="text" ref={(input) => (this.input = input)} />
+        <button type="submit">Submit</button>
       </form>
-    )
+    );
   }
 }
 ```
@@ -285,11 +273,7 @@ function CustomTextInput(props) {
 
 class Parent extends React.Component {
   render() {
-    return (
-      <CustomTextInput
-        inputRef={el => this.inputElement = el}
-      />
-    );
+    return <CustomTextInput inputRef={(el) => (this.inputElement = el)} />;
   }
 }
 ```

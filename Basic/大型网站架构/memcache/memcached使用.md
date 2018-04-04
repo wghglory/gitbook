@@ -1,68 +1,66 @@
 # 安装和启动
 
-- install
+* install
 
-    ```bash
-    memcached.exe -d install
-    ```
+  ```bash
+  memcached.exe -d install
+  ```
 
-- start
+* start
 
-    ```bash
-    memcached.exe -d start
-    ```
+  ```bash
+  memcached.exe -d start
+  ```
 
-- stop
+* stop
 
-    ```bash
-    memcached.exe -d stop
-    ```
+  ```bash
+  memcached.exe -d stop
+  ```
 
-- unInstall
+* unInstall
 
-    ```bash
-    memcached.exe -d uninstall
-    ```
+  ```bash
+  memcached.exe -d uninstall
+  ```
 
 以上的安装和启动都是在默认环境下进行的，在安装时可设置如下参数：
 
-* Memcached **默认使用端口是11211**
-* 默认**最大连接数是1024个**
-* 默认最大使用内存是64M
-* 默认每个键值对，值存储空间为1M
+* Memcached **默认使用端口是 11211**
+* 默认**最大连接数是 1024 个**
+* 默认最大使用内存是 64M
+* 默认每个键值对，值存储空间为 1M
 
 > * -p 监听的端口
-> * -l 连接的IP地址, 默认是本机
-> * -d start 启动memcached服务
-> * -d restart 重起memcached服务
-> * -d stop|shutdown 关闭正在运行的memcached服务
-> * -d install 安装memcached服务
-> * -d uninstall 卸载memcached服务
-> * -u 以身份运行 (仅在以root运行的时候有效)
-> * -m 最大内存使用，单位MB。**默认64MB **
+> * -l 连接的 IP 地址, 默认是本机
+> * -d start 启动 memcached 服务
+> * -d restart 重起 memcached 服务
+> * -d stop|shutdown 关闭正在运行的 memcached 服务
+> * -d install 安装 memcached 服务
+> * -d uninstall 卸载 memcached 服务
+> * -u 以身份运行 (仅在以 root 运行的时候有效)
+> * -m 最大内存使用，单位 MB。**默认 64MB **
 > * -M 内存耗尽时返回错误，而不是删除项
-> * -c 最大同时连接数，**默认是1024 **
-> * -f 块大小增长因子，默认是1.25
-> * -n 最小分配空间，key+value+flags默认是48
+> * -c 最大同时连接数，**默认是 1024 **
+> * -f 块大小增长因子，默认是 1.25
+> * -n 最小分配空间，key+value+flags 默认是 48
 > * -h 显示帮助
 
-怎么才知道Memcached服务已经安装成功并启动了呢?
-cmd 命令 `services.msc`
+怎么才知道 Memcached 服务已经安装成功并启动了呢? cmd 命令 `services.msc`
 
 ![img](http://upload-images.jianshu.io/upload_images/1845730-a813cccd253572a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-检测Memcached服务是否成功启动：
+检测 Memcached 服务是否成功启动：
 
-> 使用telnet命令连接到登录台：telnet 服务器IP地址 11211（11211是默认的Memcached服务端口号）
-> 打印当前Memcache服务器状态：**stats**
+> 使用 telnet 命令连接到登录台：telnet 服务器 IP 地址 11211（11211 是默认的 Memcached 服务端口号）打印当前 Memcache 服务器状态：**stats**
 >
-> 可以看到，通过stats命令列出了一系列的Memcached服务状态信息
+> 可以看到，通过 stats 命令列出了一系列的 Memcached 服务状态信息
 >
 > ![img](http://upload-images.jianshu.io/upload_images/1845730-49418587e7e6e1b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 先把 memcached 用起来
 
-下载客户端的4个dll，`IcSharpCode.SharpZipLib.dll，log4net.dll，Memcached.ClientLibrary.dll，Commons.dll`
+下载客户端的 4 个 dll，`IcSharpCode.SharpZipLib.dll，log4net.dll，Memcached.ClientLibrary.dll，Commons.dll`
 
 新建一个简单控制台应用程序
 
@@ -143,11 +141,11 @@ pool.SetWeights(new int[] { 1, 10 });
 
 > Note：
 >
-> - 在172.18.5.66，与192.168.10.121两台机器上装memcached服务端。
-> - pool.SetWeights这里的1跟10意思是，负载均衡比例，假如11000条数据，大致数据分布为：172.18.5.66分布1000条数据左右。另外一台为10000条左右。
-> - memcached服务端并不具备负载均衡的能力，而是**memcachedClient实现的，具体存取数据实现的核心是采用一致性Hash算法**，把key-value分布到某一台服务器中里边。
+> * 在 172.18.5.66，与 192.168.10.121 两台机器上装 memcached 服务端。
+> * pool.SetWeights 这里的 1 跟 10 意思是，负载均衡比例，假如 11000 条数据，大致数据分布为：172.18.5.66 分布 1000 条数据左右。另外一台为 10000 条左右。
+> * memcached 服务端并不具备负载均衡的能力，而是**memcachedClient 实现的，具体存取数据实现的核心是采用一致性 Hash 算法**，把 key-value 分布到某一台服务器中里边。
 
-### memcached的数据压缩机制
+### memcached 的数据压缩机制
 
 ```csharp
 // 是否启用压缩数据：如果启用了压缩，数据压缩长于门槛的数据将被储存在压缩的形式
@@ -158,10 +156,10 @@ cache.CompressionThreshold = 1024 * 1024;
 
 > Note：
 >
-> - 这个处理是在MemcachedClient对象中，设置这个EnableCompression属性，是否使用压缩的意思，如果启用啦压缩功能 ,则**IcSharpCode.SharpZipLib类库**会在数据超过预设大小时，进行数据压缩处理。
-> - CompressionThreshold这个属性是压缩的阀值，默认是15K，如果超过设定的阀值则使用memcached的通讯协议，存数据时给每个数据项分配一个16为的flag表示，用作记录是否有压缩，如果有压缩则提取数据是进行解压。如果没有超过阀值则不压缩，直接存储。
+> * 这个处理是在 MemcachedClient 对象中，设置这个 EnableCompression 属性，是否使用压缩的意思，如果启用啦压缩功能 ,则**IcSharpCode.SharpZipLib 类库**会在数据超过预设大小时，进行数据压缩处理。
+> * CompressionThreshold 这个属性是压缩的阀值，默认是 15K，如果超过设定的阀值则使用 memcached 的通讯协议，存数据时给每个数据项分配一个 16 为的 flag 表示，用作记录是否有压缩，如果有压缩则提取数据是进行解压。如果没有超过阀值则不压缩，直接存储。
 
-### 使用客户端多个SocketIO池
+### 使用客户端多个 SocketIO 池
 
 ```csharp
 using Memcached.ClientLibrary;
@@ -237,13 +235,13 @@ pool.Failover = true;
 
 > Note：memcached 的故障转移是一套正常节点发生故障变为死节点时的处理机制。
 >
-> - 开启故障转移：如果发生 socket 异常，则该节点被添加到存放死节点属性的 hostDead 中，新请求被映射到 dead server，检测尝试连接死节点的时间间隔属性 hostDeadDuration（默认设置为100ms），如果没有达到设定的间隔时间则 key 会被映射到可用的 server 处理，如果达到了时间间隔，则尝试重新链接，连接成功将此节点从 hostDead 中去除，连接失败则间隔时间翻倍存放，下次重新连接时间会被拉长。
-> - 不开启故障转移：新的请求都会被映射到 dead server 上，尝试重新建立 socket 链接，如果连接失败，返回null或者操作失败。
+> * 开启故障转移：如果发生 socket 异常，则该节点被添加到存放死节点属性的 hostDead 中，新请求被映射到 dead server，检测尝试连接死节点的时间间隔属性 hostDeadDuration（默认设置为 100ms），如果没有达到设定的间隔时间则 key 会被映射到可用的 server 处理，如果达到了时间间隔，则尝试重新链接，连接成功将此节点从 hostDead 中去除，连接失败则间隔时间翻倍存放，下次重新连接时间会被拉长。
+> * 不开启故障转移：新的请求都会被映射到 dead server 上，尝试重新建立 socket 链接，如果连接失败，返回 null 或者操作失败。
 
 ### 说说 key-value 中的 key 与 value
 
-- key在服务端的长度限制为250个字符，建议使用较短的key但不要重复。
-- value的大小限制为1mb，如果大拉，可以使用压缩，如果还大，那可能拆分到多个key中。
+* key 在服务端的长度限制为 250 个字符，建议使用较短的 key 但不要重复。
+* value 的大小限制为 1mb，如果大拉，可以使用压缩，如果还大，那可能拆分到多个 key 中。
 
 ## Memcached 客户端使用封装
 
@@ -528,7 +526,7 @@ namespace Tdf.MemcachedTest
 }
 ```
 
-到此，我们已经完成了一个最小化的 memcached 集群读写测试Demo。但是，在实际的开发场景中，远不仅仅是存储一个字符串，更多的是存储一个自定义的类的实例对象。这就需要使用到序列化，下面我们来新加一个类Claim，让其作为可序列化的对象来存储进Memcached中。注意：**需要为该类加上 [Serializable] 的特性**！
+到此，我们已经完成了一个最小化的 memcached 集群读写测试 Demo。但是，在实际的开发场景中，远不仅仅是存储一个字符串，更多的是存储一个自定义的类的实例对象。这就需要使用到序列化，下面我们来新加一个类 Claim，让其作为可序列化的对象来存储进 Memcached 中。注意：**需要为该类加上 [Serializable] 的特性**！
 
 ```csharp
 using System;

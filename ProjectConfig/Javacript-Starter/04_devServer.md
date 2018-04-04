@@ -12,24 +12,24 @@
 ```javascript
 /** express dev server */
 
-let express = require('express')
-let path = require('path')
-let open = require('open')
+let express = require('express');
+let path = require('path');
+let open = require('open');
 
-let port = 3000
-let app = express()
+let port = 3000;
+let app = express();
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../src/index.html'))
-})
+  res.sendFile(path.join(__dirname, '../src/index.html'));
+});
 
 app.listen(port, (err) => {
   if (err) {
     console.log(err);
   } else {
-    open(`http://localhost:${port}`)
+    open(`http://localhost:${port}`);
   }
-})
+});
 ```
 
 ## Sharing work-in-progress
@@ -59,23 +59,23 @@ Result is like:
 
 Easy setup Secure. Secure tunnel to your local machine
 
-1. Sign up
-1. Install ngrok
-1. Install authtoken
-1. Start your app
-1. `./ngrok http 80`
+1.  Sign up
+1.  Install ngrok
+1.  Install authtoken
+1.  Start your app
+1.  `./ngrok http 80`
 
 ### now
 
 No firewall hole Hosting persists. Quickly deploy Node.js to the cloud
 
-1. `npm install -g now`
-1. Create start script
-1. `now`
+1.  `npm install -g now`
+1.  Create start script
+1.  `now`
 
 ### Surge
 
 No firewall hole Hosting persists. Quickly host static files to public URL
 
-1. `npm install -g surge`
-1. `surge`
+1.  `npm install -g surge`
+1.  `surge`

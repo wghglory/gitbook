@@ -12,8 +12,8 @@ Javascript: OOP list, indicator
 
 ## SOLID principles
 
-* *Single responsibility*
-* *Open close*: open for extension, but closed for modification
-* *Liskov substitution*: Can use baseType accepts childType without altering the correctness of that program. (`Shape s = new Rectangle();`)
-* *Interface segregation*: many small interfaces rather than a big one, only implement interfaces needed
-* *DI*: decouple. High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
+* _Single responsibility_
+* _Open close_: open for extension, but closed for modification
+* _Liskov substitution_: Can use baseType accepts childType without altering the correctness of that program. (`Shape s = new Rectangle();`)
+* _Interface segregation_: many small interfaces rather than a big one, only implement interfaces needed
+* _DI_: decouple. High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.

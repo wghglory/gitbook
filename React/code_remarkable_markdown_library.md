@@ -23,14 +23,9 @@ class MarkdownEditor extends React.Component {
     return (
       <div className="MarkdownEditor">
         <h3>Input</h3>
-        <textarea
-          onChange={this.handleChange}
-          defaultValue={this.state.value} />
+        <textarea onChange={this.handleChange} defaultValue={this.state.value} />
         <h3>Output</h3>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={this.getRawMarkup()}
-        />
+        <div className="content" dangerouslySetInnerHTML={this.getRawMarkup()} />
       </div>
     );
   }

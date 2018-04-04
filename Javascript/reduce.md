@@ -3,13 +3,13 @@
 We often need to take a list of things and convert that into just one item - whether an integer, an object, or another array.
 
 ```javascript
-var scores = [89, 76, 47, 95]
-var initialValue = 0
-var reducer = function (accumulator, item) {
-  return accumulator + item
-}
-var total = scores.reduce(reducer, initialValue)
-var average = total / scores.length
+var scores = [89, 76, 47, 95];
+var initialValue = 0;
+var reducer = function(accumulator, item) {
+  return accumulator + item;
+};
+var total = scores.reduce(reducer, initialValue);
+var average = total / scores.length;
 ```
 
 You'll notice .reduce takes in two values, a callback function and an initial value. The callback (reducer) function has two parameters.
@@ -21,17 +21,8 @@ The first time the reducer function is called, it's going to be passed the initi
 Here's an example of how you would do that below. You have an array of foods and you want to transform that to an object whose keys are the food itself and whose values are how many votes that food received.
 
 ```javascript
-var votes = [
-  'tacos',
-  'pizza',
-  'pizza',
-  'tacos',
-  'fries',
-  'ice cream',
-  'ice cream',
-  'pizza'
-];
-var initialValue = {}
+var votes = ['tacos', 'pizza', 'pizza', 'tacos', 'fries', 'ice cream', 'ice cream', 'pizza'];
+var initialValue = {};
 var reducer = function(tally, vote) {
   if (!tally[vote]) {
     tally[vote] = 1;
@@ -39,16 +30,16 @@ var reducer = function(tally, vote) {
     tally[vote] = tally[vote] + 1;
   }
   return tally;
-}
-var result = votes.reduce(reducer, initialValue) // {tacos: 2, pizza: 3, fries: 1, ice cream: 2}
+};
+var result = votes.reduce(reducer, initialValue); // {tacos: 2, pizza: 3, fries: 1, ice cream: 2}
 ```
 
 In our api.js, getStarCount will sum up each repo's star:
 
 ```jsx
 function getStarCount(repos) {
-  return repos.data.reduce(function (count, repo) {
-    return count + repo.stargazers_count
+  return repos.data.reduce(function(count, repo) {
+    return count + repo.stargazers_count;
   }, 0);
 }
 ```
@@ -69,14 +60,14 @@ const keys = arr.reduce((accu, current) => {
 
 ```javascript
 const keys = products[0].analysis.reduce((accu, current) => {
-  if (current.categoryId === 1) return accu
+  if (current.categoryId === 1) return accu;
   else {
-    return [...accu, current.key]
+    return [...accu, current.key];
   }
-}, [])
+}, []);
 
 const values = product.analysis.reduce((accu, current, index) => {
-  if (current.categoryId === 1) return accu
+  if (current.categoryId === 1) return accu;
 
   return [
     ...accu,
@@ -85,8 +76,8 @@ const values = product.analysis.reduce((accu, current, index) => {
       yaosu: current.key,
       y: current.value,
       productId: product.id,
-      productName: product.name
-    }
-  ]
-}, [])
+      productName: product.name,
+    },
+  ];
+}, []);
 ```

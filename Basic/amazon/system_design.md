@@ -1,7 +1,6 @@
 # tiny url
 
-how long is the original url length? 30 => 120 bytes => db storage
-how long is the shortened url length? less than 10 => we can use 2nd method since long id 2132132132123 returns a string "DTiRtHL" with length 7.
+how long is the original url length? 30 => 120 bytes => db storage how long is the shortened url length? less than 10 => we can use 2nd method since long id 2132132132123 returns a string "DTiRtHL" with length 7.
 
 One Simple Solution could be Hashing. Use a hash function to convert long string to short string. In hashing, that may be collisions (2 long urls map to same short url) and we need a unique short url for every long url so that we can access long url back.
 
@@ -58,27 +57,31 @@ public class TinyURL
 }
 ```
 
-- reducing the response time of the server
-  - by using a distributed system to share the load based on geography 
-  - by using a central server but many caching servers at various geographical locations 
+* reducing the response time of the server
 
-- reducing the storage space
-  - database design
+  * by using a distributed system to share the load based on geography
+  * by using a central server but many caching servers at various geographical locations
 
-- backup and failover
+* reducing the storage space
 
-- security issues
-  - prevent people from creating links to
+  * database design
 
-- handling old/obsolete urls
-  - while creating the url we can say to the user that it will be deleted if the url is never used for more than say 3 years
+* backup and failover
 
-- may be allow the user to login and delete unused ones
+* security issues
 
-- user friendly things
-  - browser plugins to speed up creating links (youtube sharing has an option to create short urls) 
-    - giving report to user about the usage statistics
-    - mobile app to create urls quickly
+  * prevent people from creating links to
+
+* handling old/obsolete urls
+
+  * while creating the url we can say to the user that it will be deleted if the url is never used for more than say 3 years
+
+* may be allow the user to login and delete unused ones
+
+* user friendly things
+  * browser plugins to speed up creating links (youtube sharing has an option to create short urls)
+    * giving report to user about the usage statistics
+    * mobile app to create urls quickly
 
 ### 10000 cameras, 100 hours of video each. 30 fps. Police need to input a plate number and find the path of a suspicious vehicle. (Estimate the size of the video, e.g., blueray disc is 2 hours and 20 GB. No need to scan all of the videos. Estimate the time that a vehicle can be seen between 2 traffic cameras, e.g., 0.3 miles and 30 miles per hour, then select 1 out of 100). Web client, load balancer, servers, db.
 
@@ -92,27 +95,27 @@ Db Design - Either cameras are doing OCR to figure out numbers at camera level, 
 
 how many articles are created per day => estimate db storage
 
-subject: news, sports, movie channels,
-observer: vipUser, regularUser
-message: Article
+subject: news, sports, movie channels, observer: vipUser, regularUser message: Article
 
 vipUser can subscribe all channels while regularUser can subscribe most 5.
 
 ### Design a kindle app for mobile device and think about the large scale service that would support content distribution for it and how you would design it
 
 features:
-1. read txt, epub formats in device
-1. sync: add these documents to cloud
-1. sign in, read repositories from cloud
-1. categorize books, news, docs for cloud all documents
-1. discover and push books to user based on search result, payment history
-1. search a book and read 1st chapter to trial, buy books
-1. help: ask an issue, feedback
-1. share book to facebook
-1. reading editor: font, theme, process, bookmark, table of content
+
+1.  read txt, epub formats in device
+1.  sync: add these documents to cloud
+1.  sign in, read repositories from cloud
+1.  categorize books, news, docs for cloud all documents
+1.  discover and push books to user based on search result, payment history
+1.  search a book and read 1st chapter to trial, buy books
+1.  help: ask an issue, feedback
+1.  share book to facebook
+1.  reading editor: font, theme, process, bookmark, table of content
 
 others:
-1. resolution for different mobiles
+
+1.  resolution for different mobiles
 
 ### You have a cluster with 100 machines that need time to be synced. The central time server can only handle 10 requests at a time. How will you set this up?
 
@@ -122,13 +125,13 @@ divide the cluster into groups of 10 and the central time server syncs with 1st 
 
 pros:
 
-- easy to maintain grouping
-- grouping map can be stored on central time server
+* easy to maintain grouping
+* grouping map can be stored on central time server
 
 cons:
 
-- if central server fails, may need to do resyncing
-- if one or more of the servers in a group fail to sync or take too long then the other servers will be kept waiting
+* if central server fails, may need to do resyncing
+* if one or more of the servers in a group fail to sync or take too long then the other servers will be kept waiting
 
 **Way 2:**
 
@@ -136,15 +139,15 @@ create 10 groups and assign masters in groups, those masters sync with the centr
 
 **Way 3:**
 
-1. central server have a list of unsynced, syncing and synced servers.
-1. the central server can start with a random 10 servers and change their state from to be unsynced to syncing and update the lists.
-1. When a server finished syncing, its state is changed to synced and added to the synced list. Next, a new server can be synced if space is available.
+1.  central server have a list of unsynced, syncing and synced servers.
+1.  the central server can start with a random 10 servers and change their state from to be unsynced to syncing and update the lists.
+1.  When a server finished syncing, its state is changed to synced and added to the synced list. Next, a new server can be synced if space is available.
 
 pros:
 
-- servers don't constantly wait unnecessarily
-- a priority can be assigned to certain servers if dependencies exist
-- can retry on sync errors
+* servers don't constantly wait unnecessarily
+* a priority can be assigned to certain servers if dependencies exist
+* can retry on sync errors
 
 cons:
 
@@ -152,13 +155,13 @@ if central server fails, need to redo syncing. To combat this each server can st
 
 ### How will you design the backend of product recommender system on amazon.com
 
-1. Depending upon what he is searching on
-1. Relating that searched Item to what he Purchased in the history
-1. Respecting User preference on Public Review of the Product
-1. Products that People who bought the same product along with the product searched by the current User.
-1. Best Brand Products that matches the searched product.
-1. Sort according to the best discount on the product searched
-1. Product which offers Free Shipping
+1.  Depending upon what he is searching on
+1.  Relating that searched Item to what he Purchased in the history
+1.  Respecting User preference on Public Review of the Product
+1.  Products that People who bought the same product along with the product searched by the current User.
+1.  Best Brand Products that matches the searched product.
+1.  Sort according to the best discount on the product searched
+1.  Product which offers Free Shipping
 
 Coming to the Design
 

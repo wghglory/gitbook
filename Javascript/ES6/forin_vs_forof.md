@@ -7,8 +7,8 @@ The `for...of` syntax is specific to **collections**, rather than all objects. I
 The following example shows the difference between a `for...of` loop and a `for...in` loop.
 
 ```javascript
-Object.prototype.objCustom = function () {};
-Array.prototype.arrCustom = function () {};
+Object.prototype.objCustom = function() {};
+Array.prototype.arrCustom = function() {};
 
 let iterable = [3, 5, 7];
 iterable.foo = 'hello';

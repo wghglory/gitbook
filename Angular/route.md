@@ -24,15 +24,11 @@ export const rootRouterConfig: Routes = [
       {
         path: ':org',
         component: RepoList,
-        children: [
-          { path: '', component: RepoDetail },
-          { path: ':repo', component: RepoDetail }
-        ]
-      }
-    ]
-  }
+        children: [{ path: '', component: RepoDetail }, { path: ':repo', component: RepoDetail }],
+      },
+    ],
+  },
 ];
-
 ```
 
 ## ActivatedRoute params subscribe
@@ -61,7 +57,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'repo-list',
   styleUrls: ['./repo-list.css'],
-  templateUrl: './repo-list.html'
+  templateUrl: './repo-list.html',
 })
 export class RepoList implements OnInit {
   org: string;
@@ -82,7 +78,7 @@ export class RepoList implements OnInit {
 
 ## Navigate by `Router`
 
-Above List of Models, there is a search area. When clicking the button, the page  navigates to Single Model detail page.
+Above List of Models, there is a search area. When clicking the button, the page navigates to Single Model detail page.
 
 ```html
 <input type="text" #repoName placeholder="Search Github Orgs">
@@ -99,7 +95,7 @@ import { GithubService } from '../services/github.service';
 @Component({
   selector: 'repo-browser',
   templateUrl: './repo-browser.html',
-  styleUrls: ['./repo-browser.css']
+  styleUrls: ['./repo-browser.css'],
 })
 export class RepoBrowser {
   constructor(private router: Router, private githubService: GithubService) {}
@@ -131,14 +127,18 @@ import { GithubService } from '../services/github.service';
 @Component({
   selector: 'repo-detail',
   styleUrls: ['./repo-detail.css'],
-  templateUrl: './repo-detail.html'
+  templateUrl: './repo-detail.html',
 })
 export class RepoDetail implements OnInit {
   private org: string;
   private repo: string;
   public repoDetails: any = {};
 
-  constructor(public githubService: GithubService, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    public githubService: GithubService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {

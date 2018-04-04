@@ -26,7 +26,7 @@ transform-origin: 0% 0%;
 
 单位：
 
-* `deg`： 360度，如 `rotate(90deg)`。
+* `deg`： 360 度，如 `rotate(90deg)`。
 * `grad`：用于简化计算：一圈算 400 grad。如 `rotate(100grad)`。
 * `rad`： 一圈 2π。如 `rotate(1.57rad)`。
 * `turn`：表示一圈。如 `rotate(.25turn)`。
@@ -44,9 +44,11 @@ transform-origin: 0% 0%;
 
 ```css
 img.tilt {
-	width: 300px; height: 300px; float: left;
-	transform-origin: right top;
-	transform: rotate(−10deg);
+  width: 300px;
+  height: 300px;
+  float: left;
+  transform-origin: right top;
+  transform: rotate(−10deg);
 }
 ```
 
@@ -54,7 +56,7 @@ img.tilt {
 
 ### 缩放
 
-`scale` 函数的参数是乘数。如 `scale(2)` 长宽放大2倍。`scale(.5)` 长宽缩小一倍。
+`scale` 函数的参数是乘数。如 `scale(2)` 长宽放大 2 倍。`scale(.5)` 长宽缩小一倍。
 
 利用负值可以反转图像。例如左右反转：
 
@@ -67,7 +69,7 @@ img.tilt {
 水平和垂直方向可以独立缩放，例如：
 
 ```css
-transform: scale(.5, 2);
+transform: scale(0.5, 2);
 ```
 
 或者使用独立的函数：`scaleX` 用于水平缩放、`scaleY` 用于垂直缩放。

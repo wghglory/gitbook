@@ -23,12 +23,22 @@ function commafy(num) {
 function toMoney(number, digit) {
   digit = digit > 0 && digit <= 20 ? digit : 2;
   number = parseFloat((number + '').replace(/[^\d\.-]/g, '')).toFixed(digit) + ''; //更改这里n数也可确定要保留的小数位
-  var l = number.split('.')[0].split('').reverse(),
+  var l = number
+      .split('.')[0]
+      .split('')
+      .reverse(),
     r = number.split('.')[1];
   t = '';
   for (i = 0; i < l.length; i++) {
     t += l[i] + ((i + 1) % 3 == 0 && i + 1 != l.length ? ',' : '');
   }
-  return t.split('').reverse().join('') + '.' + r.substring(0, 2); //保留2位小数  如果要改动 把substring 最后一位数改动就可
+  return (
+    t
+      .split('')
+      .reverse()
+      .join('') +
+    '.' +
+    r.substring(0, 2)
+  ); //保留2位小数  如果要改动 把substring 最后一位数改动就可
 }
 ```

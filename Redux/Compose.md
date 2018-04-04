@@ -7,7 +7,12 @@ Redux also comes with a `compose` function that you can use to compose several f
 If we just wanted to get a comma-delimited list of color titles, we could use this one crazy line of code:
 
 ```javascript
-console.log(store.getState().colors.map((c) => c.title).join(', '));
+console.log(
+  store
+    .getState()
+    .colors.map((c) => c.title)
+    .join(', '),
+);
 ```
 
 A more functional approach would be to break this down into smaller functions and compose them into a single function:
@@ -21,7 +26,7 @@ const print = compose(
   (titles) => titles.join(', '),
   (map) => map((c) => c.title),
   (colors) => colors.map.bind(colors),
-  (state) => state.colors
+  (state) => state.colors,
 );
 
 print(store.getState());

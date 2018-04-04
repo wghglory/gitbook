@@ -43,8 +43,9 @@
   display: flex; /* or inline-flex */
   flex-direction: row | row-reverse | column | column-reverse;
   flex-wrap: nowrap | wrap | wrap-reverse;
-  flex-flow: <'flex-direction'> || <'flex-wrap'>;
-  justify-content: flex-start | flex-end | 'center' | 'space-between' | space-around | 'space-evenly';
+  flex-flow: < 'flex-direction' > || < 'flex-wrap' >;
+  justify-content: flex-start | flex-end | 'center' | 'space-between' | space-around |
+    'space-evenly';
   align-items: flex-start | flex-end | center | baseline | stretch;
   align-content: flex-start | flex-end | center | space-between | space-around | stretch;
 }
@@ -118,11 +119,11 @@ This aligns a flex container's lines within when there is extra space in the cro
 
 ### flex
 
-This is the shorthand for `flex-grow, flex-shrink and flex-basis` combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is `0 1 auto`. 只设置一个参数是比例 `flex-grow`
+This is the shorthand for `flex-grow, flex-shrink and flex-basis` combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is `0 1 auto`. 只设置一个参数是  比例 `flex-grow`
 
 ```css
 .item {
-  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+  flex: none | [ < 'flex-grow' > < 'flex-shrink' >? || < 'flex-basis' > ];
 }
 ```
 

@@ -2,7 +2,7 @@
 
 移动端当有 `fixed` 遮罩背景和弹出层时，在屏幕上滑动能够滑动背景下面的内容，这就是著名的滚动穿透问题
 
-## 方案1
+## 方案 1
 
 ```css
 body.modal-open,
@@ -19,19 +19,23 @@ html.modal-open {
 * 由于 html 和 body 的滚动条都被禁用，弹出层后页面的滚动位置会丢失，需要用 js 来还原
 * 页面的背景还是能够有滚动的效果
 
-## 方案2：js 之 touchmove + preventDefault
+## 方案 2：js 之 touchmove + preventDefault
 
 ```javascript
-modal.addEventListener('touchmove', function(e) {
-  e.preventDefault();
-}, false);
+modal.addEventListener(
+  'touchmove',
+  function(e) {
+    e.preventDefault();
+  },
+  false,
+);
 ```
 
 这样用 js 阻止滚动后看起来效果不错了，但是也有一个缺点：
 
 弹出层里不能有其它需要滚动的内容（如大段文字需要固定高度，显示滚动条也会被阻止）
 
-## 方案3：移动端滚动穿透问题完美解决方案 ✔️
+## 方案 3：移动端滚动穿透问题完美解决方案 ✔️
 
 ```css
 body.modal-open {
@@ -44,10 +48,10 @@ body.modal-open {
 
 ```javascript
 /**
-  * ModalHelper helpers resolve the modal scrolling issue on mobile devices
-  * https://github.com/twbs/bootstrap/issues/15852
-  * requires document.scrollingElement polyfill https://uedsky.com/demo/src/polyfills/document.scrollingElement.js
-  */
+ * ModalHelper helpers resolve the modal scrolling issue on mobile devices
+ * https://github.com/twbs/bootstrap/issues/15852
+ * requires document.scrollingElement polyfill https://uedsky.com/demo/src/polyfills/document.scrollingElement.js
+ */
 var ModalHelper = (function(bodyCls) {
   var scrollTop;
   return {
@@ -60,7 +64,7 @@ var ModalHelper = (function(bodyCls) {
       document.body.classList.remove(bodyCls);
       // scrollTop lost after set position:fixed, restore it back.
       document.scrollingElement.scrollTop = scrollTop;
-    }
+    },
   };
 })('modal-open');
 ```

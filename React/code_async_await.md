@@ -33,7 +33,7 @@ export default class UserList extends Component {
       numberOfElements: 0,
       sort: null,
       pageSize: 0,
-      pageIndex: 0
+      pageIndex: 0,
     };
   }
 
@@ -56,49 +56,54 @@ export default class UserList extends Component {
       numberOfElements: res.numberOfElements,
       sort: res.sort,
       pageSize: res.size,
-      pageIndex: res.number + 1 // 后台number从0开始，pageIndex从1，展示pagination
+      pageIndex: res.number + 1, // 后台number从0开始，pageIndex从1，展示pagination
     });
   }
 
-  /*  // Promise 写法
-    // method 1: 2个 then 嵌套
-    fetchUsers(pageIndex, pageSize) {
-        getUsers(pageIndex, pageSize).then(res => {
-            this.fetchOrganizations(res.content).then((formattedUsers) => this.setState({
-                loading: false,
-                users: formattedUsers, // added organization name
-                last: res.last,
-                totalPages: res.totalPages,
-                totalElements: res.totalElements,
-                first: res.first,
-                numberOfElements: res.numberOfElements,
-                sort: res.sort,
-                pageSize: res.size,
-                pageIndex: res.number + 1 // 后台number从0开始，pageIndex从1，展示pagination
-            }))
-        })
-    }
+  // // Promise 写法
+  // // method 1: 2个 then 嵌套
+  // fetchUsers(pageIndex, pageSize) {
+  //   getUsers(pageIndex, pageSize).then((res) => {
+  //     this.fetchOrganizations(res.content).then((formattedUsers) =>
+  //       this.setState({
+  //         loading: false,
+  //         users: formattedUsers, // added organization name
+  //         last: res.last,
+  //         totalPages: res.totalPages,
+  //         totalElements: res.totalElements,
+  //         first: res.first,
+  //         numberOfElements: res.numberOfElements,
+  //         sort: res.sort,
+  //         pageSize: res.size,
+  //         pageIndex: res.number + 1, // 后台number从0开始，pageIndex从1，展示pagination
+  //       }),
+  //     );
+  //   });
+  // }
 
-    // method 2: 没有 then 的嵌套
-    fetchUsers(pageIndex, pageSize) {
-        getUsers(pageIndex, pageSize).then(res => {
-            this.setState({
-                loading: false,
-                last: res.last,
-                totalPages: res.totalPages,
-                totalElements: res.totalElements,
-                first: res.first,
-                numberOfElements: res.numberOfElements,
-                sort: res.sort,
-                pageSize: res.size,
-                pageIndex: res.number + 1 // 后台number从0开始，pageIndex从1，展示pagination
-            })
-            return this.fetchOrganizations(res.content)
-        }).then(formattedUsers => this.setState({
-            users: formattedUsers, // added organization name
-        }))
-    }
-    */
+  // // method 2: 没有 then 的嵌套
+  // fetchUsers(pageIndex, pageSize) {
+  //   getUsers(pageIndex, pageSize)
+  //     .then((res) => {
+  //       this.setState({
+  //         loading: false,
+  //         last: res.last,
+  //         totalPages: res.totalPages,
+  //         totalElements: res.totalElements,
+  //         first: res.first,
+  //         numberOfElements: res.numberOfElements,
+  //         sort: res.sort,
+  //         pageSize: res.size,
+  //         pageIndex: res.number + 1, // 后台number从0开始，pageIndex从1，展示pagination
+  //       });
+  //       return this.fetchOrganizations(res.content);
+  //     })
+  //     .then((formattedUsers) =>
+  //       this.setState({
+  //         users: formattedUsers, // added organization name
+  //       }),
+  //     );
+  // }
 
   fetchOrganizations(users) {
     let organizationIds = new Set();
@@ -137,61 +142,61 @@ export default class UserList extends Component {
         title: 'Id',
         dataIndex: 'id',
         key: 'id',
-        width: 200
+        width: 200,
       },
       {
         title: '用户名',
         dataIndex: 'userName',
         key: 'userName',
-        render: (text) => <a href="#">{text}</a>
+        render: (text) => <a href="#">{text}</a>,
       },
       {
         title: '邮件',
         dataIndex: 'email',
-        key: 'email'
+        key: 'email',
       },
       {
         title: '电话',
         dataIndex: 'phone',
-        key: 'phone'
+        key: 'phone',
       },
       {
         title: '真实姓名',
         dataIndex: 'trueName',
-        key: 'trueName'
+        key: 'trueName',
       },
       {
         title: '注册时间',
         dataIndex: 'createdOn',
         key: 'createdOn',
-        render: (text) => moment(new Date(text)).format('YYYY-MM-DD HH:mm:ss')
+        render: (text) => moment(new Date(text)).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         title: '禁用',
         dataIndex: 'enable',
         key: 'enable',
-        render: (text) => (text ? '正常' : '禁用')
+        render: (text) => (text ? '正常' : '禁用'),
       },
       {
         title: '组织Id',
         dataIndex: 'organizationId',
-        key: 'organizationId'
+        key: 'organizationId',
       },
       {
         title: '组织',
         dataIndex: 'organizationName',
-        key: 'organizationName'
+        key: 'organizationName',
       },
       {
         title: '权限',
         dataIndex: 'permissions',
         key: 'permissions',
-        render: (arr) => arr.join(', ')
+        render: (arr) => arr.join(', '),
       },
       {
         title: '备注',
         dataIndex: 'comment',
-        key: 'comment'
+        key: 'comment',
       },
       {
         title: '操作',
@@ -201,18 +206,21 @@ export default class UserList extends Component {
             <UserEditModal record={record} onOk={this.editHandler.bind(null, record.id)}>
               <a>编辑</a>
             </UserEditModal>
-            <Popconfirm title="Confirm to delete?" onConfirm={this.deleteHandler.bind(null, record.id)}>
+            <Popconfirm
+              title="Confirm to delete?"
+              onConfirm={this.deleteHandler.bind(null, record.id)}
+            >
               <a href="">删除</a>
             </Popconfirm>
           </span>
-        )
-      }
+        ),
+      },
     ];
 
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
         // console.log(`selectedRowKeys: ${selectedRowKeys}`, `selectedRows: ${selectedRows}`)
-      }
+      },
     };
 
     const dataSet = this.state.users != null ? this.state.users : [];

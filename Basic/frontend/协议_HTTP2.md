@@ -2,7 +2,7 @@
 
 node 8.4 `--expose-http2`
 
-`server push`: 通过 full request 和 多路响应大大减少请求响应时间。不像 http 1 时代 浏览器加载html，再分别加载里面的 js, css, image 资源。并且 http 1 每次浏览器从一个 domain 下载的资源数受限，chrome/firefox 最多同时下载8个。 http 2 的多路响应、加上 `server push` 甚至在浏览器没有向服务端发送请求时 服务端都能迅速返回所需要的资源。
+`server push`: 通过 full request 和 多路响应大大减少请求响应时间。不像 http 1 时代 浏览器加载 html，再分别加载里面的 js, css, image 资源。并且 http 1 每次浏览器从一个 domain 下载的资源数受限，chrome/firefox 最多同时下载 8 个。 http 2 的多路响应、加上 `server push` 甚至在浏览器没有向服务端发送请求时 服务端都能迅速返回所需要的资源。
 
 ---
 
@@ -24,11 +24,11 @@ HTTP/2 Server Push allows the server to send assets to the browser before it has
 
 > Before we jump into HTTP/2 let's take a look how it works with HTTP/1:
 
-In HTTP/1 the client sends a request to the server, which replies with the requested content, usually with an HTML file that contains links to many assets *(.js, .css, etc. files)*. As the browser processes this initial HTML file, it starts to resolve these links and makes separate requests to fetch them.
+In HTTP/1 the client sends a request to the server, which replies with the requested content, usually with an HTML file that contains links to many assets _(.js, .css, etc. files)_. As the browser processes this initial HTML file, it starts to resolve these links and makes separate requests to fetch them.
 
 Check out the following image that demonstrates the process. Pay extra attention to the independent requests on the timeline and to the initiator of those requests:
 
-![HTTP 1.1 in Node.js](https://blog-assets.risingstack.com/2017/08/http_1-in-nodejs.png)*HTTP/1 assets loading*
+![HTTP 1.1 in Node.js](https://blog-assets.risingstack.com/2017/08/http_1-in-nodejs.png)_HTTP/1 assets loading_
 
 This is how HTTP/1 works, and this is how we develop our application for so many years. **Why change it now?**
 
@@ -38,7 +38,7 @@ This is how HTTP/1 works, and this is how we develop our application for so many
 
 Look at the following picture where the same website is served via HTTP/2. Check out the timeline and the initiator. You can see that **HTTP/2 multiplexing reduced the number of requests, and the assets were sent immediately together with the initial request.**
 
-![HTTP/2 with Server Push in Node.js](https://blog-assets.risingstack.com/2017/08/http2-in-nodejs.png)*HTTP/2 with Server Push*
+![HTTP/2 with Server Push in Node.js](https://blog-assets.risingstack.com/2017/08/http2-in-nodejs.png)_HTTP/2 with Server Push_
 
 Let's see how you can use HTTP/2 Server Push today with Node.js and speed up your client's load time.
 
@@ -49,30 +49,27 @@ With requiring the built-in `http2` module, we can create our server just like w
 The interesting part is that we push other resources when the `index.html` is requested:
 
 ```javascript
-const http2 = require('http2')
-const server = http2.createSecureServer(
-  { cert, key },
-  onRequest
-)
+const http2 = require('http2');
+const server = http2.createSecureServer({ cert, key }, onRequest);
 
-function push (stream, filePath) {
-  const { file, headers } = getFile(filePath)
-  const pushHeaders = { [HTTP2_HEADER_PATH]: filePath }
+function push(stream, filePath) {
+  const { file, headers } = getFile(filePath);
+  const pushHeaders = { [HTTP2_HEADER_PATH]: filePath };
 
   stream.pushStream(pushHeaders, (pushStream) => {
-    pushStream.respondWithFD(file, headers)
-  })
+    pushStream.respondWithFD(file, headers);
+  });
 }
 
-function onRequest (req, res) {
+function onRequest(req, res) {
   // Push files with index.html
   if (reqPath === '/index.html') {
-    push(res.stream, 'bundle1.js')
-    push(res.stream, 'bundle2.js')
+    push(res.stream, 'bundle1.js');
+    push(res.stream, 'bundle2.js');
   }
 
   // Serve file
-  res.stream.respondWithFD(file.fileDescriptor, file.headers)
+  res.stream.respondWithFD(file.fileDescriptor, file.headers);
 }
 ```
 

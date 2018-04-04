@@ -4,25 +4,25 @@
 
 I want to create a address component as a child component. The parent component, events-list, will pass the event object to the child. To get this done:
 
-- child component needs import `Input` from angular/core
-- parent template uses the child selector, and [input parameter name] = "parent"
+* child component needs import `Input` from angular/core
+* parent template uses the child selector, and [input parameter name] = "parent"
 
-1. child component: `events-address.component.ts`
+1.  child component: `events-address.component.ts`
 
     ```ts
     //child component, talk with parent events-list.component.ts
-    import {Component, Input} from '@angular/core'
+    import { Component, Input } from '@angular/core';
 
     @Component({
-        selector: 'events-address',
-        template: '<span>{{address.address}},{{address.city}},{{address.country}}</span>'
+      selector: 'events-address',
+      template: '<span>{{address.address}},{{address.city}},{{address.country}}</span>',
     })
-    export class EventsAddressComponent{
-        @Input() address:any  //define address object
+    export class EventsAddressComponent {
+      @Input() address: any; //define address object
     }
     ```
 
-1. modify parent component template, [address] is child object name, "event.location" is parent data
+1.  modify parent component template, [address] is child object name, "event.location" is parent data
 
     ```html
     <div>
@@ -38,7 +38,7 @@ I want to create a address component as a child component. The parent component,
     </div>
     ```
 
-1. import child component to app.module
+1.  import child component to app.module
 
     ```ts
     import { EventsAddressComponent } from './events/events-address.component'
@@ -50,68 +50,68 @@ I want to create a address component as a child component. The parent component,
 
 ## 2. Communicating with Parent Components Using @Output and EventEmitter (child pass data to parent)
 
-1. child component `events-address.component.ts`:
+1.  child component `events-address.component.ts`:
 
-    - import Output, EventEmitter
-    - define a variable accepting EventEmitter
-    - define buttonClick
-    - the EventEmitter variable emit any data from child component
+    * import Output, EventEmitter
+    * define a variable accepting EventEmitter
+    * define buttonClick
+    * the EventEmitter variable emit any data from child component
 
     ```ts
     //child component, talk with parent events-list.component.ts
-    import {Component, Output, EventEmitter} from '@angular/core'
+    import { Component, Output, EventEmitter } from '@angular/core';
 
     @Component({
-        selector: 'events-address',
-        template: '<button (click)="buttonClick()">Click me!</button>'
+      selector: 'events-address',
+      template: '<button (click)="buttonClick()">Click me!</button>',
     })
-    export class EventsAddressComponent{
-        @Output() myClick = new EventEmitter()
+    export class EventsAddressComponent {
+      @Output() myClick = new EventEmitter();
 
-        buttonClick(){
-            this.myClick.emit('I am from child component, should pass data to parent component')
-        }
+      buttonClick() {
+        this.myClick.emit('I am from child component, should pass data to parent component');
+      }
     }
     ```
 
-1. parent Component `events-list.component.ts`:
+1.  parent Component `events-list.component.ts`:
 
-    - update template: `(the EventEmitter variable name defined in child component) = "randomFuncInParent($event)"`
+    * update template: `(the EventEmitter variable name defined in child component) = "randomFuncInParent($event)"`
 
     ```html
     <events-address (myClick)="clickWithAnyName($event)"></events-address>
     ```
 
-    - define random function in parent component class
+    * define random function in parent component class
 
     ```ts
     export class EventsListComponent {
-        clickWithAnyName(dataFromChild){
-            alert(dataFromChild)
-        }
+      clickWithAnyName(dataFromChild) {
+        alert(dataFromChild);
+      }
     }
     ```
 
 ## 3. Using Template Variables To Interact with Child Components (parent access to child data, easier than method 2)
 
-1. child component `events-address.component.ts` define public property and method
+1.  child component `events-address.component.ts` define public property and method
 
     ```ts
     //child component, talk with parent events-list.component.ts
     @Component({
-        selector: 'events-address',
-        template: ''
+      selector: 'events-address',
+      template: '',
     })
     export class EventsAddressComponent {
-        //use template variable to interact with child public method/property: parent accesses child data
-        author:string = 'Guanghui Wang'  //child public property
-        getAuthor(){
-            alert(this.author)
-        }
+      //use template variable to interact with child public method/property: parent accesses child data
+      author: string = 'Guanghui Wang'; //child public property
+      getAuthor() {
+        alert(this.author);
+      }
     }
     ```
 
-1. access child component data from parent component template's childPointer variable
+1.  access child component data from parent component template's childPointer variable
 
     ```html
     <events-address [address]="event.location" (myClick)="clickWithAnyName($event)" #childPointer></events-address>

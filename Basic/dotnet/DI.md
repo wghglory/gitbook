@@ -2,7 +2,7 @@
 
 控制反转（Inversion of Control）目的是解耦合
 
-==DI基本原理本质上是通过容器来反射创建实例==
+==DI 基本原理本质上是通过容器来反射创建实例==
 
 ```csharp
 class Person
@@ -31,10 +31,9 @@ static void Main(string[] args)
     }
     Console.ReadKey();
 }
-
 ```
 
-在上面能看到1个问题，一般情况下既然使用DI，就不知道具体的注入对象，所以强调面向接口编程。所以实际上一般先定义接口，再通过DI容器创建对象。
+在上面能看到 1 个问题，一般情况下既然使用 DI，就不知道具体的注入对象，所以强调面向接口编程。所以实际上一般先定义接口，再通过 DI 容器创建对象。
 
 ```csharp
 interface IPerson
@@ -64,7 +63,7 @@ static void Main(string[] args)
 
 DI 框架流行的有 Castle Windsor, Unity...(Autofac, Spring.Net)
 
-==在DI框架中，一般需要将对象注册到容器中，然后从容器解析出来。==
+==在 DI 框架中，一般需要将对象注册到容器中，然后从容器解析出来。==
 
 #### Castle
 
@@ -180,11 +179,11 @@ static void Main(string[] args)
 }
 ```
 
-MVC集成
+MVC 集成
 
 `Install-Package Castle.Windsor.Mvc`
 
-Application_Start注册
+Application_Start 注册
 
 ```csharp
 protected void Application_Start()
@@ -195,7 +194,6 @@ protected void Application_Start()
     var controllerFactory = new WindsorControllerFactory(container.Kernel);
     ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 }
-
 ```
 
 Installer 注册
@@ -332,11 +330,11 @@ static void Main(string[] args)
 }
 ```
 
-MVC集成
+MVC 集成
 
 `Install-Package Unity.Mvc`
 
-Application_Start注册
+Application_Start 注册
 
 ```csharp
 protected void Application_Start()

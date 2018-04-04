@@ -1,39 +1,39 @@
-# [.net反射](http://www.cnblogs.com/linzheng/archive/2010/12/13/1904661.html)
+# [.net 反射](http://www.cnblogs.com/linzheng/archive/2010/12/13/1904661.html)
 
 反射就是动态发现类型信息的能力。它帮助程序设计人员在程序==**运行时利用一些信息去动态地使用类型**==，这些信息在设计时是未知的，这种能力类型于后期绑定。反射还支持的更高级的行为，能在运行时==动态创建新类型，并且对这些新类型的操作进行调用==。
 
 ### 常用的反射例子
 
 * 变化数据库，通过反射动态读取配置文件
-* SqlHelper SqlDataReader读取数据库，表明通过反射加载
-* 开发windows form插件：
-    1. 创建接口项目，通过接口定义插件实现方式
-    1. 创建插件项目，创建两个插件一个实现汉英翻译功能，一个实现定时关机功能。插件项目要引用接口项目。编译时让插件项目生成在主程序的debug/plugin目录下
-    1. 创建主程序，主程序要添加对接口项目的引用(不需要对插件引用，对插件的调用是动态的)
-    1. 主程序中读取 Plugin 目录下的所有dll文件，加载成Assembly。Ass.GetExportedTypes 读取 Assembly中的公共类型。
-    1. IsAssignableFrom判断对象能否委派给某类型，是否是类并且不能使抽象类
+* SqlHelper SqlDataReader 读取数据库，表明通过反射加载
+* 开发 windows form 插件：
+  1.  创建接口项目，通过接口定义插件实现方式
+  1.  创建插件项目，创建两个插件一个实现汉英翻译功能，一个实现定时关机功能。插件项目要引用接口项目。编译时让插件项目生成在主程序的 debug/plugin 目录下
+  1.  创建主程序，主程序要添加对接口项目的引用(不需要对插件引用，对插件的调用是动态的)
+  1.  主程序中读取 Plugin 目录下的所有 dll 文件，加载成 Assembly。Ass.GetExportedTypes 读取 Assembly 中的公共类型。
+  1.  IsAssignableFrom 判断对象能否委派给某类型，是否是类并且不能使抽象类
 
 ### 反射中经常使用的类
 
-**Assembly类**
+**Assembly 类**
 
-Assembly类是可重用、无版本冲突并且可自我描述的公共语言运行库应用程序构造块。可以使用Assembly.Load和Assembly.LoadFrom方法动态地加载程序集。
+Assembly 类是可重用、无版本冲突并且可自我描述的公共语言运行库应用程序构造块。可以使用 Assembly.Load 和 Assembly.LoadFrom 方法动态地加载程序集。
 
-**Type类**
+**Type 类**
 
-反射的中心是System.Type类。System.Type类是一个抽象类，代表公用类型系统中的一种类型。这个类使您能够查询类型名、类型中包含的模块和名称空间、以及该类型是一个数值类型还是一个引用类型。System.Type类使您能够查询几乎所有与类型相关的属性，包括类型访问限定符、类型是否、类型的COM属性等等。
+反射的中心是 System.Type 类。System.Type 类是一个抽象类，代表公用类型系统中的一种类型。这个类使您能够查询类型名、类型中包含的模块和名称空间、以及该类型是一个数值类型还是一个引用类型。System.Type 类使您能够查询几乎所有与类型相关的属性，包括类型访问限定符、类型是否、类型的 COM 属性等等。
 
-**Activator类**
+**Activator 类**
 
-Activator类支持动态创建.NET程序集和COM对象。可以通过CreateComInstanceFrom、CreateInstance、CreateInstanceFrom、GetObject四个静态方法加载COM对象或者程序集，并能**创建指定类型的实例**。
+Activator 类支持动态创建.NET 程序集和 COM 对象。可以通过 CreateComInstanceFrom、CreateInstance、CreateInstanceFrom、GetObject 四个静态方法加载 COM 对象或者程序集，并能**创建指定类型的实例**。
 
-**Binder类**
+**Binder 类**
 
-Binder类是一个用于执行类型转换的绑定器，Type对象的InvokeMember方法接受Binder对象，这个对象描述了如何将传递给InvokeMember的参数转换成方法实际需要的类型。Binder类是一个抽象类，要创建绑定器，需要重写方法BindToMethod、BindToField、SelectMehtod、SelectProperty和ChangeType。
+Binder 类是一个用于执行类型转换的绑定器，Type 对象的 InvokeMember 方法接受 Binder 对象，这个对象描述了如何将传递给 InvokeMember 的参数转换成方法实际需要的类型。Binder 类是一个抽象类，要创建绑定器，需要重写方法 BindToMethod、BindToField、SelectMehtod、SelectProperty 和 ChangeType。
 
-**DefaultMemberAttribute类**
+**DefaultMemberAttribute 类**
 
-DefaultMemberAttribute类用于类型并带有一个指明默认成员名称的字符串参数。能够通过InvokeMember调用默认成员，而不需要传递调用成员的名称。当需要绑定器但不需要特别的绑定行为时就可以使用它。
+DefaultMemberAttribute 类用于类型并带有一个指明默认成员名称的字符串参数。能够通过 InvokeMember 调用默认成员，而不需要传递调用成员的名称。当需要绑定器但不需要特别的绑定行为时就可以使用它。
 
 还有一些对元素类型信息描述的类，ConstrutorInfo（构造函数）、MethodInfo（方法）、FieldInfo（字段）、PropertyInfo（属性）、EventInfo（事件）、MemberInfo（成员）、ParameterInfo（参数）。如果查询得到了具有任何类型信息的实例，就可以获得该类型中任意元素的类型信息，当然出于安全原因，不保证会得到程序集中的任何信息。
 
@@ -188,7 +188,7 @@ public partial class _Default : System.Web.UI.Page
 }
 ```
 
-### .net反射优缺点
+### .net 反射优缺点
 
 缺点：
 
@@ -203,14 +203,14 @@ public partial class _Default : System.Web.UI.Page
 
 ### 使用反射机制调用方法的四步曲
 
-1. 加载程序集
-1. 获取类的类型
-1. 创建该类的实例
-1. 调用该实例的方法
+1.  加载程序集
+1.  获取类的类型
+1.  创建该类的实例
+1.  调用该实例的方法
 
-System.Reflection.Assembly 类中有两个静态方法 Assembly.Load(string assemblyName)和Assembly.LoadFrom(string fileName)来把程序集加载到应用程序序域中。
+System.Reflection.Assembly 类中有两个静态方法 Assembly.Load(string assemblyName)和 Assembly.LoadFrom(string fileName)来把程序集加载到应用程序序域中。
 
-在.NET中当一个对象被创建时，幕后到底发生了什么？当我们运行某一个应用程序时，.NET CLR会首先创建一个应用程序域来容纳这个应用程序，接着将应该引用的程序集加载到应用程序域中。其中MSCorLib.dll是一个程序集，它包含了很多系统命名空间及其子命名空间中的类：System;System.Text,System.IO等。然后CLR加载正在运行的应用程序所属的程序集。
+在.NET 中当一个对象被创建时，幕后到底发生了什么？当我们运行某一个应用程序时，.NET CLR 会首先创建一个应用程序域来容纳这个应用程序，接着将应该引用的程序集加载到应用程序域中。其中 MSCorLib.dll 是一个程序集，它包含了很多系统命名空间及其子命名空间中的类：System;System.Text,System.IO 等。然后 CLR 加载正在运行的应用程序所属的程序集。
 
 ```csharp
 namespace ClassLibrarySport
@@ -295,48 +295,46 @@ namespace ConsoleAssemblyTest
 }
 ```
 
+| **类型**      | **作用**                                                                               |
+| ------------- | -------------------------------------------------------------------------------------- |
+| Assembly      | 通过此类可以加载操纵一个程序集，并获取程序集内部信息                                   |
+| EventInfo     | 该类保存给定的事件信息                                                                 |
+| FieldInfo     | 该类保存给定的字段信息                                                                 |
+| MethodInfo    | 该类保存给定的方法信息                                                                 |
+| MemberInfo    | 该类是一个基类，它定义了 EventInfo、FieldInfo、MethodInfo、PropertyInfo 的多个公用行为 |
+| Module        | 该类可以使你能访问多个程序集中的给定模块                                               |
+| ParameterInfo | 该类保存给定的参数信息                                                                 |
+| PropertyInfo  | 该类保存给定的属性信息                                                                 |
 
-| **类型**        | **作用**                                   |
-| ------------- | ---------------------------------------- |
-| Assembly      | 通过此类可以加载操纵一个程序集，并获取程序集内部信息               |
-| EventInfo     | 该类保存给定的事件信息                              |
-| FieldInfo     | 该类保存给定的字段信息                              |
-| MethodInfo    | 该类保存给定的方法信息                              |
-| MemberInfo    | 该类是一个基类，它定义了EventInfo、FieldInfo、MethodInfo、PropertyInfo的多个公用行为 |
-| Module        | 该类可以使你能访问多个程序集中的给定模块                     |
-| ParameterInfo | 该类保存给定的参数信息                              |
-| PropertyInfo  | 该类保存给定的属性信息                              |
+### System.Reflection.Assembly 类
 
-### System.Reflection.Assembly类
-
-通过Assembly可以动态加载程序集，并查看程序集的内部信息，其中最常用的就是Load()这个方法。
+通过 Assembly 可以动态加载程序集，并查看程序集的内部信息，其中最常用的就是 Load()这个方法。
 
 `Assembly assembly=Assembly.Load("MyAssembly");`
 
-利用Assembly的object CreateInstance(string) 方法可以反射创建一个对象，参数0为类名。 
+利用 Assembly 的 object CreateInstance(string) 方法可以反射创建一个对象，参数 0 为类名。
 
-### System.Type类
+### System.Type 类
 
-Type是最常用到的类，通过Type可以得到一个类的内部信息，也可以通过它反射创建一个对象。一般有三个常用的方法可得到Type对象。
+Type 是最常用到的类，通过 Type 可以得到一个类的内部信息，也可以通过它反射创建一个对象。一般有三个常用的方法可得到 Type 对象。
 
-1. 利用typeof() 得到Type对象
+1.  利用 typeof() 得到 Type 对象
 
-   Type type=typeof(Example);
+    Type type=typeof(Example);
 
-1. 利用System.Object.GetType() 得到Type对象
+1.  利用 System.Object.GetType() 得到 Type 对象
 
-   Example example=new Example();
-   Type type=example.GetType();
+    Example example=new Example(); Type type=example.GetType();
 
-1. 利用System.Type.GetType() 得到Type对象
+1.  利用 System.Type.GetType() 得到 Type 对象
 
-   Type type=Type.GetType("MyAssembly.Example",false,true);
+    Type type=Type.GetType("MyAssembly.Example",false,true);
 
-   注意参数0是类名，参数1表示若找不到对应类时是否抛出异常，参数1表示类名是否区分大小写
+    注意参数 0 是类名，参数 1 表示若找不到对应类时是否抛出异常，参数 1 表示类名是否区分大小写
 
 例子：
 
-   我们最常见的是利用反射与Activator结合来创建对象。
+我们最常见的是利用反射与 Activator 结合来创建对象。
 
 ```csharp
 Assembly assembly= Assembly.Load("MyAssembly");
@@ -346,7 +344,7 @@ object obj=Activator.CreateInstance(type);
 
 ### 反射方法
 
-1. 通过 System.Reflection.MethodInfo能查找到类里面的方法
+1.  通过 System.Reflection.MethodInfo 能查找到类里面的方法
 
     ```csharp
     Type type=typeof(Example);
@@ -357,7 +355,7 @@ object obj=Activator.CreateInstance(type);
         Cosole.WriteLine("Method name is "+methodInfo.Name);
     ```
 
-1. 我们也能通过反射方法执行类里面的方法
+1.  我们也能通过反射方法执行类里面的方法
 
     ```csharp
     Assembly assembly= Assembly.Load("MyAssembly");
@@ -369,9 +367,9 @@ object obj=Activator.CreateInstance(type);
 
 ### 四、反射属性
 
-1. 通过 System.Reflection.PropertyInfo 能查找到类里面的属性
+1.  通过 System.Reflection.PropertyInfo 能查找到类里面的属性
 
-    常用的方法有GetValue（object,object[]) 获取属性值和 SetValue(object,object,object[]) 设置属性值
+    常用的方法有 GetValue（object,object[]) 获取属性值和 SetValue(object,object,object[]) 设置属性值
 
     ```csharp
     Type type=typeof(Example);
@@ -382,7 +380,7 @@ object obj=Activator.CreateInstance(type);
     ​    Console.WriteLine("Property name is "+ propertyInfo.Name);
     ```
 
-1. 我们也可以通过以下方法设置或者获取一个对象的属性值
+1.  我们也可以通过以下方法设置或者获取一个对象的属性值
 
     ```csharp
     Assembly assembly=Assembly.Load("MyAssembly");
@@ -398,11 +396,11 @@ object obj=Activator.CreateInstance(type);
 
 通过 System.Reflection.FieldInfo 能查找到类里面的字段
 
-它包括有两个常用方法SetValue（object ,object )和GetValue（object)  因为使用方法与反射属性非常相似
+它包括有两个常用方法 SetValue（object ,object )和 GetValue（object) 因为使用方法与反射属性非常相似
 
 ### 六、反射特性
 
-通过System.Reflection.MemberInfo的GetCustomAttributes(Type,bool)就可反射出一个类里面的特性,以下例子可以反射出一个类的所有特性
+通过 System.Reflection.MemberInfo 的 GetCustomAttributes(Type,bool)就可反射出一个类里面的特性,以下例子可以反射出一个类的所有特性
 
 ```csharp
 Type type=typeof("Example");
@@ -412,7 +410,7 @@ foreach(object attribute in typeAttributes)
     Console.WriteLine("Attributes description is "+attribute.ToString());
 ```
 
-通过下面例子，可以获取 Example 类Name属性的所有特性
+通过下面例子，可以获取 Example 类 Name 属性的所有特性
 
 ```csharp
 public class Example
@@ -431,7 +429,7 @@ foreach (object attribute in propertyInfo.GetCustomAttributes(false)) {
 
 ### 七、常用实例
 
-虽然反射有很多奥妙之处，但要注意使用反射生成对象会耗费很多性能，所能必须了解反射的特性，在合适的地方使用。最常见例子就是利用单体模式与反射一并使用，在BLL调用DAL的时候，通过一个反射工厂生成DAL实例。
+虽然反射有很多奥妙之处，但要注意使用反射生成对象会耗费很多性能，所能必须了解反射的特性，在合适的地方使用。最常见例子就是利用单体模式与反射一并使用，在 BLL 调用 DAL 的时候，通过一个反射工厂生成 DAL 实例。
 
 ```csharp
 namespace Project.Common

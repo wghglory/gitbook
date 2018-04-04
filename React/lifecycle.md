@@ -10,35 +10,35 @@
 
 **初始化阶段：**
 
-- `constructor()`：初始化 state、绑定事件
-- `componentWillMount()`：在 `render()` 之前执行，除了同构，跟 constructor 没啥差别
-- `render()`：用于渲染 DOM。如果有操作 DOM 或和浏览器打交道的操作，最好在下一个步骤执行。
-- `componentDidMount()`：在 `render()` 之后立即执行，可以在这个函数中对 DOM 就进行操作，可以加载服务器数据，可以使用 `setState()` 方法触发重新渲染
+* `constructor()`：初始化 state、绑定事件
+* `componentWillMount()`：在 `render()` 之前执行，除了同构，跟 constructor 没啥差别
+* `render()`：用于渲染 DOM。如果有操作 DOM 或和浏览器打交道的操作，最好在下一个步骤执行。
+* `componentDidMount()`：在 `render()` 之后立即执行，可以在这个函数中对 DOM 就进行操作，可以加载服务器数据，可以使用 `setState()` 方法触发重新渲染
 
 **组件更新阶段：**
 
-- `componentWillReceiveProps(nextProps)`：在已挂载的组件接收到新 props 时触发，传进来的 props 没有变化也可能触发该函数，若需要实现 props 变化才执行操作的话需要自己手动判断
-- `componentShouldUpdate(nextProps，nextState)`：默认返回 true，我们可以手动判断需不需要触发 render，若返回 false，就不触发下一步骤
-- `componentWillUpdate()`：`componentShouldUpdate` 返回 true 时触发，在 render之前，可以在里面进行操作 DOM
-- `render()`：重渲染
-- `componentDidUpdate()`：render 之后立即触发
+* `componentWillReceiveProps(nextProps)`：在已挂载的组件接收到新 props 时触发，传进来的 props 没有变化也可能触发该函数，若需要实现 props 变化才执行操作的话需要自己手动判断
+* `componentShouldUpdate(nextProps，nextState)`：默认返回 true，我们可以手动判断需不需要触发 render，若返回 false，就不触发下一步骤
+* `componentWillUpdate()`：`componentShouldUpdate` 返回 true 时触发，在 render 之前，可以在里面进行操作 DOM
+* `render()`：重渲染
+* `componentDidUpdate()`：render 之后立即触发
 
 组件卸载阶段：
 
-- `componentWillUnmount()`：在组件销毁之前触发，可以处理一些清理操作，如无效的timers 等
+* `componentWillUnmount()`：在组件销毁之前触发，可以处理一些清理操作，如无效的 timers 等
 
 ## 在哪些生命周期中可以修改组件的 state(setState)
 
-- `componentDidMount` 和 `componentDidUpdate`
-- constructor、componentWillMount 中 setState 会发生错误：setState 只能在mounted 或 mounting 组件中执行
-- componentWillUpdate 中 setState 会导致死循环
+* `componentDidMount` 和 `componentDidUpdate`
+* constructor、componentWillMount 中 setState 会发生错误：setState 只能在 mounted 或 mounting 组件中执行
+* componentWillUpdate 中 setState 会导致死循环
 
 ## In which lifecycle event do you make AJAX requests and why
 
 AJAX requests should go in the **componentDidMount** lifecycle event.
 
-- **Fiber**, the next implementation of React’s reconciliation algorithm, will have the ability to start and stop rendering as needed for performance benefits. One of the trade-offs of this is that **componentWillMount**, the other lifecycle event where it might make sense to make an AJAX request, will be “non-deterministic”. What this means is that React may start calling *componentWillMount* at various times whenever it feels like it needs to. This would obviously be a bad formula for AJAX requests.
-- You can’t guarantee the AJAX request won’t resolve before the component mounts. If it did, that would mean that you’d be trying to setState on an unmounted component, which not only won’t work, but React will yell at you for. Doing AJAX in componentDidMount will guarantee that there’s a component to update.
+* **Fiber**, the next implementation of React’s reconciliation algorithm, will have the ability to start and stop rendering as needed for performance benefits. One of the trade-offs of this is that **componentWillMount**, the other lifecycle event where it might make sense to make an AJAX request, will be “non-deterministic”. What this means is that React may start calling _componentWillMount_ at various times whenever it feels like it needs to. This would obviously be a bad formula for AJAX requests.
+* You can’t guarantee the AJAX request won’t resolve before the component mounts. If it did, that would mean that you’d be trying to setState on an unmounted component, which not only won’t work, but React will yell at you for. Doing AJAX in componentDidMount will guarantee that there’s a component to update.
 
 ## What does _shouldComponentUpdate_ do and why is it important
 
@@ -54,7 +54,7 @@ When a component gets mounted to the DOM or unmounted from it.
 
 > 只能在 `componentDidMount` 中 发送异步请求、setState
 
-The *mounting lifecycle* consists of methods that are invoked when a component is mounted or unmounted. In other words, these methods allow you to **initially set up state, make API calls, start and stop timers, manipulate the rendered DOM, initialize third-party libraries, and more**.
+The _mounting lifecycle_ consists of methods that are invoked when a component is mounted or unmounted. In other words, these methods allow you to **initially set up state, make API calls, start and stop timers, manipulate the rendered DOM, initialize third-party libraries, and more**.
 
 The mounting lifecycle is slightly different depending upon whether you use ES6 class syntax or `React.createClass` to create components. When you use `createClass`, `getDefaultProps` is invoked first to obtain the component's properties. Next, `getInitialState` is invoked to initialize the state.
 
@@ -66,32 +66,32 @@ I don't think it's good to setState in `componentWillMount`
 
 I don't believe the 3rd judgement. If the api is too fast and returns the data even before component get mounted, setState won't work, although this is unlikely to happen.
 
-- Calling `setState` before the component has rendered will not kick off the updating lifecycle.
-- Calling `setState` after the component has been rendered will kick off the updating lifecycle.
-- Note: with new React, you cannot make API calls in `componentWillMount`
+* Calling `setState` before the component has rendered will not kick off the updating lifecycle.
+* Calling `setState` after the component has been rendered will kick off the updating lifecycle.
+* Note: with new React, you cannot make API calls in `componentWillMount`
 
 ### componentDidMount, componentWillUnmount
 
-- `componentDidMount` is invoked just after the component has rendered
-- `componentWillUnmount` is invoked just before the component is unmounted.
+* `componentDidMount` is invoked just after the component has rendered
+* `componentWillUnmount` is invoked just before the component is unmounted.
 
-1. **`componentDidMount` is the only good place to make API requests**. This method is invoked after the component has rendered, so any `setState` calls from this method will kick off the updating lifecycle and re-render the component.
+1.  **`componentDidMount` is the only good place to make API requests**. This method is invoked after the component has rendered, so any `setState` calls from this method will kick off the updating lifecycle and re-render the component.
 
-1. `componentDidMount` is also a good place to **initialize any third-party JavaScript that requires a DOM**. For instance, you may want to incorporate a drag-and-drop library or a library that handles touch events. Typically, these libraries require a DOM before they can be initialized.
+1.  `componentDidMount` is also a good place to **initialize any third-party JavaScript that requires a DOM**. For instance, you may want to incorporate a drag-and-drop library or a library that handles touch events. Typically, these libraries require a DOM before they can be initialized.
 
-1. To start **background processes like intervals or timers**. Any processes started in `componentDidMount` or `componentWillMount` can be cleaned up in **`componentWillUnmount`**. You don't want to leave background processes running when they are not needed.
+1.  To start **background processes like intervals or timers**. Any processes started in `componentDidMount` or `componentWillMount` can be cleaned up in **`componentWillUnmount`**. You don't want to leave background processes running when they are not needed.
 
 ## Updating Lifecycle
 
 When a component receives new data and later.
 
-The *updating lifecycle* is a series of methods that are invoked ==when a component's state changes or when new properties are received from the parent.== This lifecycle can be used to incorporate JavaScript before the component updates or to interact with the DOM after the update. Additionally, **it can be used to improve the performance of an application because it gives you the ability to cancel unnecessary updates.**
+The _updating lifecycle_ is a series of methods that are invoked ==when a component's state changes or when new properties are received from the parent.== This lifecycle can be used to incorporate JavaScript before the component updates or to interact with the DOM after the update. Additionally, **it can be used to improve the performance of an application because it gives you the ability to cancel unnecessary updates.**
 
 The updating lifecycle kicks off every time `setState` is called. Calling `setState` within the updating lifecycle other than `componentWillReceiveProps` will cause an infinite recursive loop that results in a stack overflow error. Therefore, **`setState` can only be called in `componentWillReceiveProps`**, which allows the component to update state when its properties are updated.
 
 ### componentWillReceiveProps(nextProps)
 
-Triggered when the component receives new props from its parent component. *This is the only method where `setState` can be called.*
+Triggered when the component receives new props from its parent component. _This is the only method where `setState` can be called._
 
 当组件传入的 props 发生变化时调用.例如：父组件状态改变，给子组件传入了新的 prop 值。用于组件 props 变化后，更新 state。
 
@@ -121,7 +121,7 @@ export default class App extends Component {
     console.log('Parent - constructor');
 
     this.state = {
-      number: 100
+      number: 100,
     };
 
     this.addHandler = this.addHandler.bind(this);
@@ -129,7 +129,7 @@ export default class App extends Component {
 
   addHandler() {
     this.setState((prevState) => ({
-      number: prevState.number + 1
+      number: prevState.number + 1,
     }));
   }
 

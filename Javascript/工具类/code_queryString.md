@@ -4,7 +4,7 @@
 /**
  * @param {object} data
  * 表单数据装配成 queryString
-*/
+ */
 function encodeFormData(data) {
   if (!data) return '';
   var pairs = [];

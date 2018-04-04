@@ -5,7 +5,7 @@
 ```javascript
 const foo = {};
 foo.prop = 123;
-foo.prop // 123
+foo.prop; // 123
 foo = {}; // TypeError: "foo" is read-only
 ```
 
@@ -17,9 +17,9 @@ foo = {}; // TypeError: "foo" is read-only
 const constantize = (obj) => {
   Object.freeze(obj);
   Object.keys(obj).forEach((value, index) => {
-      if (typeof obj[value] === 'object') {
-        constantize(obj[value]);
-      }
-    });
+    if (typeof obj[value] === 'object') {
+      constantize(obj[value]);
+    }
+  });
 };
 ```

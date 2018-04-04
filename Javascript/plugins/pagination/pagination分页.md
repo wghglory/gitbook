@@ -5,24 +5,24 @@
 ```javascript
 // 求得页码总数，需要Math.ceil(totalCount/pageSize)
 
-/*使用方法：
+/* 使用方法：
 window.onload = function() {
     pagination({
         id: 'pagination',
         pageIndex: 1, // 当前要显示页面，1开始
         pageSize: 4, // 每页显示条数
-        totalCount: data.length, // 总数据个数， 总页码pageCount = Math.ceil(totalCount/pageSize)
-        callBack: function(currentPageIndex, pageSize, totalPageCount) {  //分页标签加载完毕后执行
+        totalCount: data.length, // 总数据个数，总页码pageCount = Math.ceil(totalCount/pageSize)
+        callBack: function(currentPageIndex, pageSize, totalPageCount) {
+            // 分页标签加载完毕后执行
             // alert('当前页:' + currentPageIndex + ',总共页:' + totalPageCount);
             loadData(currentPageIndex, pageSize);
         }，
-        aClick: function(targetA) {   //点击某个a执行
+        aClick: function(targetA) {   // 点击某个a执行
             targetA.style.opacity = 0.1;
         },
-        delayTime: 500 //点击某个a后延迟500ms，再重新call page()
+        delayTime: 500 // 点击某个a后延迟500ms，再重新call page()
     });
-};
-*/
+}; */
 
 /*
 <div id="div1">
@@ -50,8 +50,8 @@ function pagination(pageInfo) {
   var pageIndex = pageInfo.pageIndex || 1;
   var pageSize = pageInfo.pageSize || 5;
   var pageCount = Math.ceil(pageInfo.totalCount / pageSize);
-  var callBack = pageInfo.callBack || function () {};
-  var aClick = pageInfo.aClick || function () {};
+  var callBack = pageInfo.callBack || function() {};
+  var aClick = pageInfo.aClick || function() {};
   var delayTime = pageInfo.delayTime || 0;
 
   if (pageIndex >= 4 && pageCount >= 6) {
@@ -73,7 +73,7 @@ function pagination(pageInfo) {
       var oA = document.createElement('a');
       oA.href = '#' + i;
       if (pageIndex == i) {
-        oA.innerHTML = i; //oA.innerHTML = '[' + i + ']';
+        oA.innerHTML = i; // oA.innerHTML = '[' + i + ']';
         oA.className = 'active';
       } else {
         oA.innerHTML = i;
@@ -87,7 +87,7 @@ function pagination(pageInfo) {
       if (pageIndex == 1 || pageIndex == 2) {
         oA.href = '#' + i;
         if (pageIndex == i) {
-          oA.innerHTML = i; //oA.innerHTML = '[' + i + ']';
+          oA.innerHTML = i; // oA.innerHTML = '[' + i + ']';
           oA.className = 'active';
         } else {
           oA.innerHTML = i;
@@ -95,10 +95,10 @@ function pagination(pageInfo) {
       } else if (pageCount - pageIndex == 0 || pageCount - pageIndex == 1) {
         oA.href = '#' + (pageCount - 5 + i);
         if (pageCount - pageIndex == 0 && i == 5) {
-          oA.innerHTML = pageCount - 5 + i; //oA.innerHTML = '[' + (pageCount - 5 + i) + ']';
+          oA.innerHTML = pageCount - 5 + i; // oA.innerHTML = '[' + (pageCount - 5 + i) + ']';
           oA.className = 'active';
         } else if (pageCount - pageIndex == 1 && i == 4) {
-          oA.innerHTML = pageCount - 5 + i; //oA.innerHTML = '[' + (pageCount - 5 + i) + ']';
+          oA.innerHTML = pageCount - 5 + i; // oA.innerHTML = '[' + (pageCount - 5 + i) + ']';
           oA.className = 'active';
         } else {
           oA.innerHTML = pageCount - 5 + i;
@@ -106,7 +106,7 @@ function pagination(pageInfo) {
       } else {
         oA.href = '#' + (pageIndex - 3 + i);
         if (i == 3) {
-          oA.innerHTML = pageIndex - 3 + i; //oA.innerHTML = '[' + (pageIndex - 3 + i) + ']';
+          oA.innerHTML = pageIndex - 3 + i; // oA.innerHTML = '[' + (pageIndex - 3 + i) + ']';
           oA.className = 'active';
         } else {
           oA.innerHTML = pageIndex - 3 + i;
@@ -134,29 +134,27 @@ function pagination(pageInfo) {
   // 加载完分页表前后执行函数
   callBack(pageIndex, pageSize, pageCount, paginationObj);
 
-  /* 添加点击事件（传统）
-    var aA = paginationObj.getElementsByTagName('a');
+  // /* // 添加点击事件（传统）
+  // var aA = paginationObj.getElementsByTagName('a');
 
-    for (var i = 0; i < aA.length; i++) {
-        aA[i].onclick = function() {
+  // for (var i = 0; i < aA.length; i++) {
+  //   aA[i].onclick = function() {
+  //     var pageIndex = parseInt(this.getAttribute('href').substring(1)); // getAttribute才能返回相对路径
+  //     paginationObj.innerHTML = '';
 
-            var pageIndex = parseInt(this.getAttribute('href').substring(1)); //getAttribute才能返回相对路径
-            paginationObj.innerHTML = '';
+  //     page({
+  //       id: pageInfo.id,
+  //       pageIndex: pageIndex,
+  //       pageCount: pageCount,
+  //       callBack: callBack,
+  //     });
 
-            page({
-                id: pageInfo.id,
-                pageIndex: pageIndex,
-                pageCount: pageCount,
-                callBack: callBack
-            });
-
-            return false; //阻止默认事件（a点击在浏览器显示#)
-        };
-    }
-    */
+  //     return false; // 阻止默认事件（a点击在浏览器显示#)
+  //   };
+  // } */
 
   // 添加点击事件(用事件代理委托)
-  paginationObj.onclick = function (ev) {
+  paginationObj.onclick = function(ev) {
     var ev = ev || window.event;
     var target = ev.target || ev.srcElement;
 
@@ -166,27 +164,27 @@ function pagination(pageInfo) {
       if (pageInfo.delayTime == 0) {
         nextCall();
       } else {
-        var timer = setTimeout(function () {
+        var timer = setTimeout(function() {
           nextCall();
           clearTimeout(timer);
         }, pageInfo.delayTime);
       }
 
-      return false; //阻止默认事件（a点击在浏览器显示#)
+      return false; // 阻止默认事件（a点击在浏览器显示#)
     }
 
     function nextCall() {
-      var pageIndex = parseInt(target.getAttribute('href').substring(1)); //getAttribute才能返回相对路径
+      var pageIndex = parseInt(target.getAttribute('href').substring(1)); // getAttribute才能返回相对路径
       paginationObj.innerHTML = '';
 
       pagination({
         id: pageInfo.id,
         pageIndex: pageIndex, // 当前要显示页面，1开始
         pageSize: pageSize, // 每页显示条数
-        totalCount: pageInfo.totalCount, // 总数据个数， 总页码pageCount = Math.ceil(totalCount/pageSize)
+        totalCount: pageInfo.totalCount, // 总数据个数，总页码pageCount = Math.ceil(totalCount/pageSize)
         callBack: callBack,
         aClick: aClick,
-        delayTime: delayTime
+        delayTime: delayTime,
       });
     }
   };
@@ -225,7 +223,7 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
   color: #fff;
   background-image: none;
   /* remove gradient and use #d5ccc8*/
-  box-shadow: inset 0 1px 3px rgba(111, 89, 79, .4), 0 1px 0 rgba(111, 89, 79, 0.4);
+  box-shadow: inset 0 1px 3px rgba(111, 89, 79, 0.4), 0 1px 0 rgba(111, 89, 79, 0.4);
 }
 ```
 
@@ -234,23 +232,42 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
 ## pagination usage
 
 ```javascript
-function loadData(pageIndex, pageSize) { //click first page, pageIndex = 1, not 0 based
-    var messageListHtml = '';
-    var pageSize = pageSize || 5;
-    var startIndex = (pageIndex - 1) * pageSize; //starting data
-    var endIndex = startIndex + pageSize; //ending data
-    endIndex = endIndex > data.length ? data.length : endIndex;
+function loadData(pageIndex, pageSize) {
+  // click first page, pageIndex = 1, not 0 based
+  var messageListHtml = '';
+  var pageSize = pageSize || 5;
+  var startIndex = (pageIndex - 1) * pageSize; //starting data
+  var endIndex = startIndex + pageSize; //ending data
+  endIndex = endIndex > data.length ? data.length : endIndex;
 
-    for (var i = startIndex; i < endIndex; i++) {
-        messageListHtml += '<li><div><div class="pic"></div><div class="dot"></div><div class="chat"><div class="post" data-id="' + data[i].post.id + '"><h4><span></span>' + data[i].post.username + '<time>[' + formatDate(data[i].post.time) + ']</time></h4><p>' + data[i].post.content + '</p></div>';
+  for (var i = startIndex; i < endIndex; i++) {
+    messageListHtml +=
+      '<li><div><div class="pic"></div><div class="dot"></div><div class="chat"><div class="post" data-id="' +
+      data[i].post.id +
+      '"><h4><span></span>' +
+      data[i].post.username +
+      '<time>[' +
+      formatDate(data[i].post.time) +
+      ']</time></h4><p>' +
+      data[i].post.content +
+      '</p></div>';
 
-        for (var r in data[i].replies) {
-            messageListHtml += '<div class="reply" data-id="' + data[i].replies[r].id + '"><h4><span></span>' + data[i].replies[r].username + '<time>[' + formatDate(data[i].replies[r].time) + ']</time></h4><p>' + data[i].replies[r].content + '</p></div>';
-        }
-
-        messageListHtml += '</div><div></li>';
+    for (var r in data[i].replies) {
+      messageListHtml +=
+        '<div class="reply" data-id="' +
+        data[i].replies[r].id +
+        '"><h4><span></span>' +
+        data[i].replies[r].username +
+        '<time>[' +
+        formatDate(data[i].replies[r].time) +
+        ']</time></h4><p>' +
+        data[i].replies[r].content +
+        '</p></div>';
     }
-    messageUl.innerHTML = messageListHtml;
+
+    messageListHtml += '</div><div></li>';
+  }
+  messageUl.innerHTML = messageListHtml;
 }
 ```
 
@@ -317,7 +334,7 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
             id: 'pagination',
             pageIndex: 1, // 当前要显示页面，1开始
             pageSize: 6, // 每页显示条数
-            totalCount: data.length, // 总数据个数， 总页码pageCount = Math.ceil(totalCount/pageSize)
+            totalCount: data.length, // 总数据个数，总页码pageCount = Math.ceil(totalCount/pageSize)
             callBack: function(currentPageIndex, pageSize, totalPageCount, paginationObj) {
                 // alert('当前页:' + currentPageIndex + ',总共页:' + totalPageCount);
                 // for (var i = 0; i < paginationObj.children.length; i++) {
@@ -359,7 +376,7 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
                     allA[i].style.opacity = 0;
                 }
             },
-            delayTime: 1000 //click any alink, next call page function wait for x ms
+            delayTime: 1000 //click any link, next call page function wait for x ms
         });
     </script>
 </body>
@@ -372,40 +389,42 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
 ## pagination test data
 
 ```javascript
-var data = [{
-    "post": {
-      "id": 5,
-      "username": "different user name",
-      "title": "this will be title",
-      "time": new Date("July 17, 2016 14:10:05"),
-      "content": "First DATA..."
+var data = [
+  {
+    post: {
+      id: 5,
+      username: 'different user name',
+      title: 'this will be title',
+      time: new Date('July 17, 2016 14:10:05'),
+      content: 'First DATA...',
     },
-    "replies": []
+    replies: [],
   },
   {
-    "post": {
-      "id": 1,
-      "username": "different user name",
-      "title": "this will be title",
-      "time": new Date("July 17, 2016 14:10:05"),
-      "content": "学习课程，学习js"
+    post: {
+      id: 1,
+      username: 'different user name',
+      title: 'this will be title',
+      time: new Date('July 17, 2016 14:10:05'),
+      content: '学习课程，学习js',
     },
-    "replies": [{
-        "id": 2,
-        "username": "different user name",
-        "title": "this will be title",
-        "time": new Date("July 17, 2016 14:10:05"),
-        "content": "好好学习，天天做出好东西"
+    replies: [
+      {
+        id: 2,
+        username: 'different user name',
+        title: 'this will be title',
+        time: new Date('July 17, 2016 14:10:05'),
+        content: '好好学习，天天做出好东西',
       },
       {
-        "id": 1,
-        "username": "different user name",
-        "title": "this will be title",
-        "time": new Date("July 17, 2016 14:10:05"),
-        "content": "又回复"
-      }
-    ]
-  }
+        id: 1,
+        username: 'different user name',
+        title: 'this will be title',
+        time: new Date('July 17, 2016 14:10:05'),
+        content: '又回复',
+      },
+    ],
+  },
 ];
 ```
 

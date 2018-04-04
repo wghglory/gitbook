@@ -596,7 +596,7 @@ ImgSliderProto.createdCallback = function() {
 
 // Register our new element
 var ImgSlider = document.registerElement('img-slider', {
-  prototype: ImgSliderProto
+  prototype: ImgSliderProto,
 });
 ```
 

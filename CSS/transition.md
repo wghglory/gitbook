@@ -6,14 +6,14 @@ CSS Transition 是最简单形式的动画：从一个可视状态变换到另�
 
 ```css
 img:hover {
-    transform: rotate(7.5deg);
-    transition: 2s all;
+  transform: rotate(7.5deg);
+  transition: 2s all;
 }
 ```
 
 值顺序不重要。可以是 `2s all` 或 `all 2s`。若时间需要精确到毫秒，可以使用小数加秒 `transition: 2.35s all;` 的形式，或毫秒形式 `transition: 2350ms all;`。
 
-当鼠标移出时，元素**立即**回到了其初始状态。但有时你期望恢复初始状态也有平滑的动画。方法是将 `:hover` 中  `transition` 声明移到默认样式中，`:hover` 中只保留 `transform`。背后的原理是，将一个属性放入默认样式，不管进出状态，transition 都生效。
+当鼠标移出时，元素**立即**回到了其初始状态。但有时你期望恢复初始状态也有平滑的动画。方法是将 `:hover` 中 `transition` 声明移到默认样式中，`:hover` 中只保留 `transform`。背后的原理是，将一个属性放入默认样式，不管进出状态，transition 都生效。
 
 如果在动画过程中鼠标移出或移入，transition 会被打断，会平滑的反转。这个特性非常好！
 
@@ -44,7 +44,7 @@ transition 包含四个控制属性，分别控制参与动画的属性、动画
 
 ```css
 transition-property: color, background-color, border-color;
-transition-duration: .25s, .75s, 2s;
+transition-duration: 0.25s, 0.75s, 2s;
 ```
 
 ## 延时
@@ -55,17 +55,17 @@ transition-duration: .25s, .75s, 2s;
 transition: 2s 4s;
 ```
 
-延迟不仅对动画开始有效，对动画反转回到起点也有效。例如上面的代码，动画会延迟 4 秒后开始；结束后会延迟 4 秒后再回到起始状态。（注意，鼠标在图片上停留至少4秒动画才会开始。{{因为一旦移出，进入反转动画状态。}}）
+延迟不仅对动画开始有效，对动画反转回到起点也有效。例如上面的代码，动画会延迟 4 秒后开始；结束后会延迟 4 秒后再回到起始状态。（注意，鼠标在图片上停留至少 4 秒动画才会开始。{{因为一旦移出，进入反转动画状态。}}）
 
 ```css
-transition-delay: .5s;
+transition-delay: 0.5s;
 ```
 
 有时不想让所有属性都延时触发，可以为每个属性分别指定延时：
 
 ```css
 transition-property: color, background-color, border-color;
-transition-duration: 1s, 1s, .5s;
+transition-duration: 1s, 1s, 0.5s;
 transition-delay: 0, 0, 1s;
 ```
 
@@ -73,19 +73,21 @@ transition-delay: 0, 0, 1s;
 
 ```css
 img {
-    width: 300px; height: 300px; float: left;
-    transition-property: opacity, translateX;
-    transition-duration: 2s, 4s;
+  width: 300px;
+  height: 300px;
+  float: left;
+  transition-property: opacity, translateX;
+  transition-duration: 2s, 4s;
 }
 img:hover {
-    opacity: .2;
-    transform: translateX(60px);
+  opacity: 0.2;
+  transform: translateX(60px);
 }
 ```
 
 ## Easing 函数
 
-CSS3动画默认使用 `ease`。可以使用其他缓动，如 `linear`：
+CSS3 动画默认使用 `ease`。可以使用其他缓动，如 `linear`：
 
 ```css
 transition: 2s transform linear;
@@ -98,7 +100,7 @@ transition: 2s transform linear;
 `transition-timing-function` 属性还接受 cubic-bezier 值。The Bezier curve plots the progress of the animation over time. By adjusting two control points you can control how the line curves: the steeper the line, the faster the animation, the flatter the line, the slower.
 
 ```css
-transition-timing-function: cubic-bezier(.20, .96, .74, .07);
+transition-timing-function: cubic-bezier(0.2, 0.96, 0.74, 0.07);
 ```
 
 Cubic Bezier 曲线最好通过工具创建盒测试。参见：<https://matthewlein.com/tools/ceaser>
@@ -110,7 +112,7 @@ Cubic Bezier 曲线最好通过工具创建盒测试。参见：<https://matthew
 四个属性 `transition-property` `transition-duration` `transition-timing-function` `transition-duration` 可以合并成一个 `transition` 属性。空格分隔，分别列出要动画的属性、时常、缓动函数、延时：
 
 ```css
-transition: all 1s ease-in .5s;
+transition: all 1s ease-in 0.5s;
 ```
 
 缓动函数和延时可不设
@@ -120,8 +122,8 @@ transition: all 1s;
 transition: background-color 1s;
 ```
 
-属性位置只能填 `all` 或单个CSS属性。如果要动画多个属性，需要每个属性一个完整配置，逗号分隔。
+属性位置只能填 `all` 或单个 CSS 属性。如果要动画多个属性，需要每个属性一个完整配置，逗号分隔。
 
 ```css
-transition: color 1s, background-color 1s, border-color .5s 1s;
+transition: color 1s, background-color 1s, border-color 0.5s 1s;
 ```

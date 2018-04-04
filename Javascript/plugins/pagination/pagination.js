@@ -181,7 +181,7 @@ function pagination(pageInfo) {
         totalCount: pageInfo.totalCount, // 总数据个数， 总页码pageCount = Math.ceil(totalCount/pageSize)
         callBack: callBack,
         aClick: aClick,
-        delayTime: delayTime
+        delayTime: delayTime,
       });
     }
   };

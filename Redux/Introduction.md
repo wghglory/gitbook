@@ -9,7 +9,7 @@
 
 ## Redux benefits
 
-* reducers are pure functions, which simply do `oldState + action => newState`. Each reducer computes a separate piece of state, which is then all composed together to form the whole application. This makes all your business logic and state transitions easy to *test*.
+* reducers are pure functions, which simply do `oldState + action => newState`. Each reducer computes a separate piece of state, which is then all composed together to form the whole application. This makes all your business logic and state transitions easy to _test_.
 * Api 简单
 * 容易理解流程
 * 如果按照它推荐的方式 -- 视图组件和容器组建分离，容器组件状态通过 props 传到视图组件中，职责分明，每个组件单一、小。
@@ -54,17 +54,17 @@ render(
 App.js 作为启动组件，引入所有 Container
 
 ```jsx
-import AddTodo from '../containers/AddTodo'
-import VisibleTodoList from '../containers/VisibleTodoList'
+import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
 
 const App = () => (
   <div>
     <AddTodo />
     <VisibleTodoList />
   </div>
-)
+);
 
-export default App
+export default App;
 ```
 
 ### Container
@@ -72,7 +72,7 @@ export default App
 container component 核心代码：
 
 ```javascript
-connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent)
+connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent);
 ```
 
 `connect()` without any parameter, means to not subscribe to the store.
@@ -89,24 +89,24 @@ The second function, `mapDispatchToProps`, injects the store’s `dispatch` func
 
 > 注意，如果 connect 第二个参数 mapDispatchToProps 不传，则 `dispatch` 会以 props 注入到组件中！
 
-把 redux store 想象成一个 pie chart，里面有多少个 reducer 就负责有多少片 state 需要管理。`mapStateToProps` 可以暴露所需要的 state。每次 state 更新都会触发该方法。这里可能会有复杂耗时的 mapping 计算，可以用 `reselect` library memorizes expensive calls
+把 redux store 想象成一个 pie chart，里面有多少个 reducer 就负责有多少片 state 需要管理。`mapStateToProps` 可以  暴露所需要的 state。每次 state 更新都会触发该方法。这里可能会有复杂耗时的 mapping 计算，可以用 `reselect` library memorizes expensive calls
 
 ```javascript
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
   return {
-    courses: state.courses
-  }
+    courses: state.courses,
+  };
 }
 
 // method 1: manually
-function mapDispatchToProps(dispatch){
-  return ({
-    createCourse(course, ownProps){
-      dispatch(courseActions.createCourse(course))
-    }
-  })
+function mapDispatchToProps(dispatch) {
+  return {
+    createCourse(course, ownProps) {
+      dispatch(courseActions.createCourse(course));
+    },
+  };
   // return {
   //   createCourse: (course) => {
   //     dispatch(courseActions.createCourse(course))
@@ -115,13 +115,13 @@ function mapDispatchToProps(dispatch){
 }
 
 // method 2: bindActionCreators will find all actions in that file
-function mapDispatchToProps(dispatch, ownProps){
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    actions: bindActionCreators(courseActions, dispatch)
-  }
+    actions: bindActionCreators(courseActions, dispatch),
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
 ```
 
 ## 异步操作

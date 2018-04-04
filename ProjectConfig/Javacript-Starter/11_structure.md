@@ -13,7 +13,7 @@
 
 ## Tips
 
-1. Cannot put js in html. Put js in a .js file
+1.  Cannot put js in html. Put js in a .js file
 
     ```html
     <html>
@@ -30,7 +30,7 @@
     * Transpile this?
     * Import explicit dependencies?
 
-1. Consider organizing by feature
+1.  Consider organizing by feature
 
     _Organize by file type_ (MVC)
 
@@ -48,6 +48,6 @@
     /courses
     ```
 
-1. Extract logic into "POJOs" (plain old javascript object, no framework-specific code)
+1.  Extract logic into "POJOs" (plain old javascript object, no framework-specific code)
 
     Put utils to utils folder, this doesn't have any relationship with react.

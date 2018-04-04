@@ -2,11 +2,11 @@
 
 ## Handling Http Errors in service
 
-1. inject `HttpClientModule` in service's constructor
-1. Encapsulate Http errors in service
-1. Don't expose implementation details to the component
-1. Use RxJS "catchError" operator
-1. Return custom errors to components
+1.  inject `HttpClientModule` in service's constructor
+1.  Encapsulate Http errors in service
+1.  Don't expose implementation details to the component
+1.  Use RxJS "catchError" operator
+1.  Return custom errors to components
 
 ## Model for error
 
@@ -36,9 +36,9 @@ import { FormattedBook } from 'app/models/formattedBook';
 
 @Injectable()
 export class BookService {
-  constructor (private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  private handleHttpError (error: HttpErrorResponse): Observable<BookTrackerError> {
+  private handleHttpError(error: HttpErrorResponse): Observable<BookTrackerError> {
     let dataError = new BookTrackerError();
     dataError.errorNumber = 100;
     dataError.message = error.statusText;
@@ -46,12 +46,12 @@ export class BookService {
     return ErrorObservable.create(dataError);
   }
 
-  getAll (): Observable<Book[] | BookTrackerError> {
+  getAll(): Observable<Book[] | BookTrackerError> {
     return this.http.get<Book[]>(`/api/books`).pipe(catchError((err) => this.handleHttpError(err)));
   }
 
   // second param is optional
-  getOne (id: number): Observable<Book> {
+  getOne(id: number): Observable<Book> {
     return this.http.get<Book>(`/api/books/${id}`, {
       headers: new HttpHeaders({
         Accept: 'application/json',
@@ -61,7 +61,7 @@ export class BookService {
   }
 
   // if UI needs a formatted book
-  getOneFormatted (id: number): Observable<FormattedBook> {
+  getOneFormatted(id: number): Observable<FormattedBook> {
     return this.http.get<Book>(`/api/books/${id}`).pipe(
       // data convert
       map(
@@ -77,7 +77,7 @@ export class BookService {
   }
 
   // return 201 if successful
-  add (book: Book): Observable<Book> {
+  add(book: Book): Observable<Book> {
     return this.http.post<Book>(`/api/books`, book, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export class BookService {
   }
 
   // return 204 no content if successful
-  update (book: Book): Observable<void> {
+  update(book: Book): Observable<void> {
     return this.http.put<void>(`/api/books/${book.id}`, book, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export class BookService {
   }
 
   // return 204 no content if successful
-  deleteBook (id: Book): Observable<void> {
+  deleteBook(id: Book): Observable<void> {
     return this.http.put<void>(`/api/books/${id}`);
   }
 }
@@ -136,9 +136,9 @@ import { BookTrackerError } from 'app/models/bookTrackerError';
 
 @Injectable()
 export class BooksResolverService implements Resolve<Book[] | BookTrackerError> {
-  constructor (private bookService: BookService) {}
+  constructor(private bookService: BookService) {}
 
-  resolve (
+  resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<Book[] | BookTrackerError> {
@@ -149,15 +149,15 @@ export class BooksResolverService implements Resolve<Book[] | BookTrackerError> 
 
 ## Interceptors
 
-1. Adding headers to all requests
-1. Login
-1. Reporting progress events
-1. Client-side caching
+1.  Adding headers to all requests
+1.  Login
+1.  Reporting progress events
+1.  Client-side caching
 
 Providing an interceptor:
 
 ```ts
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AddHeaderInterceptor } from './add-header.interceptor';
@@ -165,7 +165,7 @@ import { LogResponseInterceptor } from 'app/core/log-response.interceptor';
 import { CacheInterceptor } from './cache.interceptor';
 
 @NgModule({
-  imports: [ ],
+  imports: [],
   declarations: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true },
@@ -173,14 +173,20 @@ import { CacheInterceptor } from './cache.interceptor';
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
   ],
 })
-export class CoreModule { }
+export class CoreModule {}
 ```
 
 ```ts
 // log response interceptor
 
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpEventType } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpEventType,
+} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 
@@ -263,7 +269,13 @@ export class HttpCacheService {
 ```ts
 // cache interceptor
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';

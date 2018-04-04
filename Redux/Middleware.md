@@ -16,13 +16,13 @@ Each piece of middleware is a function that has access to the action, a `dispatc
 
 ## Applying Middleware to the Store
 
-In this section, we are going to create a `storeFactory`. A *factory* is a function that manages the process of creating stores. In this case, the factory will create a store that has middleware for logging and saving data. The `storeFactory` will be one file that contains one function that groups everything needed to create the store. Whenever we need a store, we can invoke this function:
+In this section, we are going to create a `storeFactory`. A _factory_ is a function that manages the process of creating stores. In this case, the factory will create a store that has middleware for logging and saving data. The `storeFactory` will be one file that contains one function that groups everything needed to create the store. Whenever we need a store, we can invoke this function:
 
 ```Javascript
 const store = storeFactory(initialData)
 ```
 
-When we create the store, we create two pieces of middleware: the *logger* and the *saver* ([Example 8-9](https://www.safaribooksonline.com//library/view/learning-react-1st/9781491954614/ch08.html#example0809)). The data is saved to `localStorage` with middleware instead of the `store` method.
+When we create the store, we create two pieces of middleware: the _logger_ and the _saver_ ([Example 8-9](https://www.safaribooksonline.com//library/view/learning-react-1st/9781491954614/ch08.html#example0809)). The data is saved to `localStorage` with middleware instead of the `store` method.
 
 ##### Example 8-9. storeFactory: ./store/index.js
 

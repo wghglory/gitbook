@@ -2,35 +2,35 @@
 
 ## 思想
 
-* __Composition__
+* **Composition**
   * React 是 MVC's V。组件包含了虚拟 DOM 来展示 UI
   * Components can be used to compose other components much like functional composition
   * Well defined components can be used between different projects
-* __Declarative__
+* **Declarative**
   * A declarative solution focusses on the WHAT rather than the HOW of the problem and uses the api that abstracts the how to do so.
-* __Unidirectional Dataflow__
+* **Unidirectional Dataflow**
   * In react the state is stored in a component as opposed to the DOM (which is how it is with JQuery)
   * Hence the state is explicitly changed and that causes the DOM to re-render
   * The data flows from the state to the DOM and not the other way around
   * parent components pass data to children components with the help of props
-* __Explicit Mutations__
+* **Explicit Mutations**
   * Changing the state has to be done explicitly in React
   * Since changing the state of a component with `this.setState` renders it to the DOM
   * there is no need of adding event listeners or dirty checking
-* __Just JavaScript__
-    * React takes advantage of the JavaScript programming language’s functionality, api and capabilities (also functional style)
+* **Just JavaScript**
+  * React takes advantage of the JavaScript programming language’s functionality, api and capabilities (also functional style)
 
 ## React 解决了什么问题？思想？好在哪？
 
 **a. React 实现了 Virtual DOM，diff 算法使得更新小量数据性能高**
 
-在一定程度上提升了性能，尤其是在进行小量数据更新时。因为 DOM 操作是很耗性能的，而 Virtual DOM 是在内存中进行操作的，当数据发生变化时，通过 diff 算法 比较两棵树之间的变化，再进行必要的 DOM 更新，省去了不必要的高消耗的 DOM 操作。当然，这种性能优化主要体现在有小量数据更新的情况下。因为 React的基本思维模式是每次有变动就重新渲染整个应用，简单想来就是直接重置 innerHTML，比如说在一个大型列表所有数据都变动的情况下，重置 innerHTML 还比较合理，但若是只有一行数据变了，它也需要重置整个 innerHTML，就会造成大量的浪费。而 Virtual DOM 虽然进行了 JS 层面的计算，但是比起DOM操作来说，简直不要太便宜。
+在一定程度上提升了性能，尤其是在进行小量数据更新时。因为 DOM 操作是很耗性能的，而 Virtual DOM 是在内存中进行操作的，当数据发生变化时，通过 diff 算法 比较两棵树之间的变化，再进行必要的 DOM 更新，省去了不必要的高消耗的 DOM 操作。当然，这种性能优化主要体现在有小量数据更新的情况下。因为 React 的基本思维模式是每次有变动就重新渲染整个应用，简单想来就是直接重置 innerHTML，比如说在一个大型列表所有数据都变动的情况下，重置 innerHTML 还比较合理，但若是只有一行数据变了，它也需要重置整个 innerHTML，就会造成大量的浪费。而 Virtual DOM 虽然进行了 JS 层面的计算，但是比起 DOM 操作来说，简直不要太便宜。
 
 > [为什么操作真实 DOM 比 React 更快？](https://www.zhihu.com/question/31809713)
 
-**b. React的一个核心思想是声明式编程。**
+**b. React 的一个核心思想是声明式编程。**
 
-命令式编程是解决做什么的问题，就像是下命令一样，关注于WHAT，做什么就调用对象 API。而声明式编程关注于 HOW 如何做才能得到结果。在React中，我们只需要关注“目前的状态是什么”，而不是探究“我如何做才能让页面变成目前的状态”。React 就是不断声明，然后在特定的参数下渲染 UI 界面。这种编程方式可以让我们的代码更容易被理解，从而易于维护。
+命令式编程是解决做什么的问题，就像是下命令一样，关注于 WHAT，做什么就调用对象 API。而声明式编程关注于 HOW 如何做才能得到结果。在 React 中，我们只需要关注“目前的状态是什么”，而不是探究“我如何做才能让页面变成目前的状态”。React 就是不断声明，然后在特定的参数下渲染 UI 界面。这种编程方式可以让我们的代码更容易被理解，从而易于维护。
 
 **c. 组件化**
 
@@ -92,8 +92,7 @@ React 是基于组件构建应用的，对于组件间的比较所采取的策�
 * **MOVE_EXISTING**，在老集合有新 component 类型，且 element 是可更新的类型，generateComponentChildren 已调用 receiveComponent，这种情况下 prevChild=nextChild，就需要做移动操作，可以复用以前的 DOM 节点。
 * **REMOVE_NODE**，老 component 类型，在新集合里也有，但对应的 element 不同则不能直接复用和更新，需要执行删除操作，或者老 component 不在新集合里的，也需要执行删除操作。
 
-如下图，老集合中包含节点：A、B、C、D，更新后的新集合中包含节点：B、A、D、C，此时新老集合进行 diff 差异化对比，发现 B != A，则创建并插入 B 至新集合，删除老集合 A；以此类推，创建并插入 A、D 和 C，删除 B、C 和 D。
-![img](http://ww1.sinaimg.cn/mw690/0064cTs2jw1eybcfepy19j30e507f74r.jpg)
+如下图，老集合中包含节点：A、B、C、D，更新后的新集合中包含节点：B、A、D、C，此时新老集合进行 diff 差异化对比，发现 B != A，则创建并插入 B 至新集合，删除老集合 A；以此类推，创建并插入 A、D 和 C，删除 B、C 和 D。 ![img](http://ww1.sinaimg.cn/mw690/0064cTs2jw1eybcfepy19j30e507f74r.jpg)
 
 React 发现这类操作繁琐冗余，因为这些都是相同的节点，但由于位置发生变化，导致需要进行繁杂低效的删除、创建操作，其实只要对这些节点进行位置移动即可。
 
@@ -105,28 +104,28 @@ React 发现这类操作繁琐冗余，因为这些都是相同的节点，但�
 
 那么，如此高效的 diff 到底是如何运作的呢？让我们通过源码进行详细分析。
 
-首先对新集合的节点进行循环遍历，for (name in nextChildren)，通过唯一 key 可以判断新老集合中是否存在相同的节点，if (prevChild === nextChild)，如果存在相同节点，则进行移动操作，但在移动前需要将当前节点在老集合中的位置与 lastIndex 进行比较，if (child._mountIndex < lastIndex)，则进行节点移动操作，否则不执行该操作。这是一种顺序优化手段，lastIndex 一直在更新，表示访问过的节点在老集合中最右的位置 (即最大的位置)，如果新集合中当前访问的节点比 lastIndex 大，说明当前访问节点在老集合中就比上一个节点位置靠后，则该节点不会影响其他节点的位置，因此不用添加到差异队列中，即不执行移动操作，只有当访问的节点比 lastIndex 小时，才需要进行移动操作。
+首先对新集合的节点进行循环遍历，for (name in nextChildren)，通过唯一 key 可以判断新老集合中是否存在相同的节点，if (prevChild === nextChild)，如果存在相同节点，则进行移动操作，但在移动前需要将当前节点在老集合中的位置与 lastIndex 进行比较，if (child.\_mountIndex < lastIndex)，则进行节点移动操作，否则不执行该操作。这是一种顺序优化手段，lastIndex 一直在更新，表示访问过的节点在老集合中最右的位置 (即最大的位置)，如果新集合中当前访问的节点比 lastIndex 大，说明当前访问节点在老集合中就比上一个节点位置靠后，则该节点不会影响其他节点的位置，因此不用添加到差异队列中，即不执行移动操作，只有当访问的节点比 lastIndex 小时，才需要进行移动操作。
 
 以上图为例，可以更为清晰直观的描述 diff 的差异对比过程：
 
-* 从新集合中取得 B，判断老集合中存在相同节点 B，通过对比节点位置判断是否进行移动操作，B 在老集合中的位置 B._mountIndex = 1，此时 lastIndex = 0，不满足 child._mountIndex < lastIndex 的条件，因此不对 B 进行移动操作；更新 lastIndex = Math.max(prevChild._mountIndex, lastIndex)，其中 prevChild._mountIndex 表示 B 在老集合中的位置，则 lastIndex ＝ 1，并将 B 的位置更新为新集合中的位置prevChild._mountIndex = nextIndex，此时新集合中 B._mountIndex = 0，nextIndex++ 进入下一个节点的判断。
-* 从新集合中取得 A，判断老集合中存在相同节点 A，通过对比节点位置判断是否进行移动操作，A 在老集合中的位置 A._mountIndex = 0，此时 lastIndex = 1，满足 child._mountIndex < lastIndex的条件，因此对 A 进行移动操作enqueueMove(this, child._mountIndex, toIndex)，其中 toIndex 其实就是 nextIndex，表示 A 需要移动到的位置；更新 lastIndex = Math.max(prevChild._mountIndex, lastIndex)，则 lastIndex ＝ 1，并将 A 的位置更新为新集合中的位置 prevChild._mountIndex = nextIndex，此时新集合中A._mountIndex = 1，nextIndex++ 进入下一个节点的判断。
-* 从新集合中取得 D，判断老集合中存在相同节点 D，通过对比节点位置判断是否进行移动操作，D 在老集合中的位置 D._mountIndex = 3，此时 lastIndex = 1，不满足 child._mountIndex < lastIndex的条件，因此不对 D 进行移动操作；更新 lastIndex = Math.max(prevChild._mountIndex, lastIndex)，则 lastIndex ＝ 3，并将 D 的位置更新为新集合中的位置 prevChild._mountIndex = nextIndex，此时新集合中D._mountIndex = 2，nextIndex++ 进入下一个节点的判断。
-* 从新集合中取得 C，判断老集合中存在相同节点 C，通过对比节点位置判断是否进行移动操作，C 在老集合中的位置 C._mountIndex = 2，此时 lastIndex = 3，满足 child._mountIndex < lastIndex 的条件，因此对 C 进行移动操作 enqueueMove(this, child._mountIndex, toIndex)；更新 lastIndex = Math.max(prevChild._mountIndex, lastIndex)，则 lastIndex ＝ 3，并将 C 的位置更新为新集合中的位置 prevChild._mountIndex = nextIndex，此时新集合中 A._mountIndex = 3，nextIndex++ 进入下一个节点的判断，由于 C 已经是最后一个节点，因此 diff 到此完成。
+* 从新集合中取得 B，判断老集合中存在相同节点 B，通过对比节点位置判断是否进行移动操作，B 在老集合中的位置 B.\_mountIndex = 1，此时 lastIndex = 0，不满足 child.\_mountIndex < lastIndex 的条件，因此不对 B 进行移动操作；更新 lastIndex = Math.max(prevChild.\_mountIndex, lastIndex)，其中 prevChild.\_mountIndex 表示 B 在老集合中的位置，则 lastIndex ＝ 1，并将 B 的位置更新为新集合中的位置 prevChild.\_mountIndex = nextIndex，此时新集合中 B.\_mountIndex = 0，nextIndex++ 进入下一个节点的判断。
+* 从新集合中取得 A，判断老集合中存在相同节点 A，通过对比节点位置判断是否进行移动操作，A 在老集合中的位置 A.\_mountIndex = 0，此时 lastIndex = 1，满足 child.\_mountIndex < lastIndex 的条件，因此对 A 进行移动操作 enqueueMove(this, child.\_mountIndex, toIndex)，其中 toIndex 其实就是 nextIndex，表示 A 需要移动到的位置；更新 lastIndex = Math.max(prevChild.\_mountIndex, lastIndex)，则 lastIndex ＝ 1，并将 A 的位置更新为新集合中的位置 prevChild.\_mountIndex = nextIndex，此时新集合中 A.\_mountIndex = 1，nextIndex++ 进入下一个节点的判断。
+* 从新集合中取得 D，判断老集合中存在相同节点 D，通过对比节点位置判断是否进行移动操作，D 在老集合中的位置 D.\_mountIndex = 3，此时 lastIndex = 1，不满足 child.\_mountIndex < lastIndex 的条件，因此不对 D 进行移动操作；更新 lastIndex = Math.max(prevChild.\_mountIndex, lastIndex)，则 lastIndex ＝ 3，并将 D 的位置更新为新集合中的位置 prevChild.\_mountIndex = nextIndex，此时新集合中 D.\_mountIndex = 2，nextIndex++ 进入下一个节点的判断。
+* 从新集合中取得 C，判断老集合中存在相同节点 C，通过对比节点位置判断是否进行移动操作，C 在老集合中的位置 C.\_mountIndex = 2，此时 lastIndex = 3，满足 child.\_mountIndex < lastIndex 的条件，因此对 C 进行移动操作 enqueueMove(this, child.\_mountIndex, toIndex)；更新 lastIndex = Math.max(prevChild.\_mountIndex, lastIndex)，则 lastIndex ＝ 3，并将 C 的位置更新为新集合中的位置 prevChild.\_mountIndex = nextIndex，此时新集合中 A.\_mountIndex = 3，nextIndex++ 进入下一个节点的判断，由于 C 已经是最后一个节点，因此 diff 到此完成。
 
 以上主要分析新老集合中存在相同节点但位置不同时，对节点进行位置移动的情况，如果新集合中有新加入的节点且老集合存在需要删除的节点，那么 React diff 又是如何对比运作的呢？
 
 以下图为例：
 
-* 从新集合中取得 B，判断老集合中存在相同节点 B，由于 B 在老集合中的位置 B._mountIndex = 1，此时lastIndex = 0，因此不对 B 进行移动操作；更新 lastIndex ＝ 1，并将 B 的位置更新为新集合中的位置B._mountIndex = 0，nextIndex++进入下一个节点的判断。
+* 从新集合中取得 B，判断老集合中存在相同节点 B，由于 B 在老集合中的位置 B.\_mountIndex = 1，此时 lastIndex = 0，因此不对 B 进行移动操作；更新 lastIndex ＝ 1，并将 B 的位置更新为新集合中的位置 B.\_mountIndex = 0，nextIndex++进入下一个节点的判断。
 * 从新集合中取得 E，判断老集合中不存在相同节点 E，则创建新节点 E；更新 lastIndex ＝ 1，并将 E 的位置更新为新集合中的位置，nextIndex++进入下一个节点的判断。
-* 从新集合中取得 C，判断老集合中存在相同节点 C，由于 C 在老集合中的位置C._mountIndex = 2，此时lastIndex = 1，因此对 C 进行移动操作；更新 lastIndex ＝ 2，并将 C 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
-* 从新集合中取得 A，判断老集合中存在相同节点 A，由于 A 在老集合中的位置A._mountIndex = 0，此时lastIndex = 2，因此不对 A 进行移动操作；更新 lastIndex ＝ 2，并将 A 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
+* 从新集合中取得 C，判断老集合中存在相同节点 C，由于 C 在老集合中的位置 C.\_mountIndex = 2，此时 lastIndex = 1，因此对 C 进行移动操作；更新 lastIndex ＝ 2，并将 C 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
+* 从新集合中取得 A，判断老集合中存在相同节点 A，由于 A 在老集合中的位置 A.\_mountIndex = 0，此时 lastIndex = 2，因此不对 A 进行移动操作；更新 lastIndex ＝ 2，并将 A 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
 * 当完成新集合中所有节点 diff 时，最后还需要对老集合进行循环遍历，判断是否存在新集合中没有但老集合中仍存在的节点，发现存在这样的节点 D，因此删除节点 D，到此 diff 全部完成。
 
 ![img](http://ww4.sinaimg.cn/mw690/0064cTs2jw1eybcff1kwaj30e508u0td.jpg)
 
-当然，React diff 还是存在些许不足与待优化的地方，如下图所示，若新集合的节点更新为：D、A、B、C，与老集合对比只有 D 节点移动，而 A、B、C 仍然保持原有的顺序，理论上 diff 应该只需对 D 执行移动操作，然而由于 D 在老集合的位置是最大的，导致其他节点的 _mountIndex < lastIndex，造成 D 没有执行移动操作，而是 A、B、C 全部移动到 D 节点后面的现象。
+当然，React diff 还是存在些许不足与待优化的地方，如下图所示，若新集合的节点更新为：D、A、B、C，与老集合对比只有 D 节点移动，而 A、B、C 仍然保持原有的顺序，理论上 diff 应该只需对 D 执行移动操作，然而由于 D 在老集合的位置是最大的，导致其他节点的 \_mountIndex < lastIndex，造成 D 没有执行移动操作，而是 A、B、C 全部移动到 D 节点后面的现象。
 
 **在此，读者们可以讨论思考：如何优化上述问题？**
 
@@ -145,17 +144,17 @@ React 发现这类操作繁琐冗余，因为这些都是相同的节点，但�
 
 ## 组件化思想
 
-组件，即封装起来的具有独立功能的UI部件。React 推荐以组件的方式去重新思考 UI 构成，将UI上每一个功能相对独立的模块定义成组件，然后将小的组件通过组合或者嵌套的方式构成大的组件，最终完成整体UI的构建。
+组件，即封装起来的具有独立功能的 UI 部件。React 推荐以组件的方式去重新思考 UI 构成，将 UI 上每一个功能相对独立的模块定义成组件，然后将小的组件通过组合或者嵌套的方式构成大的组件，最终完成整体 UI 的构建。
 
-如果说 MVC 的思想让你做到 __视图-数据-控制器__ 的分离，那么组件化的思考方式则是带来了**UI功能模块之间的分离**。
+如果说 MVC 的思想让你做到 **视图-数据-控制器** 的分离，那么组件化的思考方式则是带来了**UI 功能模块之间的分离**。
 
-对于MVC开发模式来说，开发者将三者定义成不同的类，实现了表现，数据，控制的分离。对于React而言，则完全是一个新的思路，开发者从**功能的角度**出发，将 UI 分成不同的组件，每个组件都独立封装。在React中，你按照界面模块自然划分的方式来组织和编写你的代码，整个UI是一个通过小组件构成的大组件，每个组件只关心自己部分的逻辑，彼此独立。
+对于 MVC 开发模式来说，开发者将三者定义成不同的类，实现了表现，数据，控制的分离。对于 React 而言，则完全是一个新的思路，开发者从**功能的角度**出发，将 UI 分成不同的组件，每个组件都独立封装。在 React 中，你按照界面模块自然划分的方式来组织和编写你的代码，整个 UI 是一个通过小组件构成的大组件，每个组件只关心自己部分的逻辑，彼此独立。
 
-React组件特征：
+React 组件特征：
 
-1. 可组合(Composable)：一个组件易于和其它组件一起使用，或者嵌套在另一个组件内部
-1. 可重用(Reusable)：每个组件都是具有独立功能的，它可以被使用在多个UI场景
-1. 可维护(Maintainable)：每个小的组件仅仅包含自身的逻辑，更容易被理解和维护
+1.  可组合(Composable)：一个组件易于和其它组件一起使用，或者嵌套在另一个组件内部
+1.  可重用(Reusable)：每个组件都是具有独立功能的，它可以被使用在多个 UI 场景
+1.  可维护(Maintainable)：每个小的组件仅仅包含自身的逻辑，更容易被理解和维护
 
 ## React Benefits
 
@@ -191,8 +190,8 @@ a library for building user interfaces. **a React element is an object represent
 
 There’s a few reasons for this.
 
-1. JavaScript objects are lightweight — React can create and destroy these elements without too much overhead.
-1. React is able to analyze the object, diff it with the previous object representation to see what changed, and then update the actual DOM only where those changes occurred. This has some performance upsides to it.
+1.  JavaScript objects are lightweight — React can create and destroy these elements without too much overhead.
+1.  React is able to analyze the object, diff it with the previous object representation to see what changed, and then update the actual DOM only where those changes occurred. This has some performance upsides to it.
 
 **virtual DOM is a JavaScript representation of the actual DOM. React can keep track of the difference between the current virtual DOM (computed after some data changes), with the previous virtual DOM (computed before some data changes). React then isolates the changes between the old and new virtual DOM and then only updates the real DOM with the necessary changes. Because manipulating the actual DOM can be complex, React is able to minimize manipulations to the actual DOM by keeping track of a virtual DOM and only updating the real DOM when necessary and with only the necessary changes**. By re-rendering the virtual DOM every time any state change occurs, React makes it easier to think about what state your application is in.
 
@@ -204,17 +203,17 @@ SOLID: single responsibility, open-close, 里式替换, Interface segregation(sm
 
 组件的主要目的是为了更好的复用，所以在设计组件的时候需要遵循**高内聚低耦合**的原则。
 
-- 可以通过遵循几种设计模式原则来达到高复用的目的，比如**单一职责原则：React 推崇的是“组合”而非“继承”**，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事。
-- **开放/封闭原则**，就是常说的对修改封闭，对扩展开放。在 React 中我们可以用高阶组件来实现。使用**高阶组件**来实现组件的复用。高阶组件就是一个包装了另一个 React 组件的 React 组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。
-- 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
-- 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
+* 可以通过遵循几种设计模式原则来达到高复用的目的，比如**单一职责原则：React 推崇的是“组合”而非“继承”**，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事。
+* **开放/封闭原则**，就是常说的对修改封闭，对扩展开放。在 React 中我们可以用高阶组件来实现。使用**高阶组件**来实现组件的复用。高阶组件就是一个包装了另一个 React 组件的 React 组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。
+* 使用**容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）**。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。
+* 编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。
 
 ## 如何对组件进行优化
 
-- 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
-- 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
-- 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
-- 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素
+* 使用上线构建（Production Build）：会移除脚本中不必要的报错和警告，减少文件体积
+* 避免重绘：重写 `shouldComponentUpdate` 函数，手动控制是否应该调用 render 函数进行重绘
+* 使用 Immutable Data 不修改数据，而是重新赋值数据。这样在检测数据对象是否发生修改方面会非常快，因为只需要检测对象引用即可，不需要挨个检测对象属性的更改
+* 在渲染组件时尽可能添加 `key`，这样 virtual DOM 在对比的时候就更容易知道哪里是修改元素，哪里是新插入的元素
 
 ## [React 优化 Optimization](https://facebook.github.io/react/docs/optimizing-performance.html)
 
@@ -224,9 +223,9 @@ Typically you’d use Webpack's **DefinePlugin** method to set `NODE_ENV` to **p
 
 ```javascript
 new webpack.DefinePlugin({
-  "process.env": {
-    NODE_ENV: JSON.stringify("production")
-  }
+  'process.env': {
+    NODE_ENV: JSON.stringify('production'),
+  },
 });
 ```
 
@@ -240,7 +239,7 @@ If you know that in some situations your component doesn't need to update, you c
 
 ###### 4. looping thru -- add `key`
 
-比如我们现在有个 listComponent，每个 item 是个 component，总共有很多10万个吧。新增一条数据时，如果不用 `shouldComponentUpdate` 也没加 `key`，react 会重新渲染10万个和这个新加的数据，性能弱。
+比如我们现在有个 listComponent，每个 item 是个 component，总共有很多 10 万个吧。新增一条数据时，如果不用 `shouldComponentUpdate` 也没加 `key`，react 会重新渲染 10 万个和这个新加的数据，性能弱。
 
 ```javascript
 //当下一次 props 和当前不同时，return true，告诉react去更新重新渲染。注意这里逻辑必须简洁，不然可能比react自动渲染的逻辑还费时

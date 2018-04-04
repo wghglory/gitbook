@@ -24,8 +24,8 @@ Set `Default dashboard` to `starred projects`
 
 ## Notification
 
-1. <https://gitlab.eng.vmware.com/profile/notifications> and set "Global notification level" to disabled
-1. change starred projects notification level to "participate"(in indivisual project overview page)
+1.  <https://gitlab.eng.vmware.com/profile/notifications> and set "Global notification level" to disabled
+1.  change starred projects notification level to "participate"(in indivisual project overview page)
 
 ## Merge Request Settings
 

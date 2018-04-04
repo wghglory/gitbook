@@ -1,20 +1,20 @@
 # Self Introduction
 
-1. I have involved in system development life cycle for 7 years, especially web development. I'm working as CTO in a startup company. Before I was a technical lead in UnionBank, US.
+1.  I have involved in system development life cycle for 7 years, especially web development. I'm working as CTO in a startup company. Before I was a technical lead in UnionBank, US.
 
-1. *College*: I'm interested in designing web application for a long time, but I don't choose computer science as my major because I don't want exams, classes ruin my interest, and I learnt computer science class by myself in Dalian University of Technology. I did part-time job to learn and strengthen my programming skills during college life.
+1.  _College_: I'm interested in designing web application for a long time, but I don't choose computer science as my major because I don't want exams, classes ruin my interest, and I learnt computer science class by myself in Dalian University of Technology. I did part-time job to learn and strengthen my programming skills during college life.
 
-1. *Post College & Onwards*: After college, I worked in several companies in US. Most of my work is about how to build web application. my skill sets include frontend(html,css,js and latest frameworks and libraries like angular, React + redux, jquery), backend(.net latest MVC core, WebForm, MVC, nodejs), database(mongodb, MSSQL).
+1.  _Post College & Onwards_: After college, I worked in several companies in US. Most of my work is about how to build web application. my skill sets include frontend(html,css,js and latest frameworks and libraries like angular, React + redux, jquery), backend(.net latest MVC core, WebForm, MVC, nodejs), database(mongodb, MSSQL).
 
-1. *Current Role [Details]*: Now I'm leading both frontend and backend teams. I designed system architecture, do some coding, code review and some managements. I give free time every to team so everybody can share and learn what they want if they finish tasks very efficiently.
+1.  _Current Role [Details]_: Now I'm leading both frontend and backend teams. I designed system architecture, do some coding, code review and some managements. I give free time every to team so everybody can share and learn what they want if they finish tasks very efficiently.
 
-1. Everyday I go over some blogs and technical websites to learn new techniques, and understand what is popular, what will be popular in future. And I also like to learn these new stuff from video tutorials(youtube, codeSchool) and buy books online. Anyway, I'm self-motivated, and I love what I'm doing. I used to stand on the top in college life, now I want to an excellent leader. I'm making a progress everyday to make it happen!
+1.  Everyday I go over some blogs and technical websites to learn new techniques, and understand what is popular, what will be popular in future. And I also like to learn these new stuff from video tutorials(youtube, codeSchool) and buy books online. Anyway, I'm self-motivated, and I love what I'm doing. I used to stand on the top in college life, now I want to an excellent leader. I'm making a progress everyday to make it happen!
 
-我有7年软件开发经验，包括 windows application 和 web application。我更倾向于web开发。
+我有 7 年软件开发经验，包括 windows application 和 web application。我更倾向于 web 开发。
 
 我很早就对网站开发产生兴趣，但是我在大学时代并没选择相关专业，因为我不想找考试、强制性的课程毁掉我的兴趣。我在大连理工通过自学和兼职工作去提高自己的编程水平。
 
-在迈阿密大学结束后我在美国3家公司工作过，大部分工作内容都是网站开发，包括前端、后端和数据库开发。前端方面主要是html css js 和一些框架 angular jquery，后端.net mvc, nodejs，数据库主要 MSSQL 和 mongodb。
+在迈阿密大学结束后我在美国 3 家公司工作过，大部分工作内容都是网站开发，包括前端、后端和数据库开发。前端方面主要是 html css js 和一些框架 angular jquery，后端.net mvc, nodejs，数据库主要 MSSQL 和 mongodb。
 
 现在在一家中小型公司做技术经理，主要负责前端，搭建框架（yeoman）、封装公共组件、最近开始负责重量级模块--图形化创建。对 react 比较熟悉。曾经用过 angularjs, angular2，最近学习了 vue。我对前沿技术很感兴趣，如 web components, custom elements, shadow dom, css variables 等。我是中途接手一个项目，发现了很多问题，我负责帮助团队不断改进推动项目。还有重新设计系统架构、code review、还有管理方面的工作。每周我都会给团队一些自由时间，大家可以互相分享和学习他们想学的内容。
 
@@ -50,13 +50,13 @@
 * 需要增加图形化创建，数据保存，团队多人协作。
 * redux 源码 applyMiddleware 等觉得难。
 
-| common questions | Ub tahoe, MPower | SNH Avendas | UPMC panelAccess |
-| --- | --- | --- | --- |
-| challenges | Optimization: SPA, unitOfWork, Cache, Thread; Unity: T4; MPower: log4net+redis | real-time chat | mapQuest, chart.js, pdf |
-| Mistake  | A link click error after SPA | NA | NA |
-| Leadership | ESLint, naming convention, coding style |  |  |
-| Conflicts | not mine: Raya asks too much; opinion conflicts: Jay ui-controller/func-controller | scrum master real-time chat task slow |  |
-| What do you do differently | high-level architecture refactor, cacheHelper(memcache,regular) | real-time chat | mapQuest, chart.js, pdf |
+| common questions           | Ub tahoe, MPower                                                                   | SNH Avendas                           | UPMC panelAccess        |
+| -------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------- | ----------------------- |
+| challenges                 | Optimization: SPA, unitOfWork, Cache, Thread; Unity: T4; MPower: log4net+redis     | real-time chat                        | mapQuest, chart.js, pdf |
+| Mistake                    | A link click error after SPA                                                       | NA                                    | NA                      |
+| Leadership                 | ESLint, naming convention, coding style                                            |                                       |                         |
+| Conflicts                  | not mine: Raya asks too much; opinion conflicts: Jay ui-controller/func-controller | scrum master real-time chat task slow |                         |
+| What do you do differently | high-level architecture refactor, cacheHelper(memcache,regular)                    | real-time chat                        | mapQuest, chart.js, pdf |
 
 #### What was the toughest challenge you’ve ever faced?
 
@@ -90,9 +90,9 @@ You know, there're too many things that need to be considered when we talk about
 
 I found backend c# code makes system run slow, especially when there are multiple transactions.
 
-1. One reason is that the system doesn't use UnitOfWork, so this means when we are operating multiple tables, we may created dbContext many times, connect to db many times and generate multiple sql queries. So I added UnitOfWork to application and one big advantage is that the CRUD logic can be executed in the business logic layer rather than database layer. Business layer has more control about the data flow.
-1. Second, I wrote a CacheHelper and use it whenever it is possible. The CacheHelper can uses both traditional Cache and Memcache (amazon: dynamo).
-1. There're some time-costly functions. I created a new thread for them, and made them work asynchronously.
+1.  One reason is that the system doesn't use UnitOfWork, so this means when we are operating multiple tables, we may created dbContext many times, connect to db many times and generate multiple sql queries. So I added UnitOfWork to application and one big advantage is that the CRUD logic can be executed in the business logic layer rather than database layer. Business layer has more control about the data flow.
+1.  Second, I wrote a CacheHelper and use it whenever it is possible. The CacheHelper can uses both traditional Cache and Memcache (amazon: dynamo).
+1.  There're some time-costly functions. I created a new thread for them, and made them work asynchronously.
 
 As a result, the response is faster.
 
@@ -112,9 +112,6 @@ I seldom have behavior conflicts with others since I'm always nice to others. Bu
 
 One conflict with my manager is that he wants to separate controllers by ui and functions while I feel controllers should be separated by modules. His thought is, any controller related to UI, which render a view should be placed into UI-controller folder, and any controller which involves many logic and data retrieving functions should be under func folder. I wrote an email and explained my ideas.
 
-First, some controllers have both UI an logic functions, so they are not clear where to be placed.
-Second, these changes will have to change RoutingConfig, and many ajax calls will be affected since the url changed.
-Third, I estimated the time how long it will take if we really want to do this. And how many files need to be changed.
-At last, I said something like, if you still want to implement this way, I will definitely do it within the estimated time. Please let me know.
+First, some controllers have both UI an logic functions, so they are not clear where to be placed. Second, these changes will have to change RoutingConfig, and many ajax calls will be affected since the url changed. Third, I estimated the time how long it will take if we really want to do this. And how many files need to be changed. At last, I said something like, if you still want to implement this way, I will definitely do it within the estimated time. Please let me know.
 
 So in this conflict, I pointed out the disadvantages that it will generate. If we really do this, how things will go, what to be predicted. These results made my manager clear at this issue. He agreed on me and he was very glad that I could point it out before making that decision.

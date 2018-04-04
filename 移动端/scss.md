@@ -1,6 +1,6 @@
 # 移动端基础样式
 
-_mixin.scss:
+\_mixin.scss:
 
 ```scss
 //基础font-size
@@ -8,11 +8,11 @@ $font: 16;
 //设计稿宽度
 $screen: 750;
 @function px2rem($n) {
-  @return #{$n/($screen*$font/375)}rem;
+  @return #{$n/($screen * $font/375)}rem;
 }
 
-@function calcPX($m,$n) {
-  @return calc(#{$m} - #{$n/($screen*$font/375)}rem);
+@function calcPX($m, $n) {
+  @return calc(#{$m} - #{$n/($screen * $font/375)}rem);
 }
 
 $backgroundGray: rgb(250, 250, 250);
@@ -24,7 +24,7 @@ $lightGray: #a4a7c0;
 reset.scss: (pc, mobile both work)
 
 ```scss
-@import "mixin";
+@import 'mixin';
 
 body,
 p,
@@ -50,7 +50,7 @@ ul {
 a {
   text-decoration: none;
   font-size: px2rem(16);
-  font-family: "PingFang SC", sans-serif;
+  font-family: 'PingFang SC', sans-serif;
 }
 img {
   border: none;
@@ -117,7 +117,7 @@ textarea {
   zoom: 1;
 }
 .clear:after {
-  content: "";
+  content: '';
   display: block;
   clear: both;
 }
@@ -129,15 +129,18 @@ common.scss:
 html,
 body {
   height: 100%;
-  font-family: "PingFang SC", sans-serif;
+  font-family: 'PingFang SC', sans-serif;
 }
 
 .gray {
   background: rgb(250, 250, 250);
 }
 
-a:hover, a:visited, a:link, a:active {
-  color: #FFFFFF;
+a:hover,
+a:visited,
+a:link,
+a:active {
+  color: #ffffff;
 }
 
 .flexbox {
@@ -171,7 +174,7 @@ a:hover, a:visited, a:link, a:active {
 在某个页面使用 mixin 定义的函数
 
 ```scss
-@import "mixin";
+@import 'mixin';
 
 main {
   padding: 0 px2rem(15);
@@ -209,7 +212,11 @@ var autoprefixer = require('gulp-autoprefixer');
 
 // 编译sass文件，添加css3属性浏览器前缀
 gulp.task('sass', function() {
-  return gulp.src('./scss/*.scss').pipe(sass()).pipe(autoprefixer()).pipe(gulp.dest('./css'));
+  return gulp
+    .src('./scss/*.scss')
+    .pipe(sass())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest('./css'));
 });
 
 // 监控任务

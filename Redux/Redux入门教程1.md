@@ -7,7 +7,7 @@ React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案�
 
 对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。
 
-为了解决这个问题，2014年 Facebook 提出了 [Flux](http://www.ruanyifeng.com/blog/2016/01/flux.html) 架构的概念，引发了很多的实现。2015年，[Redux](https://github.com/reactjs/redux) 出现，将 Flux 与函数式编程结合一起，很短时间内就成为了最热门的前端架构。
+为了解决这个问题，2014 年 Facebook 提出了 [Flux](http://www.ruanyifeng.com/blog/2016/01/flux.html) 架构的概念，引发了很多的实现。2015 年，[Redux](https://github.com/reactjs/redux) 出现，将 Flux 与函数式编程结合一起，很短时间内就成为了最热门的前端架构。
 
 本文详细介绍 Redux 架构，由于内容较多，全文分成三个部分。今天是第一部分，介绍基本概念和用法。
 
@@ -20,7 +20,7 @@ React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案�
 > * "如果你不知道是否需要 Redux，那就是不需要它。"
 > * "只有遇到 React 实在解决不了的问题，你才需要 Redux 。"
 
-简单说，如果你的UI层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。
+简单说，如果你的 UI 层非常简单，没有很多互动，Redux 就是不必要的，用了反而增加复杂性。
 
 * 用户的使用方式非常简单
 * 用户之间没有协作
@@ -32,8 +32,8 @@ React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案�
 * 用户的使用方式复杂
 * 不同身份的用户有不同的使用方式（比如普通用户和如普通用户和管理员）
 * 多个用户之间可以协作
-* 与服务器大量交互，或者使用了WebSocket
-* View要从多个来源获取数据
+* 与服务器大量交互，或者使用了 WebSocket
+* View 要从多个来源获取数据
 
 上面这些情况才是 Redux 的适用场景：多交互、多数据源。
 
@@ -52,8 +52,8 @@ React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案�
 
 Redux 的设计思想很简单，就两句话。
 
-1. Web 应用是一个状态机，视图与状态是一一对应的。
-1. 所有的状态，保存在一个对象里面。
+1.  Web 应用是一个状态机，视图与状态是一一对应的。
+1.  所有的状态，保存在一个对象里面。
 
 请务必记住这两句话，下面就是详细解释。
 
@@ -95,7 +95,7 @@ Action 是一个对象。其中的`type`属性是必须的，表示 Action 的�
 ```javascript
 const action = {
   type: 'ADD_TODO',
-  payload: 'Learn Redux'
+  payload: 'Learn Redux',
 };
 ```
 
@@ -112,8 +112,8 @@ const ADD_TODO = '添加 TODO';
 function addTodo(text) {
   return {
     type: ADD_TODO,
-    text
-  }
+    text,
+  };
 }
 const action = addTodo('Learn Redux');
 ```
@@ -129,7 +129,7 @@ import { createStore } from 'redux';
 const store = createStore(reducer);
 store.dispatch({
   type: 'ADD_TODO',
-  payload: 'Learn Redux'
+  payload: 'Learn Redux',
 });
 ```
 
@@ -148,7 +148,7 @@ Store 收到 Action 以后，必须给出一个新的 State，这样 View 才会
 Reducer 是一个函数，它接受 Action 和当前 State 作为参数，返回一个新的 State。
 
 ```javascript
-const reducer = function (state, action) {
+const reducer = function(state, action) {
   // ...
   return new_state;
 };
@@ -169,7 +169,7 @@ const reducer = (state = defaultState, action) => {
 
 const state = reducer(1, {
   type: 'ADD',
-  payload: 2
+  payload: 2,
 });
 ```
 
@@ -190,7 +190,7 @@ const store = createStore(reducer);
 const actions = [
   { type: 'ADD', payload: 0 },
   { type: 'ADD', payload: 1 },
-  { type: 'ADD', payload: 2 }
+  { type: 'ADD', payload: 2 },
 ];
 const total = actions.reduce(reducer, 0); // 3
 ```
@@ -204,7 +204,7 @@ Reducer 函数最重要的特征是，它是一个纯函数。也就是说，只
 纯函数是函数式编程的概念，必须遵守以下一些约束。
 
 * 不得改写参数
-* 不能调用系统 I/O 的API
+* 不能调用系统 I/O 的 API
 * 不能调用`Date.now()`或者`Math.random()`等不纯的方法，因为每次会得到不一样的结果
 
 由于 Reducer 是纯函数，就可以保证同样的 State，必定得到同样的 View。但也正因为这一点，Reducer 函数里面不能改变 State，必须返回一个全新的对象，请参考下面的写法。
@@ -212,7 +212,7 @@ Reducer 函数最重要的特征是，它是一个纯函数。也就是说，只
 ```javascript
 // State 是一个对象
 function reducer(state, action) {
-  return Object.assign({}, state, { thingToChange })
+  return Object.assign({}, state, { thingToChange });
   // 或者
   return { ...state, ...newState };
 }
@@ -239,9 +239,7 @@ store.subscribe(listener);
 `store.subscribe` 方法返回一个函数，调用这个函数就可以解除监听。
 
 ```javascript
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-);
+let unsubscribe = store.subscribe(() => console.log(store.getState()));
 unsubscribe();
 ```
 
@@ -260,7 +258,7 @@ let { subscribe, dispatch, getState } = createStore(reducer);
 
 ```javascript
 // todoApp is reducer
-let store = createStore(todoApp, window.STATE_FROM_SERVER)
+let store = createStore(todoApp, window.STATE_FROM_SERVER);
 ```
 
 上面代码中，`window.STATE_FROM_SERVER` 就是整个应用的状态初始值。注意，如果提供了这个参数，它会覆盖 Reducer 函数的默认初始值。
@@ -276,14 +274,14 @@ const createStore = (reducer) => {
 
   const dispatch = (action) => {
     state = reducer(state, action);
-    listeners.forEach(listener => listener());
+    listeners.forEach((listener) => listener());
   };
 
   const subscribe = (listener) => {
     listeners.push(listener);
     return () => {
-      listeners = listeners.filter(l => l !== listener);
-    }
+      listeners = listeners.filter((l) => l !== listener);
+    };
   };
 
   dispatch({});
@@ -332,8 +330,8 @@ const chatReducer = (state = defaultState, action = {}) => {
   return {
     chatLog: chatLog(state.chatLog, action),
     statusMessage: statusMessage(state.statusMessage, action),
-    userName: userName(state.userName, action)
-  }
+    userName: userName(state.userName, action),
+  };
 };
 ```
 
@@ -349,8 +347,8 @@ import { combineReducers } from 'redux';
 const chatReducer = combineReducers({
   chatLog,
   statusMessage,
-  userName
-})
+  userName,
+});
 
 export default chatReducer;
 ```
@@ -363,16 +361,16 @@ export default chatReducer;
 const reducer = combineReducers({
   a: doSomethingWithA,
   b: processB,
-  c: c
-})
+  c: c,
+});
 
 // 等同于
 function reducer(state = {}, action) {
   return {
     a: doSomethingWithA(state.a, action),
     b: processB(state.b, action),
-    c: c(state.c, action)
-  }
+    c: c(state.c, action),
+  };
 }
 ```
 
@@ -381,15 +379,12 @@ function reducer(state = {}, action) {
 下面是`combineReducer`的简单实现。
 
 ```javascript
-const combineReducers = reducers => {
+const combineReducers = (reducers) => {
   return (state = {}, action) => {
-    return Object.keys(reducers).reduce(
-      (nextState, key) => {
-        nextState[key] = reducers[key](state[key], action);
-        return nextState;
-      },
-      {}
-    );
+    return Object.keys(reducers).reduce((nextState, key) => {
+      nextState[key] = reducers[key](state[key], action);
+      return nextState;
+    }, {});
   };
 };
 ```
@@ -397,9 +392,9 @@ const combineReducers = reducers => {
 你可以把所有子 Reducer 放在一个文件里面，然后统一引入。
 
 ```javascript
-import { combineReducers } from 'redux'
-import * as reducers from './reducers'
-const reducer = combineReducers(reducers)
+import { combineReducers } from 'redux';
+import * as reducers from './reducers';
+const reducer = combineReducers(reducers);
 ```
 
 ## 工作流程
@@ -440,14 +435,9 @@ function listener() {
 下面我们来看一个最简单的实例。
 
 ```javascript
-const Counter = ({ value }) => (
-  <h1>{value}</h1>
-);
+const Counter = ({ value }) => <h1>{value}</h1>;
 const render = () => {
-  ReactDOM.render(
-    <Counter value={store.getState()}/>,
-    document.getElementById('root')
-  );
+  ReactDOM.render(<Counter value={store.getState()} />, document.getElementById('root'));
 };
 store.subscribe(render);
 render();

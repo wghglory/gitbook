@@ -9,18 +9,18 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.min.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devtool: 'cheap-module-source-map',
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
         test: /\.(js)$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -49,14 +49,14 @@ const config = {
                 config: {
                   ctx: {
                     cssnano: {},
-                    autoprefixer: {}
-                  }
-                }
-              }
-            }
-          ]
+                    autoprefixer: {},
+                  },
+                },
+              },
+            },
+          ],
         }),
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
@@ -86,41 +86,41 @@ const config = {
                 config: {
                   ctx: {
                     cssnano: {},
-                    autoprefixer: {}
-                  }
-                }
-              }
+                    autoprefixer: {},
+                  },
+                },
+              },
             },
-            'sass-loader'
-          ]
-        })
+            'sass-loader',
+          ],
+        }),
       },
       {
         test: /\.csv$/,
-        loader: 'dsv-loader'
-      }
-    ]
+        loader: 'dsv-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'app/index.html'
+      template: 'app/index.html',
     }),
     new ExtractTextPlugin('style.min.css'),
     // NODE_ENV in DefinePlugin: webpack will build this into bundle.js so React realizes it's for production now
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
+      sourceMap: true,
     }),
     new OptimizeCssAssetsPlugin({
       cssProcessor: require('cssnano'),
       cssProcessorOptions: { discardComments: { removeAll: true } },
-      canPrint: true
-    })
-  ]
+      canPrint: true,
+    }),
+  ],
 };
 
 module.exports = config;

@@ -32,9 +32,7 @@ eslint-plugin-react, eslint-plugin-angular, eslint-plugin-node
 
 ### preset
 
-from scratch
-recommended
-presets: airbnb
+from scratch recommended presets: airbnb
 
 ### Issue
 
@@ -59,9 +57,9 @@ presets: airbnb
 
 ## Why Lint via an Automated Build Process
 
-1. One place to check
-1. Universal configuration
-1. Part of continuous integration
+1.  One place to check
+1.  Universal configuration
+1.  Part of continuous integration
 
 ### Usage
 
@@ -107,11 +105,11 @@ disable linting for individual file:
 
 ```javascript
 /* eslint-disable no-console */
-console.log('111')
+console.log('111');
 ```
 
 disable linting for a specific line
 
 ```javascript
-console.log('111')  // eslint-disable-line no-console
+console.log('111'); // eslint-disable-line no-console
 ```

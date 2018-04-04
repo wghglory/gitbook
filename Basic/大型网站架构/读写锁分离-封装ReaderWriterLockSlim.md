@@ -1,4 +1,4 @@
-# [读写锁分离－－封装ReaderWriterLockSlim](http://www.cnblogs.com/blqw/p/3475734.html)
+# [读写锁分离－－封装 ReaderWriterLockSlim](http://www.cnblogs.com/blqw/p/3475734.html)
 
 > ## ReaderWriterLockSlim 类
 >
@@ -12,21 +12,17 @@
 
 属性:
 
-IsReadLockHeld 　　获取一个值，该值指示当前线程是否已进入读取模式的锁定状态。
-IsWriteLockHeld	　  获取一个值，该值指示当前线程是否已进入写入模式的锁定状态。
+IsReadLockHeld 　　获取一个值，该值指示当前线程是否已进入读取模式的锁定状态。 IsWriteLockHeld 　 获取一个值，该值指示当前线程是否已进入写入模式的锁定状态。
 
 方法:
 
-EnterReadLock       尝试进入读取模式锁定状态。
-ExitReadLock         减少读取模式的递归计数，并在生成的计数为 0（零）时退出读取模式。
-EnterWriteLock      尝试进入写入模式锁定状态。
-ExitWriteLock        减少写入模式的递归计数，并在生成的计数为 0（零）时退出写入模式。
+EnterReadLock 尝试进入读取模式锁定状态。 ExitReadLock 减少读取模式的递归计数，并在生成的计数为 0（零）时退出读取模式。 EnterWriteLock 尝试进入写入模式锁定状态。 ExitWriteLock 减少写入模式的递归计数，并在生成的计数为 0（零）时退出写入模式。
 
-当然还有其他很多方法,比如[EnterUpgradeableReadLock](http://msdn.microsoft.com/zh-cn/library/vstudio/system.threading.readerwriterlockslim.enterupgradeablereadlock(v=vs.100).aspx)进入可以升级到写入模式的读取模式..
+当然还有其他很多方法,比如[EnterUpgradeableReadLock](<http://msdn.microsoft.com/zh-cn/library/vstudio/system.threading.readerwriterlockslim.enterupgradeablereadlock(v=vs.100).aspx>)进入可以升级到写入模式的读取模式..
 
 ## 应用
 
-来对比一个老式的lock写法
+来对比一个老式的 lock 写法
 
 ```csharp
 private object _Lock = new object();
@@ -72,19 +68,19 @@ private void Write()
 }
 ```
 
-看上下2种写法:
+看上下 2 种写法:
 
 从性能的角度来说,肯定是读写锁分离更好了，特别是大多数场合(读取操作远远多余写入操作)
 
-从可读性和代码美观度来说，就是上面的lock要简洁的多了，维护起来也更清晰
+从可读性和代码美观度来说，就是上面的 lock 要简洁的多了，维护起来也更清晰
 
-所以我希望重新封装ReaderWriterLockSlim，当然我第一想到的就是利用using语法糖的特性封装一个新的对象
+所以我希望重新封装 ReaderWriterLockSlim，当然我第一想到的就是利用 using 语法糖的特性封装一个新的对象
 
 ## 封装
 
-**Code平台: UsingLock**
+**Code 平台: UsingLock**
 
-**由于是利用的using的语法,所以我直接取名叫UsingLock，简单好记**
+**由于是利用的 using 的语法,所以我直接取名叫 UsingLock，简单好记**
 
 ```csharp
 using System;
@@ -255,15 +251,15 @@ namespace blqw
 
 方法:
 
-Read()     进入读取锁定模式
+Read() 进入读取锁定模式
 
-Write()    进入写入锁定模式
+Write() 进入写入锁定模式
 
 属性：
 
-Data        UsingLock中可以保存一个数据，由当前线程中的环境判断是否可以读取或设置该对象
+Data UsingLock 中可以保存一个数据，由当前线程中的环境判断是否可以读取或设置该对象
 
-Enabled   是否启用当前组件..这个有妙用，下面介绍
+Enabled 是否启用当前组件..这个有妙用，下面介绍
 
 ## 使用场合
 
@@ -298,7 +294,7 @@ class MyQueue:IEnumerable<string>
     }
 
     public int Count { get { return _List.Count; } }
-            
+
     /// <summary> 枚举当前集合的元素
     /// </summary>
     public IEnumerator<string> GetEnumerator()
@@ -319,7 +315,7 @@ class MyQueue:IEnumerable<string>
 }
 ```
 
-我这里假设了一个队列系统，把最容易出现问题的修改集合和枚举集合2个操作公开出来，方便在多线程中测试效果
+我这里假设了一个队列系统，把最容易出现问题的修改集合和枚举集合 2 个操作公开出来，方便在多线程中测试效果
 
 以下为测试代码:
 
@@ -361,13 +357,13 @@ static void Main(string[] args)
 
 测试结果
 
-Release模式下也是很轻松就跑完了,证明访问的同步控制部分是可以正常工作的
+Release 模式下也是很轻松就跑完了,证明访问的同步控制部分是可以正常工作的
 
 ![img-c](http://images.cnitblog.com/blog/349367/201312/15210117-2a15516bd7964e35a7a254b1d39d86dd.jpg)
 
 ## 使用详细说明
 
-语法上是不是跟lock比较类似了?Enabled属性的作用在这里就可见一斑了
+语法上是不是跟 lock 比较类似了?Enabled 属性的作用在这里就可见一斑了
 
 ![img-c500](http://images.cnitblog.com/blog/349367/201312/15210531-fe276066992847f89c0c1e51d7c7b12d.jpg)
 
@@ -375,21 +371,21 @@ Release模式下也是很轻松就跑完了,证明访问的同步控制部分是
 
 这部分比较简单,就不多说了.....
 
-## 对比无lock
+## 对比无 lock
 
 当然写完可以用,还需要和原始的方式比较一下,不然不知道优劣
 
-对比无lock模式
+对比无 lock 模式
 
 ![img-c](http://images.cnitblog.com/blog/349367/201312/15210806-49e44e32a56f48d4a89bcfb02261e632.jpg)
 
-将using代码注释,果然出现了异常
+将 using 代码注释,果然出现了异常
 
-## 对比原始单一lock
+## 对比原始单一 lock
 
-对比原始lock模式,这次需要加上时间
+对比原始 lock 模式,这次需要加上时间
 
-UsingLock VS 单一lock
+UsingLock VS 单一 lock
 
 ![img-c](http://images.cnitblog.com/blog/349367/201312/15211232-59f454e3e3c741f682e87b83dc0ff220.jpg)
 
@@ -397,7 +393,6 @@ UsingLock VS 单一lock
 
 ![img-c](http://images.cnitblog.com/blog/349367/201312/15211313-2515bc98f48241749430f76a78bfe9d2.jpg)
 
-##  Code平台下载
+## Code 平台下载
 
 https://code.csdn.net/snippets/112634
-

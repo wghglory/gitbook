@@ -1,22 +1,22 @@
 # XMLHttpRequest
 
 * `readyState`: 表示请求状态的整数，取值:
-    * UNSENT（0）: 对象已创建
-    * OPENED（1）: open()成功调用，在这个状态下，可以为xhr设置请求头，或者使用send()发送请求
-    * HEADERS_RECEIVED(2): 所有重定向已经自动完成访问，并且最终响应的HTTP头已经收到
-    * LOADING(3): 响应体正在接收
-    * DONE(4): 数据传输完成或者传输产生错误
-* `onreadystatechange`: readyState改变时调用的函数
-* `status`: 服务器返回的HTTP状态码（如，200， 404）
-* `statusText`: 服务器返回的HTTP状态信息（如，OK，No Content）
+  * UNSENT（0）: 对象已创建
+  * OPENED（1）: open()成功调用，在这个状态下，可以为 xhr 设置请求头，或者使用 send()发送请求
+  * HEADERS_RECEIVED(2): 所有重定向已经自动完成访问，并且最终响应的 HTTP 头已经收到
+  * LOADING(3): 响应体正在接收
+  * DONE(4): 数据传输完成或者传输产生错误
+* `onreadystatechange`: readyState 改变时调用的函数
+* `status`: 服务器返回的 HTTP 状态码（如，200， 404）
+* `statusText`: 服务器返回的 HTTP 状态信息（如，OK，No Content）
 * responseText: 作为字符串形式的来自服务器的完整响应
-* responseXML: Document对象，表示服务器的响应解析成的XML文档
-* `abort()`: 取消异步HTTP请求
-* getAllResponseHeaders(): 返回一个字符串，包含响应中服务器发送的全部HTTP报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行
-* getResponseHeader(headerName): 返回headName对应的报头值
-* `open`(method, url, asynchronous [, user, password]): 初始化准备发送到服务器上的请求。method 是 HTTP 方法，不区分大小写；url 是请求发送的相对或绝对 URL；asynchronous表示请求是否异步；user 和 password 提供身份验证
-* `setRequestHeader`(name, value): 设置HTTP报头
-* `send`(body): 对服务器请求进行初始化。参数body包含请求的主体部分，对于POST请求为键值对字符串；对于GET请求，为null
+* responseXML: Document 对象，表示服务器的响应解析成的 XML 文档
+* `abort()`: 取消异步 HTTP 请求
+* getAllResponseHeaders(): 返回一个字符串，包含响应中服务器发送的全部 HTTP 报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行
+* getResponseHeader(headerName): 返回 headName 对应的报头值
+* `open`(method, url, asynchronous [, user, password]): 初始化准备发送到服务器上的请求。method 是 HTTP 方法，不区分大小写；url 是请求发送的相对或绝对 URL；asynchronous 表示请求是否异步；user 和 password 提供身份验证
+* `setRequestHeader`(name, value): 设置 HTTP 报头
+* `send`(body): 对服务器请求进行初始化。参数 body 包含请求的主体部分，对于 POST 请求为键值对字符串；对于 GET 请求，为 null
 
 ---
 
@@ -47,11 +47,11 @@ Via
 
 ```javascript
 function postMessage(msg) {
-    var request = new XMLHttpRequest(); // New request
-    request.open("POST", "/log.php");
-    request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8"); // 必须在 `open()` 后、 `send()` 之前调用
-    request.send(msg);
-    // The request is done. We ignore any response or any error.
+  var request = new XMLHttpRequest(); // New request
+  request.open('POST', '/log.php');
+  request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8'); // 必须在 `open()` 后、 `send()` 之前调用
+  request.send(msg);
+  // The request is done. We ignore any response or any error.
 }
 ```
 
@@ -79,15 +79,15 @@ function postMessage(msg) {
 
 ```javascript
 function getText(url, callback) {
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-    request.onreadystatechange = function() {
-        if (request.readyState === 4 && request.status === 200) {
-            var type = request.getResponseHeader("Content-Type");
-            if (type.match(/^text/)) callback(request.responseText);
-        }
-    };
-    request.send(null); // Send the request now
+  var request = new XMLHttpRequest();
+  request.open('GET', url);
+  request.onreadystatechange = function() {
+    if (request.readyState === 4 && request.status === 200) {
+      var type = request.getResponseHeader('Content-Type');
+      if (type.match(/^text/)) callback(request.responseText);
+    }
+  };
+  request.send(null); // Send the request now
 }
 ```
 
@@ -105,7 +105,7 @@ function getText(url, callback) {
 
 ```javascript
 // Don't process the response as an XML document
-request.overrideMimeType("text/plain; charset=utf-8")
+request.overrideMimeType('text/plain; charset=utf-8');
 ```
 
 ## 对请求正文进行编码
@@ -141,10 +141,10 @@ function encodeFormData(data) {
 表单编码的数据还可以用于 GET 请求，附加到 GET 请求的查询串上:
 
 ```javascript
-request.open("GET", url + "?" + encodeFormData(data));
+request.open('GET', url + '?' + encodeFormData(data));
 ```
 
-### JSON编码的请求
+### JSON 编码的请求
 
 ```javascript
 request.send(JSON.stringify(data));
@@ -181,14 +181,12 @@ XHR2 草案定义了一个新的事件模型。多数现代浏览器支持。使
 * `loaded` 属性是已传输的字节数。
 * `total` 属性是要传输的总的字节数，来自 `Content-Length` 头。若响应没有该头，该值为 0。`lengthComputable` 属性，布尔，用于判断到底知不知道响应的长度。
 
-**上述是下载的传输，而不是指上传的传输**
-这几个属性对于计算已加载的百分比:
+**上述是下载的传输，而不是指上传的传输** 这几个属性对于计算已加载的百分比:
 
 ```javascript
 request.onprogress = function(e) {
-    if (e.lengthComputable)
-        progress.innerHTML = Math.round(100*e.loaded/e.total) + "% Complete";
-}
+  if (e.lengthComputable) progress.innerHTML = Math.round(100 * e.loaded / e.total) + '% Complete';
+};
 ```
 
 ## 上传进度事件

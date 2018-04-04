@@ -4,7 +4,7 @@
 export const config = {
   title: '',
   legend: {
-    enabled: false
+    enabled: false,
   },
   colors: [
     // '#7373FF', // push it to first when needing to display myProduct: purple(myproduct)
@@ -14,21 +14,21 @@ export const config = {
     '#f15c80',
     '#e4d354',
     '#8d4653',
-    '#91e8e1'
+    '#91e8e1',
   ],
   chart: {
     height: 260,
     width: 600,
     style: {
       fontFamily: '.PingFang SC',
-      color: '#d8d9d8'
-    }
+      color: '#d8d9d8',
+    },
   },
 
   yAxis: {
     allowDecimals: false,
     title: {
-      text: ''
+      text: '',
     },
     min: 0,
     max: 5,
@@ -39,12 +39,12 @@ export const config = {
     gridLineColor: '#f5f5f5',
     labels: {
       style: {
-        color: '#a6a6a6'
-      }
-    }
+        color: '#a6a6a6',
+      },
+    },
   },
   credits: {
-    enabled: false
+    enabled: false,
   },
   animation: false,
   plotOptions: {
@@ -70,25 +70,25 @@ export const config = {
           enabled: true,
           inside: true,
           align: 'right',
-          color: '#fff'
-        }
-      }
+          color: '#fff',
+        },
+      },
       // stickyTracking: false
     },
     spline: {
       marker: {
         radius: 6,
         lineColor: '#666666',
-        lineWidth: 1
-      }
+        lineWidth: 1,
+      },
     },
     line: {
-      cursor: 'ns-resize'
-    }
+      cursor: 'ns-resize',
+    },
   },
 
   tooltip: {
-    yDecimals: 2
-  }
+    yDecimals: 2,
+  },
 };
 ```

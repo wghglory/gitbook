@@ -18,7 +18,7 @@
 function factorial(n) {
   if (n <= 0) return 1;
 
-  return n * factorial(n-1); // here, the main recursive call not in a tail position because of the `n` context.
+  return n * factorial(n - 1); // here, the main recursive call not in a tail position because of the `n` context.
 }
 ```
 
@@ -90,7 +90,7 @@ while (n > 1) {
 }
 ```
 
-案例2：
+案例 2：
 
 ```javascript
 // 然后再用最著名的Fibonacci数列来举例，传统的递归是:

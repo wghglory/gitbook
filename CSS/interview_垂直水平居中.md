@@ -9,15 +9,15 @@ div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-   /* 外边距为自身宽高的一半 margin: -150px 0 0 -250px; */
+  /* 外边距为自身宽高的一半 margin: -150px 0 0 -250px; */
   background-color: pink;
 }
 
 /** 方法二 flex **/
 .container {
   display: flex;
-  align-items: center;        /* 垂直居中 */
-  justify-content: center;    /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
 }
 
 .container div {
@@ -28,31 +28,30 @@ div {
 
 /** 方法三 absolute top right bottom left = 0 **/
 div {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: pink;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: pink;
 }
 ```
 
-对于文字使用 line-height === height 方式
-span 和 文字 垂直对齐，`vertical-align: middle`
+对于文字使用 line-height === height 方式 span 和 文字 垂直对齐，`vertical-align: middle`
 
 ## 水平居中
 
 <http://blog.jobbole.com/46574/>
 
-* 给div设置一个宽度，然后添加 `margin: 0 auto` 属性
+* 给 div 设置一个宽度，然后添加 `margin: 0 auto` 属性
 
 ```css
 div {
-    width: 200px;
-    margin: 0 auto;
+  width: 200px;
+  margin: 0 auto;
 }
 ```
 

@@ -2,7 +2,7 @@
 
 装饰器是一个函数，它将元数据添加到类、类成员（属性、方法）和函数参数。
 
-装饰器是一个 JavaScript 的语言特性，装饰器在 TypeScript 里已经实现，并被推荐到了 ES2016（也就是ES7）。
+装饰器是一个 JavaScript 的语言特性，装饰器在 TypeScript 里已经实现，并被推荐到了 ES2016（也就是 ES7）。
 
 要想应用装饰器，把它放到被装饰对象的上面或左边。
 
@@ -31,13 +31,13 @@ Angular 使用自己的一套装饰器来实现应用程序各部件之间的相
 
 `@Input() @Output() @HostBinding @HostListener @ContentChild` 装饰器:
 
-| 装饰器 | 介绍 |
-| ---------------------------------------- | ---------------------------------------- |
-| `@Input() myProperty;`               | 声明一个输入属性，以便我们可以通过属性绑定更新它。(比如： `<my-cmp [my-property]="someExpression">`). |
-| `@Output() myEvent = new EventEmitter();` | 声明一个输出属性，以便我们可以通过事件绑定进行订阅。(比如：`<my-cmp (my-event)="doSomething()">`). |
-| `@HostBinding('[class.valid]') isValid;` | 把宿主元素的属性(比如CSS类：`valid`)绑定到指令/组件的属性(比如：`isValid`)。 |
-| `@HostListener('click', ['$event']) onClick(e) {...}` | 通过指令/组件的方法(例如`onClick`)订阅宿主元素的事件(例如`click`)，可选传入一个参数(`$event`)。 |
-| `@ContentChild(myPredicate) myChildComponent;` | 把组件内容查询(`myPredicate`)的第一个结果绑定到类的`myChildComponent`属性。 |
-| `@ContentChildren(myPredicate) myChildComponents;` | 把组件内容查询(`myPredicate`)的全部结果，绑定到类的`myChildComponents`属性。 |
-| `@ViewChild(myPredicate) myChildComponent;` | 把组件视图查询(`myPredicate`)的第一个结果绑定到类的`myChildComponent`属性。对指令无效。 |
-| `@ViewChildren(myPredicate) myChildComponents;` | 把组件视图查询(`myPredicate`)的全部结果绑定到类的`myChildComponents`属性。对指令无效 |
+| 装饰器                                                | 介绍                                                                                                  |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `@Input() myProperty;`                                | 声明一个输入属性，以便我们可以通过属性绑定更新它。(比如： `<my-cmp [my-property]="someExpression">`). |
+| `@Output() myEvent = new EventEmitter();`             | 声明一个输出属性，以便我们可以通过事件绑定进行订阅。(比如：`<my-cmp (my-event)="doSomething()">`).    |
+| `@HostBinding('[class.valid]') isValid;`              | 把宿主元素的属性(比如 CSS 类：`valid`)绑定到指令/组件的属性(比如：`isValid`)。                        |
+| `@HostListener('click', ['$event']) onClick(e) {...}` | 通过指令/组件的方法(例如`onClick`)订阅宿主元素的事件(例如`click`)，可选传入一个参数(`$event`)。       |
+| `@ContentChild(myPredicate) myChildComponent;`        | 把组件内容查询(`myPredicate`)的第一个结果绑定到类的`myChildComponent`属性。                           |
+| `@ContentChildren(myPredicate) myChildComponents;`    | 把组件内容查询(`myPredicate`)的全部结果，绑定到类的`myChildComponents`属性。                          |
+| `@ViewChild(myPredicate) myChildComponent;`           | 把组件视图查询(`myPredicate`)的第一个结果绑定到类的`myChildComponent`属性。对指令无效。               |
+| `@ViewChildren(myPredicate) myChildComponents;`       | 把组件视图查询(`myPredicate`)的全部结果绑定到类的`myChildComponents`属性。对指令无效                  |

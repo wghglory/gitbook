@@ -8,7 +8,7 @@ var result = function() {
     return 5;
   }, 1000);
 };
-console.log(result());  // undefined
+console.log(result()); // undefined
 ```
 
 用回调函数处理怎么弄呢？让 result 的参数为一个回调函数就可以了，于是代码变成下面这样
@@ -22,7 +22,7 @@ var result = function(callback) {
 result(console.log);
 ```
 
-现在我们用一个真实的io调用替代抢红包，新建一个numbers.txt，在里面写若干个红包金额,代码如下：
+现在我们用一个真实的 io 调用替代抢红包，新建一个 numbers.txt，在里面写若干个红包金额,代码如下：
 
 ```javascript
 const fs = require('fs');
@@ -30,7 +30,10 @@ const fs = require('fs');
 const readFileAsArray = function(file, cb) {
   fs.readFile(file, (err, data) => {
     if (err) return cb(err);
-    const lines = data.toString().trim().split('\n');
+    const lines = data
+      .toString()
+      .trim()
+      .split('\n');
     cb(null, lines);
   });
 };
@@ -42,11 +45,50 @@ readFileAsArray('./numbers.txt', (err, lines) => {
 });
 ```
 
-定义了一个readFileAsArray函数，传两个参：文件名和回调函数，然后调用这个函数，把回调函数写入第二个参数里，就可以控制代码执行顺序了。不过，回调的缺点就是写多了，层层嵌套，又会造成回调地狱的坑爹情况，代码变得难以维护和阅读。
+定义了一个 readFileAsArray 函数，传两个参：文件名和回调函数，然后调用这个函数，把回调函数写入第二个参数里，就可以控制代码执行顺序了。不过，回调的缺点就是写多了，层层嵌套，又会造成回调地狱的坑爹情况，代码变得难以维护和阅读。
 
 ## Promise
 
-Promise实现了控制反转。原来这个顺序的控制是在代码那边而不是程序员控制，现在有了Promise，控制权就由人来掌握了，通过一系列 Promise 的方法如 then/catch/all/race 等控制异步流程。[Promise文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+Promise 实现了控制反转。原来这个顺序的控制是在代码那边而不是程序员控制，现在有了 Promise，控制权就由人来掌握了，通过一系列 Promise 的方法如 then/catch/all/race 等控制异步流程。[Promise 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+```ts
+function doAsyncWork() {
+  // perform async calls
+  if (success) resolve(data);
+  else reject(reason);
+}
+let p: Promise<string> = new Promise(doAsyncWork);
+
+// combine
+let p: Promise<string> = new Promise((resolve, reject) => {
+  // perform async calls
+  setTimeout(() => {
+    let foundBooks: string[] = util.GetBookTitlesByCategory(cat);
+
+    if (foundBooks.length > 0) {
+      resolve(foundBooks);
+    } else {
+      reject('No books found for that category.');
+    }
+  }, 2000);
+});
+
+// handling promise result
+let p: Promise<string> = MethodThatReturnsPromise();
+p
+  .then(
+    (titles) => {
+      console.log(`Found titles: ${titles}`);
+      throw 'something bad happened';
+      return titles.length;
+    },
+    (reason) => {
+      return 0;
+    },
+  )
+  .then((numOfBooks) => console.log(`Number of books found: ${numOfBooks}`))
+  .catch((reason) => console.log(`Error: ${reason}`));
+```
 
 ```javascript
 const fs = require('fs');
@@ -75,7 +117,17 @@ readFileAsArray('./numbers.txt')
 
 ## await/async
 
-有没有简化的办法呢？ES7推出了一个语法糖：await/async，它的内部封装了 Promise 和 Generator 的组合使用方式
+有没有简化的办法呢？ES7 推出了一个语法糖：await/async，它的内部封装了 Promise 和 Generator 的组合使用方式
+
+```ts
+async function doAsyncWork() {
+  let results = await getDataFromServer(); // getDataFromServer returns promise
+  console.log(results);
+}
+console.log('Calling server to retrieve data...');
+doAsyncWork();
+console.log('Results will be displayed when ready...');
+```
 
 ```javascript
 const fs = require('fs');
@@ -110,7 +162,7 @@ result();
 
 ## event
 
-另一个实现异步的方式是event，回调(promise、await/async)和 event 的关系就像计划经济和市场经济一样，一个是人为的强制性的控制，一个是根据需求和供给这只看不见的手控制。
+另一个实现异步的方式是 event，回调(promise、await/async)和 event 的关系就像计划经济和市场经济一样，一个是人为的强制性的控制，一个是根据需求和供给这只看不见的手控制。
 
 ```javascript
 const EventEmitter = require('events');
@@ -260,10 +312,10 @@ let subscription = dataObservable.subscribe(
   },
   (complete) => {
     console.info('complete!');
-  }
+  },
 );
 ```
 
-rxjs还有很多重要的概念，比如生产者 Observe 和消费者 Observable、推拉模型、各种方便的操作符和函数式编程等等
+rxjs 还有很多重要的概念，比如生产者 Observe 和消费者 Observable、推拉模型、各种方便的操作符和函数式编程等等
 
 > Object.observe() This feature is obsolete

@@ -24,7 +24,9 @@ zepto.touch.js:
     initialized = false;
 
   function swipeDirection(x1, x2, y1, y2) {
-    return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : y1 - y2 > 0 ? 'Up' : 'Down';
+    return Math.abs(x1 - x2) >= Math.abs(y1 - y2)
+      ? x1 - x2 > 0 ? 'Left' : 'Right'
+      : y1 - y2 > 0 ? 'Up' : 'Down';
   }
 
   function longTap() {
@@ -50,7 +52,10 @@ zepto.touch.js:
   }
 
   function isPrimaryTouch(event) {
-    return (event.pointerType == 'touch' || event.pointerType == event.MSPOINTER_TYPE_TOUCH) && event.isPrimary;
+    return (
+      (event.pointerType == 'touch' || event.pointerType == event.MSPOINTER_TYPE_TOUCH) &&
+      event.isPrimary
+    );
   }
 
   function isPointerEventType(e, type) {
@@ -60,7 +65,11 @@ zepto.touch.js:
   // helper function for tests, so they check for different APIs
   function unregisterTouchEvents() {
     if (!initialized) return;
-    $(document).off(eventMap.down, down).off(eventMap.up, up).off(eventMap.move, move).off(eventMap.cancel, cancelAll);
+    $(document)
+      .off(eventMap.down, down)
+      .off(eventMap.up, up)
+      .off(eventMap.move, move)
+      .off(eventMap.cancel, cancelAll);
     $(window).off('scroll', cancelAll);
     cancelAll();
     initialized = false;
@@ -84,21 +93,21 @@ zepto.touch.js:
               down: 'touchstart',
               up: 'touchend',
               move: 'touchmove',
-              cancel: 'touchcancel'
+              cancel: 'touchcancel',
             }
           : 'onpointerdown' in document
             ? {
                 down: 'pointerdown',
                 up: 'pointerup',
                 move: 'pointermove',
-                cancel: 'pointercancel'
+                cancel: 'pointercancel',
               }
             : 'onmspointerdown' in document
               ? {
                   down: 'MSPointerDown',
                   up: 'MSPointerUp',
                   move: 'MSPointerMove',
-                  cancel: 'MSPointerCancel'
+                  cancel: 'MSPointerCancel',
                 }
               : false;
 
@@ -132,7 +141,9 @@ zepto.touch.js:
       }
       now = Date.now();
       delta = now - (touch.last || now);
-      touch.el = $('tagName' in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode);
+      touch.el = $(
+        'tagName' in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode,
+      );
       touchTimeout && clearTimeout(touchTimeout);
       touch.x1 = firstTouch.pageX;
       touch.y1 = firstTouch.pageY;
@@ -159,7 +170,10 @@ zepto.touch.js:
       cancelLongTap();
 
       // swipe
-      if ((touch.x2 && Math.abs(touch.x1 - touch.x2) > 30) || (touch.y2 && Math.abs(touch.y1 - touch.y2) > 30))
+      if (
+        (touch.x2 && Math.abs(touch.x1 - touch.x2) > 30) ||
+        (touch.y2 && Math.abs(touch.y1 - touch.y2) > 30)
+      )
         swipeTimeout = setTimeout(function() {
           if (touch.el) {
             touch.el.trigger('swipe');
@@ -201,7 +215,10 @@ zepto.touch.js:
       deltaX = deltaY = 0;
     };
 
-    $(document).on(eventMap.up, up).on(eventMap.down, down).on(eventMap.move, move);
+    $(document)
+      .on(eventMap.up, up)
+      .on(eventMap.down, down)
+      .on(eventMap.move, move);
 
     // when the browser window loses focus,
     // for example when a modal dialog is shown,
@@ -224,7 +241,7 @@ zepto.touch.js:
     'doubleTap',
     'tap',
     'singleTap',
-    'longTap'
+    'longTap',
   ].forEach(function(eventName) {
     $.fn[eventName] = function(callback) {
       return this.on(eventName, callback);

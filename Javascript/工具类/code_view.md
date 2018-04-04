@@ -25,8 +25,8 @@ function getPosition(element) {
 }
 
 /**
-* 查询指定窗口的视口尺寸，如果不指定窗口，查询当前窗口尺寸
-**/
+ * 查询指定窗口的视口尺寸，如果不指定窗口，查询当前窗口尺寸
+ **/
 function getViewportSize(w) {
   w = w || window;
 
@@ -34,7 +34,7 @@ function getViewportSize(w) {
   if ('innerHeight' in w) {
     return {
       width: w.innerWidth,
-      height: w.innerHeight
+      height: w.innerHeight,
     };
   }
 
@@ -44,14 +44,14 @@ function getViewportSize(w) {
   if (document.compatMode === 'CSS1Compat') {
     return {
       width: d.documentElement.clientWidth,
-      height: d.documentElement.clientHeight
+      height: d.documentElement.clientHeight,
     };
   }
 
   // IE8及以下浏览器在怪癖模式下
   return {
     width: d.body.clientWidth,
-    height: d.body.clientHeight
+    height: d.body.clientHeight,
   };
 }
 
@@ -67,7 +67,7 @@ function getScrollOffset(w) {
   if (w.pageXOffset != null) {
     return {
       x: w.pageXOffset,
-      y: w.pageYOffset
+      y: w.pageYOffset,
     };
   }
 
@@ -76,13 +76,13 @@ function getScrollOffset(w) {
   if (d.compatMode === 'CSS1Compat') {
     return {
       x: d.documentElement.scrollLeft,
-      y: d.documentElement.scrollTop
+      y: d.documentElement.scrollTop,
     };
   }
 
   return {
     x: d.body.scrollLeft,
-    y: d.body.scrollTop
+    y: d.body.scrollTop,
   };
 }
 ```

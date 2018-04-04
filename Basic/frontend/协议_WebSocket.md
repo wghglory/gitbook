@@ -2,7 +2,7 @@
 
 作者： [阮一峰](http://www.ruanyifeng.com/)
 
-日期： [2017年5月15日](http://www.ruanyifeng.com/blog/2017/05/)
+日期： [2017 年 5 月 15 日](http://www.ruanyifeng.com/blog/2017/05/)
 
 [WebSocket](http://websocket.org/) 是一种网络通信协议，很多高级功能都需要它。
 
@@ -24,7 +24,7 @@
 
 ## 二、简介
 
-WebSocket 协议在2008年诞生，2011年成为国际标准。所有浏览器都已经支持了。
+WebSocket 协议在 2008 年诞生，2011 年成为国际标准。所有浏览器都已经支持了。
 
 它的最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于[服务器推送技术](https://en.wikipedia.org/wiki/Push_technology)的一种。
 
@@ -36,7 +36,7 @@ WebSocket 协议在2008年诞生，2011年成为国际标准。所有浏览器�
 * 建立在 **TCP 协议**之上，服务器端的实现比较容易。
 * **可以发送文本，也可以发送二进制数据。**
 * **没有同源限制，客户端可以与任意服务器通信。**
-* 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+* 与 HTTP 协议有着良好的兼容性。默认端口也是 80 和 443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
 * 数据格式比较轻量，性能开销小，通信高效。
 * 协议标识符是`ws`（如果加密，则为`wss`），服务器网址就是 URL。
 
@@ -53,20 +53,20 @@ WebSocket 的用法相当简单。
 下面是一个网页脚本的例子（点击[这里](http://jsbin.com/muqamiqimu/edit?js,console)看运行结果），基本上一眼就能明白。
 
 ```javascript
-var ws = new WebSocket("wss://echo.websocket.org");
+var ws = new WebSocket('wss://echo.websocket.org');
 
 ws.onopen = function(evt) {
-  console.log("Connection open ...");
-  ws.send("Hello WebSockets!");
+  console.log('Connection open ...');
+  ws.send('Hello WebSockets!');
 };
 
 ws.onmessage = function(evt) {
-  console.log( "Received Message: " + evt.data);
+  console.log('Received Message: ' + evt.data);
   ws.close();
 };
 
 ws.onclose = function(evt) {
-  console.log("Connection closed.");
+  console.log('Connection closed.');
 };
 ```
 
@@ -90,10 +90,10 @@ var ws = new WebSocket('ws://localhost:8080');
 
 `readyState`属性返回实例对象的当前状态，共有四种。
 
-- CONNECTING：值为0，表示正在连接。
-- OPEN：值为1，表示连接成功，可以通信了。
-- CLOSING：值为2，表示连接正在关闭。
-- CLOSED：值为3，表示连接已经关闭，或者打开连接失败。
+* CONNECTING：值为 0，表示正在连接。
+* OPEN：值为 1，表示连接成功，可以通信了。
+* CLOSING：值为 2，表示连接正在关闭。
+* CLOSED：值为 3，表示连接已经关闭，或者打开连接失败。
 
 下面是一个示例。
 
@@ -122,15 +122,15 @@ switch (ws.readyState) {
 实例对象的`onopen`属性，用于指定连接成功后的回调函数。
 
 ```javascript
-ws.onopen = function () {
+ws.onopen = function() {
   ws.send('Hello Server!');
-}
+};
 ```
 
 如果要指定多个回调函数，可以使用`addEventListener`方法。
 
 ```javascript
-ws.addEventListener('open', function (event) {
+ws.addEventListener('open', function(event) {
   ws.send('Hello Server!');
 });
 ```
@@ -147,7 +147,7 @@ ws.onclose = function(event) {
   // handle close event
 };
 
-ws.addEventListener("close", function(event) {
+ws.addEventListener('close', function(event) {
   var code = event.code;
   var reason = event.reason;
   var wasClean = event.wasClean;
@@ -165,7 +165,7 @@ ws.onmessage = function(event) {
   // 处理数据
 };
 
-ws.addEventListener("message", function(event) {
+ws.addEventListener('message', function(event) {
   var data = event.data;
   // 处理数据
 });
@@ -174,29 +174,29 @@ ws.addEventListener("message", function(event) {
 注意，服务器数据可能是文本，也可能是二进制数据（`blob`对象或`Arraybuffer`对象）。
 
 ```javascript
-ws.onmessage = function(event){
-  if(typeof event.data === String) {
-    console.log("Received data string");
+ws.onmessage = function(event) {
+  if (typeof event.data === String) {
+    console.log('Received data string');
   }
 
-  if(event.data instanceof ArrayBuffer){
+  if (event.data instanceof ArrayBuffer) {
     var buffer = event.data;
-    console.log("Received arraybuffer");
+    console.log('Received arraybuffer');
   }
-}
+};
 ```
 
 除了动态判断收到的数据类型，也可以使用`binaryType`属性，显式指定收到的二进制数据类型。
 
 ```javascript
 // 收到的是 blob 数据
-ws.binaryType = "blob";
+ws.binaryType = 'blob';
 ws.onmessage = function(e) {
   console.log(e.data.size);
 };
 
 // 收到的是 ArrayBuffer 数据
-ws.binaryType = "arraybuffer";
+ws.binaryType = 'arraybuffer';
 ws.onmessage = function(e) {
   console.log(e.data.byteLength);
 };
@@ -255,7 +255,7 @@ socket.onerror = function(event) {
   // handle error event
 };
 
-socket.addEventListener("error", function(event) {
+socket.addEventListener('error', function(event) {
   // handle error event
 });
 ```
@@ -266,9 +266,9 @@ WebSocket 服务器的实现，可以查看维基百科的[列表](https://en.wi
 
 常用的 Node 实现有以下三种。
 
-- [µWebSockets](https://github.com/uWebSockets/uWebSockets)
-- [Socket.IO](http://socket.io/)
-- [WebSocket-Node](https://github.com/theturtle32/WebSocket-Node)
+* [µWebSockets](https://github.com/uWebSockets/uWebSockets)
+* [Socket.IO](http://socket.io/)
+* [WebSocket-Node](https://github.com/theturtle32/WebSocket-Node)
 
 具体的用法请查看它们的文档，这里不详细介绍了。
 
@@ -294,7 +294,7 @@ sleep 1
 echo 3
 ```
 
-命令行下运行这个脚本，会输出1、2、3，每个值之间间隔1秒。
+命令行下运行这个脚本，会输出 1、2、3，每个值之间间隔 1 秒。
 
 ```bash
 $ bash ./counter.sh
@@ -319,7 +319,7 @@ ws.onmessage = function(event) {
 };
 ```
 
-上面是客户端的 JavaScript 代码，运行之后会在控制台依次输出1、2、3。
+上面是客户端的 JavaScript 代码，运行之后会在控制台依次输出 1、2、3。
 
 有了它，就可以很方便地将命令行的输出，发给浏览器。
 
@@ -333,8 +333,8 @@ $ websocketd --port=8080 ls
 
 更多的用法可以参考[官方示例](https://github.com/joewalnes/websocketd/tree/master/examples/bash)。
 
-- Bash 脚本[读取客户端输入](https://github.com/joewalnes/websocketd/blob/master/examples/bash/greeter.sh)的例子
-- 五行代码实现一个最简单的[聊天服务器](https://github.com/joewalnes/websocketd/blob/master/examples/bash/chat.sh)
+* Bash 脚本[读取客户端输入](https://github.com/joewalnes/websocketd/blob/master/examples/bash/greeter.sh)的例子
+* 五行代码实现一个最简单的[聊天服务器](https://github.com/joewalnes/websocketd/blob/master/examples/bash/chat.sh)
 
 ![img](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017051506.png)
 
@@ -361,6 +361,6 @@ $ websocketd --port=8080 node ./greeter.js
 
 ## 七、参考链接
 
-- [How to Use WebSockets](http://cjihrig.com/blog/how-to-use-websockets/)
-- [WebSockets - Send & Receive Messages](https://www.tutorialspoint.com/websockets/websockets_send_receive_messages.htm)
-- [Introducing WebSockets: Bringing Sockets to the Web](https://www.html5rocks.com/en/tutorials/websockets/basics/)
+* [How to Use WebSockets](http://cjihrig.com/blog/how-to-use-websockets/)
+* [WebSockets - Send & Receive Messages](https://www.tutorialspoint.com/websockets/websockets_send_receive_messages.htm)
+* [Introducing WebSockets: Bringing Sockets to the Web](https://www.html5rocks.com/en/tutorials/websockets/basics/)

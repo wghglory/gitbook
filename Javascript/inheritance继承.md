@@ -16,7 +16,7 @@ Person.prototype = {
   constructor: Person,
   say: function() {
     console.log('Hello Everyone!');
-  }
+  },
 };
 
 // 学生类,继承自人
@@ -85,34 +85,40 @@ function Base() {
 Base.prototype = {
   Constructor: Base,
   /*普通购买*/
-  buy: function () {},
+  buy: function() {},
   /*绑定图片列表*/
-  bindDOMImage: function () {
+  bindDOMImage: function() {
     var str = '';
     for (var i = 0, len = this.images.length; i < len; i++) {
       str += '<li>';
-      str += '<img class="etalage_thumb_image" src="' + this.images[i].small + '" class="img-responsive" />';
-      str += '<img class="etalage_source_image" src="' + this.images[i].small + '" class="img-responsive" />';
+      str +=
+        '<img class="etalage_thumb_image" src="' +
+        this.images[i].small +
+        '" class="img-responsive" />';
+      str +=
+        '<img class="etalage_source_image" src="' +
+        this.images[i].small +
+        '" class="img-responsive" />';
       str += '</li>';
     }
     $('#etalage').html(str);
 
     /*jquery插件实现的幻灯片特效*/
-    $('#etalage').etalage({thumb_image_width: 250, thumb_image_height: 300});
+    $('#etalage').etalage({ thumb_image_width: 250, thumb_image_height: 300 });
   },
   /*绑定详细信息*/
-  bindDOMDetail: function () {},
+  bindDOMDetail: function() {},
   /*绑定事件*/
-  bindEvents: function () {},
+  bindEvents: function() {},
   /*团购*/
-  groupBuy: function () {},
+  groupBuy: function() {},
   /*添加到购物车*/
-  addCart: function () {}
+  addCart: function() {},
 };
 
 //继承的固定格式
 /*构造函数中写法*/
-var Book = function () {
+var Book = function() {
   Base.call(this, arguments);
   this.author = '糖葫芦';
   this.publisher = '清华大学出版社';
@@ -124,8 +130,7 @@ var Book = function () {
 /*原型写法*/
 Book.prototype = new Base();
 /*重写 覆盖基类方法*/
-Book.prototype.bindDOMDetail = function () {
-
+Book.prototype.bindDOMDetail = function() {
   var str = '';
   str += '<h1>' + this.name + '</h1>';
   str += '<ul class="rating">';
@@ -152,8 +157,8 @@ Book.prototype.bindDOMDetail = function () {
 };
 
 //Book.prototype.constructor = Book;
-Book.prototype.readTry = function () {};
-Book.prototype.readAll = function () {};
+Book.prototype.readTry = function() {};
+Book.prototype.readAll = function() {};
 
 /*不能使用如下写法，因为这个写法相当于重新定义一个原型对象*/
 //Book.prototype = {}

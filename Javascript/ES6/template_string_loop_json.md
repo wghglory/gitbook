@@ -2,20 +2,20 @@
 
 ```javascript
 // 上面代码中，模板字符串的变量之中，又嵌入了另一个模板字符串，使用方法如下。
-const table = addresses => `
+const table = (addresses) => `
   <table>
-    ${addresses.map(addr => `
+    ${addresses
+      .map(
+        (addr) => `
         <tr><td>${addr.first}</td></tr>
         <tr><td>${addr.last}</td></tr>
-      `).join('')
-    }
+      `,
+      )
+      .join('')}
   </table>
-  `
+  `;
 
-const data = [
-  { first: 'Jane', last: 'Bond' },
-  { first: 'Lars', last: 'Croft' },
-];
+const data = [{ first: 'Jane', last: 'Bond' }, { first: 'Lars', last: 'Croft' }];
 console.log(table(data));
 ```
 

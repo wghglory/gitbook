@@ -7,17 +7,17 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
         test: /\.(js)$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -46,13 +46,13 @@ const config = {
                 config: {
                   ctx: {
                     cssnano: {},
-                    autoprefixer: {}
-                  }
-                }
-              }
-            }
-          ]
-        })
+                    autoprefixer: {},
+                  },
+                },
+              },
+            },
+          ],
+        }),
       },
       {
         test: /\.scss$/,
@@ -82,27 +82,27 @@ const config = {
                 config: {
                   ctx: {
                     cssnano: {},
-                    autoprefixer: {}
-                  }
-                }
-              }
+                    autoprefixer: {},
+                  },
+                },
+              },
             },
-            'sass-loader'
-          ]
-        })
+            'sass-loader',
+          ],
+        }),
       },
       {
         test: /\.csv$/,
-        loader: 'dsv-loader'
-      }
-    ]
+        loader: 'dsv-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'app/index.html'
+      template: 'app/index.html',
     }),
-    new ExtractTextPlugin('style.css')
-  ]
+    new ExtractTextPlugin('style.css'),
+  ],
 };
 
 /*// 1. package.json npm run build will set node env production. 

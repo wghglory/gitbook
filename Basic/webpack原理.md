@@ -29,19 +29,19 @@ module.exports = {
     bundle: [
       'webpack/hot/dev-server',
       'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, 'app/app.js')
-    ]
+      path.resolve(__dirname, 'app/app.js'),
+    ],
   },
   // 文件路径指向(可加快打包过程)。
   resolve: {
     alias: {
-      'react': pathToReact
-    }
+      react: pathToReact,
+    },
   },
   // 生成文件，是模块构建的终点，包括输出文件与输出路径。
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   // 这里配置了处理各模块的 loader ，包括 css 预处理 loader ，es6 编译 loader，图片处理 loader。
   module: {
@@ -50,29 +50,27 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react']
-        }
-      }
+          presets: ['es2015', 'react'],
+        },
+      },
     ],
-    noParse: [pathToReact]
+    noParse: [pathToReact],
   },
   // webpack 各插件对象，在 webpack 的事件流中执行对应的方法。
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 ```
 
 除此之外再大致介绍下 webpack 的一些核心概念：
 
-- loader：能转换各类资源，并处理成对应模块的加载器。loader 间可以串行使用。
-- chunk：code splitting 后的产物，也就是按需加载的分块，装载了不同的 module。
+* loader：能转换各类资源，并处理成对应模块的加载器。loader 间可以串行使用。
+* chunk：code splitting 后的产物，也就是按需加载的分块，装载了不同的 module。
 
 对于 module 和 chunk 的关系可以参照 webpack 官方的这张图：
 
 ![img](https://img.alicdn.com/tps/TB1B0DXNXXXXXXdXFXXXXXXXXXX-368-522.jpg)
 
-- plugin：webpack 的插件实体，这里以 UglifyJsPlugin 为例。
+* plugin：webpack 的插件实体，这里以 UglifyJsPlugin 为例。
 
   ```js
   function UglifyJsPlugin(options) {
@@ -82,14 +80,12 @@ module.exports = {
   module.exports = UglifyJsPlugin;
 
   UglifyJsPlugin.prototype.apply = function(compiler) {
-    compiler.plugin("compilation", function(compilation) {
-      compilation.plugin("build-module", function(module) {
-      });
-      compilation.plugin("optimize-chunk-assets", function(chunks, callback) {
+    compiler.plugin('compilation', function(compilation) {
+      compilation.plugin('build-module', function(module) {});
+      compilation.plugin('optimize-chunk-assets', function(chunks, callback) {
         // Uglify 逻辑
       });
-      compilation.plugin("normal-module-loader", function(context) {
-      });
+      compilation.plugin('normal-module-loader', function(context) {});
     });
   };
   ```
@@ -166,7 +162,7 @@ return options;
 这和 webpack.config.js 的配置非常相似，只是多了一些经 shell 传入的插件对象。插件对象一初始化完毕， options 也就传入到了下个流程中。
 
 ```js
-var webpack = require("../lib/webpack.js");
+var webpack = require('../lib/webpack.js');
 var compiler = webpack(options);
 ```
 
@@ -185,13 +181,13 @@ function webpack(options) {
 
 webpack 的实际入口是 Compiler 中的 run 方法，run 一旦执行后，就开始了编译和构建流程 ，其中有几个比较关键的 webpack 事件节点。
 
-- `compile` 开始编译
-- `make` 从入口点分析模块及其依赖的模块，创建这些模块对象
-- `build-module` 构建模块
-- `after-compile` 完成构建
-- `seal` 封装构建结果
-- `emit` 把各个chunk输出到结果文件
-- `after-emit` 完成输出
+* `compile` 开始编译
+* `make` 从入口点分析模块及其依赖的模块，创建这些模块对象
+* `build-module` 构建模块
+* `after-compile` 完成构建
+* `seal` 封装构建结果
+* `emit` 把各个 chunk 输出到结果文件
+* `after-emit` 完成输出
 
 ##### 1. 核心对象 Compilation
 
@@ -203,11 +199,11 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
 ##### 2. 编译与构建主流程
 
-在创建 module 之前，Compiler 会触发 make，并调用 `Compilation.addEntry` 方法，通过 options 对象的 entry 字段找到我们的入口js文件。之后，在 addEntry 中调用私有方法 `_addModuleChain` ，这个方法主要做了两件事情。一是根据模块的类型获取对应的模块工厂并创建模块，二是构建模块。
+在创建 module 之前，Compiler 会触发 make，并调用 `Compilation.addEntry` 方法，通过 options 对象的 entry 字段找到我们的入口 js 文件。之后，在 addEntry 中调用私有方法 `_addModuleChain` ，这个方法主要做了两件事情。一是根据模块的类型获取对应的模块工厂并创建模块，二是构建模块。
 
 而构建模块作为最耗时的一步，又可细化为三步：
 
-- 调用各 loader 处理模块之间的依赖
+* 调用各 loader 处理模块之间的依赖
 
   webpack 提供的一个很大的便利就是能将所有资源都整合成模块，不仅仅是 js 文件。所以需要一些 loader ，比如 `url-loader` ， `jsx-loader` ， `css-loader` 等等来让我们可以直接在源文件中引用各类资源。webpack 调用 `doBuild()` ，对每一个 require() 用对应的 loader 进行加工，最后生成一个 js module。
 
@@ -229,7 +225,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
   };
   ```
 
-- 调用 [acorn](https://github.com/ternjs/acorn) 解析经 loader 处理后的源文件生成抽象语法树 AST
+* 调用 [acorn](https://github.com/ternjs/acorn) 解析经 loader 处理后的源文件生成抽象语法树 AST
 
   ```js
    Parser.prototype.parse = function parse(source, initialState) {
@@ -247,7 +243,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
   };
   ```
 
-- 遍历 AST，构建该模块所依赖的模块
+* 遍历 AST，构建该模块所依赖的模块
 
   对于当前模块，或许存在着多个依赖模块。当前模块会开辟一个依赖模块的数组，在遍历 AST 时，将 require() 中的模块通过 `addDependency()` 添加到数组中。当前模块构建完成后，webpack 调用 `processModuleDependencies` 开始递归处理依赖的 module，接着就会重复之前的构建步骤。
 
@@ -273,38 +269,48 @@ module 是 webpack 构建的核心实体，也是所有 module 的 父类，它�
 NormalModule.prototype.build = function build(options, compilation, resolver, fs, callback) {
   this.buildTimestamp = new Date().getTime(); // 构建计时
   this.built = true;
-  return this.doBuild(options, compilation, resolver, fs, function(err) {
-    // 指定模块引用，不经acorn解析
-    if (options.module && options.module.noParse) {
-      if (Array.isArray(options.module.noParse)) {
-        if (options.module.noParse.some(function(regExp) {
-            return typeof regExp === "string" ?
-            this.request.indexOf(regExp) === 0 :
-              regExp.test(this.request);
-          }, this)) {
+  return this.doBuild(
+    options,
+    compilation,
+    resolver,
+    fs,
+    function(err) {
+      // 指定模块引用，不经acorn解析
+      if (options.module && options.module.noParse) {
+        if (Array.isArray(options.module.noParse)) {
+          if (
+            options.module.noParse.some(function(regExp) {
+              return typeof regExp === 'string'
+                ? this.request.indexOf(regExp) === 0
+                : regExp.test(this.request);
+            }, this)
+          ) {
+            return callback();
+          }
+        } else if (
+          typeof options.module.noParse === 'string'
+            ? this.request.indexOf(options.module.noParse) === 0
+            : options.module.noParse.test(this.request)
+        ) {
           return callback();
         }
-      } else if (typeof options.module.noParse === "string" ?
-        this.request.indexOf(options.module.noParse) === 0 :
-          options.module.noParse.test(this.request)) {
-        return callback();
       }
-    }
-    // 由acorn解析生成ast
-    try {
-      this.parser.parse(this._source.source(), {
-        current: this,
-        module: this,
-        compilation: compilation,
-        options: options
-      });
-    } catch (e) {
-      var source = this._source.source();
-      this._source = null;
-      return callback(new ModuleParseError(this, source, e));
-    }
-    return callback();
-  }.bind(this));
+      // 由acorn解析生成ast
+      try {
+        this.parser.parse(this._source.source(), {
+          current: this,
+          module: this,
+          compilation: compilation,
+          options: options,
+        });
+      } catch (e) {
+        var source = this._source.source();
+        this._source = null;
+        return callback(new ModuleParseError(this, source, e));
+      }
+      return callback();
+    }.bind(this),
+  );
 };
 ```
 
@@ -355,13 +361,18 @@ Compilation.prototype.seal = function seal(callback) {
 
 ![createChunkAssets流程](https://img.alicdn.com/tps/TB1cz5.NXXXXXc7XpXXXXXXXXXX-959-807.png)
 
-- 不同的 Template
+* 不同的 Template
 
   从上图可以看出通过判断是入口 js 还是需要异步加载的 js 来选择不同的模板对象进行封装，入口 js 会采用 webpack 事件流的 render 事件来触发 `Template类` 中的 `renderChunkModules()` (异步加载的 js 会调用 chunkTemplate 中的 render 方法)。
 
   ```js
-  if(chunk.entry) {
-    source = this.mainTemplate.render(this.hash, chunk, this.moduleTemplate, this.dependencyTemplates);
+  if (chunk.entry) {
+    source = this.mainTemplate.render(
+      this.hash,
+      chunk,
+      this.moduleTemplate,
+      this.dependencyTemplates,
+    );
   } else {
     source = this.chunkTemplate.render(chunk, this.moduleTemplate, this.dependencyTemplates);
   }
@@ -369,7 +380,7 @@ Compilation.prototype.seal = function seal(callback) {
 
   在 webpack 中有四个 Template 的子类，分别是 `MainTemplate.js` ， `ChunkTemplate.js` ，`ModuleTemplate.js` ， `HotUpdateChunkTemplate.js` ，前两者先前已大致有介绍，而 ModuleTemplate 是对所有模块进行一个代码生成，HotUpdateChunkTemplate 是对热替换模块的一个处理。
 
-- 模块封装
+* 模块封装
 
   模块在封装的时候和它在构建时一样，都是调用各模块类中的方法。封装通过调用 `module.source()` 来进行各操作，比如说 require() 的替换。
 
@@ -386,7 +397,7 @@ Compilation.prototype.seal = function seal(callback) {
   };
   ```
 
-- 生成 assets
+* 生成 assets
 
   各模块进行 doBlock 后，把 module 的最终代码循环添加到 source 中。一个 source 对应着一个 asset 对象，该对象保存了单个文件的文件名( name )和最终代码( value )。
 

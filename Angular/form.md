@@ -25,6 +25,7 @@
 ### Template-drive
 
 * Template
+
   * Form element
   * Input element(s)
   * Data binding
@@ -62,6 +63,7 @@ onChange(event: Event){
 ### Reactive Forms
 
 * Template
+
   * Form element
   * Input element(s)
   * Binding to form model

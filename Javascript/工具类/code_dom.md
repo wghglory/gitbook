@@ -11,7 +11,9 @@ export function getStyle(obj, attr) {
     return obj.rotate;
   }
   let i = parseFloat(
-    obj.currentStyle ? obj.currentStyle[attr] : document.defaultView.getComputedStyle(obj, false)[attr]
+    obj.currentStyle
+      ? obj.currentStyle[attr]
+      : document.defaultView.getComputedStyle(obj, false)[attr],
   );
   let val = i ? i : 0;
   if (attr == 'opacity') {
@@ -22,9 +24,9 @@ export function getStyle(obj, attr) {
 
 function getStyle(obj, attr) {
   if (obj.currentStyle) {
-    return obj.currentStyle[attr];  // IE
+    return obj.currentStyle[attr]; // IE
   } else {
-    return getComputedStyle(obj, false)[attr];  // standard
+    return getComputedStyle(obj, false)[attr]; // standard
   }
 }
 
@@ -94,7 +96,9 @@ function serializeForm(form) {
         for (var j = 0, jLen = field.options.length; j < jLen; ++j) {
           if (field.options[j].selected) {
             result.push(
-              encodeURIComponent(fieldName) + '=' + encodeURIComponent(field.options[j].value || field.options[j].text)
+              encodeURIComponent(fieldName) +
+                '=' +
+                encodeURIComponent(field.options[j].value || field.options[j].text),
             );
           }
         } // end for
@@ -186,12 +190,12 @@ function indexInArray(arr, element) {
 }
 
 /**
-* insert obj after refObj
-* @method insertAfter
-* @param  {[type]}    obj    [description]
-* @param  {[type]}    refObj [description]
-* @return {[type]}           [description]
-*/
+ * insert obj after refObj
+ * @method insertAfter
+ * @param  {[type]}    obj    [description]
+ * @param  {[type]}    refObj [description]
+ * @return {[type]}           [description]
+ */
 function insertAfter(obj, refObj) {
   var parent = refObj.parentNode;
   var nextElement = refObj.nextElementSibling;

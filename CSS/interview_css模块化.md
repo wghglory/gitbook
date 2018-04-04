@@ -1,6 +1,6 @@
 # css 模块化
 
-​下面说的是多页面非 SPA，在模块化开发的过程中，每一个模块都是一个独立的小系统，有自己的 html, js, css。js 模块化很方便移植。但是css 的引入却是个问题。问题在于一个页面要使用这个模块，要么在头部用 link 标签引入对应的 css 文件，要么直接把模块的 css 放在全局 css进行打包；前者属于有的放矢，有效的保证了资源的利用，但是需要人工引入，不方便；后者直接放在全局，虽然实现了方便性，但也对于不需要此模块的页面增加了负担，也增加了css样式相互影响的风险。
+​ 下面说的是多页面非 SPA，在模块化开发的过程中，每一个模块都是一个独立的小系统，有自己的 html, js, css。js 模块化很方便移植。但是 css 的引入却是个问题。问题在于一个页面要使用这个模块，要么在头部用 link 标签引入对应的 css 文件，要么直接把模块的 css 放在全局 css 进行打包；前者属于有的放矢，有效的保证了资源的利用，但是需要人工引入，不方便；后者直接放在全局，虽然实现了方便性，但也对于不需要此模块的页面增加了负担，也增加了 css 样式相互影响的风险。
 
 几种 css 模块化实践:
 
@@ -8,36 +8,36 @@
 
 html 页面样式文件的引入主要有三种方式：
 
-1. 直接通过 style 属性写在 html 标签内，也就是**行内样式**
-1. 引入外部 css 文件的形式，也即**外联样式**
-1. 通过 `<style></style>` 标签嵌入到 `<head>` 标签内，就是嵌入式
+1.  直接通过 style 属性写在 html 标签内，也就是**行内样式**
+1.  引入外部 css 文件的形式，也即**外联样式**
+1.  通过 `<style></style>` 标签嵌入到 `<head>` 标签内，就是嵌入式
 
 另一种方案：==_就是在 `<body>` 标签中放置 `<style scoped>` 标签，隔离其他区域的样式_==。然而现在连 firefox 55 版本后默认都不支持了，虽然可以开启。
 
 W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包裹 style 标签。
 
-`scoped`: **style加入此属性后，这些属性只会在当前包裹它的元素及其子元素内生效**，如果没有此属性，则会在全局生效。
+`scoped`: **style 加入此属性后，这些属性只会在当前包裹它的元素及其子元素内生效**，如果没有此属性，则会在全局生效。
 
-如此一来，我们不仅实现了模块的移植便利，还很好的控制了模块的css作用范围，再也不用担心选择器冲突导致的各种样式混乱啦。
+如此一来，我们不仅实现了模块的移植便利，还很好的控制了模块的 css 作用范围，再也不用担心选择器冲突导致的各种样式混乱啦。
 
 ## css @import 语法，和 scss less @import 一个思路，模块化思想第一步
 
 首先我们知道 @import 很少用，有些缺点：
 
-1. @import 的文件是额外请求的，所以页面加载的时候会有一小会儿的裸体（FOUC flash of unstyled content, 样式没加载进来），要等这些模块一个一个加载
-1. 请求数太多，页面性能不佳，对服务器压力也会相对大一些。
-1. 不同的浏览器以及不同的书写形式可能会有不同的加载顺序。
+1.  @import 的文件是额外请求的，所以页面加载的时候会有一小会儿的裸体（FOUC flash of unstyled content, 样式没加载进来），要等这些模块一个一个加载
+1.  请求数太多，页面性能不佳，对服务器压力也会相对大一些。
+1.  不同的浏览器以及不同的书写形式可能会有不同的加载顺序。
 
 ### link 与 @import 的区别
 
-* link 是 HTML方式， @import 是CSS方式
+* link 是 HTML 方式， @import 是 CSS 方式
 * link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现 FOUC
-* @import 必须在样式规则之前，可以在css文件中引用其他文件
+* @import 必须在样式规则之前，可以在 css 文件中引用其他文件
 * 总体来说：link 优于 @import
 
 ```css
 /*xxx 页面入口样式文件 style.css*/
-@import './css/base.css';/*页面基础样式*/
+@import './css/base.css'; /*页面基础样式*/
 @import './css/index.css';
 @import './css/header.css';
 @import './css/footer.css';
@@ -45,12 +45,12 @@ W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包�
 
 这样模块化避免大家修改一个或者几个大的 css。未来想换个 footer，把原先的 comment 掉，添加新的就好。还方面后续再换回来。删除某个模块也方便。
 
-最好的办法就是把模块打包！这和js模块化一样的，模块化开发，然后**上线之前打包**，线上完美使用。
+最好的办法就是把模块打包！这和 js 模块化一样的，模块化开发，然后**上线之前打包**，线上完美使用。
 
-CSS Combo：CSS模块打包利器
+CSS Combo：CSS 模块打包利器
 
-1. 首先安装 `css combo`：`npm install -g css-combo`
-1. 进入你所在的入口文件（本例为style.css）目录，输入：`csscombo style.css style.combo.css`
+1.  首先安装 `css combo`：`npm install -g css-combo`
+1.  进入你所在的入口文件（本例为 style.css）目录，输入：`csscombo style.css style.combo.css`
 
 这样就会把 style.css 文件打包成 style.combo.css 文件
 
@@ -65,13 +65,13 @@ CSS Combo：CSS模块打包利器
 ```scss
 // file A
 .name {
-    color: red
+  color: red;
 }
 
 // file B
-@import "A.scss";
+@import 'A.scss';
 .name {
-    color: green
+  color: green;
 }
 ```
 
@@ -137,8 +137,8 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 ```json
 {
-    test: /\.css$/,
-    loader: "css?modules&localIdentName=[name]__[local]--[hash:base64:5]"
+  test: /\.css$/,
+  loader: "css?modules&localIdentName=[name]__[local]--[hash:base64:5]"
 }
 ```
 
@@ -148,7 +148,7 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 * Element: 对应节点名 `[local]`
 * Modifier: 对应节点状态 `[hash:base64:5]`
 
-使用 __ 和 -- 是为了区块内单词的分割节点区分开来。最终 class 名为 `styles__title--3zyde`。
+使用 ** 和 -- 是为了区块内单词的分割节点区分开来。最终 class 名为 `styles**title--3zyde`。
 
 ### 在生产环境中使用
 
@@ -156,8 +156,9 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 ```json
 {
-    test: /\.scss$/,
-    loader: "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
+  test: /\.scss$/,
+  loader:
+    "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
 }
 ```
 
@@ -227,7 +228,7 @@ classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo
 classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); // => 'bar 1'
 ```
 
-引入 CSS Modules 的样式模块，每个 class 每次都要写 `styles.xxx` 也是很麻烦，在《深入React技术栈》提到了 `react-css-modules` 的库，来减少代码的书写，感兴趣的同学可以研究下。
+引入 CSS Modules 的样式模块，每个 class 每次都要写 `styles.xxx` 也是很麻烦，在《深入 React 技术栈》提到了 `react-css-modules` 的库，来减少代码的书写，感兴趣的同学可以研究下。
 
 ## reference
 

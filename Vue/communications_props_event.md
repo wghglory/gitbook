@@ -54,8 +54,8 @@ _Child.vue_:
 
 需要注意的点：
 
-1. Parent 使用 `v-bind` 进行 props 传递, Child 用 props 接收
-1. Child props 也可以完成 validation
+1.  Parent 使用 `v-bind` 进行 props 传递, Child 用 props 接收
+1.  Child props 也可以完成 validation
 
 ## primitive and reference types
 
@@ -66,8 +66,8 @@ _Child.vue_:
 
 如果 Parent 传递的 props 是 primitive types，一个 Child 修改只影响自身，其他 Child 不会被修改。如果希望数据同步，有这两做法：
 
-1. 被修改的 Child emit event，Parent 订阅这个 event，回调函数中修改属性，这样所以 Children 重新渲染
-1. 不通过 Parent，希望 Child2 直接关注 Child1 的状态，使用 event bus
+1.  被修改的 Child emit event，Parent 订阅这个 event，回调函数中修改属性，这样所以 Children 重新渲染
+1.  不通过 Parent，希望 Child2 直接关注 Child1 的状态，使用 event bus
 
 ## Child to Parent -- Event
 

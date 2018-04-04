@@ -19,20 +19,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts":{
-    "noeffect2second": "echo 'hello'; echo 'world'",  // ; second will execute even if first command has error
+  "scripts": {
+    "noeffect2second": "echo 'hello'; echo 'world'", // ; second will execute even if first command has error
     // "start": "./node_modules/.bin/webpack-dev-server --open",
     "start": "node index.js",
     "start:dev": "node index.js 4000",
     "pretest": "npm run compile && npm run lint",
-    "posttest" : "echo 'after tests are run'",
+    "posttest": "echo 'after tests are run'",
     "pretest": "npm run compile && npm run lint",
     "test": "mocha test -u bdd -R spec",
     "compile:coffee": "coffee --compile --output ./lib ./src/coffeescripts",
     "compile:ts": "tsc --outDir ./lib --module commonjs ./src/typescripts/tsCode.ts",
     "compile": "npm run compile:coffee && npm run compile:ts",
     "precompile": "npm run clean",
-    "clean": "rimraf lib/*",  // 兼容 unix 和 windows. For mac: "rm -rf lib/*.*"
+    "clean": "rimraf lib/*", // 兼容 unix 和 windows. For mac: "rm -rf lib/*.*"
     "build:less": "lessc client/less/demo.less public/css/site.css",
     "build:bundle": "browserify ./client/js/app.js | uglifyjs -mc > ./public/js/bundle.js",
     "build:clean": "rimraf public/css/*, public/js/*",
@@ -45,9 +45,10 @@
     "watch:coffee": "coffee --compile -w --output ./lib ./src/coffeescripts",
     "watch:ts": "tsc -w --outDir ./lib --module commonjs ./src/typescripts/tsCode.ts",
     "watch:bundle": "watchify ./client/js/app.js -o ./public/js/bundle.js -dv", // no minification
-    "watch:bundleWatcher": "watch 'npm run build:bundle' client",  // will minify
+    "watch:bundleWatcher": "watch 'npm run build:bundle' client", // will minify
     "watch:browser": "live-reload --port 9091 public/",
-    "watch": "npm run watch:test & npm run watch:bundle & npm run watch:server & npm run watch:browser",
+    "watch":
+      "npm run watch:test & npm run watch:bundle & npm run watch:server & npm run watch:browser",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",
@@ -61,7 +62,8 @@
     "launch:prod:windows": "start https://stupidlittlewebsite.herokuapp.com/",
     "push": "npm run push:origin && npm run push:heroku",
     // "deploy": "npm run build && firebase deploy",
-    "deploy:prod": "npm run test:deploy -s && npm run build -s && npm run version:patch && npm run push && npm run launch:prod",
+    "deploy:prod":
+      "npm run test:deploy -s && npm run build -s && npm run version:patch && npm run push && npm run launch:prod",
     "deploy:prod:time": "time(npm run deploy:prod)",
     "deploy:prod:script": "bash ./deployProd.sh", // windows: bash ./deployProd.bat
     "test:deploy": "npm t -- -R dot",
@@ -131,8 +133,6 @@ ls node_modules/.bin
 
 ### reference
 
-<https://github.com/coryhouse/react-slingshot/blob/master/package.json>
-<https://libraries.io/>
-<https://docs.npmjs.com/misc/scripts>
+<https://github.com/coryhouse/react-slingshot/blob/master/package.json> <https://libraries.io/> <https://docs.npmjs.com/misc/scripts>
 
 <https://www.pluralsight.com/courses/npm-build-tool-introduction>

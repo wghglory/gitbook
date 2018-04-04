@@ -11,12 +11,12 @@ There are three types of component unit tests I find myself most commonly writin
 Imagine a component that should conditionally display either an image, or a loading icon:
 
 ```jsx
-const Image = props => {
+const Image = (props) => {
   if (props.loading) {
-    return <LoadingIcon/>;
+    return <LoadingIcon />;
   }
 
-  return <img src={props.src}/>;
+  return <img src={props.src} />;
 };
 ```
 
@@ -25,12 +25,12 @@ We might test it like this:
 ```jsx
 describe('Image', () => {
   it('renders a loading icon when the image is loading', () => {
-    const image = shallowRender(<Image loading={true}/>);
+    const image = shallowRender(<Image loading={true} />);
     expect(image.type).toEqual(LoadingIcon);
   });
 
   it('renders the image once it has loaded', () => {
-    const image = shallowRender(<Image loading={false} src="https://example.com/image.jpg"/>);
+    const image = shallowRender(<Image loading={false} src="https://example.com/image.jpg" />);
     expect(image.type).toEqual('img');
   });
 });
@@ -43,7 +43,7 @@ Revisiting our `ListOfNumbers` component above, here is how we might test that t
 ```jsx
 describe('ListOfNumbers', () => {
   it('renders an item for each provided number', () => {
-    const listOfNumbers = shallowRender(<ListOfNumbers className="red" numbers={[3, 4, 5, 6]}/>);
+    const listOfNumbers = shallowRender(<ListOfNumbers className="red" numbers={[3, 4, 5, 6]} />);
     expect(listOfNumbers.props.numbers.length).toEqual(4);
   });
 });
@@ -54,11 +54,9 @@ describe('ListOfNumbers', () => {
 In the last example, we dug into the children of the component being tested, to make sure that they were rendered correctly. We can extend this by asserting that not only are the children there, but that they were given the correct props. This is particularly useful when a component does some transformation on its props, before passing them on. For example, the following component takes CSS class names as an array of strings, and passes them down as a single, space-separated string:
 
 ```jsx
-const TextWithArrayOfClassNames = props => (
+const TextWithArrayOfClassNames = (props) => (
   <div>
-    <p className={props.classNames.join(' ')}>
-     {props.text}
-    </p>
+    <p className={props.classNames.join(' ')}>{props.text}</p>
   </div>
 );
 
@@ -66,7 +64,9 @@ describe('TextWithArrayOfClassNames', () => {
   it('turns the array into a space-separated string', () => {
     const text = 'Hello, world!';
     const classNames = ['red', 'bold', 'float-right'];
-    const textWithArrayOfClassNames = shallowRender(<TextWithArrayOfClassNames text={text} classNames={classNames}/>);
+    const textWithArrayOfClassNames = shallowRender(
+      <TextWithArrayOfClassNames text={text} classNames={classNames} />,
+    );
 
     const childClassNames = textWithArrayOfClassNames.props.children.props.className;
     expect(childClassNames).toEqual('red bold float-right');
@@ -83,9 +83,7 @@ The other thing I often hear is that your tests become too dependent on the comp
 Of course, components are not just for display, they're also interactive:
 
 ```jsx
-const RedInput = props => (
-  <input className="red" onChange={props.onChange} />
-)
+const RedInput = (props) => <input className="red" onChange={props.onChange} />;
 ```
 
 Here's my favorite way to test these:
@@ -94,7 +92,7 @@ Here's my favorite way to test these:
 describe('RedInput', () => {
   it('passes the event to the given callback when the value changes', () => {
     const callback = jasmine.createSpy();
-    const redInput = shallowRender(<RedInput onChange={callback}/>);
+    const redInput = shallowRender(<RedInput onChange={callback} />);
 
     redInput.props.onChange('an event!');
     expect(callback).toHaveBeenCalledWith('an event!');
@@ -108,8 +106,8 @@ It's a bit of a trivial example, but hopefully you get the idea.
 
 So far I've only covered unit testing components in isolation, but you're also going to want some higher level tests in order to ensure that your application connects up properly and actually works.
 
-1. [Render your entire tree of components](https://facebook.github.io/react/docs/test-utils.html#renderintodocument) (instead of shallow rendering).
-1. Reach into the DOM (using the [React TestUtils](https://facebook.github.io/react/docs/test-utils.html), or [jQuery](https://jquery.com/), etc) to find the elements you care about the most, and then assert on their HTML attributes or contents, or[simulate DOM events](https://facebook.github.io/react/docs/test-utils.html#simulate) and then assert on the side effects (DOM or route changes, AJAX calls, etc)
+1.  [Render your entire tree of components](https://facebook.github.io/react/docs/test-utils.html#renderintodocument) (instead of shallow rendering).
+1.  Reach into the DOM (using the [React TestUtils](https://facebook.github.io/react/docs/test-utils.html), or [jQuery](https://jquery.com/), etc) to find the elements you care about the most, and then assert on their HTML attributes or contents, or[simulate DOM events](https://facebook.github.io/react/docs/test-utils.html#simulate) and then assert on the side effects (DOM or route changes, AJAX calls, etc)
 
 #### On TDD
 

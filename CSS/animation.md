@@ -8,12 +8,12 @@
 
 ```css
 @keyframes animationName {
-    from {
-        /* list CSS properties here */
-    }
-    to {
-        /* list CSS properties here */
-    }
+  from {
+    /* list CSS properties here */
+  }
+  to {
+    /* list CSS properties here */
+  }
 }
 ```
 
@@ -23,12 +23,12 @@
 
 ```css
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 ```
 
@@ -36,15 +36,15 @@
 
 ```css
 @keyframes backgroundGlow {
-    from {
-        background-color: yellow;
-    }
-    50% {
-        background-color: blue;
-    }
-    to {
-        background-color: red;
-    }
+  from {
+    background-color: yellow;
+  }
+  50% {
+    background-color: blue;
+  }
+  to {
+    background-color: red;
+  }
 }
 ```
 
@@ -52,17 +52,17 @@
 
 ```css
 @keyframes growAndGlow {
-    from {
-        background-color: yellow;
-    }
-    50% {
-        transform: scale(1.5);
-        background-color: blue;
-    }
-    to {
-        transform: scale(3);
-        background-color: red;
-    }
+  from {
+    background-color: yellow;
+  }
+  50% {
+    transform: scale(1.5);
+    background-color: blue;
+  }
+  to {
+    transform: scale(3);
+    background-color: red;
+  }
 }
 ```
 
@@ -70,15 +70,16 @@
 
 ```css
 @keyframes glow {
-    from {
-        background-color: yellow;
-    }
-    25%, 75% {
-        background-color: blue;
-    }
-    to {
-        background-color: red;
-    }
+  from {
+    background-color: yellow;
+  }
+  25%,
+  75% {
+    background-color: blue;
+  }
+  to {
+    background-color: red;
+  }
 }
 ```
 
@@ -86,18 +87,20 @@
 
 ```css
 @keyframes glow {
-    from {
-        background-color: yellow;
-    }
-    20%, 60% {
-        background-color: blue;
-    }
-    40%, 80% {
-        background-color: orange;
-    }
-    to {
-        background-color: red;
-    }
+  from {
+    background-color: yellow;
+  }
+  20%,
+  60% {
+    background-color: blue;
+  }
+  40%,
+  80% {
+    background-color: orange;
+  }
+  to {
+    background-color: red;
+  }
 }
 ```
 
@@ -111,13 +114,17 @@ CSS3 提供了一些动画相关的属性，控制动画播放的方式和时间
 
 ```css
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .announcement {
-    animation-name: fadeIn;
-    animation-duration: 1s;
+  animation-name: fadeIn;
+  animation-duration: 1s;
 }
 ```
 
@@ -140,9 +147,9 @@ animation-duration: 1s, 3s;
 
 ```css
 .announcement {
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
 }
 ```
 
@@ -150,19 +157,19 @@ animation-duration: 1s, 3s;
 
 ```css
 @keyframes growAndGlow {
-    from {
-        background-color: yellow;
-        animation-timing-function: cubic-bezier(1, .03, 1, .115);
-    }
-    50% {
-        transform: scale(1.5);
-        background-color: blue;
-        animation-timing-function: linear;
-    }
-    to {
-        transform: scale(3);
-        background-color: red;
-    }
+  from {
+    background-color: yellow;
+    animation-timing-function: cubic-bezier(1, 0.03, 1, 0.115);
+  }
+  50% {
+    transform: scale(1.5);
+    background-color: blue;
+    animation-timing-function: linear;
+  }
+  to {
+    transform: scale(3);
+    background-color: red;
+  }
 }
 ```
 
@@ -172,9 +179,9 @@ animation-duration: 1s, 3s;
 
 ```css
 .announcement {
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-delay: 1s;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 1s;
 }
 ```
 
@@ -196,13 +203,13 @@ animation-iteration-count: 10;
 
 ```css
 .fade {
-    animation-name: fadeOut;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 2;
-    animation-direction: alternate;
-    animation-delay: 5s;
-    animation-fill-mode: forwards;
+  animation-name: fadeOut;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
 }
 ```
 
@@ -210,7 +217,7 @@ animation-iteration-count: 10;
 
 ```css
 .fade {
-    animation: fadeOut 2s ease-in-out 2 alternate 5s forwards;
+  animation: fadeOut 2s ease-in-out 2 alternate 5s forwards;
 }
 ```
 
@@ -218,7 +225,7 @@ animation-iteration-count: 10;
 
 ```css
 .fade {
-    animation: fadeOut 2s ease-in-out 2 alternate 5s forwards, glow 5s;
+  animation: fadeOut 2s ease-in-out 2 alternate 5s forwards, glow 5s;
 }
 ```
 

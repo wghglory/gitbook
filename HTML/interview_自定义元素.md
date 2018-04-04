@@ -39,7 +39,7 @@ greeting {
 接着，使用脚本操作这个元素。
 
 ```javascript
-function customTag(tagName, fn){
+function customTag(tagName, fn) {
   Array.from(document.getElementsByTagName(tagName)).forEach(fn);
 }
 
@@ -65,8 +65,8 @@ customTag('greeting', greetingHandler);
 ```javascript
 var tabs = document.createElement('tabs');
 
-tabs instanceof HTMLUnknownElement // true
-tabs instanceof HTMLElement // true
+tabs instanceof HTMLUnknownElement; // true
+tabs instanceof HTMLElement; // true
 ```
 
 上面代码中，`tabs`是一个自定义元素，同时继承了`HTMLUnknownElement`和`HTMLElement`接口。
@@ -127,8 +127,8 @@ Custom Elements 标准对自定义元素的名字做了[限制](https://develope
 ```javascript
 var xTabs = document.createElement('x-tabs');
 
-xTabs instanceof HTMLUnknownElement // false
-xTabs instanceof HTMLElement // true
+xTabs instanceof HTMLUnknownElement; // false
+xTabs instanceof HTMLElement; // true
 ```
 
 Custom Elements 标准规定了，自定义元素的定义可以使用 ES6 的[`class`语法](http://es6.ruanyifeng.com/#docs/class)。
@@ -166,7 +166,7 @@ class MyElement extends HTMLElement {
 处理脚本如下。
 
 ```javascript
-function customTag(tagName, fn){
+function customTag(tagName, fn) {
   Array.from(document.getElementsByTagName(tagName)).forEach(fn);
 }
 

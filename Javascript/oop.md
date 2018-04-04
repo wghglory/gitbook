@@ -5,7 +5,7 @@ function ClassName() {
   this.doms = {
     lastOnline: document.querySelector('.lastOnline'),
     indicator: document.querySelector('.indicator'),
-    indicatorModal: document.querySelector('.indicator-modal')
+    indicatorModal: document.querySelector('.indicator-modal'),
   };
   this.doms.indicatorTable = this.doms.indicatorModal.querySelector('table');
   this.doms.thead = this.doms.indicatorTable.tHead;
@@ -41,7 +41,14 @@ ClassName.prototype = {
 
     var strHead = '';
     var strBody = '';
-    strHead += '<tr><th>' + data.head[0] + '</th><th>' + data.head[1] + '</th><th>' + data.head[2] + '</th></tr>';
+    strHead +=
+      '<tr><th>' +
+      data.head[0] +
+      '</th><th>' +
+      data.head[1] +
+      '</th><th>' +
+      data.head[2] +
+      '</th></tr>';
 
     for (var i = 0; i < data.body.length; i++) {
       var activity = instance.setIndicatorColor(new Date(data.body[i].lastActiveDate));
@@ -105,7 +112,7 @@ ClassName.prototype = {
         this.classList.add('activity');
       };
     }
-  }
+  },
 };
 
 new ClassName();

@@ -5,7 +5,7 @@ const root_path = process.argv[2] || __dirname; // /Users/derek/guanghui.noteboo
 const w_file = 'README.md';
 const projectName = 'guanghui.notebook';
 
-//为了省事，这里采用了字符串拼接的方式，最优的方式应该用buffer来做字符拼接。
+// 为了省事，这里采用了字符串拼接的方式，最优的方式应该用buffer来做字符拼接。
 let symbol = function(fpath) {
   let s = '';
   for (let i = 2; i < fpath.length; i++) {
@@ -99,7 +99,11 @@ function init(root) {
     // 不为 README.md 的 markdown 文件；排除 node_modules folder；
     if (
       (path.extname(f) === '.md' && f !== 'README.md' && f !== 'SUMMARY.md') ||
-      (path.extname(f) === '' && !f.startsWith('.') && !f.startsWith('_') && f !== 'node_modules' && f !== 'assets')
+      (path.extname(f) === '' &&
+        !f.startsWith('.') &&
+        !f.startsWith('_') &&
+        f !== 'node_modules' &&
+        f !== 'assets')
     ) {
       let stat = fs.lstatSync(pathname);
 

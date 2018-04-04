@@ -6,15 +6,15 @@ React-Redux 将所有组件分成两大类：UI 组件（presentational componen
 
 UI 组件有以下几个特征。
 
-- 只负责 UI 的呈现，不带有任何业务逻辑
-- 没有状态（即不使用`this.state`这个变量）
-- 所有数据都由参数（`this.props`）提供
-- 不使用任何 Redux 的 API
+* 只负责 UI 的呈现，不带有任何业务逻辑
+* 没有状态（即不使用`this.state`这个变量）
+* 所有数据都由参数（`this.props`）提供
+* 不使用任何 Redux 的 API
 
 下面就是一个 UI 组件的例子。
 
 ```javascript
-const Title = value => <h1>{value}</h1>;
+const Title = (value) => <h1>{value}</h1>;
 ```
 
 因为不含有状态，UI 组件又称为"纯组件"，即它纯函数一样，纯粹由参数决定它的值。
@@ -23,13 +23,13 @@ const Title = value => <h1>{value}</h1>;
 
 容器组件的特征恰恰相反。
 
-- 负责管理数据和业务逻辑，不负责 UI 的呈现
-- 带有内部状态
-- 使用 Redux 的 API
+* 负责管理数据和业务逻辑，不负责 UI 的呈现
+* 带有内部状态
+* 使用 Redux 的 API
 
 总之，只要记住一句话就可以了：UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 
-你可能会问，如果一个组件既有 UI 又有业务逻辑，那怎么办？回答是，将它拆分成下面的结构：外面是一个容器组件，里面包了一个UI 组件。前者负责与外部的通信，将数据传给后者，由后者渲染出视图。
+你可能会问，如果一个组件既有 UI 又有业务逻辑，那怎么办？回答是，将它拆分成下面的结构：外面是一个容器组件，里面包了一个 UI 组件。前者负责与外部的通信，将数据传给后者，由后者渲染出视图。
 
 React-Redux 规定，所有的 UI 组件都由用户提供，容器组件则是由 React-Redux 自动生成。也就是说，用户负责视觉层，状态管理则是全部交给它。
 
@@ -38,7 +38,7 @@ React-Redux 规定，所有的 UI 组件都由用户提供，容器组件则是�
 React-Redux 提供`connect`方法，用于从 UI 组件生成容器组件。`connect`的意思，就是将这两种组件连起来。
 
 ```javascript
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 const VisibleTodoList = connect()(TodoList);
 ```
 
@@ -46,18 +46,15 @@ const VisibleTodoList = connect()(TodoList);
 
 但是，因为没有定义业务逻辑，上面这个容器组件毫无意义，只是 UI 组件的一个单纯的包装层。为了定义业务逻辑，需要给出下面两方面的信息。
 
-1. 输入逻辑：外部的数据（即`state`对象）如何转换为 UI 组件的参数
-1. 输出逻辑：用户发出的动作如何变为 Action 对象，从 UI 组件传出去。
+1.  输入逻辑：外部的数据（即`state`对象）如何转换为 UI 组件的参数
+1.  输出逻辑：用户发出的动作如何变为 Action 对象，从 UI 组件传出去。
 
 因此，`connect`方法的完整 API 如下。
 
 ```javascript
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-const VisibleTodoList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoList)
+const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 ```
 
 上面代码中，`connect`方法接受两个参数：`mapStateToProps`和`mapDispatchToProps`。它们定义了 UI 组件的业务逻辑。前者负责输入逻辑，即将`state`映射到 UI 组件的参数（`props`），后者负责输出逻辑，即将用户对 UI 组件的操作映射成 Action。
@@ -71,9 +68,9 @@ const VisibleTodoList = connect(
 ```javascript
 const mapStateToProps = (state) => {
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
-  }
-}
+    todos: getVisibleTodos(state.todos, state.visibilityFilter),
+  };
+};
 ```
 
 上面代码中，`mapStateToProps`是一个函数，它接受`state`作为参数，返回一个对象。这个对象有一个`todos`属性，代表 UI 组件的同名参数，后面的`getVisibleTodos`也是一个函数，可以从`state`算出 `todos` 的值。
@@ -84,15 +81,15 @@ const mapStateToProps = (state) => {
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'SHOW_ALL':
-      return todos
+      return todos;
     case 'SHOW_COMPLETED':
-      return todos.filter(t => t.completed)
+      return todos.filter((t) => t.completed);
     case 'SHOW_ACTIVE':
-      return todos.filter(t => !t.completed)
+      return todos.filter((t) => !t.completed);
     default:
-      throw new Error('Unknown filter: ' + filter)
+      throw new Error('Unknown filter: ' + filter);
   }
-}
+};
 ```
 
 `mapStateToProps`会订阅 Store，每当`state`更新的时候，就会自动执行，重新计算 UI 组件的参数，从而触发 UI 组件的重新渲染。
@@ -106,14 +103,14 @@ const getVisibleTodos = (todos, filter) => {
 //    </FilterLink>
 const mapStateToProps = (state, ownProps) => {
   return {
-    active: ownProps.filter === state.visibilityFilter
-  }
-}
+    active: ownProps.filter === state.visibilityFilter,
+  };
+};
 ```
 
 使用`ownProps`作为参数后，如果容器组件的参数发生变化，也会引发 UI 组件重新渲染。
 
-`connect`方法可以省略`mapStateToProps`参数，那样的话，UI 组件就不会订阅Store，就是说 Store 的更新不会引起 UI 组件的更新。
+`connect`方法可以省略`mapStateToProps`参数，那样的话，UI 组件就不会订阅 Store，就是说 Store 的更新不会引起 UI 组件的更新。
 
 ## 五、mapDispatchToProps()
 
@@ -127,11 +124,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onClick: () => {
       dispatch({
         type: 'SET_VISIBILITY_FILTER',
-        filter: ownProps.filter
+        filter: ownProps.filter,
       });
-    }
+    },
   };
-}
+};
 ```
 
 从上面代码可以看到，`mapDispatchToProps`作为函数，应该返回一个对象，该对象的每个键值对都是一个映射，定义了 UI 组件的参数怎样发出 Action。
@@ -156,17 +153,17 @@ const mapDispatchToProps = {
 React-Redux 提供`Provider`组件，可以让容器组件拿到`state`。
 
 ```javascript
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import todoApp from './reducers'
-import App from './components/App'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import todoApp from './reducers';
+import App from './components/App';
 let store = createStore(todoApp);
 render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);
 ```
 
 上面代码中，`Provider`在根组件外面包了一层，这样一来，`App`的所有子组件就默认都可以拿到`state`了。
@@ -177,7 +174,7 @@ render(
 class Provider extends Component {
   getChildContext() {
     return {
-      store: this.props.store
+      store: this.props.store,
     };
   }
   render() {
@@ -185,8 +182,8 @@ class Provider extends Component {
   }
 }
 Provider.childContextTypes = {
-  store: React.PropTypes.object
-}
+  store: React.PropTypes.object,
+};
 ```
 
 上面代码中，`store`放在了上下文对象`context`上面。然后，子组件就可以从`context`拿到`store`，代码大致如下。
@@ -195,9 +192,7 @@ Provider.childContextTypes = {
 class VisibleTodoList extends Component {
   componentDidMount() {
     const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-      this.forceUpdate()
-    );
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
   }
   render() {
     const props = this.props;
@@ -208,8 +203,8 @@ class VisibleTodoList extends Component {
 }
 
 VisibleTodoList.contextTypes = {
-  store: React.PropTypes.object
-}
+  store: React.PropTypes.object,
+};
 ```
 
 `React-Redux`自动生成的容器组件的代码，就类似上面这样，从而拿到`store`。
@@ -221,13 +216,13 @@ VisibleTodoList.contextTypes = {
 ```javascript
 class Counter extends Component {
   render() {
-    const { value, onIncreaseClick } = this.props
+    const { value, onIncreaseClick } = this.props;
     return (
       <div>
         <span>{value}</span>
         <button onClick={onIncreaseClick}>Increase</button>
       </div>
-    )
+    );
   }
 }
 ```
@@ -239,27 +234,24 @@ class Counter extends Component {
 ```javascript
 function mapStateToProps(state) {
   return {
-    value: state.count
-  }
+    value: state.count,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onIncreaseClick: () => dispatch(increaseAction)
-  }
+    onIncreaseClick: () => dispatch(increaseAction),
+  };
 }
 
 // Action Creator
-const increaseAction = { type: 'increase' }
+const increaseAction = { type: 'increase' };
 ```
 
 然后，使用`connect`方法生成容器组件。
 
 ```javascript
-const App = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Counter)
+const App = connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
 
 然后，定义这个组件的 Reducer。
@@ -267,12 +259,12 @@ const App = connect(
 ```javascript
 // Reducer
 function counter(state = { count: 0 }, action) {
-  const count = state.count
+  const count = state.count;
   switch (action.type) {
     case 'increase':
-      return { count: count + 1 }
+      return { count: count + 1 };
     default:
-      return state
+      return state;
   }
 }
 ```
@@ -286,80 +278,77 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
 
 完整的代码看[这里](https://github.com/jackielii/simplest-redux-example/blob/master/index.js)。
 
 ```javascript
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { Provider, connect } from 'react-redux'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
 
 // React component
 class Counter extends Component {
   render() {
-    const { value, onIncreaseClick } = this.props
+    const { value, onIncreaseClick } = this.props;
     return (
       <div>
         <span>{value}</span>
         <button onClick={onIncreaseClick}>Increase</button>
       </div>
-    )
+    );
   }
 }
 
 Counter.propTypes = {
   value: PropTypes.number.isRequired,
-  onIncreaseClick: PropTypes.func.isRequired
-}
+  onIncreaseClick: PropTypes.func.isRequired,
+};
 
 // Action
-const increaseAction = { type: 'increase' }
+const increaseAction = { type: 'increase' };
 
 // Reducer
 function counter(state = { count: 0 }, action) {
-  const count = state.count
+  const count = state.count;
   switch (action.type) {
     case 'increase':
-      return { count: count + 1 }
+      return { count: count + 1 };
     default:
-      return state
+      return state;
   }
 }
 
 // Store
-const store = createStore(counter)
+const store = createStore(counter);
 
 // Map Redux state to component props
 function mapStateToProps(state) {
   return {
-    value: state.count
-  }
+    value: state.count,
+  };
 }
 
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
   return {
-    onIncreaseClick: () => dispatch(increaseAction)
-  }
+    onIncreaseClick: () => dispatch(increaseAction),
+  };
 }
 
 // Connected Component
-const App = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Counter)
+const App = connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);
 ```
 
 ## 八、React-Router 路由库

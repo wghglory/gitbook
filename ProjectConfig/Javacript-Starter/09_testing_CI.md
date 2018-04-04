@@ -2,29 +2,29 @@
 
 ## JavaScript testing styles
 
-Style | Focus
----------|----------
- Unit | Single function or module
- Integration | Interactions between modules
- UI | Automate interactions with UI
+| Style       | Focus                         |
+| ----------- | ----------------------------- |
+| Unit        | Single function or module     |
+| Integration | Interactions between modules  |
+| UI          | Automate interactions with UI |
 
 ### Unit Tests vs Integration Tests
 
-Unit Tests | Integration Tests
----------|----------
- Test a small unit | Test multiple units
- Often single function | Often involves clicking and making calls to a webApi using automation tool like `Selenium`
- Fast | Slow
- Run upon save | Often run on demand, or in QA
+| Unit Tests            | Integration Tests                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------ |
+| Test a small unit     | Test multiple units                                                                        |
+| Often single function | Often involves clicking and making calls to a webApi using automation tool like `Selenium` |
+| Fast                  | Slow                                                                                       |
+| Run upon save         | Often run on demand, or in QA                                                              |
 
 ## 6 key testing decisions
 
-1. Framework
-1. Assertion Library
-1. Helper Libraries
-1. Where to run tests
-1. Where to place tests
-1. When to run tests
+1.  Framework
+1.  Assertion Library
+1.  Helper Libraries
+1.  Where to run tests
+1.  Where to place tests
+1.  When to run tests
 
 ### Frameworks
 
@@ -42,8 +42,8 @@ Choose any of these just like choosing a gym.
 Declare what you expect.
 
 ```javascript
-expect(2 + 2).to.equal(4)
-assert(2 + 2).equals(4)
+expect(2 + 2).to.equal(4);
+assert(2 + 2).equals(4);
 ```
 
 * Chai
@@ -74,10 +74,11 @@ assert(2 + 2).equals(4)
 ### Where do test files belong
 
 * Centralized (✘)
+
   * Less "noise" in src folder (they are important source, asset. not liability)
   * Deployment confusion (deploy won't be an issue for alongside way)
   * Inertia 惯性 (backend test prefers Centralized test, not frontend)
-  * `import file from '../../src/long/path'  // file.test.js`
+  * `import file from '../../src/long/path' // file.test.js`
 
 * **Alongside** (✔️ more suitable for javascript test)
   * Easy imports
@@ -105,12 +106,12 @@ For integration test, admittedly slow, you should run separately.
 
 I'm using below skills for unit tests
 
-1. Framework: Mocha
-1. Assertion Library: Chai
-1. Helper Libraries: JSDOM
-1. Where to run tests: Node
-1. Where to place tests: Alongside
-1. When to run tests: Upon save
+1.  Framework: Mocha
+1.  Assertion Library: Chai
+1.  Helper Libraries: JSDOM
+1.  Where to run tests: Node
+1.  Where to place tests: Alongside
+1.  When to run tests: Upon save
 
 ### Test setup
 
@@ -130,7 +131,7 @@ require('babel-register');
 
 // disable webpack features that Mocha doesn't understand
 // import 'index.css', webpack understands, but not mocha
-require.extensions['.css'] = function() {};  // mocha, treat it as a empty function
+require.extensions['.css'] = function() {}; // mocha, treat it as a empty function
 ```
 
 create src/index.test.js
@@ -204,9 +205,9 @@ The code is working on my machine, but it breaks on the CI server.
 
 #### [Travis CI for unix](https://travis-ci.org)
 
-1. Sign in by github and you should see all repositories. Turn on "wghglory/javascript-starter-kit".
+1.  Sign in by github and you should see all repositories. Turn on "wghglory/javascript-starter-kit".
 
-1. Create .travis.yml
+1.  Create .travis.yml
 
     ```
     language: node_js
@@ -214,9 +215,9 @@ The code is working on my machine, but it breaks on the CI server.
       - "7"
     ```
 
-1. If I intently change index.html h1 from 'hello world' to 'hello' and then commit to github. Note our test watching task only watches js now, so html changes won't be reflected in terminal unless restarting.
+1.  If I intently change index.html h1 from 'hello world' to 'hello' and then commit to github. Note our test watching task only watches js now, so html changes won't be reflected in terminal unless restarting.
 
-1. After commit and push to github. Travis will build and give us the build result.
+1.  After commit and push to github. Travis will build and give us the build result.
 
 #### [Appveyor for windows](https://ci.appveyor.com/)
 

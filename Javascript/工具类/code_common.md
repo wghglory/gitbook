@@ -1,14 +1,43 @@
 # Common
 
 ```javascript
+// find inputValue from originalList's props fields
+function searchTerm(inputValue: string, props: Array<string>, originalList: Array<any>) {
+  let filteredList: any[];
+  if (inputValue && props && originalList) {
+    inputValue = inputValue.toLowerCase();
+    let filtered = originalList.filter((item) => {
+      let match = false;
+      for (let prop of props) {
+        if (
+          item[prop]
+            .toString()
+            .toLowerCase()
+            .indexOf(inputValue) > -1
+        ) {
+          match = true;
+          break;
+        }
+      }
+      return match;
+    });
+    filteredList = filtered;
+  } else {
+    filteredList = originalList;
+  }
+  return filteredList;
+}
+```
+
+```javascript
 /**
 array: [{id:1,name:'guanghui'},{id:2,name:'john'}]
 to object: {1:{id:1,name:'guanghui'},2:{id:2,name:'john'}}
 */
 mapArr2Obj(arr) {
-  return arr.reduce((accu, curr) => {
-    accu[curr.id] = curr;
-    return accu;
+  return arr.reduce((accumulator, current) => {
+    accumulator[current.id] = current;
+    return accumulator;
   }, {});
 }
 ```
@@ -72,7 +101,17 @@ function isFunction(arg) {
  */
 function parseUrl(url) {
   var result = {};
-  var keys = ['href', 'origin', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'];
+  var keys = [
+    'href',
+    'origin',
+    'protocol',
+    'host',
+    'hostname',
+    'port',
+    'pathname',
+    'search',
+    'hash',
+  ];
   var i, len;
   var regexp = /(([^:]+:)\/\/(([^:\/\?#]+)(:\d+)?))(\/[^?#]*)?(\?[^#]*)?(#.*)?/;
 
@@ -103,7 +142,7 @@ function getQueryStringParameterByName(name, url) {
 export function sortByAlphaIgnoreCase(arr) {
   arr.sort((a, b) => {
     return a.localeCompare(b, undefined /* Ignore language */, {
-      sensitivity: 'base'
+      sensitivity: 'base',
     });
   });
 }
@@ -126,7 +165,7 @@ function deepClone(obj) {
     birth: new Date(),
     pattern: /qiu/gim,
     container: document.body,
-    hobbys: ['book', new Date(), /aaa/gim, 111]
+    hobby: ['book', new Date(), /aaa/gim, 111]
   };
 
   var b = deepClone(a)

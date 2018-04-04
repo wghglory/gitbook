@@ -1,21 +1,15 @@
 # Modules
 
 ```typescript
-import { NgModule } from '@angular/core'
-import { RouterModule } from '@angular/router'
-import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [
-
-    ],
-    providers: [
-
-    ],
-    bootstrap: []
+  imports: [CommonModule],
+  declarations: [],
+  providers: [],
+  bootstrap: [],
 })
-export class userModule { }
+export class userModule {}
 ```

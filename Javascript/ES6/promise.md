@@ -65,82 +65,92 @@ submitAddForm() {
 
 ```javascript
 function foo(result) {
-  console.log(result)
-  return result + result
+  console.log(result);
+  return result + result;
 }
 
 let promise = new Promise((resolve, reject) => {
   try {
     setTimeout(() => {
-      resolve('hello')
-    }, 250)
+      resolve('hello');
+    }, 250);
   } catch (e) {
-    reject(new Error('exception!'))
+    reject(new Error('exception!'));
   }
-})
+});
 
 //手动链接
-promise.then(foo).then(foo).then(foo)
+promise
+  .then(foo)
+  .then(foo)
+  .then(foo);
 //控制台输出： hello
 //			   hellohello
 //			   hellohellohellohello
 
 //动态链接
-var funcs = [foo, foo, foo]
+var funcs = [foo, foo, foo];
 funcs.forEach(function(func) {
-  promise = promise.then(func)
-})
+  promise = promise.then(func);
+});
 
 //精简后的动态链接
-var funcs = [foo, foo, foo]
+var funcs = [foo, foo, foo];
 funcs.reduce(function(prev, current) {
-  return prev.then(current)
-}, promise)
+  return prev.then(current);
+}, promise);
 
 // ----------------------- Promise 创建函数 --------------------------
 
-let createPromise = para =>
+let createPromise = (para) =>
   new Promise((resolve, reject) => {
     setTimeout(function() {
-      resolve(para)
-    }, 250)
-  })
+      resolve(para);
+    }, 250);
+  });
 
 //手动链接
-createPromise('hello').then(foo).then(foo).then(foo)
+createPromise('hello')
+  .then(foo)
+  .then(foo)
+  .then(foo);
 //控制台输出： hello
 //			   hellohello
 //			   hellohellohellohello
 
 //动态链接
-var funcs = [foo, foo, foo]
-var temp = createPromise('hello')
+var funcs = [foo, foo, foo];
+var temp = createPromise('hello');
 funcs.forEach(function(func) {
-  temp = temp.then(func)
-})
+  temp = temp.then(func);
+});
 
 // 精简后的动态链接
-var funcs = [foo, foo, foo]
+var funcs = [foo, foo, foo];
 funcs.reduce(function(prev, current) {
-  return prev.then(current)
-}, createPromise('hello'))
+  return prev.then(current);
+}, createPromise('hello'));
 ```
 
 ### Promise.all
 
 ```javascript
-Promise.all([3, promise, foo]).then(res => console.log(res)).catch(reject => {
-  console.log('err')
-})
+Promise.all([3, promise, foo])
+  .then((res) => console.log(res))
+  .catch((reject) => {
+    console.log('err');
+  });
 // [ 3, 'hello', [Function: foo] ]
 ```
 
 ### Promise.race
 
 ```javascript
-Promise.race([3, promise, foo]).then(res => console.log(res)).catch(reject => {
-  console.log('err')
-})
+Promise.race([3, promise, foo])
+  .then((res) => console.log(res))
+  .catch((reject) => {
+    console.log('err');
+  });
 // 3
 ```
 
@@ -152,9 +162,11 @@ function msgAfterTimeout(msg, who, timeout) {
     setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout);
   });
 }
-msgAfterTimeout('', 'Foo', 100).then((msg) => msgAfterTimeout(msg, 'Bar', 200)).then((msg) => {
-  console.log(`done after 300ms:${msg}`);
-});
+msgAfterTimeout('', 'Foo', 100)
+  .then((msg) => msgAfterTimeout(msg, 'Bar', 200))
+  .then((msg) => {
+    console.log(`done after 300ms:${msg}`);
+  });
 
 // done after 300ms: Hello Foo! Hello Bar!
 
@@ -172,15 +184,15 @@ let fetchPromised = (url, timeout) => {
 Promise.all([
   fetchPromised('http://backend/foo.txt', 500),
   fetchPromised('http://backend/bar.txt', 500),
-  fetchPromised('http://backend/baz.txt', 500)
+  fetchPromised('http://backend/baz.txt', 500),
 ]).then(
   (data) => {
-    let [ foo, bar, baz ] = data;
+    let [foo, bar, baz] = data;
     console.log(`success: foo=${foo} bar=${bar} baz=${baz}`);
   },
   (err) => {
     console.log(`error: ${err}`);
-  }
+  },
 );
 ```
 

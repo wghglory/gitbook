@@ -2,17 +2,15 @@
 
 #### What two or three things are most important to you in your job?
 
-环境很重要：我喜欢交朋友，喜欢和志同道合的朋友交流、成长。大家彼此尊重、互相帮助
-提升：我能学到很多，个人发展空间
-贡献：在适合我的位置上贡献自己的力量。
+环境很重要：我喜欢交朋友，喜欢和志同道合的朋友交流、成长。大家彼此尊重、互相帮助提升：我能学到很多，个人发展空间贡献：在适合我的位置上贡献自己的力量。
 
 I want to be happy. I want to work in a job that I am passionate about, and for a company that respects and rewards my contributions. I want to have co-workers whom I like and respect. I think these things all work together for a positive work environment — which increases productivity — resulting in happy employees and a happy employer.
 
 I also seek fulfillment. I don’t want to work in a job that I feel is below what I am capable of doing. I seek a job that will challenge me to perform at the highest levels and seek ongoing professional development so that I can be even better at my job, making an even stronger contribution to my employer. From everything I’ve researched and seen, this job that I’m interviewing for meets all my criteria.
 
-1. Opportunities, show my value, make me grow。个人发展空间
-1. Respect from colleague, friendly, corporation
-1. salary, salary is flexible. Sometimes you cannot get the high expected one, it won't let you miss some good opportunities, but I have a bottom line, and i feel a great company like to find a very great employee and pay more salary to him, rather than find a normal person with low salary. Salary is a way to show your value
+1.  Opportunities, show my value, make me grow。个人发展空间
+1.  Respect from colleague, friendly, corporation
+1.  salary, salary is flexible. Sometimes you cannot get the high expected one, it won't let you miss some good opportunities, but I have a bottom line, and i feel a great company like to find a very great employee and pay more salary to him, rather than find a normal person with low salary. Salary is a way to show your value
 
 #### Give me a specific Negative experience example of a time when a co-worker criticized your work in front of others. How did you respond? How has that event shaped the way you communicate with others? (SNH)
 
@@ -44,8 +42,8 @@ We have standing up meetings every day, but probably because I talked about the 
 
 Ub tahoe project there is a actionMenu dropdown list, it has icons and anchors. Based on systemId (bankerConsole, teller), the list is different.
 
-1. The data is dynamic so we cannot just write plain html because it's not extendable if we add a new system.
-1. So for some reasons, my manager doesn't want to load that dropdown from database. (maybe creating a table just for a dropdownList is too much)
+1.  The data is dynamic so we cannot just write plain html because it's not extendable if we add a new system.
+1.  So for some reasons, my manager doesn't want to load that dropdown from database. (maybe creating a table just for a dropdownList is too much)
 
 My solution is to create a json file, "systemId":1,"url":"a-dev.com". So I load the json and bind data to dropdownList. Whenever there is any change, I can directly work on json file. It's a good solution for many cases, but in our case, the dropdown anchor url varies like "a-dev", "a-test" based on the environment.
 
@@ -83,11 +81,11 @@ mPower: worked on error log using log4net. But when multiple threads throw error
 
 #### What three things you are you working on to improve your overall effectiveness?
 
-1. newest techniques, recently ES2015. Read blogs, news, videos, etc. Talk with mentors
-1. create helper functions, like AjaxHelper, CacheHelper, build my code library (frontend plugins), write notes, blogs to share to deepen my skills
-1. read books to build emotional intelligence
-1. learn from mistake
-1. treat people right
+1.  newest techniques, recently ES2015. Read blogs, news, videos, etc. Talk with mentors
+1.  create helper functions, like AjaxHelper, CacheHelper, build my code library (frontend plugins), write notes, blogs to share to deepen my skills
+1.  read books to build emotional intelligence
+1.  learn from mistake
+1.  treat people right
 
 #### Give me an example of when you took an unpopular stance in a meeting with peers and your leader and you were the outlier. What was it, why did you feel strongly about it, and what did you do?
 
@@ -158,9 +156,9 @@ When I worked in UnionBank tahoe project, I saw many javascript files include gl
 
 So I talked with my manager about it.
 
-1. Global variable may raise conflicts and give an example
-1. it will increase the development efficiency and easier to maintain if we have a unique naming convention and coding style
-1. To make this happen, I gave several solutions, like modularization, self-closure, ESLint, ES2015. And then I told the benefits for each of these techniques.
+1.  Global variable may raise conflicts and give an example
+1.  it will increase the development efficiency and easier to maintain if we have a unique naming convention and coding style
+1.  To make this happen, I gave several solutions, like modularization, self-closure, ESLint, ES2015. And then I told the benefits for each of these techniques.
 
 My manger loves my thoughts, and in a meeting I introduced how to make code better.
 

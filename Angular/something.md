@@ -1,6 +1,6 @@
 # Something useful staff
 
-## *ngIf, [hidden]
+## \*ngIf, [hidden]
 
 * `*ngIf` removes DOM.
 * `[hidden] = "condition"` hides DOM.

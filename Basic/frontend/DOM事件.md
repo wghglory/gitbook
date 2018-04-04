@@ -3,9 +3,9 @@
 ## 事件级别
 
 ```javascript
-DOM0: element.onclick = function(){}
-DOM2: element.addEventListener('click', function(){}, false)
-DOM3: element.addEventListener('keyup', function(){}, false)
+DOM0: element.onclick = function() {};
+DOM2: element.addEventListener('click', function() {}, false);
+DOM3: element.addEventListener('keyup', function() {}, false);
 ```
 
 ## 事件模型
@@ -26,7 +26,7 @@ Bubbling: After firing click handler attached to `td`, browser walks toward root
 
 You clicked on cell but all the event handler with parent elements will be fired. This is actually very powerful (check event delegation). 因为有事件冒泡，才会有事件委托出现。
 
-好处：不需要循环为每个子元素 li 注册事件，节省空间和运算效率。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。`e.target` 拿到当前被点击的 li。
+好处：不需要循环为每个子元素 li 注册事件，节省空间和运算效率。第二如果不使用事件委托，添加新 li 时候还要为它注册事件，麻烦。用 `e.CurrentTarget` 获取父级元素。`e.target` 拿到  当前被点击的 li。
 
 ## 描述事件捕获流程
 
@@ -35,11 +35,11 @@ You clicked on cell but all the event handler with parent elements will be fired
 ## Event 对象常见应用
 
 ```javascript
-event.preventDefault()
-event.stopPropagation()
-event.stopImmediatePropagation()  // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件触发，在第一个事件中调用此方法
-event.target         // 被点击的子元素
-event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gkdeocd6/
+event.preventDefault();
+event.stopPropagation();
+event.stopImmediatePropagation(); // 如果一个元素注册了多个点击事件，第一个事件触发时候想终止第二个事件触发，在第一个事件中调用此方法
+event.target; // 被点击的子元素
+event.currentTarget; // 绑定事件父级元素 https://jsfiddle.net/thisman/gkdeocd6/
 ```
 
 ## 自定义事件
@@ -47,16 +47,16 @@ event.currentTarget  // 绑定事件父级元素 https://jsfiddle.net/thisman/gk
 浏览器：
 
 ```javascript
-let ev = new Event('myEvent')
-dom.addEventListener('myEvent', () => {})
+let ev = new Event('myEvent');
+dom.addEventListener('myEvent', () => {});
 
 // fire the event
-dom.dispatchEvent(ev)
+dom.dispatchEvent(ev);
 ```
 
 也可以使用 `new CustomEvent('name', obj)` 传递数据
 
-Node端自定义事件：
+Node 端自定义事件：
 
 ```javascript
 // 使用 EventEmitter 模块
@@ -73,28 +73,27 @@ myEmitter.emit('event');
 
 ## document.DOMContentLoaded, window.onload, document.readyState
 
-1. The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, **without waiting for stylesheets, images, and subframes to finish loading**.
+1.  The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, **without waiting for stylesheets, images, and subframes to finish loading**.
 
     ```javascript
-    document.addEventListener("DOMContentLoaded", function(event) {
-      console.log("DOM fully loaded and parsed. Images might be loading");
+    document.addEventListener('DOMContentLoaded', function(event) {
+      console.log('DOM fully loaded and parsed. Images might be loading');
     });
 
-    for(var i = 0; i < 1000000000; i++)
-    {
+    for (var i = 0; i < 1000000000; i++) {
       // this synchronous script is going to delay parsing of the DOM. So the DOMContentLoaded event is going to launch later.
     }
     ```
 
-1. The `load` event is fired when everything has finished loading.
+1.  The `load` event is fired when everything has finished loading.
 
     ```javascript
-    window.addEventListener("load", function(event) {
-      console.log("All resources finished loading!");
+    window.addEventListener('load', function(event) {
+      console.log('All resources finished loading!');
     });
     ```
 
-1. The `Document.readyState` property of a document describes the loading state of the document.
+1.  The `Document.readyState` property of a document describes the loading state of the document.
 
     The readyState of a document can be one of following:
 
@@ -120,7 +119,7 @@ IE:
 * `stopPropagation()` 阻止事件冒泡
 * `preventDefault()` 阻止事件的默认行为
 
-IE中的事件对象
+IE 中的事件对象
 
 * type：获取事件类型
 * srcElement：事件目标

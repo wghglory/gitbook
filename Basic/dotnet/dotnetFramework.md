@@ -14,7 +14,7 @@ If the connection string is different then a new connection pooling will be crea
 
 By default, we have connection pooling enabled in .Net. To disable connection pooling, set `Pooling = false` in the connection string.
 
-### State the differences between the *Dispose()* and *Finalize()*
+### State the differences between the _Dispose()_ and _Finalize()_
 
 CLR uses the Dispose and Finalize methods to perform garbage collection of run-time objects of .NET applications.
 
@@ -22,16 +22,16 @@ The **Finalize** method is called automatically by the **runtime**. CLR has a ga
 
 ### Differentiate between managed and unmanaged code?
 
-_Managed code is the code that is executed directly by the CLR instead of the operating system. The code compiler first compiles the managed code to intermediate language (IL)_ code, also called as MSIL code. This code doesn't depend on machine configurations and can be executed on different machines. 
+_Managed code is the code that is executed directly by the CLR instead of the operating system. The code compiler first compiles the managed code to intermediate language (IL)_ code, also called as MSIL code. This code doesn't depend on machine configurations and can be executed on different machines.
 
 Managed code execution order:
-1. Choosing a language compiler (JIT)
-1. Compiling the code to MSIL
-1. Compiling MSIL to native code
-1. Executing the code.
 
-_Unmanaged code is the code that is executed directly by the operating system outside the CLR environment._ It is directly compiled to native machine code which depends on the machine configuration.
-In the managed code, since the execution of the code is governed by CLR, the runtime provides different services, such as garbage collection, type checking, exception handling, and security support. These services help provide uniformity in platform and language-independent behavior of managed code applications. In the unmanaged code, the allocation of memory, type safety, and security is required to be taken care of by the developer. If the unmanaged code is not properly handled, it may result in memory leak. Examples of unmanaged code are ActiveX components and Win32 APIs that execute beyond the scope of native CLR.
+1.  Choosing a language compiler (JIT)
+1.  Compiling the code to MSIL
+1.  Compiling MSIL to native code
+1.  Executing the code.
+
+_Unmanaged code is the code that is executed directly by the operating system outside the CLR environment._ It is directly compiled to native machine code which depends on the machine configuration. In the managed code, since the execution of the code is governed by CLR, the runtime provides different services, such as garbage collection, type checking, exception handling, and security support. These services help provide uniformity in platform and language-independent behavior of managed code applications. In the unmanaged code, the allocation of memory, type safety, and security is required to be taken care of by the developer. If the unmanaged code is not properly handled, it may result in memory leak. Examples of unmanaged code are ActiveX components and Win32 APIs that execute beyond the scope of native CLR.
 
 ### Describe the roles of CLR in .NET Framework
 

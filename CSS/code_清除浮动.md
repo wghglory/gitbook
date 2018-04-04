@@ -1,8 +1,14 @@
 # 清除浮动，触发 BFC
 
 ```css
-.clear{zoom:1;}
-.clear:after{content:""; display:block;clear:both;}
+.clear {
+  zoom: 1;
+}
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
 
 /*给浮动元素的父级加
 <div class="clear">

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && gitbook serve && open http://localhost:4000",
-    "generateTOC": "node generateTOC",
-    "prebuild": "npm run generateTOC",
+    "toc": "node toc",
+    "prebuild": "npm run toc",
     "build": "gitbook build",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
@@ -16,7 +16,11 @@
     "initPublish": "bash ./initPublish.sh",
     "postinitPublish": "git checkout master && cnpm i",
     "publish": "bash ./publish.sh",
-    "postpublish": "git checkout master"
+    "postpublish": "git checkout master",
+    "prettier": "prettier --config ./.prettierrc  --write --list-different './**/*{.ts,.js,.json,.css,.scss,.md}'",
+    "_prettier": "prettier --config ./.prettierrc  --write '{src,mock,server,__{tests,mocks}__}/**/*.ts'",
+    "precommit": "node toc && npm run prettier",
+    "format:fix": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",
@@ -37,5 +41,12 @@
     "gitbook-plugin-splitter": "^0.0.8",
     "gitbook-plugin-summary": "^0.1.4",
     "gitbook-plugin-tbfed-pagefooter": "^0.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "husky": "^0.14.3",
+    "npm-run-all": "^4.1.2",
+    "prettier": "1.11.1",
+    "pretty-quick": "^1.4.1"
   }
 }

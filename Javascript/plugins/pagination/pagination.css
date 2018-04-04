@@ -25,5 +25,5 @@
   color: #fff;
   background-image: none;
   /* remove gradient and use #d5ccc8*/
-  box-shadow: inset 0 1px 3px rgba(111, 89, 79, .4), 0 1px 0 rgba(111, 89, 79, 0.4);
+  box-shadow: inset 0 1px 3px rgba(111, 89, 79, 0.4), 0 1px 0 rgba(111, 89, 79, 0.4);
 }

@@ -1,6 +1,6 @@
 # custom directive
 
-## globally 实现2个自定义 directive。
+## globally 实现 2 个自定义 directive。
 
 `v-rainbow` 用于给 array 数据遍历时显示随机颜色。`v-theme` 用于设置 div 的宽度，类似 bootstrap container。
 
@@ -34,45 +34,49 @@ export default {
 **main.js**:
 
 ```javascript
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-import App from './App.vue'
+import Vue from 'vue';
+import VueResource from 'vue-resource';
+import App from './App.vue';
 
 // Use vue-resource package
 Vue.use(VueResource);
 
 // global filter
-Vue.filter('to-uppercase', function(value){
-    return value.toUpperCase();
-})
+Vue.filter('to-uppercase', function(value) {
+  return value.toUpperCase();
+});
 
 // Global Custom directives
 Vue.directive('rainbow', {
-    bind(el, binding, vnode){
-        el.style.color = "#" + Math.random().toString(16).slice(2, 8);
-    }
+  bind(el, binding, vnode) {
+    el.style.color =
+      '#' +
+      Math.random()
+        .toString(16)
+        .slice(2, 8);
+  },
 });
 
 Vue.directive('theme', {
-    bind(el, binding, vnode){
-        // =后面的通过 value 获取。v-theme:column="wide"
-        if (binding.value == 'wide'){
-            el.style.maxWidth = "1260px";
-        } else if (binding.value = 'narrow'){
-            el.style.maxWidth = "560px";
-        }
-        // :后面的通过 arg 获取。v-theme:column="something"
-        if(binding.arg == 'column'){
-            el.style.background = '#ddd';
-            el.style.padding = '20px';
-        }
+  bind(el, binding, vnode) {
+    // =后面的通过 value 获取。v-theme:column="wide"
+    if (binding.value == 'wide') {
+      el.style.maxWidth = '1260px';
+    } else if ((binding.value = 'narrow')) {
+      el.style.maxWidth = '560px';
     }
+    // :后面的通过 arg 获取。v-theme:column="something"
+    if (binding.arg == 'column') {
+      el.style.background = '#ddd';
+      el.style.padding = '20px';
+    }
+  },
 });
 
 new Vue({
   el: '#app',
-  render: h => h(App)
-})
+  render: (h) => h(App),
+});
 ```
 
 ## locally register

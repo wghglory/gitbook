@@ -62,8 +62,8 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
         // minorGridLineColor: '#f5f5f5',
         labels: {
           style: {
-            color: '#a6a6a6'
-          }
+            color: '#a6a6a6',
+          },
         },
         plotBands: [
           // {
@@ -71,9 +71,9 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
           //     from: 0.97, // Start of the plot band
           //     to: 1.03 // End of the plot band
           // }
-        ]
+        ],
       },
-      series: []
+      series: [],
     };
 
     products.forEach((product, i) => {
@@ -81,14 +81,14 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
         chartData.xAxis.plotBands.push({
           color: '#fcfcfc', // Color value
           from: index - 0.03, // Start of the plot band
-          to: index + 0.03 // End of the plot band
+          to: index + 0.03, // End of the plot band
         });
         return {
           analysisId: a.analysisId,
           yaosu: a.key,
           y: a.value,
           productId: product.id,
-          productName: product.name
+          productName: product.name,
         };
       });
 
@@ -105,8 +105,8 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
         marker: {
           enabled: true,
           symbol: 'circle',
-          radius: 6
-        }
+          radius: 6,
+        },
       };
 
       if (product.id === MY_PRODUCT_ID) {
@@ -122,7 +122,7 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
 
     const chartConfig = {
       ...config,
-      ...chartData
+      ...chartData,
     };
 
     let chartChangeset = [];
@@ -144,7 +144,7 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
         // this.update(this.y)
         const { productId, analysisId, y } = this;
         chartChangeset.push({ productId, analysisId, y });
-      }
+      },
     };
 
     const buildUpdateOperation = (source, operationArr) => {
@@ -162,27 +162,27 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
         } else {
           result[targetIndex] = {
             analysis: {
-              [targetAnalysisIndex]: { $merge: { value: c.y } }
-            }
+              [targetAnalysisIndex]: { $merge: { value: c.y } },
+            },
           };
         }
       });
 
       /**
-           * {
-           *   1: {
-           *      analysis: {
-           *          0: { $merge: { value: 99 }},
-           *          2: { $merge: { value: 99 }}
-           *      }
-           *   },
-           *   2: {
-           *      analysis: {
-           *          2: { $merge: { value: 99 }}
-           *      }
-           *   }
-           * }
-           */
+       * {
+       *   1: {
+       *      analysis: {
+       *          0: { $merge: { value: 99 }},
+       *          2: { $merge: { value: 99 }}
+       *      }
+       *   },
+       *   2: {
+       *      analysis: {
+       *          2: { $merge: { value: 99 }}
+       *      }
+       *   }
+       * }
+       */
       return result;
     };
 
@@ -207,7 +207,12 @@ class ChanpinjiazhilianJiazhiquxian extends Component {
           ))}
         </header>
         <div className="jingpin-chart">
-          <Chart className="chart" config={chartConfig} container="jingpin" modules={[ highChartsDragabled ]} />
+          <Chart
+            className="chart"
+            config={chartConfig}
+            container="jingpin"
+            modules={[highChartsDragabled]}
+          />
         </div>
       </div>
     );

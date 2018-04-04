@@ -41,7 +41,7 @@ Which will show :
 Add a new remote for your branch :
 
 ```
-$ git remote add [name_of_your_remote] 
+$ git remote add [name_of_your_remote]
 ```
 
 Push changes from your commit into your branch :

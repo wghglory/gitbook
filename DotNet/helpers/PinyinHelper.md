@@ -6,7 +6,7 @@ var pinyin = cc.Pinyins;
 foreach(string s in pinyin) {
     Console.Write(s);
 }
- 
+
 // 获得中文首字母
 string txt = textBox1.Text;
 foreach(char c in txt) {
@@ -15,7 +15,7 @@ foreach(char c in txt) {
     char firstLetter = pinyin[0];
     textBox2.Text += firstLetter;
 }
- 
+
 // 中国人 => ZGR
 public static string GetPinyinFirstLetter(string str) {
     StringBuilder pinyin = new StringBuilder();

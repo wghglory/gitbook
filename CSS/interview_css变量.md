@@ -6,8 +6,8 @@
 
 ```css
 body {
-  --foo: #7F583F;
-  --bar: #F7EFD2;
+  --foo: #7f583f;
+  --bar: #f7efd2;
 }
 ```
 
@@ -20,15 +20,15 @@ body {
 各种值都可以放入 CSS 变量。
 
 ```css
-:root{
+:root {
   --main-color: #4d4e53;
   --main-bg: rgb(255, 255, 255);
   --logo-border-color: rebeccapurple;
   --header-height: 68px;
   --content-padding: 10px 20px;
   --base-line-height: 1.428571429;
-  --transition-duration: .35s;
-  --external-link: "external link";
+  --transition-duration: 0.35s;
+  --external-link: 'external link';
   --margin-top: calc(2vh + 20px);
 }
 ```
@@ -49,7 +49,7 @@ a {
 `var()` 函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。
 
 ```css
-color: var(--foo, #7F583F);
+color: var(--foo, #7f583f);
 ```
 
 第二个参数不处理内部的逗号或空格，都视作参数的一部分。
@@ -86,14 +86,14 @@ var(--pad, 10px 15px 20px);
 
 ```css
 --bar: 'hello';
---foo: var(--bar)' world';
+--foo: var(--bar) ' world';
 ```
 
 利用这一点，可以 debug（[例子](https://codepen.io/malyw/pen/oBWMOY)）。
 
 ```css
 body:after {
-  content: '--screen-category : 'var(--screen-category);
+  content: '--screen-category : ' var(--screen-category);
 }
 ```
 
@@ -103,7 +103,7 @@ body:after {
 .foo {
   --gap: 20;
   /* 无效 */
-  margin-top: var(--gap)px;
+  margin-top: var(--gap) px;
 }
 ```
 
@@ -155,10 +155,10 @@ body:after {
 
 ```css
 body {
-  --foo: #7F583F;
+  --foo: #7f583f;
 }
 .content {
-  --bar: #F7EFD2;
+  --bar: #f7efd2;
 }
 ```
 
@@ -180,8 +180,8 @@ CSS 是动态的，页面的任何变化，都会导致采用的规则变化。
 
 ```css
 body {
-  --primary: #7F583F;
-  --secondary: #F7EFD2;
+  --primary: #7f583f;
+  --secondary: #f7efd2;
 }
 a {
   color: var(--primary);
@@ -189,8 +189,8 @@ a {
 }
 @media screen and (min-width: 768px) {
   body {
-    --primary:  #F7EFD2;
-    --secondary: #7F583F;
+    --primary: #f7efd2;
+    --secondary: #7f583f;
   }
 }
 ```
@@ -201,7 +201,7 @@ a {
 
 ```css
 a {
-  color: #7F583F;
+  color: #7f583f;
   color: var(--primary);
 }
 ```
@@ -209,10 +209,10 @@ a {
 也可以使用`@support`命令进行检测。
 
 ```css
-@supports ( (--a: 0)) {
+@supports ((--a: 0)) {
   /* supported */
 }
-@supports ( not (--a: 0)) {
+@supports (not (--a: 0)) {
   /* not supported */
 }
 ```
@@ -253,8 +253,8 @@ document.body.style.removeProperty('--primary');
 const docStyle = document.documentElement.style;
 
 document.addEventListener('mousemove', (e) => {
-   docStyle.setProperty('--mouse-x', e.clientX);
-   docStyle.setProperty('--mouse-y', e.clientY);
+  docStyle.setProperty('--mouse-x', e.clientX);
+  docStyle.setProperty('--mouse-y', e.clientY);
 });
 ```
 

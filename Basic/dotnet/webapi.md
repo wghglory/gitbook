@@ -1,7 +1,6 @@
 ### Explain what is REST and RESTFUL?
 
-REST represents REpresentational State Transfer; it is relatively new aspect of writing web api.
-RESTFUL is referred for web services written by applying REST architectural concept are called RESTful services, it focuses on system resources and how state of resource should be transported over HTTP protocol to a different clients written in different language. In RESTFUL web service http methods like GET, POST, PUT and DELETE can be used to perform CRUD operations.
+REST represents REpresentational State Transfer; it is relatively new aspect of writing web api. RESTFUL is referred for web services written by applying REST architectural concept are called RESTful services, it focuses on system resources and how state of resource should be transported over HTTP protocol to a different clients written in different language. In RESTFUL web service http methods like GET, POST, PUT and DELETE can be used to perform CRUD operations.
 
 ### Explain the architectural style for creating web api?
 
@@ -17,12 +16,12 @@ Chrome postman, SOAPUI tool for SOAP WS and Firefox "poster" plugin for RESTFUL 
 
 * GET: It requests a resource at the request URL. It should not contain a request body as it will be discarded. May be it can be cached locally or on the server.
 * POST: It submits information to the service for processing; it should typically return the modified or new resource
-* PUT: At the request URL it update the resource 
-* DELETE: At the request URL it removes the resource 
+* PUT: At the request URL it update the resource
+* DELETE: At the request URL it removes the resource
 * OPTIONS: It indicates which techniques are supported
 * HEAD: About the request URL it returns meta information
 
-###  Mention what is the difference between SOAP and REST?
+### Mention what is the difference between SOAP and REST?
 
 * SOAP is a protocol through which two computer communicates by sharing XML document
 * SOAP permits only XML
@@ -31,9 +30,9 @@ Chrome postman, SOAPUI tool for SOAP WS and Firefox "poster" plugin for RESTFUL 
 * SOAP is slower than REST
 * It runs on HTTP but envelopes the message
 
-***
+---
 
-* Rest is a service architecture and design for network*based software architectures
+* Rest is a service architecture and design for network\*based software architectures
 * REST supports many different data formats
 * REST reads can be cached
 * A REST client is more like a browser; it knows how to standardized methods and an application has to fit inside it REST is faster than SOAP
@@ -55,8 +54,8 @@ Routes.MapHttpRoute(
 
 WCF
 
-* It is framework build for building or developing service oriented applications. 
-* WCF can be consumed by clients which can understand XML. 
+* It is framework build for building or developing service oriented applications.
+* WCF can be consumed by clients which can understand XML.
 * WCF supports protocols like – HTTP, TCP, Named Pipes etc.
 
 Web API
@@ -290,7 +289,7 @@ Authentication filters can be applied at the controller or action level. Decorat
 
 ```csharp
 Task AuthenticateAsync(
-    HttpAuthenticationContext mytestcontext, 
+    HttpAuthenticationContext mytestcontext,
     CancellationToken mytestcancellationToken
 )
 ```
@@ -320,9 +319,9 @@ It is also called MIME, which is used to identify the data. In Html, media types
 
 Media Formatters in Web API can be used to read the CLR object from our HTTP body and Media formatters are also used for writing CLR objects of message body of HTTP.
 
-### How to serialize read*only properties?
+### How to serialize read\*only properties?
 
-Read*Only properties can be serialized in Web API by setting the value "true" to the property
+Read\*Only properties can be serialized in Web API by setting the value "true" to the property
 
 ```csharp
 SerializeReadOnlyTypes of class: DataContractSerializerSettings
@@ -356,7 +355,7 @@ By default if the properties are public then those can be serialized and deseria
 
 To write the indented xml set "indent" property to true.
 
-### How to set Per*Type xml serializer?
+### How to set Per\*Type xml serializer?
 
 We can use method – "SetSerializer". Below is the sample code snippet for using it
 
@@ -394,7 +393,7 @@ In case validation fails here it returns HTTP response which contains validation
 
 ### How to apply custom action filter in WebAPI.config?
 
-Add a new action filter in "Register" method as shown *
+Add a new action filter in "Register" method as shown \*
 
 ```csharp
 public static class WebApiConfig
@@ -422,7 +421,7 @@ public class MyCustomerTestController : ApiController
 
 ### What is BSON in Web API?
 
-It’s is a binary serialization format. "BSON" stands for "Binary JSON". BSON serializes objects to key*value pair as in JSON. Its light weight and its fast in encode/decode.
+It’s is a binary serialization format. "BSON" stands for "Binary JSON". BSON serializes objects to key\*value pair as in JSON. Its light weight and its fast in encode/decode.
 
 ### How to enable BSON in server?
 
