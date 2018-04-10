@@ -117,6 +117,7 @@
     * [ask_question](Basic/面试必看/ask_question.md)
     * [behavior-question](Basic/面试必看/behavior-question.md)
     * [me](Basic/面试必看/me.md)
+* [CheatSheet](/CheatSheet/README.md)
 * [CSS](/CSS/README.md)
   * [animation](CSS/animation.md)
   * [code_reset](CSS/code_reset.md)

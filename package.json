@@ -18,9 +18,10 @@
     "publish": "bash ./publish.sh",
     "postpublish": "git checkout master",
     "prettier": "prettier --config ./.prettierrc  --write --list-different './**/*{.ts,.js,.json,.css,.scss,.md}'",
+    "prettierReadme": "prettier --config ./.prettierrc  --write --list-different './**/{README.md,SUMMARY.md}'",
     "_prettier": "prettier --config ./.prettierrc  --write '{src,mock,server,__{tests,mocks}__}/**/*.ts'",
-    "precommit": "node toc && npm run prettier",
-    "format:fix": "pretty-quick --staged"
+    "precommit": "node toc && npm run prettierReadme",
+    "pretty": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",

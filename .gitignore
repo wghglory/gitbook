@@ -11,7 +11,6 @@ node_modules
 _book
 *.epub
 *.mobi
-*.pdf
 .DS_Store
 node_modules
 gitbook
