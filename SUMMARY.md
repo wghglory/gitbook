@@ -7,6 +7,7 @@
   * [Http](Angular/Http.md)
   * [route](Angular/route.md)
   * [rxjs_best_practice](Angular/rxjs_best_practice.md)
+  * [rxjs_help](Angular/rxjs_help.md)
   * [something](Angular/something.md)
 * [Basic](/Basic/README.md)
   * [Basic/algorithm](/Basic/algorithm/README.md)
