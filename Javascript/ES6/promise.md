@@ -1,5 +1,87 @@
 # Promise
 
+[Promise visualization](http://bevacqua.github.io/promisees/#)
+
+```js
+function example() {
+  // do some work
+  if (successful) {
+    return result;
+  } else {
+    throw new Error('failed');
+  }
+}
+```
+
+Promise constructor:
+
+```js
+new Promise(function (resolve, reject){
+  // do some work
+  if (successful) {
+    resolve(result);
+  } else {
+    reject(throw new Error('failed'));
+  }
+})
+```
+
+If your promise only has resolve, below is the same:
+
+```js
+new Promise(function(resolve, reject) {
+  resolve(someValue);
+});
+
+Promise.resolve(someValue);
+```
+
+## A real demo
+
+```js
+// sync
+navigator.geolocation.getCurrentPosition(
+  function(position) {
+    console.log(position.coords.latitude);
+  },
+  function(err) {
+    console.error(err.message);
+  },
+);
+
+// promise creator
+function getCurrentPositionWithPromise() {
+  return new Promise(function(resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+
+    // navigator.geolocation.getCurrentPosition(function(position){
+    //   resolve(position);
+    // }, function(err){
+    //   reject(err.message);
+    // })
+  });
+}
+
+// use promise creator
+getCurrentPositionWithPromise
+  .then((res) => {
+    console.log(res.coords.latitude);
+    return res;
+  })
+  .catch((err) => console.log(err.message));
+
+async function main() {
+  try {
+    let p = await getCurrentPositionWithPromise();
+    console.info(p.coords.latitude);
+  } catch (e) {
+    console.error(e.message);
+  }
+}
+
+main();
+```
+
 ## Promise 回调在 react 中的应用
 
 > 参见 React/SetStateAsync.md
@@ -9,55 +91,55 @@
 **高层 component：** 通过 props 把该方法传给孩子
 
 ```javascript
-setOutlines(obj, actionType) {
-   let outlines = []
+function setOutlines(obj, actionType) {
+  let outlines = [];
 
-   switch (actionType) {
-       case 'add':
-           outlines = [...this.state.outlines, obj]
-           break
-       case 'edit':
-           outlines = this.state.outlines.map(i => {
-               if (i.id == obj.id) {
-                   return { ...i, ...obj }
-               } else {
-                   return i
-               }
-           })
-           break
-       case 'delete':
-           outlines = this.state.outlines.filter(item => item.id != obj.id)
-           break
-       default:
-           break
-   }
+  switch (actionType) {
+    case 'add':
+      outlines = [...this.state.outlines, obj];
+      break;
+    case 'edit':
+      outlines = this.state.outlines.map((i) => {
+        if (i.id == obj.id) {
+          return { ...i, ...obj };
+        } else {
+          return i;
+        }
+      });
+      break;
+    case 'delete':
+      outlines = this.state.outlines.filter((item) => item.id != obj.id);
+      break;
+    default:
+      break;
+  }
 
-   return new Promise((resolve, reject) => {
-       this.setState({ outlines }, () => {
-           resolve()
-       })
-   })
+  return new Promise((resolve, reject) => {
+    this.setState({ outlines }, () => {
+      resolve();
+    });
+  });
 }
 ```
 
 **低层 component：** 在提交表单更新了 outlines 数据后，会 re-render，此时滚动滚动条到最低端看到刚添加的数据
 
 ```javascript
-submitAddForm() {
-   this.props
-       .setOutlines(
-           {
-               id: uid(),
-               detail: this.addText.value
-           },
-           'add'
-       )
-       .then(() => {
-           console.log(this.mainBox.scrollTop, this.listBox.scrollHeight)
-           this.mainBox.scrollTop = this.listBox.scrollHeight || 0
-       })
+function submitAddForm() {
+  this.props
+    .setOutlines(
+      {
+        id: uid(),
+        detail: this.addText.value,
+      },
+      'add',
+    )
+    .then(() => {
+      console.log(this.mainBox.scrollTop, this.listBox.scrollHeight);
+      this.mainBox.scrollTop = this.listBox.scrollHeight || 0;
+    });
 
-   this.closeModal()
+  this.closeModal();
 }
 ```
 
