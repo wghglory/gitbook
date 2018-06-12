@@ -96,6 +96,14 @@ getUsers().then((result) => {});
   * Browsersync
   * Express, etc.
 
+My json server: <https://my-json-server.typicode.com/>
+
+### Authentication
+
+* <https://dzone.com/articles/basic-authentication-for-json-server>
+* <https://medium.com/@kaustubhtalathi/mock-data-for-angular-5-applications-with-json-server-part-1-d377eced223b>
+* <https://github.com/techiediaries/fake-api-jwt-json-server>
+
 ### Our Plan for Mocking HTTP
 
 1.  Declare our schema:
