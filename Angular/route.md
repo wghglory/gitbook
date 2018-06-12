@@ -156,3 +156,11 @@ export class RepoDetail implements OnInit {
   }
 }
 ```
+
+## [RouteStateSnapshot vs RouteState](https://vsavkin.com/angular-router-understanding-router-state-7b5b95a12eab)
+
+* RouteStateSnapshot is an immutable data structure representing the state of the router at a particular moment in time. Any time a component is added or removed or parameter is updated, a new snapshot is created.
+
+* RouterState is similar to RouteStateSnapshot, except that it represents the state of the router changing over time.
+
+* ActivatedRoute: ActivatedRoute provides access to the url, params, data, queryParams, and fragment observables
