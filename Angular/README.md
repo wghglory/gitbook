@@ -1,6 +1,7 @@
 # TOC
 
 * [angular5new](angular5new.md)
+* [angular6new](angular6new.md)
 * [components_communication](components_communication.md)
 * [form](form.md)
 * [hostBinding_vs_hostListener](hostBinding_vs_hostListener.md)
