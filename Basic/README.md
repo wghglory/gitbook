@@ -5,6 +5,7 @@
 * [IaaS-PaaS-SaaS 的区别](IaaS-PaaS-SaaS的区别.md)
 * [nodejs_interview](nodejs_interview.md)
 * [oop](oop.md)
+* [performance](performance.md)
 * [shift_operator](shift_operator.md)
 * [sql](sql.md)
 * [to learn](to learn.md)

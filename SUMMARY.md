@@ -78,6 +78,7 @@
   - [IaaS-PaaS-SaaS 的区别](Basic/IaaS-PaaS-SaaS的区别.md)
   - [nodejs_interview](Basic/nodejs_interview.md)
   - [oop](Basic/oop.md)
+  - [performance](Basic/performance.md)
   - [shift_operator](Basic/shift_operator.md)
   - [sql](Basic/sql.md)
   - [to learn](Basic/to learn.md)
