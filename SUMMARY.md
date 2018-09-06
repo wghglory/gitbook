@@ -234,6 +234,8 @@
     * [创狐 Nginx 配置](ProjectConfig/nginx/创狐Nginx配置.md)
   - [npm_scripts_over_gulp](ProjectConfig/npm_scripts_over_gulp.md)
   - [webpack](ProjectConfig/webpack.md)
+* [Python](/Python/README.md)
+  * [basic](Python/basic.md)
 * [React](/React/README.md)
   * [caveat](React/caveat.md)
   * [code_async_await](React/code_async_await.md)
