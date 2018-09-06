@@ -6,8 +6,8 @@ Since version 5.5 RxJS has introduced these so called pipeable operators which a
 
 For application developers, lettable operators are much easier to manage:
 
-- Rather then relying upon operators being patched into Observable.prototype, lettable operators are explicitly imported into the modules in which they are used.
-- It’s easy for TypeScript and bundlers to determine whether the lettable operators imported into a module are actually used. And if they are not, they can be left unbundled. If prototype patching is used, this task is manual and tedious.
+* Rather then relying upon operators being patched into Observable.prototype, lettable operators are explicitly imported into the modules in which they are used.
+* It’s easy for TypeScript and bundlers to determine whether the lettable operators imported into a module are actually used. And if they are not, they can be left unbundled. If prototype patching is used, this task is manual and tedious.
 
 For library authors, lettable operators are much less verbose than call-based alternative, but it’s the correct inference of types that is — the biggest advantage.
 

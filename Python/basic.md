@@ -6,16 +6,16 @@
 
 ### COMMON ARITHMETIC OPERATORS
 
-- Parentheses `()`: `(5 / 5) + 5`
-- Exponent `**`: `65 **5`
-- Multiplication `*`: `5 * 5`
-- Division `/`: `5 / 5`
-- Addition `+`: `5 + 5`
-- Subtraction `-`: `5 - 5`
+* Parentheses `()`: `(5 / 5) + 5`
+* Exponent `**`: `65 **5`
+* Multiplication `*`: `5 * 5`
+* Division `/`: `5 / 5`
+* Addition `+`: `5 + 5`
+* Subtraction `-`: `5 - 5`
 
 ### COMMON VARIABLE OPERATIONS
 
-- Assigning a value directly to a variable:
+* Assigning a value directly to a variable:
 
   ```python
   integer_val = 5
@@ -23,7 +23,7 @@
   string_val = "5"
   ```
 
-- Assigning the result of a calculation to a variable:
+* Assigning the result of a calculation to a variable:
 
   ```python
   total = 5 + 5
@@ -32,7 +32,7 @@
 
 ### DISPLAYING VALUES
 
-- Displaying a value:
+* Displaying a value:
 
   ```python
   integer_val = 5
@@ -41,7 +41,7 @@
   print(5 + 5 + 5)
   ```
 
-- Displaying a value's data type:
+* Displaying a value's data type:
 
   ```python
   integer_val = 5
@@ -50,15 +50,15 @@
 
 ### LIST OPERATIONS
 
-- Creating an empty list:
+* Creating an empty list:
 
   `crime_rates = []`
 
-- Creating a list with values:
+* Creating a list with values:
 
   `crime_rates = [749, 371, 828, 503, 1379]`
 
-- Appending a value to a list:
+* Appending a value to a list:
 
   ```python
   crime_rates = []
@@ -66,7 +66,7 @@
   crime_rates.append(371)
   ```
 
-- Accessing individual elements in a list:
+* Accessing individual elements in a list:
 
   ```python
   crime_rates = [749, 371, 828, 503, 1379]
@@ -74,7 +74,7 @@
   cr_third = crime_rates[2]
   ```
 
-- Working with the length of a list:
+* Working with the length of a list:
 
   ```python
   crime_rates = [749, 371, 828, 503, 1379]
@@ -82,7 +82,7 @@
   last_element = crime_rates[length-1]
   ```
 
-- Accessing slices of values in a list:
+* Accessing slices of values in a list:
 
   ```python
   crime_rates = [749, 371, 828, 503, 1379]
@@ -91,14 +91,14 @@
 
 ## Concepts
 
-- When evaluating expressions, Python uses the [order of operations](https://en.wikipedia.org/wiki/Order_of_operations#Definition) rules from mathematics.
-- Every value in Python has a data type associated with it. The common data types are:
-  - Strings: `"6"`
-  - Integers: `6`
-  - Floats: `6.0`
+* When evaluating expressions, Python uses the [order of operations](https://en.wikipedia.org/wiki/Order_of_operations#Definition) rules from mathematics.
+* Every value in Python has a data type associated with it. The common data types are:
+  * Strings: `"6"`
+  * Integers: `6`
+  * Floats: `6.0`
 
 ## Resources
 
-- [Documentation on all arithmetic operators](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
-- [List of reserved words in Python](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
-- [Documentation on lists](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+* [Documentation on all arithmetic operators](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
+* [List of reserved words in Python](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
+* [Documentation on lists](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
