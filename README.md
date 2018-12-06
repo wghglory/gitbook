@@ -51,4 +51,15 @@ gitbook serve   # localhost:4000
 }
 ```
 
+## Daily maintenance
+
+```bash
+npm run toc
+npm run prettier
+
+git add .
+git commit -m 'commit' --no-verify
+git push
+```
+
 参考资料：<http://gitbook.zhangjikai.com/plugins.html>
