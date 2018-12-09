@@ -1,5 +1,7 @@
 # Immutability 对象不可变性
 
+**Most valuable reference**: <https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns>
+
 通过复制一个新的对象，使得新对象和老对象不引用同一个地址。这样在一个 reducer 函数中不去直接修改老对象的属性，而是创建一个新对象并根据 action 修改其属性并返回。
 
 ```javascript
