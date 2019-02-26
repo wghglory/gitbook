@@ -1,5 +1,6 @@
 # TOC
 
+* [git_alias](git_alias.md)
 * [git_cheatsheet](git_cheatsheet.md)
 * [git_in_work](git_in_work.md)
 * [git1](git1.md)

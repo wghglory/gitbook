@@ -152,6 +152,7 @@
   * [log4net_redis](DotNet/log4net_redis.md)
   * [ORM](DotNet/ORM.md)
 * [Git](/Git/README.md)
+  * [git_alias](Git/git_alias.md)
   * [git_cheatsheet](Git/git_cheatsheet.md)
   * [git_in_work](Git/git_in_work.md)
   * [git1](Git/git1.md)
