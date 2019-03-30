@@ -6,6 +6,8 @@
 * [form](form.md)
 * [hostBinding_vs_hostListener](hostBinding_vs_hostListener.md)
 * [Http](Http.md)
+* [i18n](i18n.md)
+* [issues](issues.md)
 * [route](route.md)
 * [rxjs_best_practice](rxjs_best_practice.md)
 * [rxjs_help](rxjs_help.md)

@@ -1,0 +1,3 @@
+# TOC
+
+* [shortcut](shortcut.md)
