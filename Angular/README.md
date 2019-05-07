@@ -8,6 +8,7 @@
 * [Http](Http.md)
 * [i18n](i18n.md)
 * [issues](issues.md)
+* [map_mergeMap_switchMap_concatMap](map_mergeMap_switchMap_concatMap.md)
 * [route](route.md)
 * [rxjs_best_practice](rxjs_best_practice.md)
 * [rxjs_help](rxjs_help.md)

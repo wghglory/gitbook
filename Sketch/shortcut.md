@@ -1,6 +1,7 @@
 # Sketch Shortcut
 
-1. 插入 Insert：
+1.  插入 Insert：
+
     * **新建画板 New Artboard -【 A 】**
     * 切片 Slice -【 S 】
     * 矩形 Rectangle -【 R 】
@@ -11,7 +12,8 @@
     * 铅笔 Pencil -【 P 】
     * 文字 Text -【 T 】
 
-1. 格式 Type：
+1.  格式 Type：
+
     * 加粗 Bold -【 Cmd + B 】
     * 斜体 Italic -【 Cmd + I 】
     * 下划线 Underline -【 Cmd + U 】
@@ -22,11 +24,12 @@
     * 改变字体 Change Font -【 Cmd + T 】
     * 文字变为轮廓 Convert Text to Outlines -【 Shift + Cmd + O 】
     * **文字左对齐它的框 Align Left -【 Cmd + Shift + { 】**
-    * **居中对齐Align Center -【 Cmd + Shift + | 】**
+    * **居中对齐 Align Center -【 Cmd + Shift + | 】**
     * **右对齐 Align Right -【 Cmd + Shift + } 】**
     * emoji 特殊字符 Special Characters -【 Control + Cmd + Space 】
 
-1. 视图 Canvas View：
+1.  视图 Canvas View：
+
     * 放大 Zoom In -【 Cmd (+) + 】
     * 缩小 Zoom Out -【 Cmd (+) - 】
     * **实际大小 Actual Size -【 Cmd + 0 】**
@@ -40,7 +43,8 @@
     * 显示 / 隐藏像素 Toggle Pixels -【 Control + P 】
     * 显示 / 隐藏手柄 Toggle Selection Handles -【 Control + H 】
 
-1. 窗口 Window：
+1.  窗口 Window：
+
     * 文档间切换 Toggle between Documents -【 Cmd + ~ 】
     * **_显示 / 隐藏图层列表 Toggle Layers List -【 Alt + Cmd + 1 】_**
     * **_显示 / 隐藏详细面板 Toggle Inspector -【 Alt + Cmd + 2 】_**
@@ -48,7 +52,8 @@
     * **_演示模式 Presentation Mode -【 Cmd + . 】_**
     * 全屏模式 Enter Full screen -【 Control + Cmd + F 】
 
-1. 形状 Editing Shapes：
+1.  形状 Editing Shapes：
+
     * 作为蒙版使用 Use as Mask span (Works for Layers & Groups) -【 Control + Cmd + M 】
     * 合并形状 Union -【 Alt + Cmd + U 】
     * 减去顶层形状 Substract -【 Alt + Cmd + S 】
@@ -58,7 +63,8 @@
     * 以 10 个单位来改变 Change Units by 10 -【 Shift + Cmd + Arrows 】
     * 切换锚点式样 Change Vector Point Style -【 1, 2, 3, 4 】
 
-1. 图层 Editing Layers：
+1.  图层 Editing Layers：
+
     * **_与其他图层的距离 Show Distance to other Layers -【 Alt 】_**
     * **_与组内图层的距离 Show Distance to other Layers inside Group -【 Alt + Cmd 】_**
     * **副本 Duplicate -【 Cmd + D 】**
@@ -70,7 +76,7 @@
     * **显示 / 隐藏填充部分 Toggle Fill -【 F 】**
     * **显示 / 隐藏描边部分 Toggle Border -【 B 】**
 
-1. 编辑 Arranging Layers, Groups and Artboards：
+1.  编辑 Arranging Layers, Groups and Artboards：
     * **_上移一层 Bring Forward -【 Alt + Cmd + ↑ 】_**
     * **_置于顶层 Bring to Front -【 Control + Alt + Cmd + ↑ 】_**
     * 下移一层 Send Backward -【 Alt + Cmd + ↓ 】

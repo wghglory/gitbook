@@ -9,6 +9,7 @@
   * [Http](Angular/Http.md)
   * [i18n](Angular/i18n.md)
   * [issues](Angular/issues.md)
+  * [map_mergeMap_switchMap_concatMap](Angular/map_mergeMap_switchMap_concatMap.md)
   * [route](Angular/route.md)
   * [rxjs_best_practice](Angular/rxjs_best_practice.md)
   * [rxjs_help](Angular/rxjs_help.md)
