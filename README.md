@@ -55,7 +55,7 @@ gitbook serve   # localhost:4000
 
 ```bash
 npm run toc
-npm run prettier
+npm run prettierReadme  # npm run prettier
 
 git add .
 git commit -m 'commit' --no-verify

@@ -4,6 +4,7 @@
   * [angular5new](Angular/angular5new.md)
   * [angular6new](Angular/angular6new.md)
   * [components_communication](Angular/components_communication.md)
+  * [form_validation](Angular/form_validation.md)
   * [form](Angular/form.md)
   * [hostBinding_vs_hostListener](Angular/hostBinding_vs_hostListener.md)
   * [Http](Angular/Http.md)
