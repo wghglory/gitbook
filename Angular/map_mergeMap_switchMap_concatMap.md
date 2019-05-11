@@ -1,5 +1,21 @@
 # Understanding RxJS map, mergeMap, switchMap and concatMap
 
+Bad code: nested subscribe, actually it makes parallel calls.
+
+```ts
+this.form.valueChanges
+  .subscribe(
+    formValue => {
+        const httpPost$ = this.http.put(`/api/course/${courseId}`, formValue);
+
+        httpPost$.subscribe(
+          res => console.log('handle successful save ...')
+          err => console.log('handle save error ...')
+        );
+    }
+  );
+```
+
 ## The map operator
 
 The map operator is the most common of all. For each value that the Observable emits you can apply a function in which you can modify the data. The return value will, behind the scenes, be reemitted as an Observable again so you can keep using it in your stream. It works pretty much the same as how you would use it with Arrays. The difference is that Arrays will always be just Arrays and while mapping you get the value of the current index in the Array. With Observables the type of data can be of all sorts of types. This means that you might have to do some additional operations in side your Observable map function to get the desired result. Let’s look at some examples:
@@ -44,6 +60,26 @@ While switchMap wouldn’t work for our current scenario, it will work for other
 
 As you can see in the console `getData` is only logging once with all the params. This saved us 3 API calls.
 
+```ts
+const searchText$: Observable<string> = fromEvent<any>(this.input.nativeElement, 'keyup').pipe(
+  map((event) => event.target.value),
+  startWith(''),
+  debounceTime(400),
+  distinctUntilChanged(),
+);
+
+function loadLessons(search: string): Observable<Lesson[]> {
+  const params = new HttpParams().set('search', search);
+
+  return this.http.get(`/api/lessons/${coursesId}`, { params });
+}
+
+// cancel previous request and send new
+const lessons$: Observable<Lesson[]> = searchText$
+  .pipe(switchMap((search) => this.loadLessons(search)))
+  .subscribe();
+```
+
 ## ConcatMap
 
 The last example is concatMap. As you might expect, concatMap also subscribes to the inner Observable for you. But unlike switchMap, that unsubscribes from the current Observable if a new Observable comes in, concatMap will not subscribe to the next Observable until the current one completes. The benefit of this is that the order in which the Observables are emitting is maintained. To demonstrate this:
@@ -52,6 +88,40 @@ The last example is concatMap. As you might expect, concatMap also subscribes to
 
 The getData function has a random delay between 1 and 10000 milliseconds. If you check the logs you can see that the map and mergeMap operators will log whatever value comes back and don’t follow the original order. On the other hand the concatMap logs the values in the same value as they were started.
 
+```ts
+// form value new change will always be sent after old value
+this.form.valueChanges
+    .pipe(
+        concatMap(formValue => this.http.put(`/api/course/${courseId}`, formValue))
+    )
+    .subscribe(
+       saveResult =>  ... handle successful save ...,
+       err => ... handle save error ...
+    );
+```
+
+## ExhaustMap
+
+Clicking save button too many times before a request is completed, only when previous request is done, the further requests won't be ignored.
+
+```ts
+fromEvent(this.saveButton.nativeElement, 'click')
+  .pipe(exhaustMap(() => this.saveCourse(this.form.value)))
+  .subscribe();
+```
+
 ## Conclusion
 
 Mapping data to the format you need is a common task. RxJS comes with a few very neat operators that help you get the job done. To recap: map is for mapping ‘normal’ values to whatever format you need it to be. The return value will be wrapped in an Observable again, so you can keep using it in your data stream. When you have to deal with an ‘inner’ Observable it’s easier to use mergeMap, switchMap or concatMap. Use mergeMap if you simply want to flatten the data into one Observable, use switchMap if you need to flatten the data into one Observable but only need the latest value and use concatMap if you need to flatten the data into one Observable and the order is important to you.
+
+* if we need to do things in sequence while waiting for completion, then `concatMap` is the right choice
+
+* for doing things in parallel, `mergeMap` is the best option
+
+* in case we need cancellation logic, `switchMap` is the way to go
+
+* for ignoring new Observables while the current one is still ongoing, `exhaustMap` does just that
+
+## Reference
+
+* <https://blog.angular-university.io/rxjs-higher-order-mapping/>
