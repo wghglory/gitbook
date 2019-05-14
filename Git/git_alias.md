@@ -5,6 +5,12 @@ git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
+
+alias gbr="git branch | grep -v "master" | xargs git branch -D"   # delete all local branches except master, but master-test won't be deleted
+git branch | grep -ve " master$" | xargs git branch -D  # This will remove branches named (e.g.) test-master, master-test.
+# more than 1 branch can be added to the grep expression like "master\|develop\|current_branch"
+
+git branch | egrep -v "(master|\*)" | xargs git branch -D  # deletes everything except master and the branch I am currently in
 ```
 
 ```bash
