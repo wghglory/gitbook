@@ -8,6 +8,7 @@
 * [hostBinding_vs_hostListener](hostBinding_vs_hostListener.md)
 * [Http](Http.md)
 * [i18n](i18n.md)
+* [interceptor_global_error_handling](interceptor_global_error_handling.md)
 * [issues](issues.md)
 * [map_mergeMap_switchMap_concatMap](map_mergeMap_switchMap_concatMap.md)
 * [retry](retry.md)

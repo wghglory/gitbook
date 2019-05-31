@@ -9,6 +9,7 @@
   * [hostBinding_vs_hostListener](Angular/hostBinding_vs_hostListener.md)
   * [Http](Angular/Http.md)
   * [i18n](Angular/i18n.md)
+  * [interceptor_global_error_handling](Angular/interceptor_global_error_handling.md)
   * [issues](Angular/issues.md)
   * [map_mergeMap_switchMap_concatMap](Angular/map_mergeMap_switchMap_concatMap.md)
   * [retry](Angular/retry.md)
