@@ -1,3 +1,3 @@
 # TOC
 
-* [vmware](vmware.md)
+- [vmware](vmware.md)

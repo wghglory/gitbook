@@ -1,3 +1,3 @@
 # TOC
 
-* [PinyinHelper](PinyinHelper.md)
+- [PinyinHelper](PinyinHelper.md)
