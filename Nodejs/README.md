@@ -1,3 +1,3 @@
 # TOC
 
-- [npm](npm.md)
+* [npm](npm.md)

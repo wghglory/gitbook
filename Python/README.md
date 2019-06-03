@@ -1,3 +1,3 @@
 # TOC
 
-- [basic](basic.md)
+* [basic](basic.md)

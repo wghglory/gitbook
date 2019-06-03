@@ -1,3 +1,3 @@
 # TOC
 
-- [shortcut](shortcut.md)
+* [shortcut](shortcut.md)
