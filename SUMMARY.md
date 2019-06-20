@@ -1,6 +1,7 @@
 # SUMMARY
 
 * [Angular](/Angular/README.md)
+  * [angular_tools](Angular/angular_tools.md)
   * [angular5new](Angular/angular5new.md)
   * [angular6new](Angular/angular6new.md)
   * [components_communication](Angular/components_communication.md)
