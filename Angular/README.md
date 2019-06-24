@@ -12,6 +12,7 @@
 * [interceptor_global_error_handling](interceptor_global_error_handling.md)
 * [issues](issues.md)
 * [map_mergeMap_switchMap_concatMap](map_mergeMap_switchMap_concatMap.md)
+* [ngTemplateOutlet](ngTemplateOutlet.md)
 * [performance](performance.md)
 * [retry](retry.md)
 * [route](route.md)
