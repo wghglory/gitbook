@@ -3,6 +3,7 @@
 * [animation](animation.md)
 * [code_reset](code_reset.md)
 * [code\_清除浮动](code_清除浮动.md)
+* [css_selector](css_selector.md)
 * [css3 各种图形](css3各种图形.md)
 * [interview_BFC](interview_BFC.md)
 * [interview_css 动画硬件加速](interview_css动画硬件加速.md)
