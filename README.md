@@ -62,4 +62,19 @@ git commit -m 'commit' --no-verify
 git push
 ```
 
+## Publish
+
+Need to build \_book directory before publish via `gitbook build`.
+
+Only 1st time publish:
+
+1.  `git branch -D gh-pages` if any
+1.  `yarn run initPublish`. Make sure master \_book contains `index.html, search_plus_index.json` and all html files. This script will create gh-pages branch and .gitignore
+
+In future publish:
+
+`yarn run publish`
+
+Access result at <https://wghglory.github.io/gitbook>
+
 参考资料：<http://gitbook.zhangjikai.com/plugins.html>
