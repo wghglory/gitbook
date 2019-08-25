@@ -1,3 +1,3 @@
 # TOC
 
-* [shadow](shadow.md)
+- [shadow](shadow.md)

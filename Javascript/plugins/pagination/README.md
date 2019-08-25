@@ -1,3 +1,3 @@
 # TOC
 
-* [pagination 分页](pagination分页.md)
+- [pagination 分页](pagination分页.md)

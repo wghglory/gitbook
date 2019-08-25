@@ -1,3 +1,3 @@
 # TOC
 
-* [providers](providers.md)
+- [providers](providers.md)
