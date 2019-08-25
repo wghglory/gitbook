@@ -332,4 +332,5 @@
   - [life_cycle](Vue/life_cycle.md)
   - [mixin](Vue/mixin.md)
   - [slots](Vue/slots.md)
+  - [vue_interview](Vue/vue_interview.md)
   - [watch](Vue/watch.md)

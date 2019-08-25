@@ -23,4 +23,5 @@
 - [life_cycle](life_cycle.md)
 - [mixin](mixin.md)
 - [slots](slots.md)
+- [vue_interview](vue_interview.md)
 - [watch](watch.md)
