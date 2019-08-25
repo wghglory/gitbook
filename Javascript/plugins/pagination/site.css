@@ -1,0 +1,179 @@
+body,
+ul,
+p,
+h4 {
+  font: 12px '微软雅黑', Arial;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+body {
+  background: #e8d0ca;
+}
+
+#message {
+  width: 600px;
+  margin: 26px auto;
+}
+
+#message header {
+  line-height: 36px;
+  position: relative;
+  height: 36px;
+  padding-left: 22px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 3px 16px;
+}
+
+#message header span {
+  position: absolute;
+  top: 36px;
+  left: 92px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border: 8px solid transparent;
+  border-top-color: #fff;
+}
+
+#messageList {
+  margin-left: 100px;
+  padding: 20px 0;
+  border-left: 1px solid #fff;
+  height: 0;
+  transition: 0.8s;
+}
+
+#messageList li {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 26px;
+  perspective: 800px;
+  perspective-origin: left;
+}
+
+#messageList li > div {
+  transition: 0.6s cubic-bezier(0.25, 0.68, 0.59, 1.22);
+  transform: rotateY(90deg);
+  /*move to 0deg*/
+  transform-origin: -26px;
+  /* because of padding-left:26px */
+  transform-style: preserve-3d;
+}
+
+#messageList li .pic {
+  position: absolute;
+  left: -126px;
+  width: 60px;
+  height: 60px;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  background: url(miaov.png);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 4px 6px;
+}
+
+#messageList li .dot {
+  position: absolute;
+  top: 26px;
+  left: -34px;
+  width: 8px;
+  height: 8px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background-color: #f43030;
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 4px;
+}
+
+#messageList .chat div {
+  margin-bottom: 10px;
+  transition: 0.5s;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background-color: #f7ebe6;
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 4px;
+}
+
+#messageList .chat div:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 3px 7px 14px;
+}
+
+#messageList .chat h4 {
+  font-size: 1.17em;
+  line-height: 36px;
+  position: relative;
+  height: 36px;
+  padding-left: 14px;
+  background: #fff;
+}
+
+#messageList .post h4 span {
+  position: absolute;
+  top: 11px;
+  left: -17px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border: 8px solid transparent;
+  border-right-color: #fff;
+}
+
+#messageList .chat p {
+  min-height: 46px;
+  padding: 10px 14px;
+  color: #8e8e8e;
+}
+
+#messageList .reply {
+  transform: rotateX(-180deg);
+  transform-origin: top;
+  opacity: 0;
+}
+
+#messageList .reply,
+#messageList .reply p {
+  color: #bc5d3b;
+}
+
+#messageList .reply h4 span {
+  position: absolute;
+  top: -17px;
+  left: 38px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border: 8px solid transparent;
+  border-bottom-color: #fff;
+}
+
+#messageList .chat h4 time {
+  font-size: 12px;
+  padding-left: 20px;
+  color: #acacac;
+}
+
+#messageList li:last-of-type,
+#messageList li:last-of-type .chat div:last-of-type {
+  margin-bottom: 0;
+}
+
+/* 分页先入场(ul高度撑开)，然后li入场。
+ *  ul(messageList) height:0;transition:1s;通过变化高度，使得分页下降
+ *  li    perspective:800px;perspective-origin:left;
+ *  li>div   修改结构，li做父级，div包裹。div 沿着 dot旋转，初始与ul白竖线重合，与屏幕垂直 transition:1.6s cubic-bezier(.25,.68,.59,1.22);transform:rotateY(90deg);transform-origin:-26px;transform-style:preserve-3d;
+ *  #messageList .reply{transform:rotateX(-180deg);transform-origin:top;opacity:0;}
+ */
+
+/* 点击分页，分页先隐藏，li消失，分页入场，li入场 */
