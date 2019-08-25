@@ -1,0 +1,11 @@
+*~
+_book
+node_modules
+.DS_Store
+.editorconfig
+initPublish.sh
+publish.sh
+package.json
+generateTOC.js
+toc.js
+yarn.lock
