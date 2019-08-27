@@ -300,6 +300,7 @@
 - [Sketch](/Sketch/README.md)
   - [shortcut](Sketch/shortcut.md)
 - [Terminal](/Terminal/README.md)
+  - [cheatsheet](Terminal/cheatsheet.md)
   - [commands](Terminal/commands.md)
   - [homebrew](Terminal/homebrew.md)
   - [mac_curl_request](Terminal/mac_curl_request.md)
