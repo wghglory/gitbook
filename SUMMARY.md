@@ -301,6 +301,7 @@
   - [shortcut](Sketch/shortcut.md)
 - [Terminal](/Terminal/README.md)
   - [commands](Terminal/commands.md)
+  - [homebrew](Terminal/homebrew.md)
   - [mac_curl_request](Terminal/mac_curl_request.md)
   - [vim](Terminal/vim.md)
 - [Typescript](/Typescript/README.md)
