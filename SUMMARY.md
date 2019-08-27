@@ -241,6 +241,7 @@
   - [zepto](Mobile/zepto.md)
   - [常见问题](Mobile/常见问题.md)
 - [Nodejs](/Nodejs/README.md)
+  - [01_fundamental](Nodejs/01_fundamental.md)
   - [npm](Nodejs/npm.md)
 - [ProjectConfig](/ProjectConfig/README.md)
   - [ProjectConfig/Javacript-Starter](/ProjectConfig/Javacript-Starter/README.md)
