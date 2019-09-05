@@ -82,3 +82,16 @@ You can find the full example here: [https://github.com/RisingStack/http2-push-e
 [HTTP/2 in @nodejs can help us at many points to optimize our client-server communication.](https://twitter.com/share?text=HTTP%2F2%20in%20%40nodejs%20can%20help%20us%20at%20many%20points%20to%20optimize%20our%20client-server%20communication.;url=https://blog.risingstack.com/node-js-http-2-push)
 
 With Server Push, we can send assets to the browser before it has even asked for them to reduce the initial loading time for our users.
+
+---
+
+\- 多路复⽤: 雪碧图、多域名 CDN、接⼝合并
+
+\- 官⽅演示: <https://http2.akamai.com/demo>
+
+\- 多路复⽤允许同时通过单⼀的 HTTP/2 连接发起多重的请求-响应消息；⽽ HTTP/1.1 协议中，浏览器客户端在同⼀时间，针对同⼀域名下的请求有⼀定数量限制。超过限制数⽬的请求会 被阻塞
+
+\- ⾸部压缩: http/1.x 的 header 由于 cookie 和 user agent 很容易膨胀，⽽且每次都要重复发送。 http/2 使⽤ encoder 来减少需要传输的 header ⼤⼩，通讯双⽅各⾃ cache ⼀份 header ﬁelds 表，既避免了重复 header 的传输，⼜减⼩了需要传输的⼤⼩。⾼效的压 缩算法可以很⼤的压缩 header，减少发送包的数量从⽽降低延迟
+
+\- 服务端推送: 在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例⼦，如果⼀个请 求请求的是 index.html，服务器很可能会同时响应 index.html、logo.jpg 以及 css 和 js ⽂件，因为它知道客户端会⽤到这些东⻄。这相当于在⼀个 HTML ⽂档内集合了所有的 资源
+
