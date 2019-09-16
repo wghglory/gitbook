@@ -198,7 +198,14 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-tag .hljs-value,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-tag .hljs-value,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-rules .hljs-value,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-rules .hljs-value,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .hljs-rules
+  .hljs-value,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-phpdoc,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-phpdoc,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .tex .hljs-formula,
@@ -238,11 +245,25 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .lisp .hljs-body,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .lisp .hljs-body,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .smalltalk .hljs-number,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .smalltalk .hljs-number,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .smalltalk
+  .hljs-number,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-constant,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-constant,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-class .hljs-title,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-class .hljs-title,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .hljs-class
+  .hljs-title,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-parent,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-parent,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .haskell .hljs-type,
@@ -253,16 +274,44 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 }
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-preprocessor,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-preprocessor,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-preprocessor .hljs-keyword,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-preprocessor .hljs-keyword,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .hljs-preprocessor
+  .hljs-keyword,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .hljs-preprocessor
+  .hljs-keyword,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-pragma,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-pragma,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-shebang,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-shebang,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-symbol,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-symbol,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-symbol .hljs-string,
-.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .hljs-symbol .hljs-string,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .hljs-symbol
+  .hljs-string,
+.book.color-theme-1
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .hljs-symbol
+  .hljs-string,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .diff .hljs-change,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code .diff .hljs-change,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre .hljs-special,
@@ -327,8 +376,24 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .hljs-deletion,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .ruby .hljs-constant,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .ruby .hljs-constant,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .xml .hljs-tag .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .xml .hljs-tag .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .xml
+  .hljs-tag
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .xml
+  .hljs-tag
+  .hljs-title,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .xml .hljs-pi,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .xml .hljs-pi,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .xml .hljs-doctype,
@@ -359,10 +424,42 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .hljs-constant {
   color: #e78c45;
 }
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .ruby .hljs-class .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .ruby .hljs-class .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .css .hljs-rules .hljs-attribute,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .css .hljs-rules .hljs-attribute {
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .ruby
+  .hljs-class
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .ruby
+  .hljs-class
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .css
+  .hljs-rules
+  .hljs-attribute,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .css
+  .hljs-rules
+  .hljs-attribute {
   color: #e7c547;
 }
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .hljs-string,
@@ -388,25 +485,99 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .hljs-function,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .hljs-function,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .python .hljs-decorator,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .python .hljs-decorator,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .python
+  .hljs-decorator,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .python .hljs-title,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .python .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .ruby .hljs-function .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .ruby .hljs-function .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .ruby .hljs-title .hljs-keyword,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .ruby .hljs-title .hljs-keyword,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .ruby
+  .hljs-function
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .ruby
+  .hljs-function
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .ruby
+  .hljs-title
+  .hljs-keyword,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .ruby
+  .hljs-title
+  .hljs-keyword,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .perl .hljs-sub,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .perl .hljs-sub,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .javascript .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .javascript .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .coffeescript .hljs-title,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .coffeescript .hljs-title {
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .javascript
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .coffeescript
+  .hljs-title,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .coffeescript
+  .hljs-title {
   color: #7aa6da;
 }
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .hljs-keyword,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .hljs-keyword,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .javascript .hljs-function,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .javascript .hljs-function {
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .javascript
+  .hljs-function,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .javascript
+  .hljs-function {
   color: #c397d8;
 }
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .hljs,
@@ -416,8 +587,22 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
   color: #eaeaea;
   padding: 0.5em;
 }
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .coffeescript .javascript,
-.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .coffeescript .javascript,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  pre
+  .coffeescript
+  .javascript,
+.book.color-theme-2
+  .book-body
+  .page-wrapper
+  .page-inner
+  section.normal
+  code
+  .coffeescript
+  .javascript,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .javascript .xml,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code .javascript .xml,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre .tex .hljs-formula,

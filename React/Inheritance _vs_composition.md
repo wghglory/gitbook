@@ -44,7 +44,10 @@ A more elegant approach is to create a higher order function we can use to compo
 ```javascript
 // new Date() 作为 arg，初始值。先 appendAMPM(clockTime)，返回的对象作为 civilianHours 的参数，执行 civilianHours
 
-const both = compose(appendAMPM, civilianHours);
+const both = compose(
+  appendAMPM,
+  civilianHours,
+);
 
 both(new Date());
 ```

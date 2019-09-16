@@ -1,14 +1,13 @@
 .pg-emphasize {
-    border-radius: 2px;
-    background: #FFFF88;
-    padding:1px;
+  border-radius: 2px;
+  background: #ffff88;
+  padding: 1px;
 }
 
 .pg-emphasize.pg-emphasize-red {
-    background: #ffecec;
+  background: #ffecec;
 }
 
 .pg-emphasize.pg-emphasize-green {
-    background: #eaffea;
+  background: #eaffea;
 }
-
