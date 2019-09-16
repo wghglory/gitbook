@@ -421,7 +421,7 @@ Most common usage is `git stash`, [do some stuff], `git stash pop`
 
 ##### Josh Egan
 
-* [\*\*](https://github.com/josh-egan)
+- [\*\*](https://github.com/josh-egan)
 
 <<<<<<< HEAD Proudly built with [harp ](http://harpjs.com/)and hosted on [GitHub](https://github.com/josh-egan/tech.joshegan.com/tree/master) ======= Proudly built with [harp ](http://harpjs.com/)and hosted on [GitHub](https://github.com/josh-egan/tech.joshegan.com/tree/master)
 

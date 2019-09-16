@@ -1,9 +1,9 @@
 # [用 CSS 开启硬件加速来提高网站性能](http://www.cnblogs.com/rubylouvre/p/3471490.html)
 
-* 只允许改变 transform、opacity，其它属性不要动，避免重新计算布局(reflow)
-* 对动画元素应用 transform: translate3d(0, 0, 0)、will-change: transform 等，开启硬件加速
-* 动画元素尽量用 fixed、absolute 定位方式，避免 reflow
-* 对动画元素应用高一点的 z-index，减少复合层数量
+- 只允许改变 transform、opacity，其它属性不要动，避免重新计算布局(reflow)
+- 对动画元素应用 transform: translate3d(0, 0, 0)、will-change: transform 等，开启硬件加速
+- 动画元素尽量用 fixed、absolute 定位方式，避免 reflow
+- 对动画元素应用高一点的 z-index，减少复合层数量
 
 ## 硬件加速是非规范的
 
@@ -15,8 +15,8 @@ GPU 是独立的一部分，有自己的处理器、内存核数据处理模型�
 
 需要的内存取决于：
 
-* 复合层的数量
-* 复合层的大小
+- 复合层的数量
+- 复合层的大小
 
 如果复合层太多太大，内存会被迅速消耗，然后掉帧（卡顿、闪烁）现象，甚至浏览器/应用崩溃也就很合理了。
 
@@ -26,16 +26,16 @@ GPU 是独立的一部分，有自己的处理器、内存核数据处理模型�
 
 显示复合层：
 
-* 3D transforms: translate3d, translateZ and so on;
-* `<video>, <canvas> and <iframe>` elements;
-* animation of transform and opacity via Element.animate();
-* animation of transform and opacity via СSS transitions and animations;
-* position: fixed;
-* will-change;
+- 3D transforms: translate3d, translateZ and so on;
+- `<video>, <canvas> and <iframe>` elements;
+- animation of transform and opacity via Element.animate();
+- animation of transform and opacity via СSS transitions and animations;
+- position: fixed;
+- will-change;
 
 隐式复合层：
 
-* 位于复合层之上的元素会被创建复合层（B 的 z-index 大于 A，对 A 做动画，B 也会被塞进独立的复合层）
+- 位于复合层之上的元素会被创建复合层（B 的 z-index 大于 A，对 A 做动画，B 也会被塞进独立的复合层）
 
 很容易理解，A 在动画过程中可能会与 B 产生重叠，被 B 遮住，那么 GPU 需要每帧对 A 图层做动画，然后再与 B 图层合成，才能得到正确结果，所以 B 无论如何都要被塞进复合层，连同 A 一起交给 GPU
 
@@ -45,16 +45,16 @@ GPU 是独立的一部分，有自己的处理器、内存核数据处理模型�
 
 优点：
 
-* 动画非常流畅，能达到 60fps
-* 动画执行过程在独立线程里，不受计算密集的 JS 任务影响
+- 动画非常流畅，能达到 60fps
+- 动画执行过程在独立线程里，不受计算密集的 JS 任务影响
 
 缺点：
 
-* 把元素塞进复合层时需要额外重绘，有时很慢（可能需要整页重绘）
-* 复合层数据传递给 GPU 有额外时耗，取决于复合层的数量和大小，这在中低端设备可能会导致闪烁
-* 每个复合层都要消耗一部分内存，移动设备上内存很贵，过多占用会导致浏览器/应用崩溃
-* 存在隐式复合层的问题，不注意的话内存飙升
-* 文字模糊，元素有时会变形
+- 把元素塞进复合层时需要额外重绘，有时很慢（可能需要整页重绘）
+- 复合层数据传递给 GPU 有额外时耗，取决于复合层的数量和大小，这在中低端设备可能会导致闪烁
+- 每个复合层都要消耗一部分内存，移动设备上内存很贵，过多占用会导致浏览器/应用崩溃
+- 存在隐式复合层的问题，不注意的话内存飙升
+- 文字模糊，元素有时会变形
 
 ### 性能优化技巧
 
@@ -62,8 +62,8 @@ GPU 是独立的一部分，有自己的处理器、内存核数据处理模型�
 
 复合层直接影响 repaint、内存消耗：动画开始时创建复合层、结束时删除复合层，都会引起 repaint，而动画开始时必须把图层数据发送给 GPU，内存消耗集中在这里。两条建议：
 
-* 给动画元素应用高 z-index，最好直接作为 body 的子元素，对于嵌套很深的动画元素，可以复制一个到 body 下，仅用于实现动画效果
-* 给动画元素应用 will-change，浏览器会提前把这些元素塞进复合层，可以让动画开始/结束时更流畅些，但不能滥用，在不需要的时候赶紧去掉，减少内存消耗
+- 给动画元素应用高 z-index，最好直接作为 body 的子元素，对于嵌套很深的动画元素，可以复制一个到 body 下，仅用于实现动画效果
+- 给动画元素应用 will-change，浏览器会提前把这些元素塞进复合层，可以让动画开始/结束时更流畅些，但不能滥用，在不需要的时候赶紧去掉，减少内存消耗
 
 1.  只改变 transform 和 opacity
 1.  减少复合层的大小：减小 width、height，减少传递给 GPU 的数据，由 GPU 做 scale 放大展示，视觉效果无差异（多用于纯色背景元素，对不太重要的图片也可以进行 5%到 10%的宽高压缩），例如：
@@ -73,21 +73,22 @@ GPU 是独立的一部分，有自己的处理器、内存核数据处理模型�
 <div id="b"></div>
 
 <style>
-#a, #b {
+  #a,
+  #b {
     will-change: transform;
     background-color: #f00;
-}
+  }
 
-#a {
+  #a {
     width: 100px;
     height: 100px;
-}
+  }
 
-#b {
+  #b {
     width: 10px;
     height: 10px;
     transform: scale(10);
-}
+  }
 </style>
 ```
 
@@ -149,15 +150,15 @@ cube {
 
 ## 使用硬件加速的注意事项
 
-* 不能让每个元素都启用硬件加速，这样会暂用很大的内存，使页面会有很强的卡顿感。
-* GPU 渲染会影响字体的抗锯齿效果。这是因为 GPU 和 CPU 具有不同的渲染机制，即使最终硬件加速停止了，文本还是会在动画期间显示得很模糊。
+- 不能让每个元素都启用硬件加速，这样会暂用很大的内存，使页面会有很强的卡顿感。
+- GPU 渲染会影响字体的抗锯齿效果。这是因为 GPU 和 CPU 具有不同的渲染机制，即使最终硬件加速停止了，文本还是会在动画期间显示得很模糊。
 
 ## 总结
 
-* 使用 GPU 可以优化动画效果
-* GPU 渲染动会达到 60fps
-* 使用对 GPU 友好的 CSS 属性
-* 理解强制触发硬件加速的 transform 技巧
+- 使用 GPU 可以优化动画效果
+- GPU 渲染动会达到 60fps
+- 使用对 GPU 友好的 CSS 属性
+- 理解强制触发硬件加速的 transform 技巧
 
 如果仅仅为了开启硬件加速而随便乱用，那是不明智的。小心使用这些方法，如果通过你的测试，结果确是提高了性能，你才可以使用这些方法。使用 GPU 可能会导致严重的性能问题，因为它增加了内存的使用，而且它会减少移动端设备的电池寿命。
 

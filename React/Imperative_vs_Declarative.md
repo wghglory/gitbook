@@ -161,15 +161,15 @@ const log = (message) => console.log(message);
 
 Next we will need some functions for transforming data. These three functions will be used to mutate the `Date` object into an object that can be used for our clock:
 
-* serializeClockTime
+- serializeClockTime
 
   Takes a date object and returns a object for clock time that contains hours minutes and seconds.
 
-* civilianHours
+- civilianHours
 
   Takes the clock time object and returns an object where hours are converted to civilian time. For example: 1300 becomes 1 o’clock
 
-* appendAMPM
+- appendAMPM
 
   Takes the clock time object and appends time of day, AM or PM, to that object.
 
@@ -198,15 +198,15 @@ These three functions are used to transform data without changing the original. 
 
 Next we’ll need a few higher order functions:
 
-* display
+- display
 
   Takes a target function and returns a function that will send a time to the target. In this example the target will be console.log.
 
-* formatClock
+- formatClock
 
   Takes a template string and uses it to return clock time formatted based upon the criteria from the string. In this example, the template is “hh:mm:ss tt”. FormatClock will replaces the placeholders with hours, minutes, seconds, and time of day.
 
-* prependZero
+- prependZero
 
   Takes an object’s key as an argument and prepends a zero to the value stored under that objects key. It takes in a key to a specific field and prepends values with a zero if the value is less than 10.
 
@@ -235,24 +235,32 @@ These higher order functions will be invoked to create the functions that will b
 
 Now that we have all of the functions required to build a ticking clock, we will need to compose them. We will use the compose function that we defined in the last section to handle composition:
 
-* convertToCivilianTime
+- convertToCivilianTime
 
   A single function that will take clock time as an argument and transforms it into civilian time by using both civilian hours.
 
-* doubleDigits
+- doubleDigits
 
   A single function that will take civilian clock time and make sure the hours, minutes, and seconds display double digits by prepending zeros where needed.
 
-* startTicking
+- startTicking
 
   Starts the clock by setting an interval that will invoke a callback every second. The callback is composed using all of our functions. Every second the console is cleared, currentTime obtained, converted, civilianized, formatted, and displayed.
 
 ```javascript
 // compose 从右向左执行！
-const convertToCivilianTime = (clockTime) => compose(appendAMPM, civilianHours)(clockTime);
+const convertToCivilianTime = (clockTime) =>
+  compose(
+    appendAMPM,
+    civilianHours,
+  )(clockTime);
 
 const doubleDigits = (civilianTime) =>
-  compose(prependZero('hours'), prependZero('minutes'), prependZero('seconds'))(civilianTime);
+  compose(
+    prependZero('hours'),
+    prependZero('minutes'),
+    prependZero('seconds'),
+  )(civilianTime);
 
 const startTicking = () =>
   setInterval(
@@ -324,10 +332,18 @@ const prependZero = (key) => (clockTime) => ({
 const compose = (...fns) => (arg) => fns.reduce((accu, f) => f(accu), arg);
 
 // clockTime 作为 arg，初始值。先 appendAMPM(clockTime)，返回的对象作为 civilianHours 的参数，执行 civilianHours
-const convertToCivilianTime = (clockTime) => compose(appendAMPM, civilianHours)(clockTime);
+const convertToCivilianTime = (clockTime) =>
+  compose(
+    appendAMPM,
+    civilianHours,
+  )(clockTime);
 
 const doubleDigits = (civilianTime) =>
-  compose(prependZero('hours'), prependZero('minutes'), prependZero('seconds'))(civilianTime);
+  compose(
+    prependZero('hours'),
+    prependZero('minutes'),
+    prependZero('seconds'),
+  )(civilianTime);
 
 const startTicking = () =>
   setInterval(

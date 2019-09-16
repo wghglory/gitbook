@@ -12,9 +12,8 @@ graceful degradation is the practice of building your web functionality so that 
 </p>
 <noscript>
   <p class="scriptwarning">
-    Print a copy of your confirmation.
-    Select the "Print" icon in your browser,
-    or select "Print" from the "File" menu.
+    Print a copy of your confirmation. Select the "Print" icon in your browser, or select "Print"
+    from the "File" menu.
   </p>
 </noscript>
 ```
@@ -30,21 +29,21 @@ example: gmail, better browser has better experience.
 ```html
 <p id="print">Thank you for your order. Please print this page for your records.</p>
 <script>
-(function(){
-  // true means javascript enabled
-  if(document.getElementById){
-    var pt = document.getElementById('print');
-    if(pt && typeof window.print === 'function'){
-      var but = document.createElement('input');
-      but.setAttribute('type','button');
-      but.setAttribute('value','Print this now');
-      but.onclick = function(){
-        window.print();
-      };
-      pt.appendChild(but);
+  (function() {
+    // true means javascript enabled
+    if (document.getElementById) {
+      var pt = document.getElementById('print');
+      if (pt && typeof window.print === 'function') {
+        var but = document.createElement('input');
+        but.setAttribute('type', 'button');
+        but.setAttribute('value', 'Print this now');
+        but.onclick = function() {
+          window.print();
+        };
+        pt.appendChild(but);
+      }
     }
-  }
-})();
+  })();
 </script>
 ```
 
@@ -58,14 +57,14 @@ It can be said that both progressive enhancement and graceful degradation try to
 
 graceful degradation becomes viable in a few situations:
 
-* You retrofit an old product and you don’t have the time, access or insight to change or replace it.
-* You just don’t have time to finish a product with full progressive enhancement (often a sign of bad planning or running out of budget).
-* The product you have is an edge case, for example very high traffic sites where every millisecond of performance means a difference of millions of dollars.
-* Your product by definition is so dependent on scripting that it makes more sense to maintain a “basic” version rather than enhancing one (Maps, email clients, feed readers).
+- You retrofit an old product and you don’t have the time, access or insight to change or replace it.
+- You just don’t have time to finish a product with full progressive enhancement (often a sign of bad planning or running out of budget).
+- The product you have is an edge case, for example very high traffic sites where every millisecond of performance means a difference of millions of dollars.
+- Your product by definition is so dependent on scripting that it makes more sense to maintain a “basic” version rather than enhancing one (Maps, email clients, feed readers).
 
 In all other cases, progressive enhancement will make both the end users and you happier:
 
-* Regardless of environment and ability you deliver a product that works.
-* When a new browser comes out or a browser extension becomes widely adopted you can enhance to yet another level without having to touch the original solution — graceful degradation would require you to alter the original solution.
-* You allow technology to be what it is supposed to be — an aid to reach a goal faster than without it, not a “must” to be able to reach a goal in the first place.
-* If you need to add new features, you can do so after checking if they are supported at a certain stage, or you can add it to the most basic level of functionality and make it better in more sophisticated environments. In any case, the maintenance happens at the same spot and not in two different places. Keeping a progressively enhanced product up-to-date is much less work than maintaining two versions.
+- Regardless of environment and ability you deliver a product that works.
+- When a new browser comes out or a browser extension becomes widely adopted you can enhance to yet another level without having to touch the original solution — graceful degradation would require you to alter the original solution.
+- You allow technology to be what it is supposed to be — an aid to reach a goal faster than without it, not a “must” to be able to reach a goal in the first place.
+- If you need to add new features, you can do so after checking if they are supported at a certain stage, or you can add it to the most basic level of functionality and make it better in more sophisticated environments. In any case, the maintenance happens at the same spot and not in two different places. Keeping a progressively enhanced product up-to-date is much less work than maintaining two versions.

@@ -2,14 +2,14 @@
 
 ## Json Server 创建本地 json 文件作为数据库
 
-* <https://www.techiediaries.com/fake-api-jwt-json-server/>(perfect!)
-* <https://github.com/typicode/json-server>
-* <https://coligo.io/create-mock-rest-api-with-json-server>
+- <https://www.techiediaries.com/fake-api-jwt-json-server/>(perfect!)
+- <https://github.com/typicode/json-server>
+- <https://coligo.io/create-mock-rest-api-with-json-server>
 
 ## Faker.js 产生数据
 
-* [Faker](https://github.com/marak/Faker.js)
-* [graphql-js](https://github.com/graphql/graphql-js)
+- [Faker](https://github.com/marak/Faker.js)
+- [graphql-js](https://github.com/graphql/graphql-js)
 
 ## 具体步骤
 

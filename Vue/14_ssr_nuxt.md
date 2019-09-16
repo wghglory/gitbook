@@ -764,4 +764,3 @@ created() {
   // console.log('created: ', this.$axios);
 }
 ```
-

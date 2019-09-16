@@ -61,4 +61,3 @@ import Bus from './plugins/bus';
 
 Vue.use(Bus);
 ```
-

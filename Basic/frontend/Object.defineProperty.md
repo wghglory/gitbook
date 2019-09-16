@@ -12,18 +12,18 @@ console.log(guanghui.age); // 12
 
 ## 传入参数
 
-* 第一个参数:目标对象
-* 第二个参数:需要定义的属性或方法的名字。
-* 第三个参数:目标属性所拥有的特性。（descriptor）
+- 第一个参数:目标对象
+- 第二个参数:需要定义的属性或方法的名字。
+- 第三个参数:目标属性所拥有的特性。（descriptor）
 
 ## descriptor
 
-* value: 属性的值(不用多说了)
-* writable: 如果为 false，属性的值就不能被重写,只能为只读了
-* configurable: 总开关，一旦为 false，就不能再设置他的（value，writable，configurable）
-* enumerable: 是否能在 `for...in` 循环中遍历出来或在 `Object.keys` 中列举出来。
-* get:一会细说
-* set:一会细说
+- value: 属性的值(不用多说了)
+- writable: 如果为 false，属性的值就不能被重写,只能为只读了
+- configurable: 总开关，一旦为 false，就不能再设置他的（value，writable，configurable）
+- enumerable: 是否能在 `for...in` 循环中遍历出来或在 `Object.keys` 中列举出来。
+- get:一会细说
+- set:一会细说
 
 ### descriptor 默认值
 

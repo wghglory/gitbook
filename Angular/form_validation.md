@@ -5,52 +5,71 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h3>Angular 6 Reactive Form Validation</h3>
-      <form [formGroup]="registerForm"
-        (ngSubmit)="onSubmit()">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text"
+          <input
+            type="text"
             formControlName="firstName"
             class="form-control"
-            [ngClass]="{ 'is-invalid': formControls.firstName.touched && formControls.firstName.errors }" />
-          <div *ngIf="formControls.firstName.touched && formControls.firstName.errors"
-            class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': formControls.firstName.touched && formControls.firstName.errors }"
+          />
+          <div
+            *ngIf="formControls.firstName.touched && formControls.firstName.errors"
+            class="invalid-feedback"
+          >
             <div *ngIf="formControls.firstName.errors.required">First Name is required</div>
           </div>
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text"
+          <input
+            type="text"
             formControlName="lastName"
             class="form-control"
-            [ngClass]="{ 'is-invalid': formControls.lastName.touched && formControls.lastName.errors }" />
-          <div *ngIf="formControls.lastName.touched && formControls.lastName.errors"
-            class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': formControls.lastName.touched && formControls.lastName.errors }"
+          />
+          <div
+            *ngIf="formControls.lastName.touched && formControls.lastName.errors"
+            class="invalid-feedback"
+          >
             <div *ngIf="formControls.lastName.hasError('required')">Last Name is required</div>
           </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="text"
+          <input
+            type="text"
             formControlName="email"
             class="form-control"
-            [ngClass]="{ 'is-invalid': formControls.email.touched && formControls.email.errors }" />
-          <div *ngIf="formControls.email.touched && formControls.email.errors"
-            class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': formControls.email.touched && formControls.email.errors }"
+          />
+          <div
+            *ngIf="formControls.email.touched && formControls.email.errors"
+            class="invalid-feedback"
+          >
             <div *ngIf="formControls.email.errors.required">Email is required</div>
-            <div *ngIf="formControls.get('email').hasError('email')">Email must be a valid email address</div>
+            <div *ngIf="formControls.get('email').hasError('email')">
+              Email must be a valid email address
+            </div>
           </div>
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password"
+          <input
+            type="password"
             formControlName="password"
             class="form-control"
-            [ngClass]="{ 'is-invalid': formControls.password.touched && formControls.password.errors }" />
-          <div *ngIf="formControls.password.touched && formControls.password.errors"
-            class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': formControls.password.touched && formControls.password.errors }"
+          />
+          <div
+            *ngIf="formControls.password.touched && formControls.password.errors"
+            class="invalid-feedback"
+          >
             <div *ngIf="formControls.password.errors.required">Password is required</div>
-            <div *ngIf="formControls.password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="formControls.password.errors.minlength">
+              Password must be at least 6 characters
+            </div>
           </div>
         </div>
         <div class="form-group">

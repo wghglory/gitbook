@@ -118,5 +118,5 @@ Using this code, on a mouse hover, the host element border will be set to a gree
 
 ## Reference
 
-* <https://codecraft.tv/courses/angular/custom-directives/hostlistener-and-hostbinding/>
-* <https://angular.io/guide/attribute-directives>
+- <https://codecraft.tv/courses/angular/custom-directives/hostlistener-and-hostbinding/>
+- <https://angular.io/guide/attribute-directives>

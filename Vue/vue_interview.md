@@ -4,59 +4,59 @@ Reference: <https://www.jianshu.com/u/56b92d335d13>
 
 ### 关于 Vue 生命周期，下列选项不正确的是()[单选题]
 
-* a. vue 实例从创建到销毁的过程，就是生命周期。
-* b. 页面首次加载会触发 beforeCreate,created,beforeMount,mounted,beforeUpdate,updated
-* c. created 标识完成数据观测，属性和方法的运算，初始化时间，\$el 属性还没有显示出来
-* d. dom 渲染在 mounted 中就完成了
+- a. vue 实例从创建到销毁的过程，就是生命周期。
+- b. 页面首次加载会触发 beforeCreate,created,beforeMount,mounted,beforeUpdate,updated
+- c. created 标识完成数据观测，属性和方法的运算，初始化时间，\$el 属性还没有显示出来
+- d. dom 渲染在 mounted 中就完成了
 
 _答案解析：_
 
-* b. 首次加载触发，beforeCreate,created,beforeMount,mounted beforeUpdate,updated 只有数据更新时候才会触发
+- b. 首次加载触发，beforeCreate,created,beforeMount,mounted beforeUpdate,updated 只有数据更新时候才会触发
 
 ### 对于 vue 中数据响应式原理说法，不正确的是()[多选题]
 
-* a. 采用数据劫持方式，即 Object.defineProperty()劫持 data 中各个属性来实现数据响应式
-* b. 视图中变化通过 watcher 更新 data 中的数据
-* c. 若 data 中某个属性多次变化，watcher 仅会进入更新队列 1 次
-* d. 通过变异过程进行依赖收集
+- a. 采用数据劫持方式，即 Object.defineProperty()劫持 data 中各个属性来实现数据响应式
+- b. 视图中变化通过 watcher 更新 data 中的数据
+- c. 若 data 中某个属性多次变化，watcher 仅会进入更新队列 1 次
+- d. 通过变异过程进行依赖收集
 
 _答案解析：_
 
-* b. watcher 更新 UI 界面，不是更新数据
-* d. 编译唯一目的是生成 render 函数，依赖收集只在各个组件初始化中过程收集依赖
+- b. watcher 更新 UI 界面，不是更新数据
+- d. 编译唯一目的是生成 render 函数，依赖收集只在各个组件初始化中过程收集依赖
 
 ### Vue 中组件参数传递，不正确的是()[单选]
 
-* a. 子组件给父组件传值，使用 emit 方法
-* b. 子组件使用 emit('someevent')派发事件,父组件使用@someevent 监听
-* c. 祖孙组件之间可以使用 provide 和 inject 方式跨层级相互传值
-* d. 度组件给子组件传值，子组件通过 props 接收数据
+- a. 子组件给父组件传值，使用 emit 方法
+- b. 子组件使用 emit('someevent')派发事件,父组件使用@someevent 监听
+- c. 祖孙组件之间可以使用 provide 和 inject 方式跨层级相互传值
+- d. 度组件给子组件传值，子组件通过 props 接收数据
 
 _答案解析：_
 
-* c. 祖孙传值使用 provide 和 inject 方式是对的，但是错误在于这种方法都是单向的，无法互相传值（文字游戏）
+- c. 祖孙传值使用 provide 和 inject 方式是对的，但是错误在于这种方法都是单向的，无法互相传值（文字游戏）
 
 ### 关于 v-model 说法不正确的是()[单选]
 
-* a. v-model 能够实现双向绑定
-* b. v-model 本质上是语法糖，负责监听用户输入时间以及更新数据
-* c. v-model 是内置指令，不能使用在自定义组件上
-* d. 对 input 使用 v-model 实际上是指定其：value 和 input
+- a. v-model 能够实现双向绑定
+- b. v-model 本质上是语法糖，负责监听用户输入时间以及更新数据
+- c. v-model 是内置指令，不能使用在自定义组件上
+- d. 对 input 使用 v-model 实际上是指定其：value 和 input
 
 _答案解析：_
 
-* c. v-model 是可以使用在自定义组件上的， 子组件在 props 中通过 value 接收数据，通过\$emit('input')去派发事件
+- c. v-model 是可以使用在自定义组件上的， 子组件在 props 中通过 value 接收数据，通过\$emit('input')去派发事件
 
 ### 下列说法不正确的是哪项()[单选题]
 
-* a. key 的作用是为了高效的更新虚拟 DOM
-* b. 若指定了组件的 template 选项，render 函数不会执行
-* c. 使用`vm.$nextTick`可以确获得 DOM 异步更新的结果
-* d. 若没有 el 选项，`vm.$mount(dom)`可以将 Vue 实例挂载于指定元素上
+- a. key 的作用是为了高效的更新虚拟 DOM
+- b. 若指定了组件的 template 选项，render 函数不会执行
+- c. 使用`vm.$nextTick`可以确获得 DOM 异步更新的结果
+- d. 若没有 el 选项，`vm.$mount(dom)`可以将 Vue 实例挂载于指定元素上
 
 _答案解析：_
 
-* b. el 与 template 存在竞争关系，render 函数一定会执行，有 render 函数 template 会被忽略
+- b. el 与 template 存在竞争关系，render 函数一定会执行，有 render 函数 template 会被忽略
 
 Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML 特殊情况下使用 render 函数(使用 JavaScript 的编程能力和创建 HTML)，它比 template 更接近编译器。
 
@@ -64,84 +64,84 @@ Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML 特殊情
 
 ### 下列说法不正确的是哪项()[单选题]
 
-* a. 使用`this.$parent`查找当前组件的父组件
-* b. 使用`this.$children`按照顺序查找当前组件的直接子组件
-* c. 使用`this.$root`查找根组件，并可以配合`$children`遍历全部组件
-* d. 使用`this.$refs`查找命名子组件
+- a. 使用`this.$parent`查找当前组件的父组件
+- b. 使用`this.$children`按照顺序查找当前组件的直接子组件
+- c. 使用`this.$root`查找根组件，并可以配合`$children`遍历全部组件
+- d. 使用`this.$refs`查找命名子组件
 
 _答案解析：_
 
-* b. 查找的子组件不知道具体顺序
+- b. 查找的子组件不知道具体顺序
 
 ### 下列关于 vuex 描述，不正确的是哪项()[单选题]
 
-* a. Vuex 是一个状态管理模式
-* b. Vuex 主要用于多视图之间状态全局共享与管理
-* c. 在 Vuex 中改变状态可以通过 mutaions 和 actions
-* d. Vuex 通过 Vue 实现状态响应式，因此只能使用于 Vue
+- a. Vuex 是一个状态管理模式
+- b. Vuex 主要用于多视图之间状态全局共享与管理
+- c. 在 Vuex 中改变状态可以通过 mutaions 和 actions
+- d. Vuex 通过 Vue 实现状态响应式，因此只能使用于 Vue
 
 _答案解析：_ c 改变状态的是 mutations，actions 内部也是通过 context.commit 的 mutations 的方法
 
 ### 下列关于 vue-router 的描述，不正确的是()[单选题]
 
-* a. vue-router 常用模式 hash 和 history
-* b. 可以通过 addRoutes 方法动态添加路由
-* c. 可以通过 beforeEnter 对单个组件进行路由守卫
-* d. vue-router 借助 Vue 实现路由信息响应式，因此只能用于 Vue
+- a. vue-router 常用模式 hash 和 history
+- b. 可以通过 addRoutes 方法动态添加路由
+- c. 可以通过 beforeEnter 对单个组件进行路由守卫
+- d. vue-router 借助 Vue 实现路由信息响应式，因此只能用于 Vue
 
 _答案解析：_ c beforeEnter 是对单个路由的守卫，不是单个组件
 
 ### 关于 vue 服务器渲染，下列说法不正确的()[单选题]
 
-* a. 通过服务器渲染，可以优化 SEO 抓取，提升首页加载速度
-* b. 某些生命周期钩子函数 如(beforeCreate,created) 可以运行在服务端和客户端
-* c. 服务器渲染的 vue.js 是同构开发，因为 vue 扩展库可以在服务端应用正常运行
-* d. 组件渲染为服务端的 HTML 字符串，将他们直接发送到浏览器，最后在客户端上"激活"为可交互的应用
+- a. 通过服务器渲染，可以优化 SEO 抓取，提升首页加载速度
+- b. 某些生命周期钩子函数 如(beforeCreate,created) 可以运行在服务端和客户端
+- c. 服务器渲染的 vue.js 是同构开发，因为 vue 扩展库可以在服务端应用正常运行
+- d. 组件渲染为服务端的 HTML 字符串，将他们直接发送到浏览器，最后在客户端上"激活"为可交互的应用
 
 _答案解析：_ c 服务端是否可以使用 vue 扩展库没有明确的说明
 
 ### 关于 typescript 在 vue 中的应用，说法不正确的是()[单选题]
 
-* a. 使用 typeScript 可以获得静态类型检查以及最新的 ECMAscript 特性
-* b. typeScript 是 Javascript 类型的超集，它可以编译成纯 Javascript。意味着你完成可以使用 JS 语法编写 TS 代码
-* c. 使用 Vue.extend({})方式声明组件不能获得 TypeScript 类型推断能力
-* d. 基于类的 Vue 组件中如果要声明初始数据可以直接声明为实例的属性，如 `message:string='Hello'`
+- a. 使用 typeScript 可以获得静态类型检查以及最新的 ECMAscript 特性
+- b. typeScript 是 Javascript 类型的超集，它可以编译成纯 Javascript。意味着你完成可以使用 JS 语法编写 TS 代码
+- c. 使用 Vue.extend({})方式声明组件不能获得 TypeScript 类型推断能力
+- d. 基于类的 Vue 组件中如果要声明初始数据可以直接声明为实例的属性，如 `message:string='Hello'`
 
 _答案解析：_
 
-* c. Vue.extend({})可以声明组件
+- c. Vue.extend({})可以声明组件
 
 ### 下列关于 vue 说法不正确的是()[单选题]
 
-* a. vue 简单易上手，性能高效，还便于与第三方库或既有项目整合
-* b. vue 构建的项目复杂度增加较快，仅适合中小型项目
-* c. vue 基于组件构建应用，代码组织简洁，易理解，易维护
-* d. vue 借助虚拟 DOM 实现跨平台，服务端渲染，以及性能良好的 DOM 更新策略
+- a. vue 简单易上手，性能高效，还便于与第三方库或既有项目整合
+- b. vue 构建的项目复杂度增加较快，仅适合中小型项目
+- c. vue 基于组件构建应用，代码组织简洁，易理解，易维护
+- d. vue 借助虚拟 DOM 实现跨平台，服务端渲染，以及性能良好的 DOM 更新策略
 
 _答案解析：_ b Vue0 后优化了 watcher，以组件为单位添加 watcher，(数量降低了) 异步更新数据，（数据变化并非实时更新，每种数据仅仅进入更新队列 1 次）https://www.jianshu.com/p/463c7f7669df 最大程度精确了虚拟 DOM 树数据更新位置，(通过 diff 与 patch 实现 新旧虚拟 DOM 树比对，只对变化位置数据更新) 提高了渲染的性能所以可以使用在大型项目上了
 
 ### 下列关于 vue 原理哪些是正确的()[多选]
 
-* a. Vue 中数据变更通知，通过拦截数组操作方法实现
-* b. 编译器目标是创建渲染函数，渲染函数执行得到 VNODE 树
-* c. 组件内 data 发生变化会通知其对应的 Watcher 执行异步更新
-* d. patching 算法首先是进行同层级比较，可以执行的操作是节点的增加，删除和更新
+- a. Vue 中数据变更通知，通过拦截数组操作方法实现
+- b. 编译器目标是创建渲染函数，渲染函数执行得到 VNODE 树
+- c. 组件内 data 发生变化会通知其对应的 Watcher 执行异步更新
+- d. patching 算法首先是进行同层级比较，可以执行的操作是节点的增加，删除和更新
 
 _答案解析：_ abcd - a. 数组的 7 种拦截数据的方法
 
-* push() 从数组末尾添加值。
-* pop() 删除并返回数组的最后一个元素。
-* shift() 把数组的第一个元素从其中删除，并返回第一个元素的值。
-* unshift() 向数组的开头添加一个或更多元素，并返回新的长度。
-* splice() 向/从数组中添加/删除项目，然后返回被删除的项目。
-* sort() 对数组的元素进行排序。
-* reverse() 用于颠倒数组中元素的顺序
+- push() 从数组末尾添加值。
+- pop() 删除并返回数组的最后一个元素。
+- shift() 把数组的第一个元素从其中删除，并返回第一个元素的值。
+- unshift() 向数组的开头添加一个或更多元素，并返回新的长度。
+- splice() 向/从数组中添加/删除项目，然后返回被删除的项目。
+- sort() 对数组的元素进行排序。
+- reverse() 用于颠倒数组中元素的顺序
 
-- b. 正确，见 [Vue 原理摘录](https://www.jianshu.com/p/c1b835e9ed86)图 1
+* b. 正确，见 [Vue 原理摘录](https://www.jianshu.com/p/c1b835e9ed86)图 1
 
-* c. 正确，见 [Vue 原理摘录](https://www.jianshu.com/p/c1b835e9ed86)图 1 触发了 setter 方法，通知对应组件的 watcher 执行异步更新
+- c. 正确，见 [Vue 原理摘录](https://www.jianshu.com/p/c1b835e9ed86)图 1 触发了 setter 方法，通知对应组件的 watcher 执行异步更新
 
-- d. 正确，参照网上牛人的[文章](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2FLL18781132750%2Farticle%2Fdetails%2F81480661)
+* d. 正确，参照网上牛人的[文章](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2FLL18781132750%2Farticle%2Fdetails%2F81480661)
 
 ### 什么是 mvvm
 
@@ -157,19 +157,19 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 
 ### vue 的优点是什么?
 
-* 低耦合。视图（View）可以独立于 Model 变化和修改，一个 ViewModel 可以绑定到不同的"View"上，当 View 变化的时候 Model 可以不变，当 Model 变化的时候 View 也可以不变。
-* 可重用性。你可以把一些视图逻辑放在一个 ViewModel 里面，让很多 view 重用这段视图逻辑。
-* 独立开发。开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计，使用 Expression Blend 可以很容易设计界面并生成 xml 代码。
-* 可测试。界面素来是比较难于测试的，而现在测试可以针对 ViewModel 来写。
+- 低耦合。视图（View）可以独立于 Model 变化和修改，一个 ViewModel 可以绑定到不同的"View"上，当 View 变化的时候 Model 可以不变，当 Model 变化的时候 View 也可以不变。
+- 可重用性。你可以把一些视图逻辑放在一个 ViewModel 里面，让很多 view 重用这段视图逻辑。
+- 独立开发。开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计，使用 Expression Blend 可以很容易设计界面并生成 xml 代码。
+- 可测试。界面素来是比较难于测试的，而现在测试可以针对 ViewModel 来写。
 
 ### vue 生命周期的理解？
 
 总共分为 8 个阶段创建前/后，载入前/后，更新前/后，销毁前/后。
 
-* 创建前/后： 在 beforeCreate 阶段，vue 实例的挂载元素 el 还没有。
-* 载入前/后：在 beforeMount 阶段，vue 实例的\$el 和 data 都初始化了，但还是挂载之前为虚拟的 dom 节点，dat- a. message 还未替换。在 mounted 阶段，vue 实例挂载完成，dat- a. message 成功渲染。
-* 更新前/后：当 data 变化时，会触发 beforeUpdate 和 updated 方法。
-* 销毁前/后：在执行 destroy 方法后，对 data 的改变不会再触发周期函数，说明此时 vue 实例已经解除了事件监听以及和 dom 的绑定，但是 dom 结构依然存在。
+- 创建前/后： 在 beforeCreate 阶段，vue 实例的挂载元素 el 还没有。
+- 载入前/后：在 beforeMount 阶段，vue 实例的\$el 和 data 都初始化了，但还是挂载之前为虚拟的 dom 节点，dat- a. message 还未替换。在 mounted 阶段，vue 实例挂载完成，dat- a. message 成功渲染。
+- 更新前/后：当 data 变化时，会触发 beforeUpdate 和 updated 方法。
+- 销毁前/后：在执行 destroy 方法后，对 data 的改变不会再触发周期函数，说明此时 vue 实例已经解除了事件监听以及和 dom 的绑定，但是 dom 结构依然存在。
 
 ### 为什么 vue 中 data 必须是一个函数？
 
@@ -185,33 +185,33 @@ vue-router 模块的 router-link 组件修改 router 按钮激活 class，一共
 
 ### 路由之间跳转？
 
-* 声明式（标签跳转）
-* 编程式（ js 跳转） router.push('index')
+- 声明式（标签跳转）
+- 编程式（ js 跳转） router.push('index')
 
 ### 懒加载（按需加载路由）（常考）
 
 webpack 中提供了 require.ensure()来实现按需加载。以前引入路由是通过 import 这样的方式引入，改为 const 定义的方式进行引入。
 
-* 不进行页面按需加载引入方式：import home from '../../common/home.vue'
-* 进行页面按需加载的引入方式：const home = r => require.ensure( [], () => r (require('../../common/home.vue')))
+- 不进行页面按需加载引入方式：import home from '../../common/home.vue'
+- 进行页面按需加载的引入方式：const home = r => require.ensure( [], () => r (require('../../common/home.vue')))
 
 ### vue-router 有哪几种导航钩子?
 
 全局导航钩子
 
-* router.beforeEach(to, from, next),
-* router.beforeResolve(to, from, next),
-* router.afterEach(to, from ,next) 单独路由独享组件
-* beforeEnter 组件内钩子
-* beforeRouteEnter,
-* beforeRouteUpdate,
-* beforeRouteLeave
+- router.beforeEach(to, from, next),
+- router.beforeResolve(to, from, next),
+- router.afterEach(to, from ,next) 单独路由独享组件
+- beforeEnter 组件内钩子
+- beforeRouteEnter,
+- beforeRouteUpdate,
+- beforeRouteLeave
 
 ### 自定义指令(v-check, v-focus) 的方法有哪些? 它有哪些钩子函数? 还有哪些钩子函数参数
 
-* 全局定义指令：在 vue 对象的 directive 方法里面有两个参数, 一个是指令名称, 另一个是函数。
-* 组件内定义指令：directives 钩子函数: bind(绑定事件出发)、inserted(节点插入时候触发)、update(组件内相关更新)
-* 钩子函数参数： el、binding
+- 全局定义指令：在 vue 对象的 directive 方法里面有两个参数, 一个是指令名称, 另一个是函数。
+- 组件内定义指令：directives 钩子函数: bind(绑定事件出发)、inserted(节点插入时候触发)、update(组件内相关更新)
+- 钩子函数参数： el、binding
 
 ### vue 的双向绑定的原理是什么(常考)
 
@@ -237,9 +237,9 @@ action 类似于 muation, 不同在于：action 提交的是 mutation,而不是�
 
 ### 不用 vuex 会带来什么问题
 
-* 可维护性会下降，你要修改数据，你得维护 3 个地方
-* 可读性下降，因为一个组件里的数据，你根本就看不出来是从哪里来的
-* 增加耦合，大量的上传派发，会让耦合性大大的增加，本来 Vue 用 Component 就是为了减少耦合，现在这么用，和组件化的初衷相背
+- 可维护性会下降，你要修改数据，你得维护 3 个地方
+- 可读性下降，因为一个组件里的数据，你根本就看不出来是从哪里来的
+- 增加耦合，大量的上传派发，会让耦合性大大的增加，本来 Vue 用 Component 就是为了减少耦合，现在这么用，和组件化的初衷相背
 
 ### vuex 原理
 

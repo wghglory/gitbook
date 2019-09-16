@@ -114,14 +114,14 @@ fromEvent(this.saveButton.nativeElement, 'click')
 
 Mapping data to the format you need is a common task. RxJS comes with a few very neat operators that help you get the job done. To recap: map is for mapping ‘normal’ values to whatever format you need it to be. The return value will be wrapped in an Observable again, so you can keep using it in your data stream. When you have to deal with an ‘inner’ Observable it’s easier to use mergeMap, switchMap or concatMap. Use mergeMap if you simply want to flatten the data into one Observable, use switchMap if you need to flatten the data into one Observable but only need the latest value and use concatMap if you need to flatten the data into one Observable and the order is important to you.
 
-* if we need to do things in sequence while waiting for completion, then `concatMap` is the right choice
+- if we need to do things in sequence while waiting for completion, then `concatMap` is the right choice
 
-* for doing things in parallel, `mergeMap` is the best option
+- for doing things in parallel, `mergeMap` is the best option
 
-* in case we need cancellation logic, `switchMap` is the way to go
+- in case we need cancellation logic, `switchMap` is the way to go
 
-* for ignoring new Observables while the current one is still ongoing, `exhaustMap` does just that
+- for ignoring new Observables while the current one is still ongoing, `exhaustMap` does just that
 
 ## Reference
 
-* <https://blog.angular-university.io/rxjs-higher-order-mapping/>
+- <https://blog.angular-university.io/rxjs-higher-order-mapping/>

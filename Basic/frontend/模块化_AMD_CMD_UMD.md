@@ -1,10 +1,10 @@
 # [模块化: AMD, CMD, CommonJS, UMD](https://segmentfault.com/a/1190000004873947)
 
-* AMD 模块以浏览器第一的原则发展，异步加载模块，**依赖前置提前加载**，代表 RequireJS。RequireJS 从 2.0 开始，也改成可以延迟执行
-* CMD 异步加载，**延迟执行**，**依赖后置就近加载**，代表 seajs
-* CommonJS 模块以服务器第一原则发展，选择**同步加载**，Node.js 使用
-* UMD 是 AMD 和 CommonJS 的糅合
-* ES6 import
+- AMD 模块以浏览器第一的原则发展，异步加载模块，**依赖前置提前加载**，代表 RequireJS。RequireJS 从 2.0 开始，也改成可以延迟执行
+- CMD 异步加载，**延迟执行**，**依赖后置就近加载**，代表 seajs
+- CommonJS 模块以服务器第一原则发展，选择**同步加载**，Node.js 使用
+- UMD 是 AMD 和 CommonJS 的糅合
+- ES6 import
 
 ## AMD (Asynchronous Module Definition)，代表 RequireJs
 
@@ -24,7 +24,7 @@ define('module1', ['jquery'], ($) => {
 
 通过参数的排列组合，这个简单的 API 可以从容应对各种各样的应用场景，如下所述。
 
-* 定义无依赖的模块
+- 定义无依赖的模块
 
 ```javascript
 define({
@@ -34,7 +34,7 @@ define({
 });
 ```
 
-* 定义有依赖的模块
+- 定义有依赖的模块
 
 ```javascript
 define(['alpha'], function(alpha) {
@@ -46,7 +46,7 @@ define(['alpha'], function(alpha) {
 });
 ```
 
-* 定义数据对象模块
+- 定义数据对象模块
 
 ```javascript
 define({
@@ -55,7 +55,7 @@ define({
 });
 ```
 
-* 具名模块
+- 具名模块
 
 ```javascript
 define("alpha", [ "require", "exports", "beta" ], function( require, exports, beta ){
@@ -67,7 +67,7 @@ define("alpha", [ "require", "exports", "beta" ], function( require, exports, be
 });
 ```
 
-* 包装模块
+- 包装模块
 
 ```javascript
 define(function(require, exports, module) {

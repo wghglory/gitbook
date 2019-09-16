@@ -20,9 +20,9 @@ Asp.net core no longer uses `web.config` as configuration file. Instead, `appset
 
 1.  `ConfigureServices` is used to add services to the container, and to configure those services, **Dependency Injection!**
 
-    * AddTransient: Every request creates an instance. 每次请求都创建一个新的实例. always different; a new instance is provided to every controller and every service.
-    * AddScoped: the same within a request, but different across different requests. 相同请求得到同一个实例，常用注册 Repository。不同请求实例不同
-    * AddSingleton: the same for every object and every request
+    - AddTransient: Every request creates an instance. 每次请求都创建一个新的实例. always different; a new instance is provided to every controller and every service.
+    - AddScoped: the same within a request, but different across different requests. 相同请求得到同一个实例，常用注册 Repository。不同请求实例不同
+    - AddSingleton: the same for every object and every request
 
 1.  `Configure` is used to specify how an ASP.NET application will respond to individual HTTP requests. Use **middleware** to configure the HTTP request pipeline
 
@@ -102,23 +102,23 @@ View may change too fast and Model cannot keep pace with View. Usually have to c
 
 Use `POST` for creating a resource
 
-* 201 Created
-* Header: content-type
+- 201 Created
+- Header: content-type
 
 Validation
 
-* Data annotations
-* ModelState
+- Data annotations
+- ModelState
 
 **Put/Patch**:
 
 Use `PUT` for full updates, `PATCH` for partial updates
 
-* JsonPatch standard
-* 204 NoContent or 200 Ok
+- JsonPatch standard
+- 204 NoContent or 200 Ok
 
 **Delete**:
 
 `DELETE` is for deleting resources
 
-* 204 NoContent
+- 204 NoContent

@@ -2,9 +2,9 @@
 
 ## touch 事件中的 touches、targetTouches 和 changedTouches
 
-* `touches`: 当前**屏幕**上所有触摸点的列表
-* `targetTouches`: 当前**对象**上所有触摸点的列表
-* `changedTouches`: **涉及当前(引发)事件**的触摸点的列表
+- `touches`: 当前**屏幕**上所有触摸点的列表
+- `targetTouches`: 当前**对象**上所有触摸点的列表
+- `changedTouches`: **涉及当前(引发)事件**的触摸点的列表
 
 通过一个例子来区分一下触摸事件中的这三个属性：
 
@@ -17,8 +17,8 @@
 
 ### 触点坐标选取
 
-* `touchstart` 和 `touchmove` 使用: `e.targetTouches[0].pageX` 或 `(jquery)e.originalEvent.targetTouches[0].pageX`
-* `touchend` 使用: `e.changedTouches[0].pageX` 或 `(jquery)e.originalEvent.changedTouches[0].pageX`
+- `touchstart` 和 `touchmove` 使用: `e.targetTouches[0].pageX` 或 `(jquery)e.originalEvent.targetTouches[0].pageX`
+- `touchend` 使用: `e.changedTouches[0].pageX` 或 `(jquery)e.originalEvent.changedTouches[0].pageX`
 
 ## touchmove 事件对象的获取
 
@@ -49,14 +49,14 @@ obj.addEventListener('touchmove', function(e, 参数一) {
 
 ```html
 <div class="container">
-    <div id="underLayer">底层元素</div>
+  <div id="underLayer">底层元素</div>
 
-    <div id="popupLayer">
-        <div class="layer-title">弹出层</div>
-        <div class="layer-action">
-            <button class="btn" id="closePopup">关闭</button>
-        </div>
+  <div id="popupLayer">
+    <div class="layer-title">弹出层</div>
+    <div class="layer-action">
+      <button class="btn" id="closePopup">关闭</button>
     </div>
+  </div>
 </div>
 <div id="bgMask"></div>
 ```
@@ -134,5 +134,5 @@ zepto 的 tap 通过兼听绑定在 document 上的 touch 事件来完成 tap �
 
 ## reference
 
-* <http://www.cnblogs.com/yexiaochai/p/3462657.html>
-* 对于需要同时绑定 tap 和 touchmove 的元素：<https://segmentfault.com/a/1190000005791890>
+- <http://www.cnblogs.com/yexiaochai/p/3462657.html>
+- 对于需要同时绑定 tap 和 touchmove 的元素：<https://segmentfault.com/a/1190000005791890>

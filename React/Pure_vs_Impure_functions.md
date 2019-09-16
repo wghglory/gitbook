@@ -2,9 +2,9 @@
 
 pure function 不修改外部变量包括 DOM，输入参数唯一则返回值唯一，没有负效应，容易测试。
 
-* The function should take in at least one argument.
-* The function should return a value or another function.
-* The function should not change or mutate any of its arguments.
+- The function should take in at least one argument.
+- The function should return a value or another function.
+- The function should not change or mutate any of its arguments.
 
 ```javascript
 function addToArrayImpure(array, element) {

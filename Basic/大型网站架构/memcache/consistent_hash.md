@@ -2,11 +2,11 @@
 
 Given _n_ cache hosts, an intuitive hash function is `key % n`. It is simple and commonly used. But it has two major drawbacks:
 
-* It is NOT _horizontally scalable_.
+- It is NOT _horizontally scalable_.
 
   **Every time when adding one new cache host to the system, all existing mappings are broken**. It will be a pain point in maintenance if the caching system contains a lot of data. Also, if the caching system is behind a popular service, it is not easy to schedule a downtime to update all caching mappings.
 
-* It may NOT be _load balanced_, especially for non-uniformly distributed data.
+- It may NOT be _load balanced_, especially for non-uniformly distributed data.
 
   In real world, it is less likely that the data is uniformly distributed. Then for the caching system, it results that **some caches are hot and saturated while the others idle and almost empty**. In such situations, consistent hashing is a good way to improve the caching system.
 
@@ -22,9 +22,9 @@ Consistent hashing is a very useful strategy for distributed caching system and 
 
 Example of uses include:
 
-* Last.fm: [memcached client with consistent hashing](http://www.last.fm/user/RJ/journal/2007/04/10/rz_libketama_-_a_consistent_hashing_algo_for_memcache_clients)
-* Amazon: internal scalable key-value store, [Dynamo](http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf)
-* [Chord](https://github.com/sit/dht/wiki): a distributed hash table by MITHow it works? As a typical hash function, consistent hashing maps a key or a cache host to an integer.
+- Last.fm: [memcached client with consistent hashing](http://www.last.fm/user/RJ/journal/2007/04/10/rz_libketama_-_a_consistent_hashing_algo_for_memcache_clients)
+- Amazon: internal scalable key-value store, [Dynamo](http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf)
+- [Chord](https://github.com/sit/dht/wiki): a distributed hash table by MITHow it works? As a typical hash function, consistent hashing maps a key or a cache host to an integer.
 
 Suppose the output of the hash function are in the range of [0, 2^128) (e.g. [MD5](http://en.wikipedia.org/wiki/MD5) hash). Image that the integers in the range are placed on a ring such that the values are wrapped around.
 

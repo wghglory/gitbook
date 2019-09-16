@@ -957,4 +957,3 @@ const fn =
 const reverseProxy = slotScope ? `` : `,proxy:true`;
 return `{key:${el.slotTarget || `"default"`},fn:${fn}${reverseProxy}}`;
 ```
-

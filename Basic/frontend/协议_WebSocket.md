@@ -32,13 +32,13 @@ WebSocket 协议在 2008 年诞生，2011 年成为国际标准。所有浏览�
 
 其他特点包括：
 
-* **real-time 双全工双向通信**
-* 建立在 **TCP 协议**之上，服务器端的实现比较容易。
-* **可以发送文本，也可以发送二进制数据。**
-* **没有同源限制，客户端可以与任意服务器通信。**
-* 与 HTTP 协议有着良好的兼容性。默认端口也是 80 和 443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
-* 数据格式比较轻量，性能开销小，通信高效。
-* 协议标识符是`ws`（如果加密，则为`wss`），服务器网址就是 URL。
+- **real-time 双全工双向通信**
+- 建立在 **TCP 协议**之上，服务器端的实现比较容易。
+- **可以发送文本，也可以发送二进制数据。**
+- **没有同源限制，客户端可以与任意服务器通信。**
+- 与 HTTP 协议有着良好的兼容性。默认端口也是 80 和 443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+- 数据格式比较轻量，性能开销小，通信高效。
+- 协议标识符是`ws`（如果加密，则为`wss`），服务器网址就是 URL。
 
 ```bash
 ws://example.com:80/some/path
@@ -90,10 +90,10 @@ var ws = new WebSocket('ws://localhost:8080');
 
 `readyState`属性返回实例对象的当前状态，共有四种。
 
-* CONNECTING：值为 0，表示正在连接。
-* OPEN：值为 1，表示连接成功，可以通信了。
-* CLOSING：值为 2，表示连接正在关闭。
-* CLOSED：值为 3，表示连接已经关闭，或者打开连接失败。
+- CONNECTING：值为 0，表示正在连接。
+- OPEN：值为 1，表示连接成功，可以通信了。
+- CLOSING：值为 2，表示连接正在关闭。
+- CLOSED：值为 3，表示连接已经关闭，或者打开连接失败。
 
 下面是一个示例。
 
@@ -266,9 +266,9 @@ WebSocket 服务器的实现，可以查看维基百科的[列表](https://en.wi
 
 常用的 Node 实现有以下三种。
 
-* [µWebSockets](https://github.com/uWebSockets/uWebSockets)
-* [Socket.IO](http://socket.io/)
-* [WebSocket-Node](https://github.com/theturtle32/WebSocket-Node)
+- [µWebSockets](https://github.com/uWebSockets/uWebSockets)
+- [Socket.IO](http://socket.io/)
+- [WebSocket-Node](https://github.com/theturtle32/WebSocket-Node)
 
 具体的用法请查看它们的文档，这里不详细介绍了。
 
@@ -333,8 +333,8 @@ $ websocketd --port=8080 ls
 
 更多的用法可以参考[官方示例](https://github.com/joewalnes/websocketd/tree/master/examples/bash)。
 
-* Bash 脚本[读取客户端输入](https://github.com/joewalnes/websocketd/blob/master/examples/bash/greeter.sh)的例子
-* 五行代码实现一个最简单的[聊天服务器](https://github.com/joewalnes/websocketd/blob/master/examples/bash/chat.sh)
+- Bash 脚本[读取客户端输入](https://github.com/joewalnes/websocketd/blob/master/examples/bash/greeter.sh)的例子
+- 五行代码实现一个最简单的[聊天服务器](https://github.com/joewalnes/websocketd/blob/master/examples/bash/chat.sh)
 
 ![img](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017051506.png)
 
@@ -361,6 +361,6 @@ $ websocketd --port=8080 node ./greeter.js
 
 ## 七、参考链接
 
-* [How to Use WebSockets](http://cjihrig.com/blog/how-to-use-websockets/)
-* [WebSockets - Send & Receive Messages](https://www.tutorialspoint.com/websockets/websockets_send_receive_messages.htm)
-* [Introducing WebSockets: Bringing Sockets to the Web](https://www.html5rocks.com/en/tutorials/websockets/basics/)
+- [How to Use WebSockets](http://cjihrig.com/blog/how-to-use-websockets/)
+- [WebSockets - Send & Receive Messages](https://www.tutorialspoint.com/websockets/websockets_send_receive_messages.htm)
+- [Introducing WebSockets: Bringing Sockets to the Web](https://www.html5rocks.com/en/tutorials/websockets/basics/)

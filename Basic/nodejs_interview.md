@@ -1,19 +1,19 @@
 # nodejs interview
 
-* What is an error-first callback?
-* How can you avoid callback hells?
-* How can you listen on port 80 with Node?
-* What's the event loop?
-* What tools can be used to assure consistent style?
-* What's the difference between operational and programmer errors?
-* Why npm shrinkwrap is useful?
-* What's a stub? Name a use case.
-* What's a test pyramid? How can you implement it when talking about HTTP APIs?
-* What's your favourite HTTP framework and why?
-* What are Promises?
-* When should you npm and when yarn?
-* How can you secure your HTTP cookies against XSS attacks?
-* How can you make sure your dependencies are safe?
+- What is an error-first callback?
+- How can you avoid callback hells?
+- How can you listen on port 80 with Node?
+- What's the event loop?
+- What tools can be used to assure consistent style?
+- What's the difference between operational and programmer errors?
+- Why npm shrinkwrap is useful?
+- What's a stub? Name a use case.
+- What's a test pyramid? How can you implement it when talking about HTTP APIs?
+- What's your favourite HTTP framework and why?
+- What are Promises?
+- When should you npm and when yarn?
+- How can you secure your HTTP cookies against XSS attacks?
+- How can you make sure your dependencies are safe?
 
 ### What is an error-first callback?
 
@@ -30,17 +30,17 @@ fs.readFile(filePath, function(err, data) {
 
 ### How can you avoid callback hells?
 
-* modularization: break callbacks into independent functions
-* use _Promises_
-* use yield with _Generators_
-* use a **control flow library**, like [async](https://www.npmjs.com/package/async)
-* use async/await (note that it is only available in the latest v7 release and not in the LTS version - [you can read our experimental async/await how-to here](https://blog.risingstack.com/async-await-node-js-7-nightly/))
+- modularization: break callbacks into independent functions
+- use _Promises_
+- use yield with _Generators_
+- use a **control flow library**, like [async](https://www.npmjs.com/package/async)
+- use async/await (note that it is only available in the latest v7 release and not in the LTS version - [you can read our experimental async/await how-to here](https://blog.risingstack.com/async-await-node-js-7-nightly/))
 
 ### [Why Modular programming](http://leftstick.github.io/why-modularization)
 
-* Avoid naming conflict in global
-* Separation of dependency concerns
-* File concatenation for production
+- Avoid naming conflict in global
+- Separation of dependency concerns
+- File concatenation for production
 
 ```javascript
 //AMD
@@ -178,9 +178,9 @@ A test pyramid describes that when writings test cases there should be a lot mor
 
 When talking about HTTP APIs, it may come down to this:
 
-* lots of low-level unit tests for models \*(dependencies **_are stubbed_**)\*,
-* fewer integration tests, where you check how your models interact with each other \*(dependencies **_are not stubbed_**)\*,
-* less end-to-end tests, where you call your actual endpoints \*(dependencies **_are not stubbed_**)\*.
+- lots of low-level unit tests for models \*(dependencies **_are stubbed_**)\*,
+- fewer integration tests, where you check how your models interact with each other \*(dependencies **_are not stubbed_**)\*,
+- less end-to-end tests, where you call your actual endpoints \*(dependencies **_are not stubbed_**)\*.
 
 ### What are Promises?
 
@@ -214,8 +214,8 @@ XSS occurs when the attacker injects executable JavaScript code into the HTML re
 
 To mitigate these attacks, you have to set flags on the set-cookie HTTP header:
 
-* **HttpOnly** - this attribute is used to help prevent attacks such as cross-site scripting since it does not allow the cookie to be accessed via JavaScript.
-* **secure** - this attribute tells the browser to only send the cookie if the request is being sent over HTTPS.
+- **HttpOnly** - this attribute is used to help prevent attacks such as cross-site scripting since it does not allow the cookie to be accessed via JavaScript.
+- **secure** - this attribute tells the browser to only send the cookie if the request is being sent over HTTPS.
 
 So it would look something like this: Set-Cookie: `sid=<cookie-value>`; HttpOnly. If you are using Express, with [express-cookie session](https://github.com/expressjs/cookie-session#cookie-options), it is working by default.
 
@@ -227,11 +227,11 @@ For example, if you depend on Express, you depend on [27 other modules](https://
 
 The only option is to automate the update / security audit of your dependencies. For that there are free and paid options:
 
-* npm outdated
-* [Trace by RisingStack](https://trace.risingstack.com/)
-* [NSP](https://nodesecurity.io/)
-* [GreenKeeper](https://greenkeeper.io/)
-* [Snyk](https://snyk.io/)
+- npm outdated
+- [Trace by RisingStack](https://trace.risingstack.com/)
+- [NSP](https://nodesecurity.io/)
+- [GreenKeeper](https://greenkeeper.io/)
+- [Snyk](https://snyk.io/)
 
 ### What's wrong with the code snippet?
 

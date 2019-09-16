@@ -31,10 +31,10 @@
 1.  A client requests a webpage from a server using regular HTTP (see HTTP above).
 1.  The requested webpage executes javascript which opens a connection to the server.
 1.  The server sends an event to the client when there's new information available.
-    * Real-time traffic from server to client, mostly that's what you'll need
-    * You'll want to use a server that has an event loop
-    * Not possible to connect with a server from another domain
-    * If you want to read more, I found these very useful: [(article)](https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events), [(article)](http://html5doctor.com/server-sent-events/#api), [(article)](http://www.html5rocks.com/en/tutorials/eventsource/basics/), [(tutorial)](http://jaxenter.com/tutorial-jsf-2-and-html5-server-sent-events-42932.html).
+    - Real-time traffic from server to client, mostly that's what you'll need
+    - You'll want to use a server that has an event loop
+    - Not possible to connect with a server from another domain
+    - If you want to read more, I found these very useful: [(article)](https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events), [(article)](http://html5doctor.com/server-sent-events/#api), [(article)](http://www.html5rocks.com/en/tutorials/eventsource/basics/), [(tutorial)](http://jaxenter.com/tutorial-jsf-2-and-html5-server-sent-events-42932.html).
 
 ![HTML5 SSE](https://i.stack.imgur.com/ziR5h.png)
 
@@ -151,11 +151,11 @@ var es = new EventSource('/message', {
 1.  A client requests a webpage from a server using regular http (see HTTP above).
 1.  The requested webpage executes JavaScript which opens a connection with the server.
 1.  The server and the client can now send each other messages when new data (on either side) is available.
-    * Real-time traffic from the server to the client **and** from the client to the server
-    * You'll want to use a server that has an event loop
-    * With WebSockets it is possible to connect with a server from another domain.
-    * It is also possible to use a third party hosted websocket server, for example [Pusher](http://pusher.com/) or [others](http://www.leggetter.co.uk/real-time-web-technologies-guide). This way you'll only have to implement the client side, which is very easy!
-    * If you want to read more, I found these very useful: ([article](http://www.developerfusion.com/article/143158/an-introduction-to-websockets/)), [(article)](https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications) ([tutorial](http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/)).
+    - Real-time traffic from the server to the client **and** from the client to the server
+    - You'll want to use a server that has an event loop
+    - With WebSockets it is possible to connect with a server from another domain.
+    - It is also possible to use a third party hosted websocket server, for example [Pusher](http://pusher.com/) or [others](http://www.leggetter.co.uk/real-time-web-technologies-guide). This way you'll only have to implement the client side, which is very easy!
+    - If you want to read more, I found these very useful: ([article](http://www.developerfusion.com/article/143158/an-introduction-to-websockets/)), [(article)](https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications) ([tutorial](http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/)).
 
 ![HTML5 WebSockets](https://i.stack.imgur.com/CgDlc.png)
 
@@ -165,11 +165,11 @@ WebSocket 使用和 HTTP 相同的 TCP 端口，默认为 80， 统一资源标�
 
 相对于 HTTP 协议，WebSocket 拥有如下优点：
 
-* 全双工，实时性更强。
-* 相对于 http 携带完整的头部，WebSocket 请求头部明显减少。
-* 保持连接状态，不用再验权了。
-* 二进制支持更强，Websocket 定义了二进制帧，处理更轻松。
-* Websocket 协议支持扩展，可以自定义的子协议，如 `permessage-deflate` 扩展。
+- 全双工，实时性更强。
+- 相对于 http 携带完整的头部，WebSocket 请求头部明显减少。
+- 保持连接状态，不用再验权了。
+- 二进制支持更强，Websocket 定义了二进制帧，处理更轻松。
+- Websocket 协议支持扩展，可以自定义的子协议，如 `permessage-deflate` 扩展。
 
 #### **Frame**
 
@@ -198,11 +198,11 @@ WebSocket 使用和 HTTP 相同的 TCP 端口，默认为 80， 统一资源标�
 
 第一个字节包含 FIN、RSV、Opcode。
 
-* FIN：size 为 1bit，标示是否最后一帧。`%x0`表示还有后续帧，`%x1`表示这是最后一帧。
+- FIN：size 为 1bit，标示是否最后一帧。`%x0`表示还有后续帧，`%x1`表示这是最后一帧。
 
-* RSV1、2、3，每个 size 都是 1bit，默认值都是 0，如果没有定义非零值的含义，却出现了非零值，则 WebSocket 链接将失败。
+- RSV1、2、3，每个 size 都是 1bit，默认值都是 0，如果没有定义非零值的含义，却出现了非零值，则 WebSocket 链接将失败。
 
-* Opcode，size 为 4bits，表示『payload data』的类型。如果收到未知的 opcode，连接将会断开。已定义的 opcode 值如下：
+- Opcode，size 为 4bits，表示『payload data』的类型。如果收到未知的 opcode，连接将会断开。已定义的 opcode 值如下：
 
   ```
   %x0:	代表连续的帧
@@ -217,7 +217,7 @@ WebSocket 使用和 HTTP 相同的 TCP 端口，默认为 80， 统一资源标�
 
 第二个字节包含 Mask、Payload len。
 
-* Mask：size 为 1bit，标示『payload data』是否添加掩码。所有从客户端发送到服务端的帧都会被置为 1，如果置 1，`Masking-key`便会赋值。
+- Mask：size 为 1bit，标示『payload data』是否添加掩码。所有从客户端发送到服务端的帧都会被置为 1，如果置 1，`Masking-key`便会赋值。
 
   ```
   //若 server 是一个 WebSocket 服务端实例
@@ -233,14 +233,14 @@ WebSocket 使用和 HTTP 相同的 TCP 端口，默认为 80， 统一资源标�
   });
   ```
 
-* Payload len：size 为 7bits，即使是当做无符号整型也只能表示 0~127 的值，所以它不能表示更大的值，因此规定”Payload data”长度小于或等于 125 的时候才用来描述数据长度。如果`Payload len==126`，则使用随后的 2bytes（16bits）来存储数据长度。如果`Payload len==127`，则使用随后的 8bytes（64bits）来存储数据长度。
+- Payload len：size 为 7bits，即使是当做无符号整型也只能表示 0~127 的值，所以它不能表示更大的值，因此规定”Payload data”长度小于或等于 125 的时候才用来描述数据长度。如果`Payload len==126`，则使用随后的 2bytes（16bits）来存储数据长度。如果`Payload len==127`，则使用随后的 8bytes（64bits）来存储数据长度。
 
 以上，扩展的 Payload len 可能占据第三至第四个或第三至第十个字节。紧随其后的是”Mask-key”。
 
-* Mask-key：size 为 0 或 4bytes（32bits），默认为 0，与前面 Mask 呼应，从客户端发送到服务端的帧都包含 4bytes（32bits）的掩码，一旦掩码被设置，所有接收到的”payload data”都必须与该值以一种算法做异或运算来获取真实值。
-* Payload data：size 为”Extension data” 和 “Application data” 的总和，一般”Extension data”数据为空。
-* Extension data：默认为 0，如果扩展被定义，扩展必须指定”Extension data”的长度。
-* Application data：占据”Extension data”之后剩余帧的空间。
+- Mask-key：size 为 0 或 4bytes（32bits），默认为 0，与前面 Mask 呼应，从客户端发送到服务端的帧都包含 4bytes（32bits）的掩码，一旦掩码被设置，所有接收到的”payload data”都必须与该值以一种算法做异或运算来获取真实值。
+- Payload data：size 为”Extension data” 和 “Application data” 的总和，一般”Extension data”数据为空。
+- Extension data：默认为 0，如果扩展被定义，扩展必须指定”Extension data”的长度。
+- Application data：占据”Extension data”之后剩余帧的空间。
 
 关于 Frame 的更多理论介绍不妨读读 [学习 WebSocket 协议—从顶层到底层的实现原理（修订版）](https://github.com/abbshr/abbshr.github.io/issues/22)。
 
@@ -330,9 +330,9 @@ function verify(info) {
 
 以上，`verifyClient` 指定的函数只有一个形参，若为它显式指定两个形参，那么第一个参数同上 info，第二个参数将是一个`cb`回调函数。该函数用于显式指定拒绝时的 HTTP 状态码等，它默认拥有 3 个形参，依次为：
 
-* result，布尔值类型，表示是否通过权限验证。
-* code，数值类型，若 result 值为 false 时，表示 HTTP 的错误状态码。
-* name，字符串类型，若 result 值为 false 时，表示 HTTP 状态码的错误信息。
+- result，布尔值类型，表示是否通过权限验证。
+- code，数值类型，若 result 值为 false 时，表示 HTTP 的错误状态码。
+- name，字符串类型，若 result 值为 false 时，表示 HTTP 状态码的错误信息。
 
 ```javascript
 // 若verify定义如下
@@ -423,38 +423,38 @@ ws 的 readyState 属性拥有 4 个值，比 es 的 readyState 的多一个 CLO
 由于各个浏览器对 Websocket 单次发送的数据有限制，所以我们需要将待上传文件切成片段去发送。如下是实现。
 
 ```html
-<input type="file" id="file"/>
+<input type="file" id="file" />
 
 <script>
-const ws = new WebSocket('ws://127.0.0.1:10103/');// 连接服务器
-const fileSelect = document.getElementById('file');
-const size = 1024 * 128;// 分段发送的文件大小(字节)
-let curSize, total, file, fileReader;
+  const ws = new WebSocket('ws://127.0.0.1:10103/');// 连接服务器
+  const fileSelect = document.getElementById('file');
+  const size = 1024 * 128;// 分段发送的文件大小(字节)
+  let curSize, total, file, fileReader;
 
-fileSelect.onchange = function(){
-  file = this.files[0];// 选中的待上传文件
-  curSize = 0;// 当前已发送的文件大小
-  total = file.size;// 文件大小
-  ws.send(file.name);// 先发送待上传文件的名称
-  fileReader = new FileReader();// 准备读取文件
-  fileReader.onload = loadAndSend;
-  readFragment();// 读取文件片段
-};
+  fileSelect.onchange = function(){
+    file = this.files[0];// 选中的待上传文件
+    curSize = 0;// 当前已发送的文件大小
+    total = file.size;// 文件大小
+    ws.send(file.name);// 先发送待上传文件的名称
+    fileReader = new FileReader();// 准备读取文件
+    fileReader.onload = loadAndSend;
+    readFragment();// 读取文件片段
+  };
 
-function loadAndSend(){
-  if(ws.bufferedAmount > size * 5){// 若发送队列中的数据太多,先等一等
-    setTimeout(loadAndSend，4);
-    return;
+  function loadAndSend(){
+    if(ws.bufferedAmount > size * 5){// 若发送队列中的数据太多,先等一等
+      setTimeout(loadAndSend，4);
+      return;
+    }
+    ws.send(fileReader.result);// 发送本次读取的片段内容
+    curSize += size;// 更新已发送文件大小
+    curSize < total ? readFragment() : console.log('upload successed!');// 下一步操作
   }
-  ws.send(fileReader.result);// 发送本次读取的片段内容
-  curSize += size;// 更新已发送文件大小
-  curSize < total ? readFragment() : console.log('upload successed!');// 下一步操作
-}
 
-function readFragment(){
-  const blob = file.slice(curSize, curSize + size);// 获取文件指定片段
-  fileReader.readAsArrayBuffer(blob);// 读取文件为ArrayBuffer对象
-}
+  function readFragment(){
+    const blob = file.slice(curSize, curSize + size);// 获取文件指定片段
+    fileReader.readAsArrayBuffer(blob);// 读取文件为ArrayBuffer对象
+  }
 </script>
 ```
 
@@ -517,12 +517,12 @@ wsServer.on('pong', function(data, flags) {
 
 WebSocket 出世已久，很多优秀的大神基于此开发出了各式各样的库。其中 [Socket.IO](http://socket.io/) 是一个非常不错的开源 WebSocket 库，旨在抹平浏览器之间的兼容性问题。它基于 Node.js，支持以下方式优雅降级：
 
-* Websocket
-* Adobe® Flash® Socket
-* AJAX long polling
-* AJAX multipart streaming
-* Forever Iframe
-* JSONP Polling
+- Websocket
+- Adobe® Flash® Socket
+- AJAX long polling
+- AJAX multipart streaming
+- Forever Iframe
+- JSONP Polling
 
 如何在项目中使用 Socket.IO，请参考[第一章 socket.io 简介及使用](https://github.com/nswbmw/N-chat/wiki/%E7%AC%AC%E4%B8%80%E7%AB%A0-socket.io-%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8)。
 

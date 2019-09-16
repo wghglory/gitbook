@@ -64,16 +64,16 @@ interface Employee {
 
 Allowed merges:
 
-* Interfaces
-* Enums
-* Namespaces
-* Namespaces with enums
-* Namespaces with functions
-* Namespaces with classes
+- Interfaces
+- Enums
+- Namespaces
+- Namespaces with enums
+- Namespaces with functions
+- Namespaces with classes
 
 Disallowed merges:
 
-* Classes with classes
+- Classes with classes
 
 ## Interface merging and module augmentation
 
@@ -183,10 +183,10 @@ if (isVehicle(c)) {
 
 ## Symbols
 
-* ES2015 feature
-* Primitive data type
-* Unique
-* Immutable
+- ES2015 feature
+- Primitive data type
+- Unique
+- Immutable
 
 ```ts
 let mySymbol = Symbol('first_symbol');
@@ -202,6 +202,6 @@ let myObject = {
 
 ### Use cases
 
-* Unique Constants
-* Computed Property Declarations
-* Customize Internal Language Behavior
+- Unique Constants
+- Computed Property Declarations
+- Customize Internal Language Behavior

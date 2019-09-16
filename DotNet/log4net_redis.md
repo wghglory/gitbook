@@ -66,8 +66,8 @@ public class FilterConfig {
 
 输出错误信息用 ILog.Error 方法，第二个参数可以传递 Exception 对象。log.Error("错误"+ex)，log.Error("错误",ex)
 
-* Appender：可以将日志输出到不同的地方，不同的输出目标对应不同的 Appender：RollingFileAppender（滚动文件）、AdoNetAppender（数据库）、SmtpAppender （邮件）等。
-* level（级别）：标识这条日志信息的重要级别 None>Fatal>ERROR>WARN>DEBUG>INFO>ALL，设定一个 Level，那么低于这个 Level 的日志是不会被写到 Appender 中的.
+- Appender：可以将日志输出到不同的地方，不同的输出目标对应不同的 Appender：RollingFileAppender（滚动文件）、AdoNetAppender（数据库）、SmtpAppender （邮件）等。
+- level（级别）：标识这条日志信息的重要级别 None>Fatal>ERROR>WARN>DEBUG>INFO>ALL，设定一个 Level，那么低于这个 Level 的日志是不会被写到 Appender 中的.
 
 Log4Net 还可以设定多个 Appender，可以实现同时将日志记录到文件、数据、发送邮件等；可以设定不同的 Appender 的不同的 Level，可以实现普通级别都记录到文件，Error 以上级别发送邮件；可以实现对不同的类设定不同的 Appender；还可以自定义 Appender，这样可以自己实现将 Error 信息发短信等.
 

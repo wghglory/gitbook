@@ -155,4 +155,3 @@ openssl pkcs12 -export -in certificate.pem -inkey privatekey.pem -out certificat
 ## 是否了解公钥加密和私钥加密。
 
 一般情况下是指私钥用于对数据进行签名，公钥用于对签名进行验证; HTTP 网站在浏览器端用公钥加密敏感数据，然后在服务器端再用私钥解密。
-

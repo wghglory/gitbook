@@ -2,9 +2,9 @@
 
 Runtime performance in Angular ties to its change detection process, which includes three steps:
 
-* Run event handlers
-* Update data bindings
-* Propagate DOM updates and repaint
+- Run event handlers
+- Update data bindings
+- Propagate DOM updates and repaint
 
 Angular must wait for the event handler's callback to finish before change detection can continue and the update rendered.
 
@@ -16,9 +16,9 @@ What if we could help Angular and give her a better indication of when to check 
 
 We can set the `ChangeDetectionStrategy` of our component to `ChangeDetectionStrategy.OnPush`. This tells Angular that the component only depends on his Inputs and needs to be checked in only the following cases:
 
-* **The Input reference changes**.
-* An event occurred from the component or one of his children.
-* You run change detection explicitly by calling `detectChanges()/tick()/markForCheck()`.
+- **The Input reference changes**.
+- An event occurred from the component or one of his children.
+- You run change detection explicitly by calling `detectChanges()/tick()/markForCheck()`.
 
 ## 2. `trackBy`
 
@@ -28,8 +28,8 @@ By default, when you use `ngFor` without `trackBy`, `ngFor` tracks array of obje
 
 ### When to Use `trackBy`:
 
-* Iterating over large array of objects collection
-* In case your business logic might need to modify any of these elements through reordering, modifying specific item, deleting item, or adding a new one.
+- Iterating over large array of objects collection
+- In case your business logic might need to modify any of these elements through reordering, modifying specific item, deleting item, or adding a new one.
 
 ## 3. Avoid Computing Values in the Template
 
@@ -38,7 +38,11 @@ By default, when you use `ngFor` without `trackBy`, `ngFor` tracks array of obje
   selector: 'skills',
   template: `
     <table>
-      <tr *ngFor="let skill of skills">{{ skill.calcSomething(skill) }}</tr>
+      <tr *ngFor="let skill of skills">
+        {{
+          skill.calcSomething(skill)
+        }}
+      </tr>
     </table>
   `,
 })
@@ -53,8 +57,8 @@ Reason: Angular needs to re-run your function in every change detection cycle, i
 
 Solution: If the value is not changed dynamically at runtime, a better solution would be to:
 
-* Use pure pipes — Angular executes a pure pipe only when it detects a pure change to the input value. (Angular caches the results of previous executions)
-* Creates a new property and set the value once, for example:
+- Use pure pipes — Angular executes a pure pipe only when it detects a pure change to the input value. (Angular caches the results of previous executions)
+- Creates a new property and set the value once, for example:
 
 ```ts
 this.skills = this.skills.map(skill => ({ ...skill, percentage: calcSomething(skill) });
@@ -72,7 +76,7 @@ We can do that by detaching the component’s change detector and conducting a l
 @Component({
   selector: 'giant-list',
   template: `
-    <li *ngFor="let d of dataProvider.data">Data {{d}}</li>
+    <li *ngFor="let d of dataProvider.data">Data {{ d }}</li>
   `,
 })
 class GiantList {
@@ -134,7 +138,7 @@ export class InstructorListComponent implements AfterViewInit {
 
 ```html
 <!-- app.component.html -->
-<input type="text" [(ngMode)]="searchTerm">
+<input type="text" [(ngMode)]="searchTerm" />
 <button (click)="update()">Search</button>
 <ul>
   <li *ngFor="let instructor of instructors">
@@ -291,5 +295,5 @@ The goal of change detection is to translate data changes into a newly-rendered 
 
 ## Reference
 
-* <https://netbasal.com/optimizing-the-performance-of-your-angular-application-f222f1c16354>
-* <https://blog.oasisdigital.com/2017/angular-runtime-performance-guide/>
+- <https://netbasal.com/optimizing-the-performance-of-your-angular-application-f222f1c16354>
+- <https://blog.oasisdigital.com/2017/angular-runtime-performance-guide/>

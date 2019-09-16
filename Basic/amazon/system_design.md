@@ -57,31 +57,31 @@ public class TinyURL
 }
 ```
 
-* reducing the response time of the server
+- reducing the response time of the server
 
-  * by using a distributed system to share the load based on geography
-  * by using a central server but many caching servers at various geographical locations
+  - by using a distributed system to share the load based on geography
+  - by using a central server but many caching servers at various geographical locations
 
-* reducing the storage space
+- reducing the storage space
 
-  * database design
+  - database design
 
-* backup and failover
+- backup and failover
 
-* security issues
+- security issues
 
-  * prevent people from creating links to
+  - prevent people from creating links to
 
-* handling old/obsolete urls
+- handling old/obsolete urls
 
-  * while creating the url we can say to the user that it will be deleted if the url is never used for more than say 3 years
+  - while creating the url we can say to the user that it will be deleted if the url is never used for more than say 3 years
 
-* may be allow the user to login and delete unused ones
+- may be allow the user to login and delete unused ones
 
-* user friendly things
-  * browser plugins to speed up creating links (youtube sharing has an option to create short urls)
-    * giving report to user about the usage statistics
-    * mobile app to create urls quickly
+- user friendly things
+  - browser plugins to speed up creating links (youtube sharing has an option to create short urls)
+    - giving report to user about the usage statistics
+    - mobile app to create urls quickly
 
 ### 10000 cameras, 100 hours of video each. 30 fps. Police need to input a plate number and find the path of a suspicious vehicle. (Estimate the size of the video, e.g., blueray disc is 2 hours and 20 GB. No need to scan all of the videos. Estimate the time that a vehicle can be seen between 2 traffic cameras, e.g., 0.3 miles and 30 miles per hour, then select 1 out of 100). Web client, load balancer, servers, db.
 
@@ -125,13 +125,13 @@ divide the cluster into groups of 10 and the central time server syncs with 1st 
 
 pros:
 
-* easy to maintain grouping
-* grouping map can be stored on central time server
+- easy to maintain grouping
+- grouping map can be stored on central time server
 
 cons:
 
-* if central server fails, may need to do resyncing
-* if one or more of the servers in a group fail to sync or take too long then the other servers will be kept waiting
+- if central server fails, may need to do resyncing
+- if one or more of the servers in a group fail to sync or take too long then the other servers will be kept waiting
 
 **Way 2:**
 
@@ -145,9 +145,9 @@ create 10 groups and assign masters in groups, those masters sync with the centr
 
 pros:
 
-* servers don't constantly wait unnecessarily
-* a priority can be assigned to certain servers if dependencies exist
-* can retry on sync errors
+- servers don't constantly wait unnecessarily
+- a priority can be assigned to certain servers if dependencies exist
+- can retry on sync errors
 
 cons:
 

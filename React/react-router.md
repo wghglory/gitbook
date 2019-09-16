@@ -2,41 +2,41 @@
 
 _**Concepts**_
 
-* `BrowserRouter` as Router - is the component between which all the routes are nested. Our most parent component.
-* `Route` - the component that helps specify views for each component, has many small nuances one needs to be aware of
-* `Link` - just a link with prop to.
-* `NavLink` - has `activeClassName` prop, to apply a css class when active
-* `Switch` - used to make sure only one of the Routes is active at any moment (useful for showing a route without a path for paths that are not handled aka 404)
-  * instead of rendering all of the routes that are active, switch is gonna let only 1 route be active at a time
+- `BrowserRouter` as Router - is the component between which all the routes are nested. Our most parent component.
+- `Route` - the component that helps specify views for each component, has many small nuances one needs to be aware of
+- `Link` - just a link with prop to.
+- `NavLink` - has `activeClassName` prop, to apply a css class when active
+- `Switch` - used to make sure only one of the Routes is active at any moment (useful for showing a route without a path for paths that are not handled aka 404)
+  - instead of rendering all of the routes that are active, switch is gonna let only 1 route be active at a time
 
 **_Route_**
 
-* `path` - prop takes string for the url path at which component should be active in the view
-  * Note: if a route has `path='/first'`, it’s component will be active for all paths that start with `/first`
-  * to avoid the above, we need to prepend prop path with keyword exact
-* `component` - takes a javascript expression referring to the component that one wants to link to the path
-* `render` - this prop is useful when you don’t want to link the route to a component, but instead specify the JSX right there. This prop takes a value of a function that returns the JSX you wish this route to return. This is used mostly for the 404 pages I’m assuming, in a route that’s the last child of the switch component (and has no path prop value obviously).
-* `exact` - prop makes sure the route is rendered/active only when the path matches exactly and not just partly
+- `path` - prop takes string for the url path at which component should be active in the view
+  - Note: if a route has `path='/first'`, it’s component will be active for all paths that start with `/first`
+  - to avoid the above, we need to prepend prop path with keyword exact
+- `component` - takes a javascript expression referring to the component that one wants to link to the path
+- `render` - this prop is useful when you don’t want to link the route to a component, but instead specify the JSX right there. This prop takes a value of a function that returns the JSX you wish this route to return. This is used mostly for the 404 pages I’m assuming, in a route that’s the last child of the switch component (and has no path prop value obviously).
+- `exact` - prop makes sure the route is rendered/active only when the path matches exactly and not just partly
 
 **_Link_**
 
 This component is the basic anchor tag in react, except obviously it knows what component it originates in.
 
-* `to` - prop takes the path to route to when the user clicks the link
+- `to` - prop takes the path to route to when the user clicks the link
 
 **_NavLink_**
 
 Composed of the component Link, except with additional functionality to make Links active when their path matches the current path.
 
-* `activeClassName` - is the class that is applied to the NavLink component when the current path matches with the link’s path
-* `exact` - this prop makes sure the activeClassName is applied only when the path has an exact match with the link’s path (not just partly, similar to the exact prop in routes)
+- `activeClassName` - is the class that is applied to the NavLink component when the current path matches with the link’s path
+- `exact` - this prop makes sure the activeClassName is applied only when the path has an exact match with the link’s path (not just partly, similar to the exact prop in routes)
 
 **_Query Params_**
 
 The `to` prop of the `Link` component of React Router accepts url path strings or an object with props:
 
-* pathname: which takes a string for the link’s path
-* search: takes a string beginning with ‘?’ for query params followed by the query param name value string
+- pathname: which takes a string for the link’s path
+- search: takes a string beginning with ‘?’ for query params followed by the query param name value string
 
 React Router’s Route component passes a few props to the component it’s linked with. One of the prop is `match` which is an object with a property `url` which contains the current url’s path. The `to` value of a `Link` that routes to a sub-path of the current url should be composed of the `this.props.match.url` property, so that the path can be changed later without affecting the link.
 

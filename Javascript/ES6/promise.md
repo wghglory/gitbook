@@ -16,14 +16,14 @@ function example() {
 Promise constructor:
 
 ```js
-new Promise(function (resolve, reject){
+new Promise(function(resolve, reject) {
   // do some work
   if (successful) {
     resolve(result);
   } else {
     reject(throw new Error('failed'));
   }
-})
+});
 ```
 
 If your promise only has resolve, below is the same:

@@ -44,11 +44,11 @@ public boolean equals(Object anObject) {
 
 它的性质有：
 
-* **自反性**（reflexive）。对于任意不为`null`的引用值 x，`x.equals(x)`一定是`true`。
-* **对称性**（symmetric）。对于任意不为`null`的引用值`x`和`y`，当且仅当`x.equals(y)`是`true`时，`y.equals(x)`也是`true`。
-* **传递性**（transitive）。对于任意不为`null`的引用值`x`、`y`和`z`，如果`x.equals(y)`是`true`，同时`y.equals(z)`是`true`，那么`x.equals(z)`一定是`true`。
-* **一致性**（consistent）。对于任意不为`null`的引用值`x`和`y`，如果用于 equals 比较的对象信息没有被修改的话，多次调用时`x.equals(y)`要么一致地返回`true`要么一致地返回`false`。
-* 对于任意不为`null`的引用值`x`，`x.equals(null)`返回`false`。
+- **自反性**（reflexive）。对于任意不为`null`的引用值 x，`x.equals(x)`一定是`true`。
+- **对称性**（symmetric）。对于任意不为`null`的引用值`x`和`y`，当且仅当`x.equals(y)`是`true`时，`y.equals(x)`也是`true`。
+- **传递性**（transitive）。对于任意不为`null`的引用值`x`、`y`和`z`，如果`x.equals(y)`是`true`，同时`y.equals(z)`是`true`，那么`x.equals(z)`一定是`true`。
+- **一致性**（consistent）。对于任意不为`null`的引用值`x`和`y`，如果用于 equals 比较的对象信息没有被修改的话，多次调用时`x.equals(y)`要么一致地返回`true`要么一致地返回`false`。
+- 对于任意不为`null`的引用值`x`，`x.equals(null)`返回`false`。
 
 对于`Object`类来说，`equals()`方法在对象上实现的是差别可能性最大的等价关系，即，对于任意非`null`的引用值`x`和`y`，当且仅当`x`和`y`引用的是同一个对象，该方法才会返回`true`。
 
@@ -60,9 +60,9 @@ public boolean equals(Object anObject) {
 
 它的性质是：
 
-* 在一个 Java 应用的执行期间，如果一个对象提供给 equals 做比较的信息没有被修改的话，该对象多次调用 `hashCode()` 方法，该方法必须始终如一返回同一个 integer。
-* 如果两个对象根据 `equals(Object)` 方法是相等的，那么调用二者各自的 `hashCode()` 方法必须产生同一个 integer 结果。
-* 并不要求根据 `equals(java.lang.Object)` 方法不相等的两个对象，调用二者各自的 `hashCode()` 方法必须产生不同的 integer 结果。然而，程序员应该意识到对于不同的对象产生不同的 integer 结果，有可能会提高 hash table 的性能。
+- 在一个 Java 应用的执行期间，如果一个对象提供给 equals 做比较的信息没有被修改的话，该对象多次调用 `hashCode()` 方法，该方法必须始终如一返回同一个 integer。
+- 如果两个对象根据 `equals(Object)` 方法是相等的，那么调用二者各自的 `hashCode()` 方法必须产生同一个 integer 结果。
+- 并不要求根据 `equals(java.lang.Object)` 方法不相等的两个对象，调用二者各自的 `hashCode()` 方法必须产生不同的 integer 结果。然而，程序员应该意识到对于不同的对象产生不同的 integer 结果，有可能会提高 hash table 的性能。
 
 大量的实践表明，由 `Object` 类定义的 `hashCode()` 方法对于不同的对象返回不同的 integer。
 

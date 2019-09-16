@@ -1,18 +1,18 @@
 # react redux 流程
 
-* react: Hey Action, someone clicked this "save" button
-* action: thanks react! I will dispatch an action so reducers that care can update state
-* reducer: thanks action. I see you passed me the current state and the action to perform. I will make a new copy of the state and return it
-* store: thanks for updating the state reducer. I'll make sure all connected components are aware
-* react-redux: I'll determine if I should tell react about this change so that it only has to update UI when necessary
-* react: ooo! new data has been passed down via props from the store(connect, mapStateToProps, mapDispatchToProps). I will re-render the UI to reflect this
+- react: Hey Action, someone clicked this "save" button
+- action: thanks react! I will dispatch an action so reducers that care can update state
+- reducer: thanks action. I see you passed me the current state and the action to perform. I will make a new copy of the state and return it
+- store: thanks for updating the state reducer. I'll make sure all connected components are aware
+- react-redux: I'll determine if I should tell react about this change so that it only has to update UI when necessary
+- react: ooo! new data has been passed down via props from the store(connect, mapStateToProps, mapDispatchToProps). I will re-render the UI to reflect this
 
 ## Redux benefits
 
-* reducers are pure functions, which simply do `oldState + action => newState`. Each reducer computes a separate piece of state, which is then all composed together to form the whole application. This makes all your business logic and state transitions easy to _test_.
-* Api 简单
-* 容易理解流程
-* 如果按照它推荐的方式 -- 视图组件和容器组建分离，容器组件状态通过 props 传到视图组件中，职责分明，每个组件单一、小。
+- reducers are pure functions, which simply do `oldState + action => newState`. Each reducer computes a separate piece of state, which is then all composed together to form the whole application. This makes all your business logic and state transitions easy to _test_.
+- Api 简单
+- 容易理解流程
+- 如果按照它推荐的方式 -- 视图组件和容器组建分离，容器组件状态通过 props 传到视图组件中，职责分明，每个组件单一、小。
 
 ## Concepts
 
@@ -72,7 +72,10 @@ export default App;
 container component 核心代码：
 
 ```javascript
-connect(mapStateToProps, mapDispatchToProps)(PresentationalComponent);
+connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PresentationalComponent);
 ```
 
 `connect()` without any parameter, means to not subscribe to the store.
@@ -121,10 +124,13 @@ function mapDispatchToProps(dispatch, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CoursesPage);
 ```
 
 ## 异步操作
 
-* [redux-thunk](https://github.com/gaearon/redux-thunk)
-* redux-saga
+- [redux-thunk](https://github.com/gaearon/redux-thunk)
+- redux-saga

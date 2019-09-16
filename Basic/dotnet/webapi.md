@@ -4,9 +4,9 @@ REST represents REpresentational State Transfer; it is relatively new aspect of 
 
 ### Explain the architectural style for creating web api?
 
-* HTTP for client server communication
-* XML/JSON as formatting language: Simple URI as the address for the services
-* Stateless communication
+- HTTP for client server communication
+- XML/JSON as formatting language: Simple URI as the address for the services
+- Stateless communication
 
 ### what tools are required to test your web api?
 
@@ -14,29 +14,29 @@ Chrome postman, SOAPUI tool for SOAP WS and Firefox "poster" plugin for RESTFUL 
 
 ### what are the HTTP methods supported by REST?
 
-* GET: It requests a resource at the request URL. It should not contain a request body as it will be discarded. May be it can be cached locally or on the server.
-* POST: It submits information to the service for processing; it should typically return the modified or new resource
-* PUT: At the request URL it update the resource
-* DELETE: At the request URL it removes the resource
-* OPTIONS: It indicates which techniques are supported
-* HEAD: About the request URL it returns meta information
+- GET: It requests a resource at the request URL. It should not contain a request body as it will be discarded. May be it can be cached locally or on the server.
+- POST: It submits information to the service for processing; it should typically return the modified or new resource
+- PUT: At the request URL it update the resource
+- DELETE: At the request URL it removes the resource
+- OPTIONS: It indicates which techniques are supported
+- HEAD: About the request URL it returns meta information
 
 ### Mention what is the difference between SOAP and REST?
 
-* SOAP is a protocol through which two computer communicates by sharing XML document
-* SOAP permits only XML
-* SOAP based reads cannot be cached
-* SOAP is like custom desktop application, closely connected to the server
-* SOAP is slower than REST
-* It runs on HTTP but envelopes the message
+- SOAP is a protocol through which two computer communicates by sharing XML document
+- SOAP permits only XML
+- SOAP based reads cannot be cached
+- SOAP is like custom desktop application, closely connected to the server
+- SOAP is slower than REST
+- It runs on HTTP but envelopes the message
 
 ---
 
-* Rest is a service architecture and design for network\*based software architectures
-* REST supports many different data formats
-* REST reads can be cached
-* A REST client is more like a browser; it knows how to standardized methods and an application has to fit inside it REST is faster than SOAP
-* It uses the HTTP headers to hold meta information
+- Rest is a service architecture and design for network\*based software architectures
+- REST supports many different data formats
+- REST reads can be cached
+- A REST client is more like a browser; it knows how to standardized methods and an application has to fit inside it REST is faster than SOAP
+- It uses the HTTP headers to hold meta information
 
 ### Explain Web API Routing?
 
@@ -54,15 +54,15 @@ Routes.MapHttpRoute(
 
 WCF
 
-* It is framework build for building or developing service oriented applications.
-* WCF can be consumed by clients which can understand XML.
-* WCF supports protocols like – HTTP, TCP, Named Pipes etc.
+- It is framework build for building or developing service oriented applications.
+- WCF can be consumed by clients which can understand XML.
+- WCF supports protocols like – HTTP, TCP, Named Pipes etc.
 
 Web API
 
-* It is a framework which helps us to build/develop HTTP services
-* Web API is an open source platform.
-* It supports most of the MVC features which keep Web API over WCF.
+- It is a framework which helps us to build/develop HTTP services
+- Web API is an open source platform.
+- It supports most of the MVC features which keep Web API over WCF.
 
 ### What are the advantages of using REST in Web API?
 
@@ -72,37 +72,37 @@ REST always used to make less data transfers between client and server which mak
 
 WCF Rest
 
-* "WebHttpBinding" to be enabled for WCF Rest.
-* For each method there has to be attributes like – "WebGet" and "WebInvoke"
-* For GET and POST verbs respectively.
+- "WebHttpBinding" to be enabled for WCF Rest.
+- For each method there has to be attributes like – "WebGet" and "WebInvoke"
+- For GET and POST verbs respectively.
 
 Web API
 
-* Unlike WCF Rest we can use full features of HTTP in Web API.
-* Web API can be hosted in IIS or in application.
+- Unlike WCF Rest we can use full features of HTTP in Web API.
+- Web API can be hosted in IIS or in application.
 
 ### List out differences between MVC and Web API?
 
 MVC
 
-* MVC is used to create a web app, in which we can build web pages.
-* For JSON it will return JSONResult from action method.
-* All requests are mapped to the respective action methods.
+- MVC is used to create a web app, in which we can build web pages.
+- For JSON it will return JSONResult from action method.
+- All requests are mapped to the respective action methods.
 
 Web API
 
-* This is used to create a service using HTTP verbs.
-* This returns XML or JSON to client.
-* All requests are mapped to actions using HTTP verbs.
+- This is used to create a service using HTTP verbs.
+- This returns XML or JSON to client.
+- All requests are mapped to actions using HTTP verbs.
 
 ### What are the advantages of Web API?
 
-* OData
-* Filters
-* Content Negotiation
-* Self Hosting
-* Routing
-* Model Bindings
+- OData
+- Filters
+- Content Negotiation
+- Self Hosting
+- Routing
+- Model Bindings
 
 ### Can we return view from Web API?
 
@@ -143,15 +143,15 @@ Exception filters will be executed whenever controller methods (actions) throws 
 
 ### Explain about the new features added in Web API 2.0 version?
 
-* OWIN
-* Attribute Routing
-* External Authentication
-* Web API OData
+- OWIN
+- Attribute Routing
+- External Authentication
+- Web API OData
 
 ### How can we pass multiple complex types in Web API?
 
-* Using ArrayList
-* Newtonsoft JArray
+- Using ArrayList
+- Newtonsoft JArray
 
 ### Write a code snippet for passing arraylist in Web API?
 
@@ -184,10 +184,10 @@ routes.MapRoute(
 
 ### How we can handle errors in Web API?
 
-* HttpResponseException
-* Exception Filters
-* Registering Exception Filters
-* HttpError
+- HttpResponseException
+- Exception Filters
+- Registering Exception Filters
+- HttpError
 
 ### Explain how we can handle error from HttpResponseException?
 
@@ -211,9 +211,9 @@ myresponse.ReasonPhrase = ReasonPhrase;
 
 ### How to register Web API exception filters?
 
-* From Action
-* From Controller
-* Global registration
+- From Action
+- From Controller
+- Global registration
 
 ### Write a code snippet to register exception filters from action?
 
@@ -272,8 +272,8 @@ Web API authentication will happen in host. In case of IIS it uses Http Modules 
 
 This is the new membership system for ASP.NET. This allows to add features of login in our application.
 
-* One ASP.NET Identity System
-* Persistence Control
+- One ASP.NET Identity System
+- Persistence Control
 
 ### What are Authentication Filters in Web API?
 
@@ -311,9 +311,9 @@ It is also called MIME, which is used to identify the data. In Html, media types
 
 ### List out few media types of HTTP?
 
-* Image/Png
-* Text/HTML
-* Application/Json
+- Image/Png
+- Text/HTML
+- Application/Json
 
 ### Explain Media Formatters in Web API?
 
@@ -367,8 +367,8 @@ mytestxml.SetSerializer<Product>(new XmlSerializer(typeof(MyTestCustomer)));
 
 ### What is Under*Posting and "Over*Posting" in Web API?
 
-* "Under*Posting" * When client leaves out some of the properties while binding then it’s called under–posting.
-* "Over*Posting" – If the client sends more data than expected in binding then it’s called over*posting.
+- "Under*Posting" * When client leaves out some of the properties while binding then it’s called under–posting.
+- "Over*Posting" – If the client sends more data than expected in binding then it’s called over*posting.
 
 ### How to handle validation errors in Web API?
 
@@ -439,8 +439,8 @@ public static class WebApiConfig
 
 ### How parameter binding works in Web API?
 
-* If it is simple parameters like – bool, int, double etc. then value will be obtained from the URL.
-* Value read from message body in case of complex types.
+- If it is simple parameters like – bool, int, double etc. then value will be obtained from the URL.
+- Value read from message body in case of complex types.
 
 ### Why to use "FromUri" in Web API?
 

@@ -1,12 +1,12 @@
 # Memcached 分布式原理
 
-* **添加新的键值对数据**
+- **添加新的键值对数据**
 
   ![img](http://upload-images.jianshu.io/upload_images/1845730-10c10a2fe42741bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
   从图中可以看出，Memcached 虽然称为“分布式”缓存服务器，**但服务器端并没有“分布式”功能**，而是完全由**客户端程序库**实现的。服务端之间没有任何联系，数据存取都是通过客户端的算法实现的。当客户端要存取数据时，首先会通过算法查找自己维护的服务器哈希列表，找到对应的服务器后，再将数据存往指定服务器。例如：上图中应用程序要新增一个 `<'tokyo',data>` 的键值对，它通过 set 操作提交给 Memcached 客户端，客户端通过一定的哈希算法（比如：一般的求余函数或者强大的一致性 Hash 算法）从服务器列表中计算出一个要存储的服务器地址，最后将该键值对存储到计算出来的服务器里边。
 
-* **获取已存在的键值对数据**
+- **获取已存在的键值对数据**
 
   ![img](http://upload-images.jianshu.io/upload_images/1845730-6c64b4a1fc593b3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 

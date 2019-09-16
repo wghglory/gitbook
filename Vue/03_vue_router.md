@@ -24,9 +24,9 @@ export default new Router({
     {
       path: '/about',
       name: 'about', // 路由层级代码分割，⽣成分⽚(about.[hash].js) // 当路由房问时会懒加载.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+    },
+  ],
 });
 ```
 
@@ -168,7 +168,7 @@ beforeEnter(to, from, next) {
 export default {
   beforeRouteEnter(to, from, next) {},
   beforeRouteUpdate(to, from, next) {},
-  beforeRouteLeave(to, from, next) {}
+  beforeRouteLeave(to, from, next) {},
 };
 ```
 
@@ -182,8 +182,8 @@ export default {
   {
     path: '/',
     name: 'home',
-    component: 'Home' // Note 这里实际想要 HomeComponent，但后端只能返回 string，所以下面做一个映射
-  }
+    component: 'Home', // Note 这里实际想要 HomeComponent，但后端只能返回 string，所以下面做一个映射
+  },
 ];
 
 // 异步获取路路由
@@ -194,7 +194,7 @@ api.getRoutes().then((routes) => {
 
 // 映射关系
 const compMap = {
-  Home: () => import('./view/Home.vue')
+  Home: () => import('./view/Home.vue'),
 };
 
 // 递归替换
@@ -249,25 +249,25 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home2
+      component: Home2,
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: About,
     },
     {
       path: '/personal',
       name: 'personal',
-      component: () => import(/* webpackChunkName: "personal" */ './views/Personal.vue')
+      component: () => import(/* webpackChunkName: "personal" */ './views/Personal.vue'),
     },
     {
       // in-component guard
       path: '/message',
       name: 'message',
-      component: Message
-    }
-  ]
+      component: Message,
+    },
+  ],
 });
 
 export default router;
@@ -289,8 +289,8 @@ class VueRouter {
     // 利用Vue响应式原理可以做到这一点
     this.app = new Vue({
       data: {
-        current: '/'
-      }
+        current: '/',
+      },
     });
   }
 
@@ -323,13 +323,13 @@ class VueRouter {
     // 声明两个全局组件
     Vue.component('router-link', {
       props: {
-        to: String
+        to: String,
       },
       render(h) {
         // 目标是：<a :href="to">xxx</a>
         return h('a', { attrs: { href: '#' + this.to } }, this.$slots.default);
         // return <a href={this.to}>{this.$slots.default}</a>
-      }
+      },
     });
 
     // hash -> current -> render
@@ -342,7 +342,7 @@ class VueRouter {
 
         // 这里可能报错，必须要在 routeMap 中找到一个组件，因为初始定义了 current: /, 要求路由配置必须有 / 的配置
         return h(Comp);
-      }
+      },
     });
   }
 }
@@ -363,7 +363,7 @@ VueRouter.install = function(_Vue) {
         Vue.prototype.$router = this.$options.router;
         this.$options.router.init();
       }
-    }
+    },
   });
 };
 

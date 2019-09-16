@@ -1,22 +1,22 @@
 # XMLHttpRequest
 
-* `readyState`: 表示请求状态的整数，取值:
-  * UNSENT（0）: 对象已创建
-  * OPENED（1）: open()成功调用，在这个状态下，可以为 xhr 设置请求头，或者使用 send()发送请求
-  * HEADERS_RECEIVED(2): 所有重定向已经自动完成访问，并且最终响应的 HTTP 头已经收到
-  * LOADING(3): 响应体正在接收
-  * DONE(4): 数据传输完成或者传输产生错误
-* `onreadystatechange`: readyState 改变时调用的函数
-* `status`: 服务器返回的 HTTP 状态码（如，200， 404）
-* `statusText`: 服务器返回的 HTTP 状态信息（如，OK，No Content）
-* responseText: 作为字符串形式的来自服务器的完整响应
-* responseXML: Document 对象，表示服务器的响应解析成的 XML 文档
-* `abort()`: 取消异步 HTTP 请求
-* getAllResponseHeaders(): 返回一个字符串，包含响应中服务器发送的全部 HTTP 报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行
-* getResponseHeader(headerName): 返回 headName 对应的报头值
-* `open`(method, url, asynchronous [, user, password]): 初始化准备发送到服务器上的请求。method 是 HTTP 方法，不区分大小写；url 是请求发送的相对或绝对 URL；asynchronous 表示请求是否异步；user 和 password 提供身份验证
-* `setRequestHeader`(name, value): 设置 HTTP 报头
-* `send`(body): 对服务器请求进行初始化。参数 body 包含请求的主体部分，对于 POST 请求为键值对字符串；对于 GET 请求，为 null
+- `readyState`: 表示请求状态的整数，取值:
+  - UNSENT（0）: 对象已创建
+  - OPENED（1）: open()成功调用，在这个状态下，可以为 xhr 设置请求头，或者使用 send()发送请求
+  - HEADERS_RECEIVED(2): 所有重定向已经自动完成访问，并且最终响应的 HTTP 头已经收到
+  - LOADING(3): 响应体正在接收
+  - DONE(4): 数据传输完成或者传输产生错误
+- `onreadystatechange`: readyState 改变时调用的函数
+- `status`: 服务器返回的 HTTP 状态码（如，200， 404）
+- `statusText`: 服务器返回的 HTTP 状态信息（如，OK，No Content）
+- responseText: 作为字符串形式的来自服务器的完整响应
+- responseXML: Document 对象，表示服务器的响应解析成的 XML 文档
+- `abort()`: 取消异步 HTTP 请求
+- getAllResponseHeaders(): 返回一个字符串，包含响应中服务器发送的全部 HTTP 报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行
+- getResponseHeader(headerName): 返回 headName 对应的报头值
+- `open`(method, url, asynchronous [, user, password]): 初始化准备发送到服务器上的请求。method 是 HTTP 方法，不区分大小写；url 是请求发送的相对或绝对 URL；asynchronous 表示请求是否异步；user 和 password 提供身份验证
+- `setRequestHeader`(name, value): 设置 HTTP 报头
+- `send`(body): 对服务器请求进行初始化。参数 body 包含请求的主体部分，对于 POST 请求为键值对字符串；对于 GET 请求，为 null
 
 ---
 
@@ -59,19 +59,19 @@ function postMessage(msg) {
 
 通过 `XMLHttpRequest` 对象的属性或方法获取响应的信息:
 
-* `status` 和 `statusText` 分别以数字和文本形式返回 HTTP 状态，如 `200` 和 `“OK”`。
-* 响应头可以通过 `getResponseHeader()` 和 `getAllResponseHeaders()` 获取。 `XMLHttpRequest` 会自动处理 cookies，因此当你传 “Set-Cookie” 或 “Set-Cookie2” 给 `getResponseHeader()` 得到的是 null。
-* `responseText` 是响应的字符串形式，`responseXML` 是文档形式。
+- `status` 和 `statusText` 分别以数字和文本形式返回 HTTP 状态，如 `200` 和 `“OK”`。
+- 响应头可以通过 `getResponseHeader()` 和 `getAllResponseHeaders()` 获取。 `XMLHttpRequest` 会自动处理 cookies，因此当你传 “Set-Cookie” 或 “Set-Cookie2” 给 `getResponseHeader()` 得到的是 null。
+- `responseText` 是响应的字符串形式，`responseXML` 是文档形式。
 
 `XMLHttpRequest` 一般是异步的。`send()` 方法调用后立即返回。表示响应的属性和方法要等到收到响应后才有效。要判断响应是否就绪，需要监听 **readystatechange** 事件（或 XHR2 **progress** 事件）。
 
 `readyState` 属性是一个整数，表示 HTTP 请求的状态。规范定义了一些常量，但老的浏览器，包括 IE8 未定义，因此很多时候直接使用数字。
 
-* `UNSENT` 或 `0`:`open()` 尚未被调用
-* `OPENED` 或 `1`:`open()` 已经被调用
-* `HEADERS_RECEIVED` 或 `2`:头部已经收到
-* `LOADING` 或 `3`:响应正文正在被接收
-* `DONE` 或 `4`:响应完成
+- `UNSENT` 或 `0`:`open()` 尚未被调用
+- `OPENED` 或 `1`:`open()` 已经被调用
+- `HEADERS_RECEIVED` 或 `2`:头部已经收到
+- `LOADING` 或 `3`:响应正文正在被接收
+- `DONE` 或 `4`:响应完成
 
 理论上，每当 `readyState` 属性改变都会触发 `readystatechange` 事件。实际中，`readyState` 变到 0 或 1 可能不触发。`send()` 调用后一般会触发一次，即使 `readyState` 仍为 `OPENED`。一些浏览器在 `LOADING` 状态会触发多个事件，算进度反馈。所有浏览器当状态变为 4 时都会触发 `readystatechange`。
 
@@ -178,14 +178,15 @@ XHR2 草案定义了一个新的事件模型。多数现代浏览器支持。使
 
 进度事件的事件对象，除了一般 `Event` 对象的属性，如 `type`、`timestamp`。
 
-* `loaded` 属性是已传输的字节数。
-* `total` 属性是要传输的总的字节数，来自 `Content-Length` 头。若响应没有该头，该值为 0。`lengthComputable` 属性，布尔，用于判断到底知不知道响应的长度。
+- `loaded` 属性是已传输的字节数。
+- `total` 属性是要传输的总的字节数，来自 `Content-Length` 头。若响应没有该头，该值为 0。`lengthComputable` 属性，布尔，用于判断到底知不知道响应的长度。
 
 **上述是下载的传输，而不是指上传的传输** 这几个属性对于计算已加载的百分比:
 
 ```javascript
 request.onprogress = function(e) {
-  if (e.lengthComputable) progress.innerHTML = Math.round(100 * e.loaded / e.total) + '% Complete';
+  if (e.lengthComputable)
+    progress.innerHTML = Math.round((100 * e.loaded) / e.total) + '% Complete';
 };
 ```
 

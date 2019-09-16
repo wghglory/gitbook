@@ -23,12 +23,12 @@ img:hover {
 
 **不是所有的 CSS 属性都可以参与动画**。可以参与的属性包括颜色和尺寸类的：
 
-* transform
-* color, background-color, border-color, opacity
-* border-width, font-size, height, width
-* letter-spacing, line-height, word-spacing
-* margin, padding
-* 定位属性，top, left, right, bottom
+- transform
+- color, background-color, border-color, opacity
+- border-width, font-size, height, width
+- letter-spacing, line-height, word-spacing
+- margin, padding
+- 定位属性，top, left, right, bottom
 
 You can find a complete list at **www.w3.org/TR/css3-transitions/#animatable-properties**.
 

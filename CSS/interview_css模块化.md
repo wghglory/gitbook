@@ -30,10 +30,10 @@ W3C 关于 style 标签放置位置的规范，html5 中 块元素都可以包�
 
 ### link 与 @import 的区别
 
-* link 是 HTML 方式， @import 是 CSS 方式
-* link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现 FOUC
-* @import 必须在样式规则之前，可以在 css 文件中引用其他文件
-* 总体来说：link 优于 @import
+- link 是 HTML 方式， @import 是 CSS 方式
+- link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现 FOUC
+- @import 必须在样式规则之前，可以在 css 文件中引用其他文件
+- 总体来说：link 优于 @import
 
 ```css
 /*xxx 页面入口样式文件 style.css*/
@@ -126,10 +126,10 @@ CSS Modules 允许使用 `:global(.className)` 的语法，声明一个全局规
 
 限制：
 
-* You have to use camelCase CSS class names.
-* You have to use styles object whenever constructing a className.
-* Mixing CSS Modules and global CSS classes is cumbersome.
-* Reference to an undefined CSS Module resolves to undefined without a warning.
+- You have to use camelCase CSS class names.
+- You have to use styles object whenever constructing a className.
+- Mixing CSS Modules and global CSS classes is cumbersome.
+- Reference to an undefined CSS Module resolves to undefined without a warning.
 
 #### webpack 1.x 与 CSS Modules
 
@@ -137,16 +137,16 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 ```json
 {
-  test: /\.css$/,
-  loader: "css?modules&localIdentName=[name]__[local]--[hash:base64:5]"
+  "test": /\.css$/,
+  "loader": "css?modules&localIdentName=[name]__[local]--[hash:base64:5]"
 }
 ```
 
 命名规范是从 BEM 扩展而来。
 
-* Block: 对应模块名 `[name]`
-* Element: 对应节点名 `[local]`
-* Modifier: 对应节点状态 `[hash:base64:5]`
+- Block: 对应模块名 `[name]`
+- Element: 对应节点名 `[local]`
+- Modifier: 对应节点状态 `[hash:base64:5]`
 
 使用 ** 和 -- 是为了区块内单词的分割节点区分开来。最终 class 名为 `styles**title--3zyde`。
 
@@ -156,9 +156,8 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 ```json
 {
-  test: /\.scss$/,
-  loader:
-    "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
+  "test": /\.scss$/,
+  "loader": "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
 }
 ```
 
@@ -179,16 +178,16 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 然后通过 webpack 配置，将在 `app/styles` 文件夹的外的(exclude) scss 文件"局部"化。
 
 ```json
-{
-    test: /\.scss$/,
-    exclude: path.resolve(__dirname, 'app/styles'),
-    loader: "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
+({
+  "test": /\.scss$/,
+  "exclude": path.resolve(__dirname, "app/styles"),
+  "loader": "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
 },
 {
-    test: /\.scss$/,
-    include: path.resolve(__dirname, 'app/styles'),
-    loader: "style!css?sass?sourceMap=true&sourceMapContents=true"
-}
+  "test": /\.scss$/,
+  "include": path.resolve(__dirname, "app/styles"),
+  "loader": "style!css?sass?sourceMap=true&sourceMapContents=true"
+})
 ```
 
 ### 多个 class
@@ -232,7 +231,7 @@ classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); // => 'bar 1
 
 ## reference
 
-* <https://github.com/css-modules/css-modules>
-* <https://github.com/ruanyf/css-modules-demos>
-* <https://github.com/gajus/react-css-modules> (css-modules 限制)
-* <https://github.com/gajus/babel-plugin-react-css-modules>
+- <https://github.com/css-modules/css-modules>
+- <https://github.com/ruanyf/css-modules-demos>
+- <https://github.com/gajus/react-css-modules> (css-modules 限制)
+- <https://github.com/gajus/babel-plugin-react-css-modules>

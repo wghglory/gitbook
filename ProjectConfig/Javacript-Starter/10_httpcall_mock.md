@@ -2,19 +2,19 @@
 
 ## Http call approaches
 
-* Node
-  * http
-  * request (✅)
-* Browser
-  * XMLHttpRequest
-  * jQuery
-  * Framework-based (Angular http service)
-  * Fetch (✅ polyfill for both regular version or isomorphic-fetch)
-* Node & Browser (any below is good)
-  * isomorphic-fetch
-  * xhr
-  * superAgent
-  * axios (great)
+- Node
+  - http
+  - request (✅)
+- Browser
+  - XMLHttpRequest
+  - jQuery
+  - Framework-based (Angular http service)
+  - Fetch (✅ polyfill for both regular version or isomorphic-fetch)
+- Node & Browser (any below is good)
+  - isomorphic-fetch
+  - xhr
+  - superAgent
+  - axios (great)
 
 ### Fetch
 
@@ -48,10 +48,10 @@ axios({
 
 ## Why centralize API calls
 
-* Configure all calls
-* Handle preloader logic
-* Handle errors
-* Single seam(缝合；接合) for mocking
+- Configure all calls
+- Handle preloader logic
+- Handle errors
+- Single seam(缝合；接合) for mocking
 
 create src/api/userApi.js
 
@@ -78,42 +78,42 @@ getUsers().then((result) => {});
 
 ### Why Mock HTTP?
 
-* Unit Testing
-* Instant response
-* Keep working when services are down
-* Rapid prototyping
-* Avoid inter-team bottlenecks
-* Work offline
+- Unit Testing
+- Instant response
+- Keep working when services are down
+- Rapid prototyping
+- Avoid inter-team bottlenecks
+- Work offline
 
 ### How to Mock HTTP (also review interview/frontend/Mock.md)
 
-* Nock (mock http calls in unit test)
-* Static JSON
-* Create development webserver
-  * api-mock
-  * JSON server
-  * JSON Schema faker(random data)
-  * Browsersync
-  * Express, etc.
+- Nock (mock http calls in unit test)
+- Static JSON
+- Create development webserver
+  - api-mock
+  - JSON server
+  - JSON Schema faker(random data)
+  - Browsersync
+  - Express, etc.
 
 My json server: <https://my-json-server.typicode.com/>
 
 ### Authentication
 
-* <https://dzone.com/articles/basic-authentication-for-json-server>
-* <https://medium.com/@kaustubhtalathi/mock-data-for-angular-5-applications-with-json-server-part-1-d377eced223b>
-* <https://github.com/techiediaries/fake-api-jwt-json-server>
+- <https://dzone.com/articles/basic-authentication-for-json-server>
+- <https://medium.com/@kaustubhtalathi/mock-data-for-angular-5-applications-with-json-server-part-1-d377eced223b>
+- <https://github.com/techiediaries/fake-api-jwt-json-server>
 
 ### Our Plan for Mocking HTTP
 
 1.  Declare our schema:
-    * JSON Schema Faker
+    - JSON Schema Faker
 1.  Generate Random Data:
-    * faker.js
-    * chance.js
-    * randexp.js
+    - faker.js
+    - chance.js
+    - randexp.js
 1.  Serve Data via API
-    * JSON Server
+    - JSON Server
 
 ### Mocking Libraries
 
@@ -201,12 +201,12 @@ I prefer to change data every time when restarting the app.
 
 Randomized data is helpful.
 
-* empty lists
-* long lists
-* long value
-* testing
-* filtering
-* sorting
+- empty lists
+- long lists
+- long value
+- testing
+- filtering
+- sorting
 
 To change data, follow below:
 

@@ -8,11 +8,11 @@ Nginx 主要以**事件驱动**的方式编写，有兴趣可以移步[这里](h
 
 [官方站点](http://nginx.org/en/)也指出了`Nginx`作为 HTTP 服务器的几项基本特性：
 
-* 处理静态文件，索引文件以及自动索引；打开文件描述符缓冲
-* 无缓存的反向代理加速，简单的负载均衡和容错
-* FastCGI，简单的负载均衡和容错
-* 模块化的结构，包括 gzipping, byte ranges, chunked responses 以及 SSI-filter 等 filter。
-* 支持 SSL 和 TLSSNI.
+- 处理静态文件，索引文件以及自动索引；打开文件描述符缓冲
+- 无缓存的反向代理加速，简单的负载均衡和容错
+- FastCGI，简单的负载均衡和容错
+- 模块化的结构，包括 gzipping, byte ranges, chunked responses 以及 SSI-filter 等 filter。
+- 支持 SSL 和 TLSSNI.
 
 ## 安装并启动 Nginx
 

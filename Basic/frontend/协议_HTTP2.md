@@ -94,4 +94,3 @@ With Server Push, we can send assets to the browser before it has even asked for
 \- ⾸部压缩: http/1.x 的 header 由于 cookie 和 user agent 很容易膨胀，⽽且每次都要重复发送。 http/2 使⽤ encoder 来减少需要传输的 header ⼤⼩，通讯双⽅各⾃ cache ⼀份 header ﬁelds 表，既避免了重复 header 的传输，⼜减⼩了需要传输的⼤⼩。⾼效的压 缩算法可以很⼤的压缩 header，减少发送包的数量从⽽降低延迟
 
 \- 服务端推送: 在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例⼦，如果⼀个请 求请求的是 index.html，服务器很可能会同时响应 index.html、logo.jpg 以及 css 和 js ⽂件，因为它知道客户端会⽤到这些东⻄。这相当于在⼀个 HTML ⽂档内集合了所有的 资源
-

@@ -39,11 +39,11 @@ CLR provides an environment to execute .NET applications on target machines. CLR
 
 The responsibilities of CLR are listed as follows:
 
-* Automatic memory management
-* Garbage Collection
-* Code Access Security
-* Code verification
-* JIT compilation of .NET code
+- Automatic memory management
+- Garbage Collection
+- Code Access Security
+- Code verification
+- JIT compilation of .NET code
 
 ### Explain covariance(协变) and contra-variance(逆变) in .NET Framework 4.0. Give an example for each.
 

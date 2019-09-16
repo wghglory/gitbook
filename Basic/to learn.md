@@ -6,11 +6,11 @@
 
 前端动画：
 
-* DOM 动画，位置变化
-* svg path 动画
-  * <http://www.cnblogs.com/coco1s/p/6225973.html>
-  * <http://isux.tencent.com/svg-animate.html>
-* css3 动画
+- DOM 动画，位置变化
+- svg path 动画
+  - <http://www.cnblogs.com/coco1s/p/6225973.html>
+  - <http://isux.tencent.com/svg-animate.html>
+- css3 动画
 
 微信开发、小程序
 
@@ -544,7 +544,7 @@ Selecting or finding nodes using document.querySelector and in older browsers do
 
 252、实现布局：左边一张图片，右边一段文字（不是环绕）
 
-253、window.onload 和$(document).ready()的区别，浏览器加载转圈结束时哪个时间点？
+253、window.onload 和\$(document).ready()的区别，浏览器加载转圈结束时哪个时间点？
 
 254、form 表单当前页面无刷新提交 target iframe
 

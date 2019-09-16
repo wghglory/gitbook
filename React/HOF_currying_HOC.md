@@ -2,9 +2,9 @@
 
 3 categories:
 
-* take functions in as arguments
-* return functions
-* both
+- take functions in as arguments
+- return functions
+- both
 
 ## Take functions as arguments
 

@@ -93,7 +93,7 @@ tabs instanceof HTMLElement; // true
 使用的时候，先引入`share-buttons.html`。
 
 ```html
-<link rel="import" href="share-buttons.html">
+<link rel="import" href="share-buttons.html" />
 ```
 
 然后，就可以在网页中使用`<share-buttons>`了。
@@ -101,7 +101,7 @@ tabs instanceof HTMLElement; // true
 ```html
 <article>
   <h1>Title</h1>
-  <share-buttons/>
+  <share-buttons />
   ... ...
 </article>
 ```

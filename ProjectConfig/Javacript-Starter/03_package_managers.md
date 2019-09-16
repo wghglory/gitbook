@@ -8,8 +8,8 @@ npm is best, because it offers everything, like linting, transpiling, etc.
 
 Anyone can creates npm package, so we need to security scanning.
 
-* retire.js
-* node security platform (better)
+- retire.js
+- node security platform (better)
 
 ### Usage of node security platform
 

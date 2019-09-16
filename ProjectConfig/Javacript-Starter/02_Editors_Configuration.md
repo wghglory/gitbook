@@ -2,13 +2,13 @@
 
 ## Editor (Vscode, atom, webstorm, brackets)
 
-* Strong ES2015+ support
-  * Autocompletion
-  * Parse ES6 imports
-  * Report unused imports
-  * Automated refactoring
-* Framework intelligence
-* Built in terminal
+- Strong ES2015+ support
+  - Autocompletion
+  - Parse ES6 imports
+  - Report unused imports
+  - Automated refactoring
+- Framework intelligence
+- Built in terminal
 
 ## Automated Consistency via EditorConfig
 

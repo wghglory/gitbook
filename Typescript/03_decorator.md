@@ -2,10 +2,10 @@
 
 ## What are decorators?
 
-* Proposed feature for JavaScript
-* Declarative programming
-* Implemented as function
-* Can attached to: Properties, Parameters, Accessors, Methods, Classes
+- Proposed feature for JavaScript
+- Declarative programming
+- Implemented as function
+- Can attached to: Properties, Parameters, Accessors, Methods, Classes
 
 ## Decorator syntax
 
@@ -45,9 +45,9 @@ class ContactForm {
 
 ### Class Decorator
 
-* Class constructor will be passed as parameter to decorator
-* Constructor is replaced if there is a return value (`TFunction`)
-* Return void if constructor is not to be replaced
+- Class constructor will be passed as parameter to decorator
+- Constructor is replaced if there is a return value (`TFunction`)
+- Return void if constructor is not to be replaced
 
 ```ts
 <TFunction extends Function>(target: TFunction) => TFunction | void;
@@ -57,8 +57,8 @@ class ContactForm {
 
 **Property Decorators**:
 
-* First parameter `target` is either constructor function or class prototype
-* Second parameter `propertyKey` is the name of the decorated member
+- First parameter `target` is either constructor function or class prototype
+- Second parameter `propertyKey` is the name of the decorated member
 
 ```ts
 function MyPropertyDecorator(target: Object, propertyKey: string) {
@@ -68,9 +68,9 @@ function MyPropertyDecorator(target: Object, propertyKey: string) {
 
 **Parameter Decorators**:
 
-* First parameter is either constructor function or class prototype
-* Second parameter is the name of the decorated member
-* Third parameter is the ordinal index of the decorated parameter
+- First parameter is either constructor function or class prototype
+- Second parameter is the name of the decorated member
+- Third parameter is the ordinal index of the decorated parameter
 
 ```ts
 function MyParameterDecorator(target: Object, propertyKey: string, parameterIndex: number) {
@@ -80,7 +80,7 @@ function MyParameterDecorator(target: Object, propertyKey: string, parameterInde
 
 **Property Descriptors**:
 
-* Object that describes a property and how it can be manipulated
+- Object that describes a property and how it can be manipulated
 
 ```ts
 interface PropertyDescriptor {
@@ -95,9 +95,9 @@ interface PropertyDescriptor {
 
 **Method and Accessor Decorators**:
 
-* First parameter is either constructor function or class prototype
-* Second parameter is the name of the decorated member
-* Third parameter is the property descriptor of the decorated member
+- First parameter is either constructor function or class prototype
+- Second parameter is the name of the decorated member
+- Third parameter is the property descriptor of the decorated member
 
 ```ts
 function MyMethodDecorator(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {

@@ -1,11 +1,11 @@
 # _Development_ Web Servers
 
-* **http-server**: Ultra -simple, Single command serves current directory
-* **live-server**: Lightweight, Support live-reloading
-* **Express**: Comprehensive, Highly Configurable, Production grade, Can run it everywhere
-* **budo**: Integrates with Browserify, Includes hot reloading
-* **Webpack dev server**: Built in to Webpack, Serves from memory, Includes hot reloading
-* **Browsersync**: Dedicated IP for sharing work on LAN. ==_All interactions remain in sync!_== Great for cross-device testing. Integrates with Webpack, Browserify, Gulp
+- **http-server**: Ultra -simple, Single command serves current directory
+- **live-server**: Lightweight, Support live-reloading
+- **Express**: Comprehensive, Highly Configurable, Production grade, Can run it everywhere
+- **budo**: Integrates with Browserify, Includes hot reloading
+- **Webpack dev server**: Built in to Webpack, Serves from memory, Includes hot reloading
+- **Browsersync**: Dedicated IP for sharing work on LAN. ==_All interactions remain in sync!_== Great for cross-device testing. Integrates with Webpack, Browserify, Gulp
 
 ## Express setup
 
@@ -34,10 +34,10 @@ app.listen(port, (err) => {
 
 ## Sharing work-in-progress
 
-* localtunnel
-* ngrok
-* Surge
-* now
+- localtunnel
+- ngrok
+- Surge
+- now
 
 ### localtunnel (great!)
 

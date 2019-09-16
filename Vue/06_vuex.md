@@ -61,7 +61,7 @@ export default {
 
 ### 派⽣状态 - getters
 
-从 state 派⽣出新状态，类似计算属性	
+从 state 派⽣出新状态，类似计算属性
 
 ```js
 export default new Vuex.Store({
@@ -231,4 +231,3 @@ class Store {
   }
 }
 ```
-

@@ -1,9 +1,9 @@
 # Fetch API
 
-* Modern networking api
-* built on promises
-* a Living standard
-* **Available on window and worker**
+- Modern networking api
+- built on promises
+- a Living standard
+- **Available on window and worker**
 
 ## get request
 
@@ -65,13 +65,11 @@ var p = fetch(url, {
   throw new Error('error');
 });
 
-p
-  .then((res) => res.clone())
+p.then((res) => res.clone())
   .then((res) => res.blob())
   .then((res) => console.log(res) || res);
 
-p
-  .then((res) => res.clone())
+p.then((res) => res.clone())
   .then((res) => res.json())
   .then((res) => console.log(res.form) || res);
 ```
@@ -80,50 +78,50 @@ p
 
 Request:
 
-* Url
-* Method
-* Headers
-* Body
-* Context
-* Referrer
-* ReferrerPolicy
-* Mode
-* Credentials
-* Redirect
-* Integrity
-* Cache
+- Url
+- Method
+- Headers
+- Body
+- Context
+- Referrer
+- ReferrerPolicy
+- Mode
+- Credentials
+- Redirect
+- Integrity
+- Cache
 
 Response:
 
-* Url
-* Headers
-* Body
-* Status
-* StatusText
-* Ok
-* Type
-* Redirected
-* UseFinalUrl
+- Url
+- Headers
+- Body
+- Status
+- StatusText
+- Ok
+- Type
+- Redirected
+- UseFinalUrl
 
 Headers:
 
-* append()
-* set()
-* delete()
-* get()
-* getAll()
-* has()
-* entries()
-* keys()
-* values()
+- append()
+- set()
+- delete()
+- get()
+- getAll()
+- has()
+- entries()
+- keys()
+- values()
 
 Body:
 
-* arrayBuffer()
-* blob()
-* text()
-* Response.clone()
-* Request.clone()
-* json()
-* formData()
-* bodyUsed
+- arrayBuffer()
+- blob()
+- text()
+- Response.clone()
+- Request.clone()
+- json()
+- formData()
+- bodyUsed

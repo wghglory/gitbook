@@ -299,14 +299,13 @@ export default {
 ## 异步更新
 
 ```js
-<span id="s">{{foo}}</span> 
+<span id="s">{{ foo }}</span>;
 
-s.innerHTML // foo 假设原始值 foo
-this.foo = 'bar'
-s.innerHTML // foo
+s.innerHTML; // foo 假设原始值 foo
+this.foo = 'bar';
+s.innerHTML; // foo
 
-this.$nextTick(()=>{
-  s.innerHTML // bar
-})
+this.$nextTick(() => {
+  s.innerHTML; // bar
+});
 ```
-

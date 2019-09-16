@@ -6,8 +6,8 @@ Since version 5.5 RxJS has introduced these so called pipeable operators which a
 
 For application developers, lettable operators are much easier to manage:
 
-* Rather then relying upon operators being patched into Observable.prototype, lettable operators are explicitly imported into the modules in which they are used.
-* It’s easy for TypeScript and bundlers to determine whether the lettable operators imported into a module are actually used. And if they are not, they can be left unbundled. If prototype patching is used, this task is manual and tedious.
+- Rather then relying upon operators being patched into Observable.prototype, lettable operators are explicitly imported into the modules in which they are used.
+- It’s easy for TypeScript and bundlers to determine whether the lettable operators imported into a module are actually used. And if they are not, they can be left unbundled. If prototype patching is used, this task is manual and tedious.
 
 For library authors, lettable operators are much less verbose than call-based alternative, but it’s the correct inference of types that is — the biggest advantage.
 
@@ -25,16 +25,19 @@ const new$ = Observable.interval$.filter((v) => v % 2 === 0).map((v) => v * 2);
 // we just use the pipe operator where we pass operators that
 // we can import from 'rxjs/operators'
 import { filter, map } from 'rxjs/operators';
-const new$ = interval$.pipe(filter((v) => v % 2 === 0), map((v) => v * 2));
+const new$ = interval$.pipe(
+  filter((v) => v % 2 === 0),
+  map((v) => v * 2),
+);
 ```
 
 ## Using pure functions
 
 RxJS follows the concepts of functional reactive programming which basically means that we will use [pure functions](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976) to create our reactive flow. A function is pure when:
 
-* It doesn’t mutate anything
-* It will always return the same value based on the same parameters
-* It doesn’t have any side effects. It can’t mutate state outside of the function
+- It doesn’t mutate anything
+- It will always return the same value based on the same parameters
+- It doesn’t have any side effects. It can’t mutate state outside of the function
 
 In the beginning it might seem pragmatic to use side effects, but that mostly means we aren’t fully thinking reactively. Therefore avoid side effects at much as possible.
 
@@ -132,7 +135,10 @@ class AppComponent {
     // GOOD: we have created a single subscribe which makes
     // the flow way easier and gives us the control we need
     this.route.params
-      .pipe(map((v) => v.id), switchMap((id) => this.userService.fetchById(id)))
+      .pipe(
+        map((v) => v.id),
+        switchMap((id) => this.userService.fetchById(id)),
+      )
       .subscribe((user) => (this.user = user));
   }
 }
@@ -144,9 +150,9 @@ To consume a stream we need to subscribe that stream, that’s simply how observ
 
 Angular has this super cool feature called the `async pipe`. It’s used to consume streams directly in the template The async pipe does 3 things for us:
 
-* It subscribes to the stream and passes the value to a component
-* It **unsubscribes automatically** when the component gets destroyed (removes a lot of unsubscribe logic)
-* Triggers change detection automatically
+- It subscribes to the stream and passes the value to a component
+- It **unsubscribes automatically** when the component gets destroyed (removes a lot of unsubscribe logic)
+- Triggers change detection automatically
 
 This means we don’t have to manually subscribe nor unsubscribe anymore. Which cleans up the code a lot. Let’s have a look at the cleaned up previous example:
 
@@ -400,7 +406,7 @@ For most other cases an operator or Observable.create might be enough.
 
 Consistent code indentation and formatting can improve the readability of complex streams:
 
-* Align operators below each other
+- Align operators below each other
 
 ```ts
     foo$.pipe(
@@ -410,16 +416,16 @@ Consistent code indentation and formatting can improve the readability of comple
     )
 ```
 
-* Extract into different streams when it becomes unreadable
-* Put complexer functionality in private methods (make the reactive flow clear)
-* Avoid the use of brackets for readability, that’s personal preference.
+- Extract into different streams when it becomes unreadable
+- Put complexer functionality in private methods (make the reactive flow clear)
+- Avoid the use of brackets for readability, that’s personal preference.
 
 ## Angular embraces RxJS
 
 We already saw a glimpse of why Angular is a framework that really embraces the use of RxJS. Therefore it’s recommended to use the functionality that Angular provides.
 
-* The `ActivatedRoute` has exposes a params stream.
-* The `HttpClient` both return streams
-* The `Form` and `FormControl` both have a `valueChanges` property that returns a stream
-* The async pipe is an awesome feature that really helps us to use the streams in our templates
-* Using the `ngOnInit()` lifecycle function to initialize streams can help us for mocking purposes
+- The `ActivatedRoute` has exposes a params stream.
+- The `HttpClient` both return streams
+- The `Form` and `FormControl` both have a `valueChanges` property that returns a stream
+- The async pipe is an awesome feature that really helps us to use the streams in our templates
+- Using the `ngOnInit()` lifecycle function to initialize streams can help us for mocking purposes

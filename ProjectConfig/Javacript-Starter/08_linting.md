@@ -1,30 +1,30 @@
 # Linting
 
-* Enforce Consistency
-  * Curly brace position
-  * confirm / alert
-  * Trailing commas
-  * Globals
-  * eval
-* Avoid Mistakes
-  * Extra parenthesis
-  * Overwriting function
-  * Assignment in conditional
-  * Missing default case in switch
-  * debugger / console.log
+- Enforce Consistency
+  - Curly brace position
+  - confirm / alert
+  - Trailing commas
+  - Globals
+  - eval
+- Avoid Mistakes
+  - Extra parenthesis
+  - Overwriting function
+  - Assignment in conditional
+  - Missing default case in switch
+  - debugger / console.log
 
 ## ESLint
 
 ### Warnings vs Errors
 
-* Warning
-  * Can continue development
-  * Can be ignored
-  * Team must agree: Fix warnings
-* Error
-  * Breaks the build
-  * Cannot be ignored
-  * Team is forced to comply
+- Warning
+  - Can continue development
+  - Can be ignored
+  - Team must agree: Fix warnings
+- Error
+  - Breaks the build
+  - Cannot be ignored
+  - Team is forced to comply
 
 ### Plugins
 
@@ -38,22 +38,22 @@ from scratch recommended presets: airbnb
 
 #### ESLint doesn't watch files
 
-* `eslint-loader` if using webpack
-  * Re-lints all files upon save.
-* `eslint-watch` is a npm package (better solution)
-  * ESLint wrapper that adds file watch
-  * Not tied to webpack
-  * Better warning/error formatting
-  * Displays clean message
-  * Easily lint tests and build scripts too
+- `eslint-loader` if using webpack
+  - Re-lints all files upon save.
+- `eslint-watch` is a npm package (better solution)
+  - ESLint wrapper that adds file watch
+  - Not tied to webpack
+  - Better warning/error formatting
+  - Displays clean message
+  - Easily lint tests and build scripts too
 
 #### ESLint doesn't support many experimental JavaScript features
 
-* Run ESLint directly
-  * Supports ES6 and ES7 natively
-  * Also supports object spread
-* use `Babel-eslint`
-  * Also lints stage 0 - 4 features
+- Run ESLint directly
+  - Supports ES6 and ES7 natively
+  - Also supports object spread
+- use `Babel-eslint`
+  - Also lints stage 0 - 4 features
 
 ## Why Lint via an Automated Build Process
 

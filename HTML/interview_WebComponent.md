@@ -10,17 +10,17 @@ Think about how you currently implement an image slider, it might look something
 
 ```html
 <div id="slider">
-  <input checked="" type="radio" name="slider" id="slide1" selected="false">
-  <input type="radio" name="slider" id="slide2" selected="false">
-  <input type="radio" name="slider" id="slide3" selected="false">
-  <input type="radio" name="slider" id="slide4" selected="false">
+  <input checked="" type="radio" name="slider" id="slide1" selected="false" />
+  <input type="radio" name="slider" id="slide2" selected="false" />
+  <input type="radio" name="slider" id="slide3" selected="false" />
+  <input type="radio" name="slider" id="slide4" selected="false" />
   <div id="slides">
     <div id="overflow">
       <div class="inner">
-        <img src="images/rock.jpg">
-        <img src="images/grooves.jpg">
-        <img src="images/arch.jpg">
-        <img src="images/sunset.jpg">
+        <img src="images/rock.jpg" />
+        <img src="images/grooves.jpg" />
+        <img src="images/arch.jpg" />
+        <img src="images/sunset.jpg" />
       </div>
     </div>
   </div>
@@ -35,10 +35,10 @@ We want it to be something like:
 
 ```html
 <img-slider>
-  <img src="images/sunset.jpg" alt="a dramatic sunset">
-  <img src="images/arch.jpg" alt="a rock arch">
-  <img src="images/grooves.jpg" alt="some neat grooves">
-  <img src="images/rock.jpg" alt="an interesting rock">
+  <img src="images/sunset.jpg" alt="a dramatic sunset" />
+  <img src="images/arch.jpg" alt="a rock arch" />
+  <img src="images/grooves.jpg" alt="some neat grooves" />
+  <img src="images/rock.jpg" alt="an interesting rock" />
 </img-slider>
 ```
 
@@ -48,7 +48,7 @@ Think of `<video>` tag:
 
 ```html
 <video controls autoplay name="media" width="500">
-    <source src="http://7ryl2t.com2.z0.glb.qiniucdn.com/572ffc37a2e5a.mp4">
+  <source src="http://7ryl2t.com2.z0.glb.qiniucdn.com/572ffc37a2e5a.mp4" />
 </video>
 ```
 
@@ -93,7 +93,7 @@ To create shadow DOM, select an element and call its `createShadowRoot` method. 
 <script>
   var host = document.querySelector('.container');
   var root = host.createShadowRoot();
-  root.innerHTML = '<p>How <em>you</em> doing?</p>'
+  root.innerHTML = '<p>How <em>you</em> doing?</p>';
 </script>
 ```
 
@@ -105,9 +105,9 @@ If you think about our `<video>` tag from before, the **`<video>`element itself 
 
 ```html
 <video>
-  <source src="trailer.mp4" type="video/mp4">
-  <source src="trailer.webm" type="video/webm">
-  <source src="trailer.ogv" type="video/ogg">
+  <source src="trailer.mp4" type="video/mp4" />
+  <source src="trailer.webm" type="video/webm" />
+  <source src="trailer.ogv" type="video/ogg" />
 </video>
 ```
 
@@ -161,17 +161,17 @@ To get our `img-slider` into the shadow DOM we'll need to create a shadow host a
       -ms-transform: translateZ(0);
       transform: translateZ(0);
 
-      -webkit-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -moz-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -o-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -ms-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      -webkit-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -moz-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -o-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -ms-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
 
-      -webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -moz-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -o-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -ms-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      -webkit-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -moz-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -o-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -ms-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     #slides img {
@@ -195,12 +195,12 @@ To get our `img-slider` into the shadow DOM we'll need to create a shadow host a
       margin-left: -300%;
     }
 
-    input[type="radio"] {
+    input[type='radio'] {
       display: none;
     }
 
     label {
-      background: #CCC;
+      background: #ccc;
       display: inline-block;
       cursor: pointer;
       width: 10px;
@@ -208,27 +208,29 @@ To get our `img-slider` into the shadow DOM we'll need to create a shadow host a
       border-radius: 5px;
     }
 
-    #slide1:checked ~ label[for="slide1"],
-    #slide2:checked ~ label[for="slide2"],
-    #slide3:checked ~ label[for="slide3"],
-    #slide4:checked ~ label[for="slide4"] {
+    #slide1:checked ~ label[for='slide1'],
+    #slide2:checked ~ label[for='slide2'],
+    #slide3:checked ~ label[for='slide3'],
+    #slide4:checked ~ label[for='slide4'] {
       background: #333;
     }
   </style>
   <div id="slider">
-    <input checked="" type="radio" name="slider" id="slide1" selected="false">
-    <input type="radio" name="slider" id="slide2" selected="false">
-    <input type="radio" name="slider" id="slide3" selected="false">
-    <input type="radio" name="slider" id="slide4" selected="false">
+    <input checked="" type="radio" name="slider" id="slide1" selected="false" />
+    <input type="radio" name="slider" id="slide2" selected="false" />
+    <input type="radio" name="slider" id="slide3" selected="false" />
+    <input type="radio" name="slider" id="slide4" selected="false" />
     <div id="slides">
       <div id="overflow">
         <div class="inner">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg">
-        </div> <!-- .inner -->
-      </div> <!-- #overflow -->
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg" />
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg" />
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg" />
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg" />
+        </div>
+        <!-- .inner -->
+      </div>
+      <!-- #overflow -->
     </div>
     <label for="slide1"></label>
     <label for="slide2"></label>
@@ -284,10 +286,10 @@ Now we're ready to populate our `img-slider`.
 
 ```html
 <div class="img-slider">
-  <img src="images/rock.jpg" alt="an interesting rock">
-  <img src="images/grooves.jpg" alt="some neat grooves">
-  <img src="images/arch.jpg" alt="a rock arch">
-  <img src="images/sunset.jpg" alt="a dramatic sunset">
+  <img src="images/rock.jpg" alt="an interesting rock" />
+  <img src="images/grooves.jpg" alt="some neat grooves" />
+  <img src="images/arch.jpg" alt="a rock arch" />
+  <img src="images/sunset.jpg" alt="a dramatic sunset" />
 </div>
 ```
 
@@ -325,17 +327,17 @@ final html:
       -ms-transform: translateZ(0);
       transform: translateZ(0);
 
-      -webkit-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -moz-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -o-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -ms-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      -webkit-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -moz-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -o-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -ms-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
 
-      -webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -moz-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -o-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -ms-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      -webkit-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -moz-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -o-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -ms-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     #slides ::content img {
@@ -359,12 +361,12 @@ final html:
       margin-left: -300%;
     }
 
-    input[type="radio"] {
+    input[type='radio'] {
       display: none;
     }
 
     label {
-      background: #CCC;
+      background: #ccc;
       display: inline-block;
       cursor: pointer;
       width: 10px;
@@ -372,24 +374,26 @@ final html:
       border-radius: 5px;
     }
 
-    #slide1:checked ~ label[for="slide1"],
-    #slide2:checked ~ label[for="slide2"],
-    #slide3:checked ~ label[for="slide3"],
-    #slide4:checked ~ label[for="slide4"] {
+    #slide1:checked ~ label[for='slide1'],
+    #slide2:checked ~ label[for='slide2'],
+    #slide3:checked ~ label[for='slide3'],
+    #slide4:checked ~ label[for='slide4'] {
       background: #333;
     }
   </style>
   <div id="slider">
-    <input checked="" type="radio" name="slider" id="slide1" selected="false">
-    <input type="radio" name="slider" id="slide2" selected="false">
-    <input type="radio" name="slider" id="slide3" selected="false">
-    <input type="radio" name="slider" id="slide4" selected="false">
+    <input checked="" type="radio" name="slider" id="slide1" selected="false" />
+    <input type="radio" name="slider" id="slide2" selected="false" />
+    <input type="radio" name="slider" id="slide3" selected="false" />
+    <input type="radio" name="slider" id="slide4" selected="false" />
     <div id="slides">
       <div id="overflow">
         <div class="inner">
           <content select="img"></content>
-        </div> <!-- .inner -->
-      </div> <!-- #overflow -->
+        </div>
+        <!-- .inner -->
+      </div>
+      <!-- #overflow -->
     </div>
     <label for="slide1"></label>
     <label for="slide2"></label>
@@ -399,10 +403,10 @@ final html:
 </template>
 
 <div class="img-slider">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg" />
 </div>
 
 <script>
@@ -426,8 +430,8 @@ Next, we can turn this `img-slider` div into its own tag.
 
 A **Custom Element** two requirements:
 
-* name must contain a dash
-* prototype must extend `HTMLElement`
+- name must contain a dash
+- prototype must extend `HTMLElement`
 
 ```html
 <template>
@@ -449,7 +453,7 @@ A **Custom Element** two requirements:
 
   // Register our new element
   var ImgSlider = document.registerElement('img-slider', {
-    prototype: ImgSliderProto
+    prototype: ImgSliderProto,
   });
 </script>
 ```
@@ -494,17 +498,17 @@ Final:
       -ms-transform: translateZ(0);
       transform: translateZ(0);
 
-      -webkit-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -moz-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -o-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -ms-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      -webkit-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -moz-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -o-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      -ms-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
 
-      -webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -moz-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -o-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      -ms-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      -webkit-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -moz-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -o-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      -ms-transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+      transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     #slides ::content img {
@@ -528,12 +532,12 @@ Final:
       margin-left: -300%;
     }
 
-    input[type="radio"] {
+    input[type='radio'] {
       display: none;
     }
 
     label {
-      background: #CCC;
+      background: #ccc;
       display: inline-block;
       cursor: pointer;
       width: 10px;
@@ -541,24 +545,26 @@ Final:
       border-radius: 5px;
     }
 
-    #slide1:checked ~ label[for="slide1"],
-    #slide2:checked ~ label[for="slide2"],
-    #slide3:checked ~ label[for="slide3"],
-    #slide4:checked ~ label[for="slide4"] {
+    #slide1:checked ~ label[for='slide1'],
+    #slide2:checked ~ label[for='slide2'],
+    #slide3:checked ~ label[for='slide3'],
+    #slide4:checked ~ label[for='slide4'] {
       background: #333;
     }
   </style>
   <div id="slider">
-    <input checked="" type="radio" name="slider" id="slide1" selected="false">
-    <input type="radio" name="slider" id="slide2" selected="false">
-    <input type="radio" name="slider" id="slide3" selected="false">
-    <input type="radio" name="slider" id="slide4" selected="false">
+    <input checked="" type="radio" name="slider" id="slide1" selected="false" />
+    <input type="radio" name="slider" id="slide2" selected="false" />
+    <input type="radio" name="slider" id="slide3" selected="false" />
+    <input type="radio" name="slider" id="slide4" selected="false" />
     <div id="slides">
       <div id="overflow">
         <div class="inner">
           <content select="img"></content>
-        </div> <!-- .inner -->
-      </div> <!-- #overflow -->
+        </div>
+        <!-- .inner -->
+      </div>
+      <!-- #overflow -->
     </div>
     <label for="slide1"></label>
     <label for="slide2"></label>
@@ -568,10 +574,10 @@ Final:
 </template>
 
 <img-slider>
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg" />
 </img-slider>
 ```
 

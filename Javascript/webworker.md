@@ -20,35 +20,33 @@ timedCount();
 ```html
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <p>Count numbers: <output id="result"></output></p>
+    <button onclick="startWorker()">Start Worker</button>
+    <button onclick="stopWorker()">Stop Worker</button>
 
-<p>Count numbers: <output id="result"></output></p>
-<button onclick="startWorker()">Start Worker</button>
-<button onclick="stopWorker()">Stop Worker</button>
+    <script>
+      var w;
 
-<script>
-var w;
-
-function startWorker() {
-    if(typeof(Worker) !== "undefined") {
-        if(typeof(w) == "undefined") {
-            w = new Worker("demo_workers.js");
+      function startWorker() {
+        if (typeof Worker !== 'undefined') {
+          if (typeof w == 'undefined') {
+            w = new Worker('demo_workers.js');
+          }
+          w.onmessage = function(event) {
+            document.getElementById('result').innerHTML = event.data;
+          };
+        } else {
+          document.getElementById('result').innerHTML = 'Sorry! No Web Worker support.';
         }
-        w.onmessage = function(event) {
-            document.getElementById("result").innerHTML = event.data;
-        };
-    } else {
-        document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
-    }
-}
+      }
 
-function stopWorker() {
-    w.terminate();
-    w = undefined;  // can reuse the Web Worker when calling startWorker() again
-}
-</script>
-
-</body>
+      function stopWorker() {
+        w.terminate();
+        w = undefined; // can reuse the Web Worker when calling startWorker() again
+      }
+    </script>
+  </body>
 </html>
 ```
 

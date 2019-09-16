@@ -1,9 +1,9 @@
 # Media Query
 
-* Css reset/normalize (not in MQ)
-* small screen (not in MQ due to mobile first, default rules)
-* medium screen: @media screen and (min-width: 500px) { }
-* large screen: @media screen and (min-width: 1140px) { }
+- Css reset/normalize (not in MQ)
+- small screen (not in MQ due to mobile first, default rules)
+- medium screen: @media screen and (min-width: 500px) { }
+- large screen: @media screen and (min-width: 1140px) { }
 
 So most styles are in small.scss, a little in both medium.scss and large.scss
 
@@ -151,7 +151,7 @@ $mediaMinWidth: 480px;
     '>bp1Width': '(min-width: #{$mediaBp1Width + 1})',
     '<bp1Width': '(max-width: #{$mediaBp1Width})',
     '>minWidth': '(min-width: #{$mediaMinWidth + 1})',
-    '<minWidth': '(max-width: #{$mediaMinWidth})'
+    '<minWidth': '(max-width: #{$mediaMinWidth})',
   );
   @return map-get($condMap, $c);
 }

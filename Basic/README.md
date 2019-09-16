@@ -2,6 +2,7 @@
 
 - [design_pattern](design_pattern.md)
 - [hash 碰撞](hash碰撞.md)
+- [http 协议](http协议.md)
 - [IaaS-PaaS-SaaS 的区别](IaaS-PaaS-SaaS的区别.md)
 - [nodejs_interview](nodejs_interview.md)
 - [oop](oop.md)

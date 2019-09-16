@@ -6,12 +6,12 @@
 
 主要新特性包括：
 
-* Angular elements
-* CDK
-* Ivy renderer
-* Bazel & Closure compiler
-* ng update & ng add
-* RXJS 6, Webpack 4, TypeScript 2.7 support
+- Angular elements
+- CDK
+- Ivy renderer
+- Bazel & Closure compiler
+- ng update & ng add
+- RXJS 6, Webpack 4, TypeScript 2.7 support
 
 ## Angular elements
 
@@ -37,9 +37,9 @@ Bazel 是 Google 内部一直使用的强大构建工具，根据 Brad Green 在
 
 Closure 也是 Google 内部一直使用的一款工具，它可以对 JS 代码进行压缩和优化，生成的包体积更小（比如典型的**死码消除**特性）、对 JS 引擎更加友好。
 
-* 更详尽的演进路线点这里（英文，墙？）：[g.co/ng/abc](https://link.juejin.im/?target=http%3A%2F%2Fg.co%2Fng%2Fabc)
-* Bazel 的官方网站点这里（英文，墙？）：[bazel.build/](https://link.juejin.im/?target=https%3A%2F%2Fbazel.build%2F)
-* Closure 的详细介绍点这里（英文，墙？）：[developers.google.com/closure/com…](https://link.juejin.im/?target=https%3A%2F%2Fdevelopers.google.com%2Fclosure%2Fcompiler%2F)
+- 更详尽的演进路线点这里（英文，墙？）：[g.co/ng/abc](https://link.juejin.im/?target=http%3A%2F%2Fg.co%2Fng%2Fabc)
+- Bazel 的官方网站点这里（英文，墙？）：[bazel.build/](https://link.juejin.im/?target=https%3A%2F%2Fbazel.build%2F)
+- Closure 的详细介绍点这里（英文，墙？）：[developers.google.com/closure/com…](https://link.juejin.im/?target=https%3A%2F%2Fdevelopers.google.com%2Fclosure%2Fcompiler%2F)
 
 ## ng update & ng add
 
@@ -69,5 +69,5 @@ Angular 目前使用的 webpack 版本是 3.x，很快 webpack 4.x 就要来了�
 
 ## Reference
 
-* <http://baijiahao.baidu.com/s?id=1601056475936463734&wfr=spider&for=pc>
-* <https://blog.csdn.net/lc_style/article/details/80292991> (Very good)
+- <http://baijiahao.baidu.com/s?id=1601056475936463734&wfr=spider&for=pc>
+- <https://blog.csdn.net/lc_style/article/details/80292991> (Very good)

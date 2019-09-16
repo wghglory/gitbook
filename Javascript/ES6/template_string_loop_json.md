@@ -23,9 +23,17 @@ console.log(table(data));
 
 ```html
 <table>
-  <tr><td>Jane</td></tr>
-  <tr><td>Bond</td></tr>
-  <tr><td>Lars</td></tr>
-  <tr><td>Croft</td></tr>
+  <tr>
+    <td>Jane</td>
+  </tr>
+  <tr>
+    <td>Bond</td>
+  </tr>
+  <tr>
+    <td>Lars</td>
+  </tr>
+  <tr>
+    <td>Croft</td>
+  </tr>
 </table>
 ```

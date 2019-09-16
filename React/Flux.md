@@ -2,9 +2,9 @@
 
 Pros:
 
-* perfect for one to one mapping: `20 views <=> 20 controllers <=> 20 models`
-* good separation of concerns
-* easy to maintain and test
+- perfect for one to one mapping: `20 views <=> 20 controllers <=> 20 models`
+- good separation of concerns
+- easy to maintain and test
 
 Cons: 视图变化太快，模型需要经常变动
 

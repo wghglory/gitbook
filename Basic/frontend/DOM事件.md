@@ -97,9 +97,9 @@ myEmitter.emit('event');
 
     The readyState of a document can be one of following:
 
-    * `loading`: The document is still loading.
-    * `interactive`(`DOMContentLoaded`): The document has finished loading and the document has been parsed but sub-resources such as images, stylesheets and frames are still loading.
-    * `complete`(`load`): The document and all sub-resources have finished loading. The state indicates that the load event is about to fire.
+    - `loading`: The document is still loading.
+    - `interactive`(`DOMContentLoaded`): The document has finished loading and the document has been parsed but sub-resources such as images, stylesheets and frames are still loading.
+    - `complete`(`load`): The document and all sub-resources have finished loading. The state indicates that the load event is about to fire.
 
 <https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState>
 
@@ -109,19 +109,19 @@ IE 只有事件只能在冒泡阶段触发。标准浏览器通过 `addEventList
 
 IE:
 
-* `attachEvent('click', function(){})` 添加事件
-* `detachEvent('click', function(){})` 删除事件
+- `attachEvent('click', function(){})` 添加事件
+- `detachEvent('click', function(){})` 删除事件
 
 标准浏览器 DOM 中的事件对象
 
-* type：获取事件类型
-* target：事件目标
-* `stopPropagation()` 阻止事件冒泡
-* `preventDefault()` 阻止事件的默认行为
+- type：获取事件类型
+- target：事件目标
+- `stopPropagation()` 阻止事件冒泡
+- `preventDefault()` 阻止事件的默认行为
 
 IE 中的事件对象
 
-* type：获取事件类型
-* srcElement：事件目标
-* `cancelBubble = true` 阻止事件冒泡
-* `returnValue = false` 阻止事件的默认行为
+- type：获取事件类型
+- srcElement：事件目标
+- `cancelBubble = true` 阻止事件冒泡
+- `returnValue = false` 阻止事件的默认行为

@@ -197,4 +197,3 @@ Vue.component('MyComp', {
   // }
 });
 ```
-

@@ -38,7 +38,7 @@ List of models:
 ```html
 <h3>Repo list</h3>
 <ul>
-	<li *ngFor="let repo of repos | async">
+  <li *ngFor="let repo of repos | async">
     <a [routerLink]="['/github', repo.owner.login, repo.name]">
       {{ repo.name }}
     </a>
@@ -81,7 +81,7 @@ export class RepoList implements OnInit {
 Above List of Models, there is a search area. When clicking the button, the page navigates to Single Model detail page.
 
 ```html
-<input type="text" #repoName placeholder="Search Github Orgs">
+<input type="text" #repoName placeholder="Search Github Orgs" />
 <button (click)="searchForOrg(repoName.value)">Search Orgs</button>
 
 <router-outlet></router-outlet>
@@ -159,8 +159,8 @@ export class RepoDetail implements OnInit {
 
 ## [RouteStateSnapshot vs RouteState](https://vsavkin.com/angular-router-understanding-router-state-7b5b95a12eab)
 
-* RouteStateSnapshot is an immutable data structure representing the state of the router at a particular moment in time. Any time a component is added or removed or parameter is updated, a new snapshot is created.
+- RouteStateSnapshot is an immutable data structure representing the state of the router at a particular moment in time. Any time a component is added or removed or parameter is updated, a new snapshot is created.
 
-* RouterState is similar to RouteStateSnapshot, except that it represents the state of the router changing over time.
+- RouterState is similar to RouteStateSnapshot, except that it represents the state of the router changing over time.
 
-* ActivatedRoute: ActivatedRoute provides access to the url, params, data, queryParams, and fragment observables
+- ActivatedRoute: ActivatedRoute provides access to the url, params, data, queryParams, and fragment observables

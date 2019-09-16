@@ -2,14 +2,14 @@
 
 ## \*ngIf, [hidden]
 
-* `*ngIf` removes DOM.
-* `[hidden] = "condition"` hides DOM.
+- `*ngIf` removes DOM.
+- `[hidden] = "condition"` hides DOM.
 
 ## Class
 
-* `[class.green] = "condition"`
-* `[ngClass] = "{ green: condition, alert: condition }"`
-* `[ngClass] = "aFun()"`
+- `[class.green] = "condition"`
+- `[ngClass] = "{ green: condition, alert: condition }"`
+- `[ngClass] = "aFun()"`
 
 ```ts
 aFun () {
@@ -23,5 +23,5 @@ aFun () {
 
 ## Style
 
-* `[style.color] = "a === a ? '#fff': '#000'"`
-* `[ngStyle] = "{ color: a === a ? '#fff': '#000', background: b === b ? 'yellow': 'green' }"`
+- `[style.color] = "a === a ? '#fff': '#000'"`
+- `[ngStyle] = "{ color: a === a ? '#fff': '#000', background: b === b ? 'yellow': 'green' }"`

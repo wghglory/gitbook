@@ -6,10 +6,10 @@ React-Redux 将所有组件分成两大类：UI 组件（presentational componen
 
 UI 组件有以下几个特征。
 
-* 只负责 UI 的呈现，不带有任何业务逻辑
-* 没有状态（即不使用`this.state`这个变量）
-* 所有数据都由参数（`this.props`）提供
-* 不使用任何 Redux 的 API
+- 只负责 UI 的呈现，不带有任何业务逻辑
+- 没有状态（即不使用`this.state`这个变量）
+- 所有数据都由参数（`this.props`）提供
+- 不使用任何 Redux 的 API
 
 下面就是一个 UI 组件的例子。
 
@@ -23,9 +23,9 @@ const Title = (value) => <h1>{value}</h1>;
 
 容器组件的特征恰恰相反。
 
-* 负责管理数据和业务逻辑，不负责 UI 的呈现
-* 带有内部状态
-* 使用 Redux 的 API
+- 负责管理数据和业务逻辑，不负责 UI 的呈现
+- 带有内部状态
+- 使用 Redux 的 API
 
 总之，只要记住一句话就可以了：UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 
@@ -54,7 +54,10 @@ const VisibleTodoList = connect()(TodoList);
 ```javascript
 import { connect } from 'react-redux';
 
-const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TodoList);
 ```
 
 上面代码中，`connect`方法接受两个参数：`mapStateToProps`和`mapDispatchToProps`。它们定义了 UI 组件的业务逻辑。前者负责输入逻辑，即将`state`映射到 UI 组件的参数（`props`），后者负责输出逻辑，即将用户对 UI 组件的操作映射成 Action。
@@ -251,7 +254,10 @@ const increaseAction = { type: 'increase' };
 然后，使用`connect`方法生成容器组件。
 
 ```javascript
-const App = connect(mapStateToProps, mapDispatchToProps)(Counter);
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Counter);
 ```
 
 然后，定义这个组件的 Reducer。
@@ -341,7 +347,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 // Connected Component
-const App = connect(mapStateToProps, mapDispatchToProps)(Counter);
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Counter);
 
 ReactDOM.render(
   <Provider store={store}>

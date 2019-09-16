@@ -4,11 +4,11 @@
 
 ### How Does Minification Work?
 
-* Shortens variable and function names
-* Removes comments
-* Removes whitespace and new lines
-* Dead code elimination / Tree-shaking
-* Debug via sourcemap
+- Shortens variable and function names
+- Removes comments
+- Removes whitespace and new lines
+- Dead code elimination / Tree-shaking
+- Debug via sourcemap
 
 ### Switching Api by queryString
 
@@ -48,18 +48,18 @@ Create build.js and distServer.js
 
 ### Why Manipulate HTML for Production?
 
-* Reference bundles automatically
-* Handle dynamic bundle names
-* Inject production only resources
-* Minify
+- Reference bundles automatically
+- Handle dynamic bundle names
+- Inject production only resources
+- Minify
 
 Best way is to use `html-webpack-plugin` since we use webpack.
 
 ### Why Bundle/Code Splitting
 
-* Important for larger application
-* Speed initial page load
-* Avoid re-downloading all libraries
+- Important for larger application
+- Speed initial page load
+- Avoid re-downloading all libraries
 
 1.  vendor.js
 
@@ -92,8 +92,8 @@ Best way is to use `html-webpack-plugin` since we use webpack.
 
 ### Cache Busting
 
-* Save HTTP Requests
-* Force request for latest version
+- Save HTTP Requests
+- Force request for latest version
 
 #### Setup Cache busting
 
@@ -143,21 +143,21 @@ export default {
 
 ### Error Logging
 
-* TrackJS(✅)
-* Sentry
-* New Relic
-* Raygun
+- TrackJS(✅)
+- Sentry
+- New Relic
+- Raygun
 
 Things to be considered:
 
-* Error Metadata
-  * Browser
-  * Stack trace
-  * Previous actions
-  * Custom API for enhanced tracking
-* Notifications & integrations
-* Analytics and filtering
-* Pricing
+- Error Metadata
+  - Browser
+  - Stack trace
+  - Previous actions
+  - Custom API for enhanced tracking
+- Notifications & integrations
+- Analytics and filtering
+- Pricing
 
 #### [Track.js](https://my.trackjs.com)
 
@@ -226,7 +226,9 @@ index.html
 ```html
 <% if(htmlWebpackPlugin.options.trackJSToken) { %>
 <!-- BEGIN TRACKJS -->
-<script type="text/javascript">window._trackJs = { token: '7a7c1c686a66488c8bd4b229de471250' };</script>
+<script type="text/javascript">
+  window._trackJs = { token: '7a7c1c686a66488c8bd4b229de471250' };
+</script>
 <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
 <!-- END TRACKJS -->
 <% } %>

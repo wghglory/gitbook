@@ -47,8 +47,7 @@
     "watch:bundle": "watchify ./client/js/app.js -o ./public/js/bundle.js -dv", // no minification
     "watch:bundleWatcher": "watch 'npm run build:bundle' client", // will minify
     "watch:browser": "live-reload --port 9091 public/",
-    "watch":
-      "npm run watch:test & npm run watch:bundle & npm run watch:server & npm run watch:browser",
+    "watch": "npm run watch:test & npm run watch:bundle & npm run watch:server & npm run watch:browser",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",
@@ -62,8 +61,7 @@
     "launch:prod:windows": "start https://stupidlittlewebsite.herokuapp.com/",
     "push": "npm run push:origin && npm run push:heroku",
     // "deploy": "npm run build && firebase deploy",
-    "deploy:prod":
-      "npm run test:deploy -s && npm run build -s && npm run version:patch && npm run push && npm run launch:prod",
+    "deploy:prod": "npm run test:deploy -s && npm run build -s && npm run version:patch && npm run push && npm run launch:prod",
     "deploy:prod:time": "time(npm run deploy:prod)",
     "deploy:prod:script": "bash ./deployProd.sh", // windows: bash ./deployProd.bat
     "test:deploy": "npm t -- -R dot",

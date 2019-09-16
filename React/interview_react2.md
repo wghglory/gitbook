@@ -14,9 +14,9 @@ What’s mildly interesting is that React doesn’t actually attach events to th
 
 ## 组件的 render 函数何时被调用
 
-* 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
-* 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
-* React 生命周期中有个 componentShouldUpdate 函数，默认返回 true，即允许 render 被调用，我们也可以重写这个函数，判断是否应该调用 render 函数
+- 组件 state 发生改变时会调用 render 函数，比如通过 setState 函数改变组件自身的 state 值
+- 继承的 props 属性发生改变时也会调用 render 函数，即使改变的前后值一样
+- React 生命周期中有个 componentShouldUpdate 函数，默认返回 true，即允许 render 被调用，我们也可以重写这个函数，判断是否应该调用 render 函数
 
 ## 调用 render 时 DOM 就一定会被更新吗
 
@@ -28,8 +28,8 @@ React 组件中存在两类 DOM，render 函数被调用后， React 会根据 p
 
 ## 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现
 
-* lifting state to parent of A and B
-* 用 Flux/Redux 管理状态
+- lifting state to parent of A and B
+- 用 Flux/Redux 管理状态
 
 ## What happens when you call setState
 
@@ -181,15 +181,15 @@ Nothing is wrong with it 🙂. It’s rarely used and not well known, but you ca
 
 ## What is the difference between a _controlled_ component and an _uncontrolled_ component
 
-* Controlled Component
-  * The controlled way is when we bind the value of the input field to the state of that component
-  * So when the user types in the value, the state updates and then changes the value of the input field
-  * We can see the state change in real time as the user types in the React developer tool
-  * React docs typically recommend that we deal with forms
-  * This is called a controlled component because React is controlling the value of the specific input field
-* Uncontrolled Component (using ref)
-  * The uncontrolled way is a little more traditional, where the user fills the input field
-  * and the state doesn’t change till he presses submit (or a similar event)
+- Controlled Component
+  - The controlled way is when we bind the value of the input field to the state of that component
+  - So when the user types in the value, the state updates and then changes the value of the input field
+  - We can see the state change in real time as the user types in the React developer tool
+  - React docs typically recommend that we deal with forms
+  - This is called a controlled component because React is controlling the value of the specific input field
+- Uncontrolled Component (using ref)
+  - The uncontrolled way is a little more traditional, where the user fills the input field
+  - and the state doesn’t change till he presses submit (or a similar event)
 
 A large part of React is this idea of having components control and manage their own state.
 
@@ -248,9 +248,9 @@ Though uncontrolled components are typically easier to implement since you just 
 
 ## When to Use ref/uncontrolled components
 
-* Managing focus, text selection, or media playback.
-* Triggering imperative animations.
-* Integrating with third-party DOM libraries.
+- Managing focus, text selection, or media playback.
+- Triggering imperative animations.
+- Integrating with third-party DOM libraries.
 
 Avoid using refs for anything that can be done declaratively. For example, instead of exposing `open()` and `close()` methods on a Dialog component, pass an `isOpen` prop to it.
 
@@ -298,9 +298,9 @@ If your React component's `render()` function renders the same result given the 
 
 A React Component may be composed of the following:
 
-* ui
-* internal data
-* lifecycle event
+- ui
+- internal data
+- lifecycle event
 
 Every component is supposed to have a `render` method. The reason is that the `render` method returns the template for that component and it is necessary for a component to have a UI.
 
@@ -312,9 +312,9 @@ React interprets JSX and transforms it into lightweight javascript objects which
 
 `React.createElement` takes 3 arguments:
 
-* element type: `div`, `span`, component
-* properties object
-* children (multiple)
+- element type: `div`, `span`, component
+- properties object
+- children (multiple)
 
 When React encounters a component in any of the above arguments, it replaces that with what the components `React.createElement` returns. Hence when rendering the most parent component using ReactDOM, the entire virtual DOM is created.
 

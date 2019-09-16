@@ -3,8 +3,7 @@
 <https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf>
 
 ```html
-<link rel="preload">
-<link rel="prefetch">
+<link rel="preload" /> <link rel="prefetch" />
 ```
 
 preload is a declarative fetch, allowing you to force the browser to make a request for a resource without blocking the document’s onload event.

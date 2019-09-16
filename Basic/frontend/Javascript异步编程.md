@@ -75,17 +75,16 @@ let p: Promise<string> = new Promise((resolve, reject) => {
 
 // handling promise result
 let p: Promise<string> = MethodThatReturnsPromise();
-p
-  .then(
-    (titles) => {
-      console.log(`Found titles: ${titles}`);
-      throw 'something bad happened';
-      return titles.length;
-    },
-    (reason) => {
-      return 0;
-    },
-  )
+p.then(
+  (titles) => {
+    console.log(`Found titles: ${titles}`);
+    throw 'something bad happened';
+    return titles.length;
+  },
+  (reason) => {
+    return 0;
+  },
+)
   .then((numOfBooks) => console.log(`Number of books found: ${numOfBooks}`))
   .catch((reason) => console.log(`Error: ${reason}`));
 ```
@@ -261,9 +260,9 @@ myEventEmitter.executeAsync(readFileAsArray, './numbers.txt');
 
 简单介绍下 rxjs 和异步的关系：它可以把数据转化成一股流，无论这个数据是同步得到的还是异步得到的，是单值还是多值。
 
-* `Rx.Observable.of` 来包装单值同步数据
-* `Rx.Observable.fromPromise` 来包装单值异步数据
-* `Rx.Observable.fromEvent` 来包装多值异步数据
+- `Rx.Observable.of` 来包装单值同步数据
+- `Rx.Observable.fromPromise` 来包装单值异步数据
+- `Rx.Observable.fromEvent` 来包装多值异步数据
 
 ```javascript
 const fs = require('fs');

@@ -8,30 +8,30 @@ react 里面是通过 `{this.state.something && <SomeComponent></SomeComponent>}
 
 ```html
 <template>
-    <div>
-        <keep-alive>
-            <component v-bind:is="dynamicForm"></component>
-        </keep-alive>
-        <!-- 不再直接写 <form-one></form-one> -->
-        <button v-on:click="dynamicForm = 'form-one'">Show form one</button>
-        <button v-on:click="dynamicForm = 'form-two'">Show form two</button>
-    </div>
+  <div>
+    <keep-alive>
+      <component v-bind:is="dynamicForm"></component>
+    </keep-alive>
+    <!-- 不再直接写 <form-one></form-one> -->
+    <button v-on:click="dynamicForm = 'form-one'">Show form one</button>
+    <button v-on:click="dynamicForm = 'form-two'">Show form two</button>
+  </div>
 </template>
 
 <script>
-import formOne from './components/formOne.vue';
-import formTwo from './components/formTwo.vue';
+  import formOne from './components/formOne.vue';
+  import formTwo from './components/formTwo.vue';
 
-export default {
+  export default {
     components: {
-        'form-one': formOne,
-        'form-two': formTwo
+      'form-one': formOne,
+      'form-two': formTwo,
     },
-    data () {
-        return {
-            dynamicForm: 'form-one'
-        }
-    }
-}
+    data() {
+      return {
+        dynamicForm: 'form-one',
+      };
+    },
+  };
 </script>
 ```

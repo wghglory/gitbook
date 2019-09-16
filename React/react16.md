@@ -75,9 +75,9 @@ Instead of ignoring unrecognized HTML and SVG attributes, React will now [pass t
 
 Despite all these additions, React 16 is actually **smaller** compared to 15.6.1!
 
-* `react` is 5.3 kb (2.2 kb gzipped), down from 20.7 kb (6.9 kb gzipped).
-* `react-dom` is 103.7 kb (32.6 kb gzipped), down from 141 kb (42.9 kb gzipped).
-* `react` + `react-dom` is 109 kb (34.8 kb gzipped), down from 161.7 kb (49.8 kb gzipped).
+- `react` is 5.3 kb (2.2 kb gzipped), down from 20.7 kb (6.9 kb gzipped).
+- `react-dom` is 103.7 kb (32.6 kb gzipped), down from 141 kb (42.9 kb gzipped).
+- `react` + `react-dom` is 109 kb (34.8 kb gzipped), down from 161.7 kb (49.8 kb gzipped).
 
 That amounts to a combined **32% size decrease compared to the previous version (30% post-gzip)**.
 
@@ -129,30 +129,30 @@ Refer to the previous announcement for [suggestions on how to migrate](https://r
 
 React 16 includes a number of small breaking changes. These only affect uncommon use cases and we don’t expect them to break most apps.
 
-* React 15 had limited, undocumented support for error boundaries using `unstable_handleError`. This method has been renamed to `componentDidCatch`. You can use a codemod to [automatically migrate to the new API](https://github.com/reactjs/react-codemod#error-boundaries).
-* `ReactDOM.render` and `ReactDOM.unstable_renderSubtreeIntoContainer` now return null if called from inside a lifecycle method. To work around this, you can use [portals](https://github.com/facebook/react/issues/10309#issuecomment-318433235) or [refs](https://github.com/facebook/react/issues/10309#issuecomment-318434635).
-* `setState`:
-  * Calling `setState` with null no longer triggers an update. This allows you to decide in an updater function if you want to re-render.
-  * Calling `setState` directly in render always causes an update. This was not previously the case. Regardless, you should not be calling setState from render.
-  * **`setState` callbacks (second argument) now fire immediately after `componentDidMount` / `componentDidUpdate` instead of after all components have rendered**.
-* When replacing `<A />` with `<B />`, `B.componentWillMount` now always happens before `A.componentWillUnmount`. Previously, `A.componentWillUnmount` could fire first in some cases.
-* Previously, changing the ref to a component would always detach the ref before that component’s render is called. Now, we change the ref later, when applying the changes to the DOM.
-* It is not safe to re-render into a container that was modified by something other than React. This worked previously in some cases but was never supported. We now emit a warning in this case. Instead you should clean up your component trees using `ReactDOM.unmountComponentAtNode`. [See this example.](https://github.com/facebook/react/issues/10294#issuecomment-318820987)
-* `componentDidUpdate` lifecycle no longer receives `prevContext` param. (See [#8631](https://github.com/facebook/react/issues/8631))
-* Shallow renderer no longer calls `componentDidUpdate` because DOM refs are not available. This also makes it consistent with `componentDidMount` (which does not get called in previous versions either).
-* Shallow renderer does not implement `unstable_batchedUpdates` anymore.
-* `ReactDOM.unstable_batchedUpdates` now only takes one extra argument after the callback.
+- React 15 had limited, undocumented support for error boundaries using `unstable_handleError`. This method has been renamed to `componentDidCatch`. You can use a codemod to [automatically migrate to the new API](https://github.com/reactjs/react-codemod#error-boundaries).
+- `ReactDOM.render` and `ReactDOM.unstable_renderSubtreeIntoContainer` now return null if called from inside a lifecycle method. To work around this, you can use [portals](https://github.com/facebook/react/issues/10309#issuecomment-318433235) or [refs](https://github.com/facebook/react/issues/10309#issuecomment-318434635).
+- `setState`:
+  - Calling `setState` with null no longer triggers an update. This allows you to decide in an updater function if you want to re-render.
+  - Calling `setState` directly in render always causes an update. This was not previously the case. Regardless, you should not be calling setState from render.
+  - **`setState` callbacks (second argument) now fire immediately after `componentDidMount` / `componentDidUpdate` instead of after all components have rendered**.
+- When replacing `<A />` with `<B />`, `B.componentWillMount` now always happens before `A.componentWillUnmount`. Previously, `A.componentWillUnmount` could fire first in some cases.
+- Previously, changing the ref to a component would always detach the ref before that component’s render is called. Now, we change the ref later, when applying the changes to the DOM.
+- It is not safe to re-render into a container that was modified by something other than React. This worked previously in some cases but was never supported. We now emit a warning in this case. Instead you should clean up your component trees using `ReactDOM.unmountComponentAtNode`. [See this example.](https://github.com/facebook/react/issues/10294#issuecomment-318820987)
+- `componentDidUpdate` lifecycle no longer receives `prevContext` param. (See [#8631](https://github.com/facebook/react/issues/8631))
+- Shallow renderer no longer calls `componentDidUpdate` because DOM refs are not available. This also makes it consistent with `componentDidMount` (which does not get called in previous versions either).
+- Shallow renderer does not implement `unstable_batchedUpdates` anymore.
+- `ReactDOM.unstable_batchedUpdates` now only takes one extra argument after the callback.
 
 ### Packaging
 
-* There is no `react/lib/*` and `react-dom/lib/*` anymore. Even in CommonJS environments, React and ReactDOM are precompiled to single files (“flat bundles”). If you previously relied on undocumented React internals, and they don’t work anymore, let us know about your specific case in a new issue, and we’ll try to figure out a migration strategy for you.
-* There is no `react-with-addons.js` build anymore. All compatible addons are published separately on npm, and have single-file browser versions if you need them.
-* The deprecations introduced in 15.x have been removed from the core package. `React.createClass` is now available as `create-react-class`, `React.PropTypes` as `prop-types`, `React.DOM` as `react-dom-factories`, `react-addons-test-utils` as `react-dom/test-utils`, and shallow renderer as `react-test-renderer/shallow`. See [15.5.0](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html) and [15.6.0](https://reactjs.org/blog/2017/06/13/react-v15.6.0.html) blog posts for instructions on migrating code and automated codemods.
-* The names and paths to the single-file browser builds have changed to emphasize the difference between development and production builds. For example:
-  * `react/dist/react.js` → `react/umd/react.development.js`
-  * `react/dist/react.min.js` → `react/umd/react.production.min.js`
-  * `react-dom/dist/react-dom.js` → `react-dom/umd/react-dom.development.js`
-  * `react-dom/dist/react-dom.min`.js → `react-dom/umd/react-dom.production.min.js`
+- There is no `react/lib/*` and `react-dom/lib/*` anymore. Even in CommonJS environments, React and ReactDOM are precompiled to single files (“flat bundles”). If you previously relied on undocumented React internals, and they don’t work anymore, let us know about your specific case in a new issue, and we’ll try to figure out a migration strategy for you.
+- There is no `react-with-addons.js` build anymore. All compatible addons are published separately on npm, and have single-file browser versions if you need them.
+- The deprecations introduced in 15.x have been removed from the core package. `React.createClass` is now available as `create-react-class`, `React.PropTypes` as `prop-types`, `React.DOM` as `react-dom-factories`, `react-addons-test-utils` as `react-dom/test-utils`, and shallow renderer as `react-test-renderer/shallow`. See [15.5.0](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html) and [15.6.0](https://reactjs.org/blog/2017/06/13/react-v15.6.0.html) blog posts for instructions on migrating code and automated codemods.
+- The names and paths to the single-file browser builds have changed to emphasize the difference between development and production builds. For example:
+  - `react/dist/react.js` → `react/umd/react.development.js`
+  - `react/dist/react.min.js` → `react/umd/react.production.min.js`
+  - `react-dom/dist/react-dom.js` → `react-dom/umd/react-dom.development.js`
+  - `react-dom/dist/react-dom.min`.js → `react-dom/umd/react-dom.production.min.js`
 
 ## JavaScript Environment Requirements
 

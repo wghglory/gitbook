@@ -55,7 +55,7 @@ function getFilesAndFolders(root) {
         let fpath = pathname2.split(sep);
         // console.info(symbol(fpath) + fpath[fpath.length - 1]);
         let folderName = pathname.replace(/.+guanghui.notebook\/(.+)/, '$1');
-        res.push(symbol(fpath) + `* [${folderName}](/${folderName}/README.md)`);
+        res.push(symbol(fpath) + `- [${folderName}](/${folderName}/README.md)`);
         res = res.concat(getFilesAndFolders(pathname));
 
         // temp = temp.concat(getFilesAndFolders(pathname));
@@ -115,7 +115,7 @@ function init(root) {
       } else {
         let bracketName = pathname.replace(/.+\/(.+)\.md/, '$1'); // viewport
         let parenthesisName = pathname.replace(/.+\/(.+\.md)/, '$1'); // viewport.md
-        res.push(`* [${bracketName}](${parenthesisName})`); // - [viewport](移动端/viewport.md)
+        res.push(`- [${bracketName}](${parenthesisName})`); // - [viewport](移动端/viewport.md)
       }
     }
   });

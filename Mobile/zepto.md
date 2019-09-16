@@ -25,8 +25,12 @@ zepto.touch.js:
 
   function swipeDirection(x1, x2, y1, y2) {
     return Math.abs(x1 - x2) >= Math.abs(y1 - y2)
-      ? x1 - x2 > 0 ? 'Left' : 'Right'
-      : y1 - y2 > 0 ? 'Up' : 'Down';
+      ? x1 - x2 > 0
+        ? 'Left'
+        : 'Right'
+      : y1 - y2 > 0
+      ? 'Up'
+      : 'Down';
   }
 
   function longTap() {
@@ -89,27 +93,27 @@ zepto.touch.js:
       __eventMap && 'down' in __eventMap
         ? __eventMap
         : 'ontouchstart' in document
-          ? {
-              down: 'touchstart',
-              up: 'touchend',
-              move: 'touchmove',
-              cancel: 'touchcancel',
-            }
-          : 'onpointerdown' in document
-            ? {
-                down: 'pointerdown',
-                up: 'pointerup',
-                move: 'pointermove',
-                cancel: 'pointercancel',
-              }
-            : 'onmspointerdown' in document
-              ? {
-                  down: 'MSPointerDown',
-                  up: 'MSPointerUp',
-                  move: 'MSPointerMove',
-                  cancel: 'MSPointerCancel',
-                }
-              : false;
+        ? {
+            down: 'touchstart',
+            up: 'touchend',
+            move: 'touchmove',
+            cancel: 'touchcancel',
+          }
+        : 'onpointerdown' in document
+        ? {
+            down: 'pointerdown',
+            up: 'pointerup',
+            move: 'pointermove',
+            cancel: 'pointercancel',
+          }
+        : 'onmspointerdown' in document
+        ? {
+            down: 'MSPointerDown',
+            up: 'MSPointerUp',
+            move: 'MSPointerMove',
+            cancel: 'MSPointerCancel',
+          }
+        : false;
 
     // No API availables for touch events
     if (!eventMap) return;
@@ -122,7 +126,13 @@ zepto.touch.js:
         var swipeDirectionFromVelocity =
           e.velocityX > 1
             ? 'Right'
-            : e.velocityX < -1 ? 'Left' : e.velocityY > 1 ? 'Down' : e.velocityY < -1 ? 'Up' : null;
+            : e.velocityX < -1
+            ? 'Left'
+            : e.velocityY > 1
+            ? 'Down'
+            : e.velocityY < -1
+            ? 'Up'
+            : null;
         if (swipeDirectionFromVelocity) {
           touch.el.trigger('swipe');
           touch.el.trigger('swipe' + swipeDirectionFromVelocity);

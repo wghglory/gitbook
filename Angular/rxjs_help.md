@@ -38,9 +38,11 @@ const name = ajax
 
 // OR
 
-const name = ajax
-  .getJSON<{ name: string }>('/api/employees/alice')
-  .pipe(retry(3, 1000), map((employee) => employee.name), catchError((error) => of(null)));
+const name = ajax.getJSON<{ name: string }>('/api/employees/alice').pipe(
+  retry(3, 1000),
+  map((employee) => employee.name),
+  catchError((error) => of(null)),
+);
 ```
 
 ## The rule combination to use to enforce a lettable-operator-only policy would be:

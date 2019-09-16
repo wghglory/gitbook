@@ -63,14 +63,14 @@ module.exports = {
 
 除此之外再大致介绍下 webpack 的一些核心概念：
 
-* loader：能转换各类资源，并处理成对应模块的加载器。loader 间可以串行使用。
-* chunk：code splitting 后的产物，也就是按需加载的分块，装载了不同的 module。
+- loader：能转换各类资源，并处理成对应模块的加载器。loader 间可以串行使用。
+- chunk：code splitting 后的产物，也就是按需加载的分块，装载了不同的 module。
 
 对于 module 和 chunk 的关系可以参照 webpack 官方的这张图：
 
 ![img](https://img.alicdn.com/tps/TB1B0DXNXXXXXXdXFXXXXXXXXXX-368-522.jpg)
 
-* plugin：webpack 的插件实体，这里以 UglifyJsPlugin 为例。
+- plugin：webpack 的插件实体，这里以 UglifyJsPlugin 为例。
 
   ```js
   function UglifyJsPlugin(options) {
@@ -100,7 +100,7 @@ module.exports = {
 
 ### shell 与 config 解析
 
-每次在命令行输入 webpack 后，操作系统都会去调用 `./node_modules/.bin/webpack` 这个 shell 脚本。这个脚本会去调用 `./node_modules/webpack/bin/webpack.js` 并追加输入的参数，如 -p , -w 。(图中 webpack.js 是 webpack 的启动文件，而 $@ 是后缀参数)
+每次在命令行输入 webpack 后，操作系统都会去调用 `./node_modules/.bin/webpack` 这个 shell 脚本。这个脚本会去调用 `./node_modules/webpack/bin/webpack.js` 并追加输入的参数，如 -p , -w 。(图中 webpack.js 是 webpack 的启动文件，而 \$@ 是后缀参数)
 
 ![img](https://img.alicdn.com/tps/TB1kvfbNXXXXXarXpXXXXXXXXXX-500-111.jpg)
 
@@ -181,13 +181,13 @@ function webpack(options) {
 
 webpack 的实际入口是 Compiler 中的 run 方法，run 一旦执行后，就开始了编译和构建流程 ，其中有几个比较关键的 webpack 事件节点。
 
-* `compile` 开始编译
-* `make` 从入口点分析模块及其依赖的模块，创建这些模块对象
-* `build-module` 构建模块
-* `after-compile` 完成构建
-* `seal` 封装构建结果
-* `emit` 把各个 chunk 输出到结果文件
-* `after-emit` 完成输出
+- `compile` 开始编译
+- `make` 从入口点分析模块及其依赖的模块，创建这些模块对象
+- `build-module` 构建模块
+- `after-compile` 完成构建
+- `seal` 封装构建结果
+- `emit` 把各个 chunk 输出到结果文件
+- `after-emit` 完成输出
 
 ##### 1. 核心对象 Compilation
 
@@ -203,7 +203,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
 而构建模块作为最耗时的一步，又可细化为三步：
 
-* 调用各 loader 处理模块之间的依赖
+- 调用各 loader 处理模块之间的依赖
 
   webpack 提供的一个很大的便利就是能将所有资源都整合成模块，不仅仅是 js 文件。所以需要一些 loader ，比如 `url-loader` ， `jsx-loader` ， `css-loader` 等等来让我们可以直接在源文件中引用各类资源。webpack 调用 `doBuild()` ，对每一个 require() 用对应的 loader 进行加工，最后生成一个 js module。
 
@@ -225,7 +225,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
   };
   ```
 
-* 调用 [acorn](https://github.com/ternjs/acorn) 解析经 loader 处理后的源文件生成抽象语法树 AST
+- 调用 [acorn](https://github.com/ternjs/acorn) 解析经 loader 处理后的源文件生成抽象语法树 AST
 
   ```js
    Parser.prototype.parse = function parse(source, initialState) {
@@ -243,7 +243,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
   };
   ```
 
-* 遍历 AST，构建该模块所依赖的模块
+- 遍历 AST，构建该模块所依赖的模块
 
   对于当前模块，或许存在着多个依赖模块。当前模块会开辟一个依赖模块的数组，在遍历 AST 时，将 require() 中的模块通过 `addDependency()` 添加到数组中。当前模块构建完成后，webpack 调用 `processModuleDependencies` 开始递归处理依赖的 module，接着就会重复之前的构建步骤。
 
@@ -361,7 +361,7 @@ Compilation.prototype.seal = function seal(callback) {
 
 ![createChunkAssets流程](https://img.alicdn.com/tps/TB1cz5.NXXXXXc7XpXXXXXXXXXX-959-807.png)
 
-* 不同的 Template
+- 不同的 Template
 
   从上图可以看出通过判断是入口 js 还是需要异步加载的 js 来选择不同的模板对象进行封装，入口 js 会采用 webpack 事件流的 render 事件来触发 `Template类` 中的 `renderChunkModules()` (异步加载的 js 会调用 chunkTemplate 中的 render 方法)。
 
@@ -380,7 +380,7 @@ Compilation.prototype.seal = function seal(callback) {
 
   在 webpack 中有四个 Template 的子类，分别是 `MainTemplate.js` ， `ChunkTemplate.js` ，`ModuleTemplate.js` ， `HotUpdateChunkTemplate.js` ，前两者先前已大致有介绍，而 ModuleTemplate 是对所有模块进行一个代码生成，HotUpdateChunkTemplate 是对热替换模块的一个处理。
 
-* 模块封装
+- 模块封装
 
   模块在封装的时候和它在构建时一样，都是调用各模块类中的方法。封装通过调用 `module.source()` 来进行各操作，比如说 require() 的替换。
 
@@ -397,7 +397,7 @@ Compilation.prototype.seal = function seal(callback) {
   };
   ```
 
-* 生成 assets
+- 生成 assets
 
   各模块进行 doBlock 后，把 module 的最终代码循环添加到 source 中。一个 source 对应着一个 asset 对象，该对象保存了单个文件的文件名( name )和最终代码( value )。
 

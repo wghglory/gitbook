@@ -86,10 +86,18 @@ const prependZero = (key) => (clockTime) => ({
 const compose = (...fns) => (arg) => fns.reduce((accu, f) => f(accu), arg);
 
 // clockTime 作为 arg，初始值。先 appendAMPM(clockTime)，返回的对象作为 civilianHours 的参数，执行 civilianHours
-const convertToCivilianTime = (clockTime) => compose(appendAMPM, civilianHours)(clockTime);
+const convertToCivilianTime = (clockTime) =>
+  compose(
+    appendAMPM,
+    civilianHours,
+  )(clockTime);
 
 const doubleDigits = (civilianTime) =>
-  compose(prependZero('hours'), prependZero('minutes'), prependZero('seconds'))(civilianTime);
+  compose(
+    prependZero('hours'),
+    prependZero('minutes'),
+    prependZero('seconds'),
+  )(civilianTime);
 
 const startTicking = () =>
   setInterval(

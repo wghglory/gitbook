@@ -276,23 +276,22 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
 ## pagination html
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>pagination demo</title>
-    <link rel="stylesheet" href="pagination.css">
-    <link rel="stylesheet" href="site.css">
-</head>
+    <link rel="stylesheet" href="pagination.css" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
 
-<body>
+  <body>
     <p>用封装的分页控件</p>
     <p>分页先入场，然后li入场。点击分页，分页先隐藏，li消失，分页入场，li入场</p>
     <section id="message">
-        <header>留言回复<span></span></header>
-        <ul id="messageList">
-            <!-- <li>
+      <header>留言回复<span></span></header>
+      <ul id="messageList">
+        <!-- <li>
                 <div>
                     <div class="pic"></div>
                     <div class="dot"></div>
@@ -312,9 +311,9 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
                     </div>
                 </div>
             </li> -->
-        </ul>
-        <footer id="pagination">
-            <!-- <a href="javascript:;">首页</a>
+      </ul>
+      <footer id="pagination">
+        <!-- <a href="javascript:;">首页</a>
             <a href="javascript:;">上一页</a>
             <a href="javascript:;" class="active">1</a>
             <a href="javascript:;">2</a>
@@ -324,63 +323,61 @@ Pasted from <https://bitbucket.org/snippets/wghglory/7j6px/js_pagination>
             <a href="javascript:;">6</a>
             <a href="javascript:;">下一页</a>
             <a href="javascript:;">末页</a> -->
-        </footer>
+      </footer>
     </section>
     <script src="data.js"></script>
     <script src="pagination.js"></script>
     <script src="app.js"></script>
     <script>
-        pagination({
-            id: 'pagination',
-            pageIndex: 1, // 当前要显示页面，1开始
-            pageSize: 6, // 每页显示条数
-            totalCount: data.length, // 总数据个数，总页码pageCount = Math.ceil(totalCount/pageSize)
-            callBack: function(currentPageIndex, pageSize, totalPageCount, paginationObj) {
-                // alert('当前页:' + currentPageIndex + ',总共页:' + totalPageCount);
-                // for (var i = 0; i < paginationObj.children.length; i++) {
-                //     paginationObj.children[i].style.opacity = 1;
-                // }
-                loadData(currentPageIndex, pageSize);
-            },
-            aClick: function(clickedA) {
-                var allA = clickedA.parentNode.children;
+      pagination({
+        id: 'pagination',
+        pageIndex: 1, // 当前要显示页面，1开始
+        pageSize: 6, // 每页显示条数
+        totalCount: data.length, // 总数据个数，总页码pageCount = Math.ceil(totalCount/pageSize)
+        callBack: function(currentPageIndex, pageSize, totalPageCount, paginationObj) {
+          // alert('当前页:' + currentPageIndex + ',总共页:' + totalPageCount);
+          // for (var i = 0; i < paginationObj.children.length; i++) {
+          //     paginationObj.children[i].style.opacity = 1;
+          // }
+          loadData(currentPageIndex, pageSize);
+        },
+        aClick: function(clickedA) {
+          var allA = clickedA.parentNode.children;
 
-                // var siblings = [].slice.call(allA) // convert to array
-                //     .filter(function(v) {
-                //         return v !== clickedA
-                //     }); // remove element itself
+          // var siblings = [].slice.call(allA) // convert to array
+          //     .filter(function(v) {
+          //         return v !== clickedA
+          //     }); // remove element itself
 
+          // 点击分页，分页先隐藏，li消失，分页入场，li入场
+          var messageUl = document.getElementById('messageList');
 
-                // 点击分页，分页先隐藏，li消失，分页入场，li入场
-                var messageUl = document.getElementById('messageList');
+          // lis hide
+          var lis = messageUl.children;
+          for (var i = 0; i < lis.length; i++) {
+            lis[i].style.transition = '.5s';
+            lis[i].style.opacity = 0;
+            lis[i].addEventListener('transitionend', end, false);
+          }
 
-                // lis hide
-                var lis = messageUl.children;
-                for (var i = 0; i < lis.length; i++) {
-                    lis[i].style.transition = '.5s';
-                    lis[i].style.opacity = 0;
-                    lis[i].addEventListener('transitionend', end, false);
-                }
+          function end() {
+            this.removeEventListener('transitionend', end, false);
+            this.style.display = 'none';
+          }
 
-                function end() {
-                    this.removeEventListener('transitionend', end, false);
-                    this.style.display = 'none';
-                }
+          // ul height back to 0 and css transition of messageUl is .6s
+          messageUl.style.height = '0';
 
-                // ul height back to 0 and css transition of messageUl is .6s
-                messageUl.style.height = '0';
-
-                // pagination a hide
-                for (var i = 0; i < allA.length; i++) {
-                    allA[i].style.transition = '1s';
-                    allA[i].style.opacity = 0;
-                }
-            },
-            delayTime: 1000 //click any link, next call page function wait for x ms
-        });
+          // pagination a hide
+          for (var i = 0; i < allA.length; i++) {
+            allA[i].style.transition = '1s';
+            allA[i].style.opacity = 0;
+          }
+        },
+        delayTime: 1000, //click any link, next call page function wait for x ms
+      });
     </script>
-</body>
-
+  </body>
 </html>
 ```
 

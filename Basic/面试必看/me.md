@@ -28,27 +28,27 @@
 
 对公司现有的系统的优化和重构:
 
-* react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
-* react 不可变性理解不到位，有些人在 setState 里面修改了状态。还有得 deepClone 后赋值。我推荐 immutability-helper
-* 提取相似组件，封装成公共组件，提高复用性
-* 改进 Modal, Select 等组件
-* 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能
-* 加入测试、mock-server、持续集成
-* 项目没有 lint 工具导致大家代码不统一，使用 ESLint and editorConfig。
-* 每个 component 都是用 class 的方式去定义。我推荐了 functional/stateless component。
+- react 状态管理混乱，早起项目只用 react State，大家觉得一层一层传递 state 麻烦。我接手后发现 redux 和 react state 混用导致不清晰，帮助大家从 react state 过度到 redux，完成路由模块、首页等公共模块 80%
+- react 不可变性理解不到位，有些人在 setState 里面修改了状态。还有得 deepClone 后赋值。我推荐 immutability-helper
+- 提取相似组件，封装成公共组件，提高复用性
+- 改进 Modal, Select 等组件
+- 图形化创建的撘建，老师学生端。canvas，fabrics，svg 制作的网页版 sketch、ps。介绍下功能
+- 加入测试、mock-server、持续集成
+- 项目没有 lint 工具导致大家代码不统一，使用 ESLint and editorConfig。
+- 每个 component 都是用 class 的方式去定义。我推荐了 functional/stateless component。
 
 改进：
 
-* css 模块化
-* webpack tree-shaking 和 bundle splitting。
-* Modal、select 组件库的优化和扩展
-* HighChart 配置统一、可拖拽配置。
-* Stylus 缩进不方便。
+- css 模块化
+- webpack tree-shaking 和 bundle splitting。
+- Modal、select 组件库的优化和扩展
+- HighChart 配置统一、可拖拽配置。
+- Stylus 缩进不方便。
 
 难点：
 
-* 需要增加图形化创建，数据保存，团队多人协作。
-* redux 源码 applyMiddleware 等觉得难。
+- 需要增加图形化创建，数据保存，团队多人协作。
+- redux 源码 applyMiddleware 等觉得难。
 
 | common questions           | Ub tahoe, MPower                                                                   | SNH Avendas                           | UPMC panelAccess        |
 | -------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------- | ----------------------- |

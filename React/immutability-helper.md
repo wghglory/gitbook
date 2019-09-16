@@ -198,14 +198,14 @@ const buildUpdateOperation = (source, actionArr) => {
 ```json
 {
   0: {
-    analysis: {
-      0: { $merge: { value: 99 } },
-      2: { $merge: { value: 99 } }
+    "analysis": {
+      0: { "$merge": { "value": 99 } },
+      2: { "$merge": { "value": 99 } }
     }
   },
   1: {
-    analysis: {
-      2: { $merge: { value: 99 } }
+    "analysis": {
+      2: { "$merge": { "value": 99 } }
     }
   }
 }

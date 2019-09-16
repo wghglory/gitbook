@@ -25,7 +25,7 @@
 
 使用 absolute 隐藏是会产生重绘 repaint 而不会产生强烈的回流 reflow。而使用 `display:none` 不仅会重绘，还会产生回流（DOM 节点删除增加），DOM 影响范围越广，回流越强烈。所以，就 JavaScript 交互的呈现性能上来讲，使用 absolute 隐藏是要优于 display 相关隐藏的。(reflow --> repaint)
 
-* 方案 1 对应的 js
+- 方案 1 对应的 js
 
   ```javascript
   dom.style.position = 'static';
@@ -35,7 +35,7 @@
   dom.classList.remove('hidden'); //better
   ```
 
-* 方案 2 对应的 js
+- 方案 2 对应的 js
 
   ```javascript
   dom.style.position = 'static';

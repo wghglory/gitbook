@@ -32,8 +32,8 @@ property 是存在于 DOM 里的，例如 input 元素的 value 属性。
 <input class="form-control" [value]="model.getProduct(1)?.name || 'None'" />
 ```
 
-* 为了防止表达式返回 null，在表达式后面跟上一个?
-* 每个元素的 property 可以参考[文档](http://developer.mozilla.org/en-US/docs/Web/API/)
+- 为了防止表达式返回 null，在表达式后面跟上一个?
+- 每个元素的 property 可以参考[文档](http://developer.mozilla.org/en-US/docs/Web/API/)
 
 #### attribute 绑定
 
@@ -41,7 +41,7 @@ attribute 是存在于 HTML 元素里的，不是所有的 HTML 元素的 proper
 
 ```html
 <td [attr.colspan]="model.getProducts().length">
-    {{model.getProduct(1)?.name || 'None'}}
+  {{model.getProduct(1)?.name || 'None'}}
 </td>
 ```
 
@@ -53,19 +53,19 @@ attribute 是存在于 HTML 元素里的，不是所有的 HTML 元素的 proper
 
 有三种方式。
 
-* `[class]="表达式"`: 把表达式的结果替代原来存在的 class
+- `[class]="表达式"`: 把表达式的结果替代原来存在的 class
 
 ```html
 [class]="getClasses(1)"
 ```
 
-* [class.myClass]="表达式": 根据表达式返回结果添加 myClass 这个类
+- [class.myClass]="表达式": 根据表达式返回结果添加 myClass 这个类
 
 ```html
 [class.myClass]="model.getProduct(2).price < 50"
 ```
 
-* [ngClass]="map": 把 map 对象的值添加到 class 里去，支持三种返回值:字符串,数组,对象
+- [ngClass]="map": 把 map 对象的值添加到 class 里去，支持三种返回值:字符串,数组,对象
 
 ```typescript
 //html
@@ -81,11 +81,11 @@ map = {
 
 同样三种方式。不过没有替换样式的写法。
 
-* `[style.color]="表达式"`: 把表达式的结果设置成单个样式属性。
+- `[style.color]="表达式"`: 把表达式的结果设置成单个样式属性。
 
-* `[style.font-size.em]="表达式"`: 把表达式的结果设置成指定的样式和单位值。
+- `[style.font-size.em]="表达式"`: 把表达式的结果设置成指定的样式和单位值。
 
-* `[ngStyle]="map"`: 把样式设置成 map 对象的值。
+- `[ngStyle]="map"`: 把样式设置成 map 对象的值。
 
 ```typescript
 //ts
@@ -106,19 +106,19 @@ map = {
 
 ### 圆括号单向数据绑定（事件绑定）
 
-* 事件绑定用于响应宿主元素发送的事件。是用户交互的核心。事件种类请参考[文档](http://developer.mozilla.org/en-US/docs/Web/Events)
+- 事件绑定用于响应宿主元素发送的事件。是用户交互的核心。事件种类请参考[文档](http://developer.mozilla.org/en-US/docs/Web/Events)
 
 ```html
 <td (mouseover)="selectedProduct=item.name">{{i + 1}}</td>
 ```
 
-* 也可以直接传入一个 Event 对象到组件里去。
+- 也可以直接传入一个 Event 对象到组件里去。
 
 ```html
 <input class="form-control" (input)="getEvent($event)" />
 ```
 
-* 当需要传入 HTML 元素到组件时，可以借助模板引用变量
+- 当需要传入 HTML 元素到组件时，可以借助模板引用变量
 
 ```html
 <input #product class="form-control" (input)="false" />
@@ -126,16 +126,17 @@ map = {
 
 ### 使用双向数据绑定
 
-* 使用 ngModel 指令可以简化了双向绑定的语法。
+- 使用 ngModel 指令可以简化了双向绑定的语法。
 
 ```html
 <input class="form-control" [(ngModel)]="selectedProduct" />
 ```
 
-* 其实 NG 中的双向绑定就是同时利用了两个方向上的单向绑定,拆开看其实就是：
+- 其实 NG 中的双向绑定就是同时利用了两个方向上的单向绑定,拆开看其实就是：
 
 ```html
-< input class="form-control" [ngModel]="selectedProduct" (ngModelChange)="selectedProduct=$event.target.value" />
+< input class="form-control" [ngModel]="selectedProduct"
+(ngModelChange)="selectedProduct=$event.target.value" />
 ```
 
 ## 实现原理

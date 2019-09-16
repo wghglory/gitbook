@@ -65,18 +65,18 @@ namespace TcpEchoClient
 }
 ```
 
-* [x] [Google Amazon parking lot example design](https://github.com/wghglory/system-design-demo)
-* [x] https://www.careercup.com/page?pid=trees-and-graphs-interview-questions
-* Google “solve boggle board algorithm”
-* [x] Understand the difference between breadth and depth, when to use each one etc.
-* [x] http://codercareer.blogspot.com/p/binary-tree-interview-questions.html
-* [x] Google “binary search questions”
-* ~~https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree~~
-* ~~https://www.hackerrank.com/challenges/tree-level-order-traversal~~
-* ~~https://www.hackerrank.com/challenges/balanced-brackets~~
-* ~~https://www.hackerrank.com/challenges/contacts~~
-* ~~https://www.hackerrank.com/challenges/find-the-running-median~~
-* ~~https://www.hackerrank.com/challenges/swap-nodes-algo~~
+- [x] [Google Amazon parking lot example design](https://github.com/wghglory/system-design-demo)
+- [x] https://www.careercup.com/page?pid=trees-and-graphs-interview-questions
+- Google “solve boggle board algorithm”
+- [x] Understand the difference between breadth and depth, when to use each one etc.
+- [x] http://codercareer.blogspot.com/p/binary-tree-interview-questions.html
+- [x] Google “binary search questions”
+- ~~https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree~~
+- ~~https://www.hackerrank.com/challenges/tree-level-order-traversal~~
+- ~~https://www.hackerrank.com/challenges/balanced-brackets~~
+- ~~https://www.hackerrank.com/challenges/contacts~~
+- ~~https://www.hackerrank.com/challenges/find-the-running-median~~
+- ~~https://www.hackerrank.com/challenges/swap-nodes-algo~~
 
 Please also review: <https://www.hiredintech.com/classrooms/system-design/lesson/52>
 

@@ -64,7 +64,7 @@ git push
 
 ## Publish
 
-Need to build \_book directory before publish via `gitbook build`.
+**Need to build \_book directory before publish via `gitbook build`.**
 
 Only 1st time publish:
 

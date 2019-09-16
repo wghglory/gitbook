@@ -28,12 +28,12 @@
 
 ### Frameworks
 
-* Mocha: highly configurable, large ecosystem, No Assertion
-* Jasmine: large ecosystem, built-in assertion library
-* Jest: wrapper for jasmine by facebook, popular among react developers
-* Tape: simple
-* QUnit: jquery creator writes
-* AVA: run test parallel
+- Mocha: highly configurable, large ecosystem, No Assertion
+- Jasmine: large ecosystem, built-in assertion library
+- Jest: wrapper for jasmine by facebook, popular among react developers
+- Tape: simple
+- QUnit: jquery creator writes
+- AVA: run test parallel
 
 Choose any of these just like choosing a gym.
 
@@ -46,59 +46,59 @@ expect(2 + 2).to.equal(4);
 assert(2 + 2).equals(4);
 ```
 
-* Chai
-* Should.js
-* expect
+- Chai
+- Should.js
+- expect
 
 ### Helper library
 
 #### JSDOM
 
-* Simulate the browser's DOM
-* Run DOM-related tests without a browser
+- Simulate the browser's DOM
+- Run DOM-related tests without a browser
 
 #### Cheerio
 
-* jQuery for the server
-* Query virtual DOM using jQuery selectors
+- jQuery for the server
+- Query virtual DOM using jQuery selectors
 
 ### Where to run tests
 
-* Browser(slower, not good)
-  * Karma, Testem
-* Headless Browser
-  * PhantomJS (great)
-* In-memory DOM
-  * JSDOM (great): <https://github.com/tmpvar/jsdom>
+- Browser(slower, not good)
+  - Karma, Testem
+- Headless Browser
+  - PhantomJS (great)
+- In-memory DOM
+  - JSDOM (great): <https://github.com/tmpvar/jsdom>
 
 ### Where do test files belong
 
-* Centralized (✘)
+- Centralized (✘)
 
-  * Less "noise" in src folder (they are important source, asset. not liability)
-  * Deployment confusion (deploy won't be an issue for alongside way)
-  * Inertia 惯性 (backend test prefers Centralized test, not frontend)
-  * `import file from '../../src/long/path' // file.test.js`
+  - Less "noise" in src folder (they are important source, asset. not liability)
+  - Deployment confusion (deploy won't be an issue for alongside way)
+  - Inertia 惯性 (backend test prefers Centralized test, not frontend)
+  - `import file from '../../src/long/path' // file.test.js`
 
-* **Alongside** (✔️ more suitable for javascript test)
-  * Easy imports
-  * Clear visibility
-  * Convenient to open
-  * No recreating folder structure
-  * Easy file moves
-  * Path to file under test is always `./filename`: `import file from './file' // file.test.js`
+- **Alongside** (✔️ more suitable for javascript test)
+  - Easy imports
+  - Clear visibility
+  - Convenient to open
+  - No recreating folder structure
+  - Easy file moves
+  - Path to file under test is always `./filename`: `import file from './file' // file.test.js`
 
 ### Naming Convention
 
-* fileName.spec.js
-* fileName.test.js
+- fileName.spec.js
+- fileName.test.js
 
 ### When should unit tests run
 
-* Rapid feedback: run every time you hit save
-* Facilitates TDD
-* Automatic = Low friction 摩擦
-* Increases test visibility
+- Rapid feedback: run every time you hit save
+- Facilitates TDD
+- Automatic = Low friction 摩擦
+- Increases test visibility
 
 For integration test, admittedly slow, you should run separately.
 
@@ -180,28 +180,28 @@ The code is working on my machine, but it breaks on the CI server.
 
 ### Why CI?
 
-* Forgot to commit new file
-* Forgot to update package.json
-* commit doesn't run cross-platform
-* node version conflicts
-* bad merge
-* didn't run tests
+- Forgot to commit new file
+- Forgot to update package.json
+- commit doesn't run cross-platform
+- node version conflicts
+- bad merge
+- didn't run tests
 
 ### What does a CI server do?
 
-* Run automated build
-* Run your tests
-* Check code coverage
-* automate deployment
+- Run automated build
+- Run your tests
+- Check code coverage
+- automate deployment
 
 ### CI server
 
-* Travis CI(linux)
-* Jenkins
-* Appveyor (windows)
-* CircleCI
-* Semaphore
-* SnapCI
+- Travis CI(linux)
+- Jenkins
+- Appveyor (windows)
+- CircleCI
+- Semaphore
+- SnapCI
 
 #### [Travis CI for unix](https://travis-ci.org)
 

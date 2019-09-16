@@ -46,7 +46,7 @@ div {
 
 <http://blog.jobbole.com/46574/>
 
-* 给 div 设置一个宽度，然后添加 `margin: 0 auto` 属性
+- 给 div 设置一个宽度，然后添加 `margin: 0 auto` 属性
 
 ```css
 div {

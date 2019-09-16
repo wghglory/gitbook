@@ -109,12 +109,12 @@ When I started to work on Avendas in SNH, I just knew basics of angular. Althoug
 
 #### Leadership skills? （✔️，我在领导时注重的点）
 
-* give others opportunities to shine
-* think big 宏观思维
-* assign tasks accordingly
-* motivate team
-* listen from different opinions and make best decision considering long-term goal
-* understand what is most important
+- give others opportunities to shine
+- think big 宏观思维
+- assign tasks accordingly
+- motivate team
+- listen from different opinions and make best decision considering long-term goal
+- understand what is most important
 
 I am a leader who likes to give the people I am leading the ability to shine. I think it is important to take everyone’s opinion into consideration and be willing to listen to what they have to say. I think my job as a leader is to organize things and keep them in order. Being the leader does not mean I know everything there is to know because I cannot possibly know more than everyone else about every topic. It is just not plausible.
 

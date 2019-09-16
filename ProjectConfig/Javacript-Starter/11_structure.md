@@ -2,14 +2,14 @@
 
 ## Why Include a Demo App?
 
-* Examples of:
-  * Automated deployment
-  * Directory structure and file naming
-  * Framework usage
-  * Testing
-  * Mock API
-* Codifies decisions
-* Interactive example of working with starter
+- Examples of:
+  - Automated deployment
+  - Directory structure and file naming
+  - Framework usage
+  - Testing
+  - Mock API
+- Codifies decisions
+- Interactive example of working with starter
 
 ## Tips
 
@@ -24,11 +24,11 @@
     </html>
     ```
 
-    * Test this?
-    * Lint this?
-    * Reuse this?
-    * Transpile this?
-    * Import explicit dependencies?
+    - Test this?
+    - Lint this?
+    - Reuse this?
+    - Transpile this?
+    - Import explicit dependencies?
 
 1.  Consider organizing by feature
 

@@ -4,8 +4,8 @@
 
 I want to create a address component as a child component. The parent component, events-list, will pass the event object to the child. To get this done:
 
-* child component needs import `Input` from angular/core
-* parent template uses the child selector, and [input parameter name] = "parent"
+- child component needs import `Input` from angular/core
+- parent template uses the child selector, and [input parameter name] = "parent"
 
 1.  child component: `events-address.component.ts`
 
@@ -26,15 +26,15 @@ I want to create a address component as a child component. The parent component,
 
     ```html
     <div>
-        <h1>Upcoming Angular 2 Events</h1>
-        <div class="well hoverwell thumbnail">
-            <h2>Event: {{event.name}}</h2>
-            <div>Price: ${{event.price}}</div>
-            <div>Date: {{event.date}}</div>
-            <div>Time: {{event.time}}</div>
-            <!-- <div>Address: {{event.location.address}}, {{event.location.city}}, {{event.location.country}}</div> -->
-            <events-address [address]="event.location"></events-address>
-        </div>
+      <h1>Upcoming Angular 2 Events</h1>
+      <div class="well hoverwell thumbnail">
+        <h2>Event: {{event.name}}</h2>
+        <div>Price: ${{event.price}}</div>
+        <div>Date: {{event.date}}</div>
+        <div>Time: {{event.time}}</div>
+        <!-- <div>Address: {{event.location.address}}, {{event.location.city}}, {{event.location.country}}</div> -->
+        <events-address [address]="event.location"></events-address>
+      </div>
     </div>
     ```
 
@@ -52,10 +52,10 @@ I want to create a address component as a child component. The parent component,
 
 1.  child component `events-address.component.ts`:
 
-    * import Output, EventEmitter
-    * define a variable accepting EventEmitter
-    * define buttonClick
-    * the EventEmitter variable emit any data from child component
+    - import Output, EventEmitter
+    - define a variable accepting EventEmitter
+    - define buttonClick
+    - the EventEmitter variable emit any data from child component
 
     ```ts
     //child component, talk with parent events-list.component.ts
@@ -76,13 +76,13 @@ I want to create a address component as a child component. The parent component,
 
 1.  parent Component `events-list.component.ts`:
 
-    * update template: `(the EventEmitter variable name defined in child component) = "randomFuncInParent($event)"`
+    - update template: `(the EventEmitter variable name defined in child component) = "randomFuncInParent($event)"`
 
     ```html
     <events-address (myClick)="clickWithAnyName($event)"></events-address>
     ```
 
-    * define random function in parent component class
+    - define random function in parent component class
 
     ```ts
     export class EventsListComponent {
@@ -114,7 +114,13 @@ I want to create a address component as a child component. The parent component,
 1.  access child component data from parent component template's childPointer variable
 
     ```html
-    <events-address [address]="event.location" (myClick)="clickWithAnyName($event)" #childPointer></events-address>
-    <button (click)="childPointer.getAuthor()" class="btn-primary btn">Test template variable</button>
+    <events-address
+      [address]="event.location"
+      (myClick)="clickWithAnyName($event)"
+      #childPointer
+    ></events-address>
+    <button (click)="childPointer.getAuthor()" class="btn-primary btn">
+      Test template variable
+    </button>
     <h3>{{childPointer.author}}</h3>
     ```

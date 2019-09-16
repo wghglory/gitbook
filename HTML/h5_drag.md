@@ -115,42 +115,45 @@ document.getElementById('dragTarget').addEventListener(
 转载自：[http://www.w3school.com.cn/tiy/t.asp?f=html5_draganddrop](http://www.w3school.com.cn/tiy/t.asp?f=html5_draganddrop)
 
 ```html
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+  <head>
+    <style type="text/css">
+      #dragTarget {
+        width: 488px;
+        height: 70px;
+        padding: 10px;
+        border: 1px solid #aaaaaa;
+      }
+    </style>
+    <script type="text/javascript">
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
 
-<head>
-  <style type="text/css">
-    #dragTarget {
-      width: 488px;
-      height: 70px;
-      padding: 10px;
-      border: 1px solid #aaaaaa;
-    }
-  </style>
-  <script type="text/javascript">
-    function allowDrop(ev) {
-      ev.preventDefault();
-    }
+      function drag(ev) {
+        ev.dataTransfer.setData('Text', ev.target.id);
+      }
 
-    function drag(ev) {
-      ev.dataTransfer.setData("Text", ev.target.id);
-    }
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData('Text');
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+  </head>
 
-    function drop(ev) {
-      ev.preventDefault();
-      var data = ev.dataTransfer.getData("Text");
-      ev.target.appendChild(document.getElementById(data));
-    }
-  </script>
-</head>
-
-<body>
-  <p>请把 W3School 的图片拖放到矩形中：</p>
-  <div id="dragTarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-  <br />
-  <img id="dragImg" src="http://www.w3school.com.cn/i/w3school_banner.gif" draggable="true" ondragstart="drag(event)" />
-</body>
-
+  <body>
+    <p>请把 W3School 的图片拖放到矩形中：</p>
+    <div id="dragTarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br />
+    <img
+      id="dragImg"
+      src="http://www.w3school.com.cn/i/w3school_banner.gif"
+      draggable="true"
+      ondragstart="drag(event)"
+    />
+  </body>
 </html>
 ```
 

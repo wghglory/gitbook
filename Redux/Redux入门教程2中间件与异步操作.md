@@ -90,9 +90,9 @@ export default function applyMiddleware(...middlewares) {
 
 同步操作只要发出一种 Action 即可，异步操作的差别是它要发出三种 Action。
 
-* 操作发起时的 Action
-* 操作成功时的 Action
-* 操作失败时的 Action
+- 操作发起时的 Action
+- 操作成功时的 Action
+- 操作失败时的 Action
 
 以向服务器取出数据为例，三种 Action 可以有两种不同的写法。
 
@@ -123,8 +123,8 @@ let state = {
 
 现在，整个异步操作的思路就很清楚了。
 
-* 操作开始时，送出一个 Action，触发 State 更新为"正在操作"状态，View 重新渲染
-* 操作结束后，再送出一个 Action，触发 State 更新为"操作结束"状态，View 再一次重新渲染
+- 操作开始时，送出一个 Action，触发 State 更新为"正在操作"状态，View 重新渲染
+- 操作结束后，再送出一个 Action，触发 State 更新为"操作结束"状态，View 再一次重新渲染
 
 ## redux-thunk 中间件
 

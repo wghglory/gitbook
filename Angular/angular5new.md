@@ -6,8 +6,8 @@ Validation on blur and submit:
 
 ```html
 <form [ngFormOptions]="{updateOn: 'submit'}">
-
-<input name="firstName" ngModel [ngModelOptions]="{updateOn: 'blur'}">
+  <input name="firstName" ngModel [ngModelOptions]="{updateOn: 'blur'}" />
+</form>
 ```
 
 ## New Router Lifecycle events
@@ -40,17 +40,17 @@ const names = allUserData.pipe(
 
 ## Universal Transfer API
 
-* Easily share app state between server and client version
-* ServerTransferStateModule has been added
-* Optimizes fetching data over HTTP
-* More DOM manipulations/support
+- Easily share app state between server and client version
+- ServerTransferStateModule has been added
+- Optimizes fetching data over HTTP
+- More DOM manipulations/support
 
 ## Other changes and Optimization
 
-* bug fixes
-* preserveWhitespace Option
-* exportAs
-* Zone speed improvements
+- bug fixes
+- preserveWhitespace Option
+- exportAs
+- Zone speed improvements
 
 ```ts
 platformBrowserDynamic()

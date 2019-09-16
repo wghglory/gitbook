@@ -10,7 +10,11 @@ const LatestPostsComponent = (props) => (
     <div>
       <h1>Latest posts</h1>
     </div>
-    <div>{props.posts.map((post) => <PostPreview key={post.slug} post={post} />)}</div>
+    <div>
+      {props.posts.map((post) => (
+        <PostPreview key={post.slug} post={post} />
+      ))}
+    </div>
   </section>
 );
 ```
@@ -52,7 +56,11 @@ React is a **view library**, so while _render_ logic in the components is OK, _b
 import PropTypes from 'prop-types';
 
 const ListOfNumbers = (props) => (
-  <ol className={props.className}>{props.numbers.map((number) => <li>{number}</li>)}</ol>
+  <ol className={props.className}>
+    {props.numbers.map((number) => (
+      <li>{number}</li>
+    ))}
+  </ol>
 );
 
 ListOfNumbers.propTypes = {
@@ -63,9 +71,9 @@ ListOfNumbers.propTypes = {
 
 When in development (not production), if any component is not given a required prop, or is given the wrong type for one of its props, then React will log an error to let you know. This has several benefits:
 
-* It can catch bugs early, by preventing silly mistakes
-* If you use `isRequired`, then you don't need to check for `undefined` or `null` as often
-* It acts as documentation, saving readers from having to search through a component to find all the props that it needs
+- It can catch bugs early, by preventing silly mistakes
+- If you use `isRequired`, then you don't need to check for `undefined` or `null` as often
+- It acts as documentation, saving readers from having to search through a component to find all the props that it needs
 
 The above list looks a bit like one you might see from someone advocating for static typing over dynamic typing. Personally, I usually prefer dynamic typing for the ease and speed of development it provides, but I find that propTypes add a lot of safety to my React components, without making things any more difficult. Frankly I see no reason not to use them.
 

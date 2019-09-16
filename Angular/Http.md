@@ -232,10 +232,10 @@ client --> interceptor (check cache) --> no ? --> server
 
 ### Role of cache service
 
-* Provide a data structure for the cached items
-* add items to the cache
-* retrieve items from the cache
-* remove items from the cache (cache invalidation)
+- Provide a data structure for the cached items
+- add items to the cache
+- retrieve items from the cache
+- remove items from the cache (cache invalidation)
 
 ```ts
 // http-cache.service.ts
