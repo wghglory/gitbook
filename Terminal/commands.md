@@ -77,6 +77,13 @@ nvm alias default v6.10.2  # 将此版本设为默认
 mkdir <folderName>
 touch <newFile.js>
 cat <newFile.js>  # review file content
+
+find "/Users/guanghuiw/Documents/from qianhui icloud" -name '*mini*' -delete   # delete all files containing mini at folder xxx
+
+# copy photo gallery content into another folder in a flatten way
+find /Users/guanghuiw/Pictures/Photos\ Library.photoslibrary -type f -exec cp {} /Users/guanghuiw/Documents/dest \;
+
+find $HOME -type f -iname '*.png' -exec cp --backup=numbered {} $PWD \;
 ```
 
 ### No access
