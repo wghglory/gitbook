@@ -318,8 +318,6 @@
   - [03_decorator](Typescript/03_decorator.md)
   - [04_namespace_modules](Typescript/04_namespace_modules.md)
   - [05_generic](Typescript/05_generic.md)
-- [Untitled 1](Untitled 1.md)
-- [Untitled](Untitled.md)
 - [Vue](/Vue/README.md)
   - [01_components](Vue/01_components.md)
   - [02_modal](Vue/02_modal.md)
