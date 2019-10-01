@@ -8,4 +8,5 @@
 - [06_mysql](06_mysql.md)
 - [07_mongodb](07_mongodb.md)
 - [08_auth](08_auth.md)
+- [09_eggjs](09_eggjs.md)
 - [npm](npm.md)

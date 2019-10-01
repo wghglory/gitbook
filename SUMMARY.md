@@ -250,6 +250,7 @@
   - [06_mysql](Nodejs/06_mysql.md)
   - [07_mongodb](Nodejs/07_mongodb.md)
   - [08_auth](Nodejs/08_auth.md)
+  - [09_eggjs](Nodejs/09_eggjs.md)
   - [npm](Nodejs/npm.md)
 - [ProjectConfig](/ProjectConfig/README.md)
   - [ProjectConfig/Javacript-Starter](/ProjectConfig/Javacript-Starter/README.md)
