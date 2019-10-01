@@ -7,4 +7,5 @@
 - [05_upload](05_upload.md)
 - [06_mysql](06_mysql.md)
 - [07_mongodb](07_mongodb.md)
+- [08_auth](08_auth.md)
 - [npm](npm.md)

@@ -249,6 +249,7 @@
   - [05_upload](Nodejs/05_upload.md)
   - [06_mysql](Nodejs/06_mysql.md)
   - [07_mongodb](Nodejs/07_mongodb.md)
+  - [08_auth](Nodejs/08_auth.md)
   - [npm](Nodejs/npm.md)
 - [ProjectConfig](/ProjectConfig/README.md)
   - [ProjectConfig/Javacript-Starter](/ProjectConfig/Javacript-Starter/README.md)
