@@ -10,4 +10,5 @@
 - [08_auth](08_auth.md)
 - [09_eggjs](09_eggjs.md)
 - [10*eggjs*类似框架](10_eggjs_类似框架.md)
+- [11_eggjs_in_real](11_eggjs_in_real.md)
 - [npm](npm.md)
