@@ -253,6 +253,7 @@
   - [09_eggjs](Nodejs/09_eggjs.md)
   - [10*eggjs*类似框架](Nodejs/10_eggjs_类似框架.md)
   - [11_eggjs_in_real](Nodejs/11_eggjs_in_real.md)
+  - [12_deploy](Nodejs/12_deploy.md)
   - [npm](Nodejs/npm.md)
 - [ProjectConfig](/ProjectConfig/README.md)
   - [ProjectConfig/Javacript-Starter](/ProjectConfig/Javacript-Starter/README.md)

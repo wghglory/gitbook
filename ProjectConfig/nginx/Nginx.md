@@ -23,6 +23,14 @@ Nginx 主要以**事件驱动**的方式编写，有兴趣可以移步[这里](h
 brew install nginx
 ```
 
+Docroot is: /usr/local/var/www
+
+The default port has been set in `/usr/local/etc/nginx/nginx.conf` to 8080 so that nginx can run without sudo.
+
+nginx will load all files in `/usr/local/etc/nginx/servers/`.
+
+To have launched start nginx now and restart at login: `brew services start nginx` Or, if you don't want/need a background service you can just run: `nginx`
+
 安装后 path：`/usr/local/etc/nginx/nginx.conf`
 
 紧接着就可以用浏览器打开[http://localhost:8080](http://localhost:8080/)看到 Nginx 的欢迎信息。

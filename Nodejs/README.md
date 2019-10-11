@@ -11,4 +11,5 @@
 - [09_eggjs](09_eggjs.md)
 - [10*eggjs*类似框架](10_eggjs_类似框架.md)
 - [11_eggjs_in_real](11_eggjs_in_real.md)
+- [12_deploy](12_deploy.md)
 - [npm](npm.md)
