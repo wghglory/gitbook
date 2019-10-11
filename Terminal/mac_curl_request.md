@@ -14,7 +14,7 @@ curl -X DELETE localhost:3000/users/[id]
 ```
 
 ```bash
-curl -X GET http://localhost:3000/api/users
+curl -X GET http://localhost:3000/api/users -H "name=derek"
 
 curl -d "name=derek&password=coolMan&mobile=123123123" -X POST http://localhost:3000/api/users
 
