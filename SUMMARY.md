@@ -314,6 +314,7 @@
   - [cheatsheet](Terminal/cheatsheet.md)
   - [commands](Terminal/commands.md)
   - [homebrew](Terminal/homebrew.md)
+  - [issue](Terminal/issue.md)
   - [mac_curl_request](Terminal/mac_curl_request.md)
   - [proxy](Terminal/proxy.md)
   - [vim](Terminal/vim.md)
