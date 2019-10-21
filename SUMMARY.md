@@ -15,6 +15,7 @@
   - [interceptor_global_error_handling](Angular/interceptor_global_error_handling.md)
   - [issues](Angular/issues.md)
   - [map_mergeMap_switchMap_concatMap](Angular/map_mergeMap_switchMap_concatMap.md)
+  - [ngrx](Angular/ngrx.md)
   - [ngTemplateOutlet](Angular/ngTemplateOutlet.md)
   - [Angular/official_learning](/Angular/official_learning/README.md)
     - [providers](Angular/official_learning/providers.md)
