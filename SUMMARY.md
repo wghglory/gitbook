@@ -29,6 +29,7 @@
 - [Basic](/Basic/README.md)
   - [Basic/algorithm](/Basic/algorithm/README.md)
     - [array_vs_linkedList](Basic/algorithm/array_vs_linkedList.md)
+    - [es2017](Basic/algorithm/es2017.md)
     - [算法](Basic/algorithm/算法.md)
   - [Basic/amazon](/Basic/amazon/README.md)
     - [leadership_principles](Basic/amazon/leadership_principles.md)
