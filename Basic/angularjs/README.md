@@ -1,4 +1,4 @@
 # TOC
 
-- [Angular1](Angular1.md)
+- [Angularjs](Angularjs.md)
 - [ng-model-options](ng-model-options.md)

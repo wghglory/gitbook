@@ -1,6 +1,8 @@
 # TOC
 
 - [angular_tools](angular_tools.md)
+- [Angular2 的数据绑定](Angular2的数据绑定.md)
+- [Angular2 装饰器](Angular2装饰器.md)
 - [angular5new](angular5new.md)
 - [angular6new](angular6new.md)
 - [components_communication](components_communication.md)
