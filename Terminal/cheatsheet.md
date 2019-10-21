@@ -23,17 +23,18 @@
 
 ## Basics
 
-| **Basics**         |                                                            |
-| ------------------ | ---------------------------------------------------------- |
-| / (Forward Slash)  | Top level directory                                        |
-| . (Single Period)  | Current directory                                          |
-| .. (Double Period) | Parent directory                                           |
-| ~ (Tilde)          | Home directory                                             |
-| sudo [command]     | Run command with the security privileges of the super user |
-| [command] -h       | Get help about a command                                   |
-| man [command]      | Show the help manual of the command                        |
-| top                | Displays active processes. Press q to quit                 |
-| locate             | Find file (quick search of system index)                   |
+| **Basics**           |                                                            |
+| -------------------- | ---------------------------------------------------------- |
+| / (Forward Slash)    | Top level directory                                        |
+| . (Single Period)    | Current directory                                          |
+| .. (Double Period)   | Parent directory                                           |
+| ~ (Tilde)            | Home directory                                             |
+| sudo [command]       | Run command with the security privileges of the super user |
+| [command] -h         | Get help about a command                                   |
+| man [command]        | Show the help manual of the command                        |
+| top                  | Displays active processes. Press q to quit                 |
+| locate               | Find file (quick search of system index)                   |
+| echo "hi" > index.ts | input string to file                                       |
 
 ## Change Directory
 
@@ -143,7 +144,7 @@
 
 | Key/Command                           | Description                                                                                                                   |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **find [dir] -name [search_pattern]** | Search for files, e.g. `find /Users -name "file.txt"`                                                                         |
+| **find [dir] -name [search_pattern]** | Search for files, e.g. `find /Users -name "file.txt"`; `find /Users/guanghuiw/Documents/Pictures -name "*.png"`               |
 | **grep [search_pattern] \[file]**     | Search for all lines that contain the pattern, e.g. `grep "Tom" file.txt`. e.g.2 `grep De. file.txt` (search De stared lines) |
 | **grep -r [search_pattern] \[dir]**   | Recursively search in all files in specified directory for all lines that contain the pattern                                 |
 | **grep -v [search_pattern] \[file]**  | Search for all lines that do NOT contain the pattern                                                                          |
