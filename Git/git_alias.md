@@ -4,6 +4,7 @@
 git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit
+git config --global alias.cane "commit --amend --no-edit"
 git config --global alias.st status
 
 alias gbr="git branch | grep -v "master" | xargs git branch -D"   # delete all local branches except master, but master-test won't be deleted
