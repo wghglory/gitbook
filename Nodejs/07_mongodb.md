@@ -65,7 +65,7 @@ db.fruits.find()
 
 <http://mongodb.github.io/node-mongodb-native/3.1/quick-start/quick-start/>
 
-安装 mysql 模块： `npm install mongodb --save`, 连接 mongodb
+安装 mongodb 模块： `npm install mongodb --save`, 连接 mongodb
 
 ```js
 (async () => {
