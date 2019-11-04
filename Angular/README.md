@@ -6,6 +6,7 @@
 - [angular5new](angular5new.md)
 - [angular6new](angular6new.md)
 - [components_communication](components_communication.md)
+- [directives](directives.md)
 - [form_validation](form_validation.md)
 - [form](form.md)
 - [hostBinding_vs_hostListener](hostBinding_vs_hostListener.md)
