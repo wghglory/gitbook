@@ -1,5 +1,7 @@
 # React Router
 
+react-router 包含 3 个库，react-router、react-router-dom 和 react-router-native。react-router 提供最基本的路由功能，实际使⽤的时候我们不会直接安装 react-router，⽽是根据应⽤运⾏的环境选择安装 react-router-dom（在浏览器中使⽤）或 react-router-native（在 rn 中使⽤）。react-router-dom 和 react-router-native 都依赖 react-router，所以在安装时，react-router 也会⾃动安装，创建 web 应⽤， 使⽤：`npm install --save react-router-dom`
+
 _**Concepts**_
 
 - `BrowserRouter` as Router - is the component between which all the routes are nested. Our most parent component.
@@ -9,7 +11,17 @@ _**Concepts**_
 - `Switch` - used to make sure only one of the Routes is active at any moment (useful for showing a route without a path for paths that are not handled aka 404)
   - instead of rendering all of the routes that are active, switch is gonna let only 1 route be active at a time
 
+react-router 中奉⾏⼀切皆组件的思想:
+
+- 路由器 Router
+- 链接 Link
+- 路由 Route
+- 独占 Switch
+- 重定向 Redirect
+
 **_Route_**
+
+⚠️Route 渲染优先级：children > component > render
 
 - `path` - prop takes string for the url path at which component should be active in the view
   - Note: if a route has `path='/first'`, it’s component will be active for all paths that start with `/first`
