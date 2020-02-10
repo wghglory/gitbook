@@ -299,6 +299,7 @@
   - [Pure_vs_Impure_functions](React/Pure_vs_Impure_functions.md)
   - [react_fundamental](React/react_fundamental.md)
   - [react-router](React/react-router.md)
+  - [React-source](React/React-source.md)
   - [setStateAsync](React/setStateAsync.md)
   - [Testing](React/Testing.md)
 - [Redux](/Redux/README.md)
