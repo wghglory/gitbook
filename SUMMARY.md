@@ -355,3 +355,6 @@
   - [slots](Vue/slots.md)
   - [vue_interview](Vue/vue_interview.md)
   - [watch](Vue/watch.md)
+- [Wechat](/Wechat/README.md)
+  - [公众号服务端](Wechat/公众号服务端.md)
+  - [公众号网页端](Wechat/公众号网页端.md)
