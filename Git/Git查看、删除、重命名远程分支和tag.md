@@ -89,22 +89,14 @@ git fetch -p
 例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：
 
 ```bash
-$ git branch -av
-* devel                             752bb84 Merge pull request #158 from Gwill/devel
-  master                            53b27b8 Merge pull request #138 from tdlrobin/master
-  zrong                             2ae98d8 modify CCFileUtils, export getFileData
-  remotes/origin/HEAD               -> origin/master
-  remotes/origin/add_build_script   d4a8c4f Merge branch 'master' into add_build_script
-  remotes/origin/devel              752bb84 Merge pull request #158 from Gwill/devel
-  remotes/origin/devel_qt51         62208f1 update .gitignore
-  remotes/origin/master             53b27b8 Merge pull request #138 from tdlrobin/master
-  remotes/origin/zrong              2ae98d8 modify CCFileUtils, export getFileData
+git branch -av
 ```
 
 删除远程分支：
 
 ```bash
 git push --delete origin devel
+
 To git@github.com:zrong/quick-cocos2d-x.git
  - [deleted]         devel
 ```
@@ -225,5 +217,5 @@ git tag   # 查看当前分支下的标签
 
 git checkout v0.21   # 此时会指向打v0.21标签时的代码状态，（但现在处于一个空的分支上）
 
-cat  test.txt    # 查看某个文件
+cat test.txt    # 查看某个文件
 ```
