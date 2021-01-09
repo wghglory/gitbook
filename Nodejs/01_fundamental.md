@@ -165,6 +165,15 @@ fs.writeFile('2.txt', '我是要写入的内容', { flag: 'w' }, (err) => {
   }
   console.log('写入成功');
 });
+
+// create a 64kb file
+let buffer = Buffer.alloc(64 * 1024);
+fs.writeFile('64kb', buffer, (err) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('写入成功');
+});
  ```
 
 - 文件删除
@@ -329,6 +338,19 @@ console.log(buf3.toString());
 // 合并Buffer
 const buf4 = Buffer.concat([buf1, buf3]);
 console.log(buf4.toString());
+
+// 使用StringDecoder解析 buffer
+let buffer1 = Buffer.from([0xe5, 0xa4, 0xa7, 0xe5]);
+let buffer2 = Buffer.from([0xae, 0xb6, 0xe5, 0xa5, 0xbd]);
+// // console.log(buffer1.toString());
+// let newbuffer = Buffer.concat([buffer1,buffer2]);
+// console.log(newbuffer.toString());
+
+let { StringDecoder } = require('string_decoder');
+let decoder = new StringDecoder();
+let res1 = decoder.write(buffer1);
+let res2 = decoder.write(buffer2);
+console.log(res1 + res2); // 大家好
 ```
 
 Buﬀer 类似数组，所以很多数组方法它都有 GBK 转码 iconv-lite
@@ -383,7 +405,7 @@ if (url === '/' && method === 'GET') {
 编写一个接口
 
 ```javascript
-else if (url === '/users' && method === 'GET') {
+if (url === '/users' && method === 'GET') {
   response.writeHead(200, { 'Content-Type': 'application/json' });
   response.end(JSON.stringify({ name: 'tom', age: 20 }));
 }
@@ -397,6 +419,19 @@ const rs = fs.createReadStream('./conf.js');
 const ws = fs.createWriteStream('./conf2.js');
 rs.pipe(ws);
 
+let num = 0;
+let str = '';
+rs.on('data', (chunk) => {
+  num++;
+  str += chunk;
+  // console.log(chunk);
+  console.log(num);
+});
+// 流完成了. 流会把数据分成64kb的小文件传输
+rs.on('end', () => {
+  console.log(str);
+});
+
 //二进制友好，图片操作
 const rs2 = fs.createReadStream('./01.jpg');
 const ws2 = fs.createWriteStream('./02.jpg');
@@ -407,7 +442,6 @@ rs2.pipe(ws2);
 //静态资源响应图片请求，http.js
 const { url, method, headers } = request;
 
-else
 if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
   fs.createReadStream('.' + url).pipe(response);
 }
