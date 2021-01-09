@@ -57,8 +57,10 @@ exit
 ```shell
 npm install -g yarn
 yarn
-yarn add [global] packageName
-yarn remove
+yarn global add packageName
+yarn add xxx@x.x.x --dev
+yarn remove xxx
+yarn run xxx
 ```
 
 # nvm
