@@ -254,7 +254,7 @@
             - [10_eggjs_类似框架](Nodejs/10_eggjs_类似框架.md)
             - [11_eggjs_in_real](Nodejs/11_eggjs_in_real.md)
             - [12_deploy](Nodejs/12_deploy.md)
-            - [npm](Nodejs/npm.md)
+            - [npm_yarn_nvm](Nodejs/npm_yarn_nvm.md)
           - [/Volumes/MY/Work/Github/gitbook/ProjectConfig](//Volumes/MY/Work/Github/gitbook/ProjectConfig/README.md)
             - [/Volumes/MY/Work/Github/gitbook/ProjectConfig/Javacript-Starter](//Volumes/MY/Work/Github/gitbook/ProjectConfig/Javacript-Starter/README.md)
               - [01_Consideration](ProjectConfig/Javacript-Starter/01_Consideration.md)
