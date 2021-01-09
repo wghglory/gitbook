@@ -1,63 +1,44 @@
-# Node.js 基础
-
-- 了解 nodejs 特点和应用场景
-- 掌握 node 模块系统使用
-- 掌握基础 api 使用 global process path buﬀer event fs http
-- 实战一个 cli 工具
-
-## NodeJS 是什么
+# Node.js
 
 node.js 是一个异步的事件驱动的 JavaScript 运行时 <https://nodejs.org/en/>
 
 node.js 特性其实是 JS 的特性：(1) 非阻塞 I/O (2) 事件驱动
 
-node 为性能而生 ，并发处理
+node 为性能而生，并发处理
 
 1. 多进程 - C Apache
 2. 多线程 - java
 3. 异步 IO - js
 4. 协程 - lua openresty go deno- go TS
 
-### 与前端的不同
+## 与前端的不同
 
 - JS 核心语法不变
 - 前端 BOM DOM
 - 后端 fs http buﬀer event os
 
-### 运行 node 程序
+## 运行 node 程序
 
-安装 nodemon 可以监视文件改动，自动重启:
-
-`npm i -g nodemon`
+安装 nodemon 可以监视文件改动，自动重启: `npm i -g nodemon`
 
 调试 node 程序：Debug - Start Debugging
 
 ## 模块(module)
 
-使用模块(module) node 内建模块
+- 使用模块(module) node 内建模块
 
-```js
+```javascript
 // 内建模块直接引入
 const os = require('os');
 const mem = (os.freemem() / os.totalmem()) * 100;
 console.log(`内存占用率${mem.toFixed(2)}%`);
 ```
 
-第三方模块
+- 第三方模块
 
 先安装 `npm i download-git-repo -s`
 
-```js
-// 导入并使用
-const download = require('download-git-repo');
-download('github:su37josephxia/vue-template', 'downloadRepo', (err) => {
-  console.log(err ? 'Error' : 'Success');
-});
-```
-
-完善代码
-
-```js
+```javascript
 const download = require('download-git-repo');
 const ora = require('ora');
 const process = ora(`下载.....项目`);
@@ -71,9 +52,9 @@ download('github:su37josephxia/vue-template', 'downloadRepo', (err) => {
 });
 ```
 
-**promisefy**: 如何让异步任务串行化
+- **promisify**: 如何让异步任务串行化
 
-```js
+```javascript
 const repo = 'github:su37josephxia/vue-template';
 const desc = 'downloadRepo';
 clone(repo, desc);
@@ -93,9 +74,9 @@ async function clone(repo, desc) {
 }
 ```
 
-自定义模块：代码分割、复用手段
+- 自定义模块：代码分割、复用手段
 
-```js
+```javascript
 module.exports.clone = async function clone(repo, desc) {
   const ora = require('ora');
   const process = ora(`下载项目 ${repo}`);
@@ -119,20 +100,26 @@ clone(repo, desc);
 
 ## 核心 API
 
-fs - 文件系统
+### fs - 文件系统
 
-```js
+#### 文件操作
+
+- Read
+
+```javascript
 // fs.js
 const fs = require('fs');
 
-// 1. 同步调用
+// 1. 同步read
 const data = fs.readFileSync('./index.js'); //代码会阻塞在这里
 console.log(data); // buffer
+console.log(data.toString()); // content
 
-// 2. 异步调用
-fs.readFile('./index.js', (err, data) => {
+// 2. 异步read
+fs.readFile('./index.js', 'utf-8', (err, data) => {
   if (err) throw err;
-  console.log(data);
+  console.log(data); // buffer
+  console.log(data.toString()); // content
 });
 
 // 3. fs 常搭配 path api 使用
@@ -167,11 +154,153 @@ fsp
 })();
 ```
 
+- 文件写入
+
+ ```javascript
+ let fs = require('fs');
+//flag配置  "a":追加写入，"w":写入，"r":读取
+fs.writeFile('2.txt', '我是要写入的内容', { flag: 'w' }, (err) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('写入成功');
+});
+ ```
+
+- 文件删除
+
+```javascript
+fs.unlink('2.txt', (err) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('删除成功');
+});
+```
+
+- 复制文件
+  ```javascript
+  fs.copyFile('index.html', 'myindex.html', (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('复制成功！');
+  });
+  ```
+
+  - 老办法：先读取文件再写入文件
+
+  ```javascript
+  function mycopy(src, dest) {
+    fs.writeFileSync(dest, fs.readFileSync(src));
+  }
+
+  mycopy('1.txt', '4.txt');
+  ```
+
+- 修改文件名，目录也可以通过 rename 来操作
+
+```javascript
+fs.rename('old-name.txt', 'new-name.txt', function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('修改成功');
+  }
+});
+```
+
+- 判断文件是否存在
+
+```javascript
+fs.exists('4.txt', function(exists) {
+  console.log(exists);
+});
+```
+
+#### 文件夹操作
+
+```javascript
+// 创建目录
+fs.mkdir('11', (err) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('创建成功');
+});
+
+// 修改目录名称
+fs.rename('11', '22', (err) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('修改成功');
+});
+
+// 读取目录
+fs.readdir('22', (err, data) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log(data);
+});
+
+// 删除目录(空文件夹/目录)
+fs.rmdir('11', (err) => {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('删除成功');
+});
+
+// 判断文件或者目录是否存在
+fs.exists('index.html', (exists) => {
+  console.log(exists);
+});
+
+// 获取文件或者目录的详细信息
+fs.stat('index.html', (err, stat) => {
+  if (err) {
+    return console.log(err);
+  }
+  // console.log(stat);
+  // 判断文件是否是文件
+  // let res = stat.isFile();
+  // 是否是一个文件夹；
+  let res = stat.isDirectory();
+  console.log(res);
+});
+```
+
+- 删除非空目录
+
+```javascript
+// 删除非空文件夹: 先把目录里的文件删除-->删除空目录；
+function removeDir(path) {
+  let data = fs.readdirSync(path);
+  // data is contents inside a folder ["33","1.txt","2.html"];
+  for (let i = 0; i < data.length; i++) {
+    // 是文件或者是目录； --->?文件 直接删除？目录继续查找
+    let url = path + '/' + data[i];
+    let stat = fs.statSync(url);
+    if (stat.isDirectory()) {
+      //目录 继续查找
+      removeDir(url);
+    } else {
+      // 文件删除
+      fs.unlinkSync(url);
+    }
+  }
+  //  删除空目录
+  fs.rmdirSync(path);
+}
+```
+
 ### Buffer
 
 Buﬀer - 用于在 TCP 流、文件系统操作、以及其他上下文中与八位字节流进行交互。 八位字节组成的数组，可以有效的在 JS 中存储二进制数据
 
-```js
+```javascript
 // buffer.js
 // 创建一个长度为10字节以0填充的Buffer
 const buf1 = Buffer.alloc(10);
@@ -208,7 +337,7 @@ Buﬀer 类似数组，所以很多数组方法它都有 GBK 转码 iconv-lite
 
 创建一个 http 服务器
 
-```js
+```javascript
 const http = require('http');
 const server = http.createServer((request, response) => {
   console.log('there is a request');
@@ -231,7 +360,7 @@ function getPrototypeChain(obj) {
 
 显示一个首页
 
-```js
+```javascript
 const { url, method } = request;
 if (url === '/' && method === 'GET') {
   fs.readFile('index.html', (err, data) => {
@@ -253,16 +382,17 @@ if (url === '/' && method === 'GET') {
 
 编写一个接口
 
-```js
-else if (url === '/users' && method === 'GET') {
+```javascript
+else
+if (url === '/users' && method === 'GET') {
   response.writeHead(200, { 'Content-Type': 'application/json' });
-  response.end(JSON.stringify({name:'tom', age:20}));
+  response.end(JSON.stringify({ name: 'tom', age: 20 }));
 }
 ```
 
 ### stream - 是用于与 node 中流数据交互的接口
 
-```js
+```javascript
 //创建输入输出流 stream.js
 const rs = fs.createReadStream('./conf.js');
 const ws = fs.createWriteStream('./conf2.js');
@@ -274,11 +404,12 @@ const ws2 = fs.createWriteStream('./02.jpg');
 rs2.pipe(ws2);
 ```
 
-```js
+```javascript
 //静态资源响应图片请求，http.js
-const {url, method, headers} = request;
+const { url, method, headers } = request;
 
-else if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
+else
+if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
   fs.createReadStream('.' + url).pipe(response);
 }
 ```
@@ -327,7 +458,7 @@ npm link
 
 1. dvr 文件
 
-```js
+```javascript
 #!/usr/bin/env node
 const program = require('commander');
 
@@ -341,7 +472,7 @@ program.parse(process.argv);
 
 2. dvr-init
 
-```js
+```javascript
 #!/usr/bin/env node
 
 const program = require('commander');
@@ -358,7 +489,7 @@ program.parse(process.argv);
 
 3. lib/download.js
 
-```js
+```javascript
 // 1. promisify: 如何让异步任务串行化
 // 2. module export
 
@@ -379,7 +510,7 @@ module.exports.clone = async function clone(repo, desc) {
 
 4. dvr-refresh
 
-```js
+```javascript
 #!/usr/bin/env node
 
 const program = require('commander');
