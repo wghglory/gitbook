@@ -6,7 +6,7 @@
 
 创建@/utils/request.js
 
-```js
+```javascript
 import axios from 'axios';
 import { MessageBox, Message } from 'element-ui';
 import store from '@/store';
@@ -79,20 +79,20 @@ export default service;
 
 设置 VUE_APP_BASE_API 环境变量，创建 .env.development ⽂件
 
-```bash
+```shell
 # base api
 VUE_APP_BASE_API = '/dev-api'
 ```
 
 store/index.js 添加 token 的 getter ⽅法
 
-```js
+```javascript
 token: (state) => state.user.token;
 ```
 
 测试代码，创建@/api/user.js
 
-```js
+```javascript
 import request from '@/utils/request';
 
 export function login(data) {
@@ -111,7 +111,7 @@ export function getInfo() {
 
 本地 mock 修改 vue.conﬁg.js，给 devServer 添加相关代码：
 
-```json
+```javascripton
 devServer: {
    // ...
     before: (app) => {
@@ -141,7 +141,7 @@ devServer: {
 
 调⽤接⼝，@/store/user.js
 
-```js
+```javascript
 import { getToken, setToken, removeToken } from '@/utils/auth';
 import { login, getInfo } from '@/api/user';
 
@@ -232,7 +232,7 @@ export default {
 
 如果请求的接⼝在另⼀台服务器上，开发时则需要设置代理避免跨域问题 添加代理配置，vue.conﬁg.js
 
-```json
+```javascripton
 devServer: {
     proxy: {
       // 代理 /dev-api/user/login 到 http://127.0.0.1:3000/user/login
@@ -247,7 +247,7 @@ devServer: {
 
 创建⼀个独⽴接⼝服务器，~/mock-server/index.js
 
-```js
+```javascript
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');

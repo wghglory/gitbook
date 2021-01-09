@@ -36,7 +36,7 @@ var result = votes.reduce(reducer, initialValue); // {tacos: 2, pizza: 3, fries:
 
 In our api.js, getStarCount will sum up each repo's star:
 
-```jsx
+```javascriptx
 function getStarCount(repos) {
   return repos.data.reduce(function(count, repo) {
     return count + repo.stargazers_count;

@@ -6,7 +6,7 @@ Socket 实现
 
 原理：Net 模块提供⼀个异步 API 能够创建基于流的 TCP 服务器，客户端与服务器建⽴连接后，服务器可以获得⼀个全双⼯ Socket 对象，服务器可以保存 Socket 对象列表，在接收某客户端消息时，推送给其他客户端。
 
-```js
+```javascript
 /**
  * 实现⼀个即时通讯IM：Socket实现
   原理：Net模块提供⼀个异步API能够创建基于流的TCP服务器，客户端与服务器建⽴连接后，服务器可以获得⼀个全双⼯Socket对象，服务器可以保存Socket对象列表，在接收某客户端消息时，推送给其他客户端。
@@ -33,7 +33,7 @@ chatServer.listen(9000);
 
 通过 Telnet 连接服务器:
 
-```bash
+```shell
 // open several terminals: telnet localhost 9000
 ```
 
@@ -41,7 +41,7 @@ chatServer.listen(9000);
 
 1. 轮询方式：
 
-```js
+```javascript
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -217,7 +217,7 @@ Socket.IO 库特点：
 </html>
 ```
 
-```js
+```javascript
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);

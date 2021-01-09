@@ -2,7 +2,7 @@
 
 弹窗这类组件的特点是它们在当前 vue 实例例之外独⽴立存在，通常挂载于 body；它们是通过 JS 动态创建的，不需要在任何组件中声明。常⻅见使⽤用姿势：
 
-```js
+```javascript
 this.$create(Notice, { title: '社会你杨哥喊你来搬砖', message: '提示信息', duration: 1000 }).show();
 ```
 
@@ -10,7 +10,7 @@ this.$create(Notice, { title: '社会你杨哥喊你来搬砖', message: '提示
 
 create 函数⽤于动态创建指定组件实例并挂载⾄ body
 
-```js
+```javascript
 import Vue from 'vue';
 
 // 创建指定组件实例并挂载于 body 上
@@ -99,7 +99,7 @@ export default function create(Component, props) {
 
 测试 components/form/index.vue
 
-```js
+```javascript
 <script>
 import Notice from '@/components/notice';
 import create from '@/utils/create';
@@ -127,7 +127,7 @@ export default {
 
 ## Understand render function
 
-```js
+```javascript
 render(h) {
   return h(tag, {props}, [children])
 }
@@ -135,7 +135,7 @@ render(h) {
 
 Render second parameter: createElement 函数
 
-```json
+```javascripton
 {
   // 与 `v-bind:class` 的 API 相同，
   // 接受⼀个字符串、对象或字符串和对象组成的数组
@@ -172,7 +172,7 @@ Render second parameter: createElement 函数
 
 demo:
 
-```js
+```javascript
 // I want to render this html to UI: <div id="box" class="foo"><span>aaa</span></div>
 
 // Vue create a component MyComp, in template we can <MyComp></MyComp>

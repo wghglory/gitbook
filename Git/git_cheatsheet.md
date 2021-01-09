@@ -14,7 +14,7 @@
 
 ## Awesome Git Aliases
 
-```bash
+```shell
 git config --global alias.aliases "\!git config --list | grep alias | sed -e 's/alias\.//' | sed -e $'s/=/\t/'"
 git config --global alias.b "branch"
 git config --global alias.ba "branch -a"
@@ -37,7 +37,7 @@ git config --global alias.s "status -bsu"
 
 ## Super Git Scripts
 
-```bash
+```shell
 # Find remote branches that have not had activity for a specified amount of time.
 for k in $(git branch --remotes); do
   if [ -z "$(git log -1 --after='24 months ago' $k)" ]; then
@@ -48,7 +48,7 @@ done
 
 ## Global Configuration Preferences
 
-```bash
+```shell
 echo ".idea/" >> $HOME/.gitignore
 git config --global core.excludesfile $HOME/.gitignore
 git config --global core.autocrlf true
@@ -63,7 +63,7 @@ git config --global color.ui true
 
 When you find yourself wondering how a downstream dependency fits into the big picture, this command can show you the dependency tree:
 
-```bash
+```shell
 npm ls | grep -C 20 "react"
 ```
 
@@ -73,7 +73,7 @@ Don't you just hate those nasty merge commits cluttering up your commit history?
 
 DO NOT use this recipe if your branch has been pushed to a remote!
 
-```bash
+```shell
 git checkout my-branch
 git rebase master
 git checkout master
@@ -98,7 +98,7 @@ If you've forked a repo and then find yourself wanting to sync up with the lates
 
 This recipe makes the assumption that your repo follows the standard conventions of naming the original remote the `upstream` remote.
 
-```bash
+```shell
 git fetch upstream
 git checkout master
 git merge upstream/master

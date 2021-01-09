@@ -18,7 +18,7 @@
 
 估计大家对 webpack.config.js 的配置也尝试过不少次了，这里就大致对这个配置文件进行个分析。
 
-```js
+```javascript
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
@@ -72,7 +72,7 @@ module.exports = {
 
 - plugin：webpack 的插件实体，这里以 UglifyJsPlugin 为例。
 
-  ```js
+  ```javascript
   function UglifyJsPlugin(options) {
     this.options = options;
   }
@@ -110,7 +110,7 @@ module.exports = {
 
 和 commander 一样，[optimist](https://github.com/substack/node-optimist) 实现了 node 命令行的解析，其 API 调用非常方便。
 
-```js
+```javascript
 var optimist = require("optimist");
 
 optimist
@@ -122,7 +122,7 @@ optimist
 
 获取到后缀参数后，optimist 分析参数并以键值对的形式把参数对象保存在 optimist.argv 中，来看看 argv 究竟有什么？
 
-```js
+```javascript
 // webpack --hot -w
 {
   hot: true,
@@ -136,7 +136,7 @@ optimist
 
 在加载插件之前，webpack 将 webpack.config.js 中的各个配置项拷贝到 options 对象中，并加载用户配置在 webpack.config.js 的 plugins 。接着 optimist.argv 会被传入到 `./node_modules/webpack/bin/convert-argv.js` 中，通过判断 argv 中参数的值决定是否去加载对应插件。(至于 webpack 插件运行机制，在之后的运行机制篇会提到)
 
-```js
+```javascript
 ifBooleanArg("hot", function() {
   ensureArray(options, "plugins");
   var HotModuleReplacementPlugin = require("../lib/HotModuleReplacementPlugin");
@@ -148,7 +148,7 @@ return options;
 
 `options` 作为最后返回结果，包含了之后构建阶段所需的重要信息。
 
-```js
+```javascript
 {
   entry: {},//入口配置
   output: {}, //输出配置
@@ -161,7 +161,7 @@ return options;
 
 这和 webpack.config.js 的配置非常相似，只是多了一些经 shell 传入的插件对象。插件对象一初始化完毕， options 也就传入到了下个流程中。
 
-```js
+```javascript
 var webpack = require('../lib/webpack.js');
 var compiler = webpack(options);
 ```
@@ -170,7 +170,7 @@ var compiler = webpack(options);
 
 在加载配置文件和 shell 后缀参数申明的插件，并传入构建信息 options 对象后，开始整个 webpack 打包最漫长的一步。而这个时候，真正的 webpack 对象才刚被初始化，具体的初始化逻辑在 `lib/webpack.js` 中，如下：
 
-```js
+```javascript
 function webpack(options) {
   var compiler = new Compiler();
   ...// 检查options,若watch字段为true,则开启watch线程
@@ -207,7 +207,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
   webpack 提供的一个很大的便利就是能将所有资源都整合成模块，不仅仅是 js 文件。所以需要一些 loader ，比如 `url-loader` ， `jsx-loader` ， `css-loader` 等等来让我们可以直接在源文件中引用各类资源。webpack 调用 `doBuild()` ，对每一个 require() 用对应的 loader 进行加工，最后生成一个 js module。
 
-  ```js
+  ```javascript
   Compilation.prototype._addModuleChain = function process(context, dependency, onModule, callback) {
     var start = this.profile && +new Date();
     ...
@@ -227,7 +227,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
 - 调用 [acorn](https://github.com/ternjs/acorn) 解析经 loader 处理后的源文件生成抽象语法树 AST
 
-  ```js
+  ```javascript
    Parser.prototype.parse = function parse(source, initialState) {
     var ast;
     if (!ast) {
@@ -247,7 +247,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
   对于当前模块，或许存在着多个依赖模块。当前模块会开辟一个依赖模块的数组，在遍历 AST 时，将 require() 中的模块通过 `addDependency()` 添加到数组中。当前模块构建完成后，webpack 调用 `processModuleDependencies` 开始递归处理依赖的 module，接着就会重复之前的构建步骤。
 
-  ```js
+  ```javascript
    Compilation.prototype.addModuleDependencies = function(module, dependencies, bail, cacheGroup, recursive, callback) {
     // 根据依赖数组(dependencies)创建依赖模块对象
     var factories = [];
@@ -264,7 +264,7 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
 module 是 webpack 构建的核心实体，也是所有 module 的 父类，它有几种不同子类：`NormalModule` , `MultiModule` , `ContextModule` , `DelegatedModule` 等。但这些核心实体都是在构建中都会去调用对应方法，也就是 `build()` 。来看看其中具体做了什么：
 
-```js
+```javascript
 // 初始化module信息，如context,id,chunks,dependencies等。
 NormalModule.prototype.build = function build(options, compilation, resolver, fs, callback) {
   this.buildTimestamp = new Date().getTime(); // 构建计时
@@ -324,7 +324,7 @@ NormalModule.prototype.build = function build(options, compilation, resolver, fs
 
 在所有模块及其依赖模块 build 完成后，webpack 会监听 `seal` 事件调用各插件对构建后的结果进行封装，要逐次对每个 module 和 chunk 进行整理，生成编译后的源码，合并，拆分，生成 hash 。 同时这是我们在开发时进行代码优化和功能添加的关键环节。
 
-```js
+```javascript
 Compilation.prototype.seal = function seal(callback) {
   this.applyPlugins("seal"); // 触发插件的seal事件
   this.preparedChunks.sort(function(a, b) {
@@ -365,7 +365,7 @@ Compilation.prototype.seal = function seal(callback) {
 
   从上图可以看出通过判断是入口 js 还是需要异步加载的 js 来选择不同的模板对象进行封装，入口 js 会采用 webpack 事件流的 render 事件来触发 `Template类` 中的 `renderChunkModules()` (异步加载的 js 会调用 chunkTemplate 中的 render 方法)。
 
-  ```js
+  ```javascript
   if (chunk.entry) {
     source = this.mainTemplate.render(
       this.hash,
@@ -384,7 +384,7 @@ Compilation.prototype.seal = function seal(callback) {
 
   模块在封装的时候和它在构建时一样，都是调用各模块类中的方法。封装通过调用 `module.source()` 来进行各操作，比如说 require() 的替换。
 
-  ```js
+  ```javascript
   MainTemplate.prototype.requireFn = "__webpack_require__";
   MainTemplate.prototype.render = function(hash, chunk, moduleTemplate, dependencyTemplates) {
       var buf = [];

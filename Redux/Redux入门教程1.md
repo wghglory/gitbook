@@ -447,7 +447,7 @@ render();
 
 下面加入一点变化，为`Counter`添加递增和递减的 Action。
 
-```jsx
+```javascriptx
 const Counter = ({ value }) => (
   <h1>{value}</h1>
   <button onClick={onIncrement}>+</button>

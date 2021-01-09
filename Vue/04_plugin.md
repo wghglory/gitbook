@@ -1,6 +1,6 @@
 # Vue plugin
 
-```js
+```javascript
 // 插件定义
 MyPlugin.install = function(Vue, options) {
   // 1. 添加全局⽅法或属性
@@ -35,7 +35,7 @@ Vue.use(MyPlugin);
 
 ## demo: move bus to a plugin
 
-```js
+```javascript
 // plugins/bus.js
 
 class Bus {
@@ -54,7 +54,7 @@ export default Bus;
 
 Use this plugin:
 
-```js
+```javascript
 // main.js
 
 import Bus from './plugins/bus';

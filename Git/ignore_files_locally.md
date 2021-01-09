@@ -4,7 +4,7 @@ known 2 ways: `.gitignore` or `.git/info/exclude` not to manage files with Git.
 
 There are times when you want to ignore files that are already managed with Git locally.
 
-```bash
+```shell
 # when some files you don't want to submit to git server, e.g. angular proxy.js since proxy url is shifting heavily during development
 git update-index --skip-worktree path/to/file
 git update-index --no-skip-worktree path/to/file

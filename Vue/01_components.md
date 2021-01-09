@@ -6,7 +6,7 @@
 
 - #### 属性 props
 
-```js
+```javascript
 // parent passes msg to child:
 <HelloWorld msg="Welcome to Your Vue.js App" />;
 
@@ -18,7 +18,7 @@
 
 - #### 引用 refs
 
-```js
+```javascript
 // parent attaches ref to child:
 <HelloWorld ref="hw"/>
 
@@ -30,7 +30,7 @@ mounted() {
 
 - #### 子组件 children
 
-```js
+```javascript
 <HelloWorld />
 
 // parent
@@ -41,7 +41,7 @@ mounted() {
 
 ### 2. 子组件 => 父组件：自定义事件
 
-```js
+```javascript
 // child:
 this.$emit('add', param)
 
@@ -55,7 +55,7 @@ this.$emit('add', param)
 
 通过共同的祖辈组件搭桥，`$parent` 或 `$root`。
 
-```js
+```javascript
 // brother1
 this.$parent.$on('foo', handle);
 
@@ -67,7 +67,7 @@ this.$parent.$emit('foo');
 
 > `provide/inject`：能够实现祖先给后代传值，常用高阶插件、组件库提供用例，**并不推荐直接用于应用程序代码中**。
 
-```js
+```javascript
 // ancestor
 provide() { return {foo: 'foo value'} }
 
@@ -81,7 +81,7 @@ inject: ['foo']
 
 > 实践中可以直接用 Vue 替代 Bus，因为它已经实现了影响的功能
 
-```js
+```javascript
 // Bus：事件派发、监听和回调管理 class Bus{
 class Bus {
   constructor() {
@@ -124,7 +124,7 @@ Vue 2.6.0 之后采用全新 v-slot 语法取代之前的 slot、slot-scope
 
 - #### 匿名插槽
 
-```js
+```javascript
 // comp1
 <div>
 	<slot></slot>
@@ -136,7 +136,7 @@ Vue 2.6.0 之后采用全新 v-slot 语法取代之前的 slot、slot-scope
 
 - #### 具名插槽
 
-```js
+```javascript
 // comp2
 <div>
   <slot></slot>
@@ -155,7 +155,7 @@ Vue 2.6.0 之后采用全新 v-slot 语法取代之前的 slot、slot-scope
 
 - #### 作用域插槽（数据部分来自父元素，部分来自子元素）
 
-```js
+```javascript
 // Comp3
 <template>
   <div>
@@ -189,7 +189,7 @@ export default {
   - 双向绑定：@input、:value 派发校验事件
   - 派发校验事件
 
-  ```js
+  ```javascript
   <template>
     <div><input :value="value" @input="onInput" v-bind="$attrs" /></div>
   </template>
@@ -215,7 +215,7 @@ export default {
   - 能够展示 label 和校验信息
   - 能够进行校验
 
-  ```js
+  ```javascript
   <template>
     <div>
       <label v-if="label">{{ label }}</label>
@@ -269,7 +269,7 @@ export default {
   - 设置数据和校验规则
   - 全局校验
 
-  ```js
+  ```javascript
   <template>
     <div>
       <slot></slot>
@@ -298,7 +298,7 @@ export default {
 
 ## 异步更新
 
-```js
+```javascript
 <span id="s">{{ foo }}</span>;
 
 s.innerHTML; // foo 假设原始值 foo

@@ -2,7 +2,7 @@
 
 ## ⽂件系统数据库
 
-```js
+```javascript
 /* fs as database */
 
 /* set key value
@@ -70,7 +70,7 @@ rl.on('close', function() {
 
 - 安装 mysql 模块：`npm i mysql --save` mysql 模块基本使⽤
 
-```js
+```javascript
 const mysql = require('mysql');
 
 // 连接配置
@@ -135,7 +135,7 @@ conn.query(CREATE_SQL, (err) => {
 
   安装 mysql2 模块：`npm i mysql2 --save`
 
-```js
+```javascript
 (async () => {
   const mysql = require('mysql2/promise');
 
@@ -182,7 +182,7 @@ conn.query(CREATE_SQL, (err) => {
 
 安装： `npm i sequelize -S`
 
-```js
+```javascript
 (async () => {
   const Sequelize = require('sequelize');
 
@@ -225,13 +225,13 @@ conn.query(CREATE_SQL, (err) => {
 
 强制同步：创建表之前先删除已存在的表
 
-```js
+```javascript
 Fruit.sync({ force: true });
 ```
 
 避免⾃自动⽣生成时间戳字段
 
-```js
+```javascript
 const Fruit = sequelize.define(
   'Fruit',
   {},
@@ -249,7 +249,7 @@ const Fruit = sequelize.define(
 
 UUID-主键
 
-```js
+```javascript
 id: {
   type: Sequelize.DataTypes.UUID,
   defaultValue: Sequelize.DataTypes.UUIDV1,
@@ -259,7 +259,7 @@ id: {
 
 Getters & Setters：可⽤用于定义伪属性或映射到数据库字段的保护属性
 
-```js
+```javascript
 // 定义为属性的⼀部分
 name: {
     type: Sequelize.STRING,
@@ -273,7 +273,7 @@ name: {
   },
 ```
 
-```json
+```javascripton
   // 定义为模型选项
   // options中
   {
@@ -293,7 +293,7 @@ name: {
   },
 ```
 
-```js
+```javascript
 // 通过模型实例例触发setterMethods
 Fruit.findAll().then((fruits) => {
   console.log(JSON.stringify(fruits));
@@ -305,7 +305,7 @@ Fruit.findAll().then((fruits) => {
 
 校验：可以通过校验功能验证模型字段格式、内容，校验会在 create 、update 和 save 时自动运⾏
 
-```js
+```javascript
 {
   price: {
     validate: {
@@ -324,7 +324,7 @@ Fruit.findAll().then((fruits) => {
 
 模型扩展：可添加模型实例方法或类方法扩展模型
 
-```js
+```javascript
 // 添加类级别⽅法
 Fruit.classify = function(name) {
   const tropicFruits = ['⾹蕉', '芒果', '椰⼦']; // 热带⽔果
@@ -348,7 +348,7 @@ Fruit.findAll().then((fruits) => {
 
 数据查询:
 
-```js
+```javascript
 // 通过id查询(不⽀持了)
 Fruit.findById(1).then((fruit) => {
   // fruit是⼀个Fruit实例，若没有则为null
@@ -413,7 +413,7 @@ Fruit.sum('price').then((sum) => {
 
 更新:
 
-```js
+```javascript
 Fruit.findById(1).then((fruit) => {
   // ⽅式1
   fruit.price = 4;
@@ -430,7 +430,7 @@ Fruit.update({ price: 4 }, { where: { id: 1 } }).then((r) => {
 
 删除
 
-```js
+```javascript
 // ⽅式1
 Fruit.findOne({ where: { id: 1 } }).then((r) => r.destroy());
 
@@ -440,7 +440,7 @@ Fruit.destroy({ where: { id: 1 } }).then((r) => console.log(r));
 
 实体关系图和与域模型 ERD
 
-```js
+```javascript
 const log = (text, data) => {
   console.log(`===========${text}========`);
   console.log(JSON.stringify(data, null, '\t'));
@@ -481,7 +481,7 @@ let product = await user.createProduct({
 log('product', product);
 ```
 
-```js
+```javascript
 // N : N关系
 User.hasOne(Cart);
 Cart.belongsTo(User);

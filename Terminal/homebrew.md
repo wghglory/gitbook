@@ -23,14 +23,14 @@ Install: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homeb
 
 出错以后的处理:
 
-```bash
+```shell
 brew update
 brew doctor
 ```
 
 ## Homebrew in China
 
-```bash
+```shell
 # 替换brew.git:
 cd "$(brew --repo)"
 # 中国科大:
@@ -59,7 +59,7 @@ brew update
 
 如果你之前折腾过不少导致你的 Homebrew 有点问题，那么可以尝试使用如下方案：
 
-```bash
+```shell
 # 诊断Homebrew的问题:
 brew doctor
 
@@ -79,7 +79,7 @@ brew update
 
 重置更新源 某些时候也有换回官方源的需求:
 
-```bash
+```shell
 # 重置brew.git:
 cd "$(brew --repo)"
 git remote set-url origin https://github.com/Homebrew/brew.git

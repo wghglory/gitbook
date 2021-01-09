@@ -188,7 +188,7 @@ main {
 
 ## Use gulp to build scss
 
-```json
+```javascripton
 "scripts": {
   "scss": "gulp watch"
 },

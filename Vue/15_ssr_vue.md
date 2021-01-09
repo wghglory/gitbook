@@ -10,7 +10,7 @@
 
 server/index.js
 
-```js
+```javascript
 const express = require('express');
 const Vue = require('vue');
 
@@ -55,7 +55,7 @@ webpack 根据执⾏环境⽣成 server bundle 和 client bundle
 
 `npm i vue-router -s`
 
-```js
+```javascript
 // router/index.js
 
 import Vue from 'vue';
@@ -92,7 +92,7 @@ export default {};
 <style lang="scss" scoped></style>
 ```
 
-```js
+```javascript
 // components/Index.vue
 
 <template>
@@ -127,7 +127,7 @@ export default {};
 
 Create app.js:
 
-```js
+```javascript
 // entry-server.js, entry-client.js both use this
 import Vue from 'vue';
 import App from './App.vue';
@@ -143,7 +143,7 @@ export function createApp(context) {
 
 csr 的⼊⼝⽂件 entry-client.js
 
-```js
+```javascript
 import { createApp } from './app';
 
 const { app, router } = createApp();
@@ -154,7 +154,7 @@ router.onReady(() => {
 
 ssr 的⼊⼝⽂件 entry-server.js
 
-```js
+```javascript
 import { createApp } from './app';
 
 export default (context) => {
@@ -177,7 +177,7 @@ export default (context) => {
 
 vue.config.js
 
-```js
+```javascript
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 // 优化
@@ -234,7 +234,7 @@ module.exports = {
 
 服务器启动⽂件，server.js
 
-```js
+```javascript
 const fs = require('fs');
 const express = require('express');
 const app = express();
@@ -311,7 +311,7 @@ app.listen(3000, () => {
 
 store/index.js
 
-```js
+```javascript
 import Vue from 'vue';
 import Vuex from 'vuex';
 

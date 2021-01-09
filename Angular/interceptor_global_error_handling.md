@@ -1,6 +1,6 @@
 # Global http request/response error handling
 
-```ts
+```typescript
 // http-error.interceptor.ts:
 import {
   HttpEvent,
@@ -33,7 +33,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 }
 ```
 
-```ts
+```typescript
 // app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';

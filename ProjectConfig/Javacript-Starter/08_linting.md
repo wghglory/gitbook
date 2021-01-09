@@ -65,21 +65,21 @@ from scratch recommended presets: airbnb
 
 npm scripts:
 
-```json
+```javascripton
 "lint": "esw webpack.config.* src buildScripts --color",  // tell which files or folders to lint
 "lint:watch": "npm run lint -- --watch"
 ```
 
 dependencies:
 
-```json
+```javascripton
 "eslint": "4.6.1",
 "eslint-watch": "3.1.2",
 ```
 
 .eslintrc.json
 
-```json
+```javascripton
 {
   "root": true,
   "extends": [

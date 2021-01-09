@@ -39,7 +39,7 @@ function getQueryStringParameterByName(name, url) {
 
 Create build.js and distServer.js
 
-```json
+```javascripton
 "clean-dist": "rimraf ./dist && mkdir dist",
 "prebuild": "npm-run-all clean-dist test lint",
 "build": "babel-node buildScripts/build.js",

@@ -63,7 +63,7 @@
 <input type="text" onchange="onChange($event)" />
 ```
 
-```ts
+```typescript
 onChange(event: Event){
   this.someVar = (<HTMLInputElement>event.target).value;
 }

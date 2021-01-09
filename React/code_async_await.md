@@ -2,7 +2,7 @@
 
 使用了蚂蚁金服 antd
 
-```jsx
+```javascriptx
 import React, { Component } from 'react';
 import { Table, Pagination, Popconfirm, Button } from 'antd';
 import moment from 'moment';

@@ -1,6 +1,6 @@
 # Naming convention
 
-```js
+```javascript
 var __proto__; // private
 var _time; // private
 

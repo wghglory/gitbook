@@ -24,7 +24,7 @@
 
 .babelrc:
 
-```json
+```javascripton
 {
   "presets": [
     // "env",

@@ -51,7 +51,7 @@ readFileAsArray('./numbers.txt', (err, lines) => {
 
 Promise 实现了控制反转。原来这个顺序的控制是在代码那边而不是程序员控制，现在有了 Promise，控制权就由人来掌握了，通过一系列 Promise 的方法如 then/catch/all/race 等控制异步流程。[Promise 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-```ts
+```typescript
 function doAsyncWork() {
   // perform async calls
   if (success) resolve(data);
@@ -118,7 +118,7 @@ readFileAsArray('./numbers.txt')
 
 有没有简化的办法呢？ES7 推出了一个语法糖：await/async，它的内部封装了 Promise 和 Generator 的组合使用方式
 
-```ts
+```typescript
 async function doAsyncWork() {
   let results = await getDataFromServer(); // getDataFromServer returns promise
   console.log(results);

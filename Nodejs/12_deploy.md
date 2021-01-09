@@ -15,7 +15,7 @@
 
 app.js:
 
-```js
+```javascript
 const Koa = require('koa');
 
 // 创建一个Koa对象表示web app本身:
@@ -43,7 +43,7 @@ if (!module.parent) {
 
 test.js:
 
-```js
+```javascript
 var http = require('http');
 setInterval(async () => {
   try {
@@ -55,7 +55,7 @@ setInterval(async () => {
 
 cluster.js:
 
-```js
+```javascript
 var cluster = require('cluster');
 var os = require('os'); // 获取CPU 的数量
 var numCPUs = os.cpus().length;
@@ -109,7 +109,7 @@ Run `node cluster`, you will see multiple workers running together, with some fa
 
 **配置:**
 
-```bash
+```shell
 npm install -g pm2
 
 pm2 start app.js --watch -i 2
@@ -137,7 +137,7 @@ apps:
 
 Keymetrics 在线监控 <https://id.keymetrics.io>
 
-```bash
+```shell
 pm2 link 8hxvp4bfrftvwxn uis7ndy58fvuf7l TARO-SAMPLE
 ```
 
@@ -145,7 +145,7 @@ pm2 link 8hxvp4bfrftvwxn uis7ndy58fvuf7l TARO-SAMPLE
 
 1. 安装
 
-```bash
+```shell
 yum install nginx
 
 apt update
@@ -201,7 +201,7 @@ Gas mask 改变：
 
 5. 重启 Nginx 然后访问 `site1.com`, `site2.com`:
 
-```bash
+```shell
 # 验证 Nginx 配置
 nginx -t
 

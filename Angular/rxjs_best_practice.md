@@ -13,7 +13,7 @@ For library authors, lettable operators are much less verbose than call-based al
 
 This example illustrates the difference between doing it the old way and the new way.
 
-```ts
+```typescript
 // BAD: This is the old way and should be avoided (patch operators)
 // as we can see the operators (filter, map) are part of the
 // Observable prototype
@@ -45,7 +45,7 @@ In the beginning it might seem pragmatic to use side effects, but that mostly me
 
 To consume a stream we need to **subscribe** to that stream. When we subscribe to that stream a **subscription** will be created. That subscription will keep on living until the stream is **completed** or until we **unsubscribe manually** from that stream. Managing subscriptions is very important and in a number of cases we will have to manually unsubscribe an existing subscription to avoid memory leaks. Take this example for instance:
 
-```ts
+```typescript
 class AppComponent implements OnInit {
   ngOnInit() {
     // The following stream will produce values every second
@@ -62,7 +62,7 @@ class AppComponent implements OnInit {
 
 To remove the memory-leak in this component we can keep track of the subscriptions by taking advantage of the `ngOnDestroy()` lifecycle hook of Angular:
 
-```ts
+```typescript
 class AppComponent implements OnInit, OnDestroy {
   subscriptions = [];
   ngOnInit() {
@@ -81,7 +81,7 @@ class AppComponent implements OnInit, OnDestroy {
 
 However, when we are using a bunch of subscriptions, it can become quite dirty. Before, we talked about the fact that a subscription will live until we manually unsubscribe (like we just did in the snippet above), but also until the stream gets **completed**. A cool way to handle this issue is to use a Subject that we next in the `ngOnDestroy()` lifecycle hook of Angular:
 
-```ts
+```typescript
 class AppComponent implements OnInit, OnDestroy {
   destroy$ = new Subject();
   ngOnInit() {
@@ -107,7 +107,7 @@ class AppComponent implements OnInit, OnDestroy {
 
 Nesting subscribes is something that needs to be avoided as much as possible. It makes the code unreadable, complex, and introduces side effects. It basically forces you to **NOT** think reactively. Take this Angular example for instance:
 
-```ts
+```typescript
 class AppComponent {
   user: User;
   constructor(private route: ActivatedRoute, private userService: UserService) {
@@ -125,7 +125,7 @@ class AppComponent {
 
 The previous implementation is considered a bad-practice. It’s recommended to use **higher-order streams** like `mergeMap` or `switchMap`. Let’s have a look at this example:
 
-```ts
+```typescript
 class AppComponent {
   user: User;
   constructor(private route: ActivatedRoute, private userService: UserService) {
@@ -156,7 +156,7 @@ Angular has this super cool feature called the `async pipe`. It’s used to cons
 
 This means we don’t have to manually subscribe nor unsubscribe anymore. Which cleans up the code a lot. Let’s have a look at the cleaned up previous example:
 
-```ts
+```typescript
 @Component({
     ...
     template: `
@@ -182,7 +182,7 @@ class AppComponent {
 
 One of the most important aspects of software architecture might be the concept of **decoupling** pieces of code. Therefore we could consider passing streams to child components as a **bad practice** because it creates a very tight link between the parent component and the child component. They are no longer decoupled since subscriptions in the child component might trigger actions in the parent component. We never want the child component to be responsible of initiating data calls right?! That’s the task of the smart component. See the difference between [smart and dumb components here](http://blog.brecht.io/components-demystified/#smart-vs-dumb-components). A component should always receive an object or value and should not even care if that object or value comes from a stream or not.
 
-```ts
+```typescript
 // BAD
 // app.component.ts
 @Component({
@@ -222,7 +222,7 @@ class UserDetailComponent implements OnInit {
 
 It would be better to handle the subscription in the parent component itself:
 
-```ts
+```typescript
 // GOOD
 // app.component.ts
 @Component({
@@ -262,7 +262,7 @@ There are however situations where we would like to create a stream from an inpu
 
 Although, it might seem like a pragmatic solution to pass streams directly to services, it could be seen as a **bad practice** if we consider the decoupling again. By passing a stream to a service we don’t know what’s going to happen to it. The stream could be subscribed to, or even combined with another stream that has a longer lifecycle, that could eventually determine the state of our application. Subscriptions might trigger unwanted behavior. And after all, services don’t care that your components are using streams. Take this example for instance:
 
-```ts
+```typescript
 // BAD
 // app.component.ts
 class AppComponent {
@@ -285,7 +285,7 @@ class FooService {
 
 It would be better to use higher order streams for these situations. Use `switchMap` over `mergeMap` if possible, since it will unsubscribe the previous stream. The following example is better since all the RxJS logic is centralized in one place where the subscribing and unsubscribing happens: The smart component.
 
-```ts
+```typescript
 // GOOD
 // app.component.ts
 class AppComponent {
@@ -309,7 +309,7 @@ class FooService {
 
 Since most streams are cold by default, every subscription will trigger the **producer** of these streams. The execution of the producer logic on every subscription, might not be what we want if we have multiple subscriptions. Eg. Subscribing to Angular its `http.get()` multiple times will actually perform multiple xhr calls. The following example will trigger the xhr call twice because `numberOfUsers$` depends on `users$`.
 
-```ts
+```typescript
 @Component({
     selector: 'app',
     template: `
@@ -327,7 +327,7 @@ class AppComponent {
 
 In those cases we might want to share the subscriptions. The following example uses the `share()` operator:
 
-```ts
+```typescript
 @Component({
     selector: 'app',
     template: `
@@ -349,7 +349,7 @@ It’s a common mistake to share everything. We don’t always want to work with
 
 Angular also provides a _great alternative_ that can reduce the sharing of streams to a minimum by using the `async as else` syntax.. Personally I would consider the use of this feature as a best practice. The following example reduces the number of streams, the number of subscriptions and gives us **an easy way to show a loading indicator**.
 
-```ts
+```typescript
 @Component({
     selector: 'app',
     template: `
@@ -374,7 +374,7 @@ Only use them when really needed, for instance it’s ok to use Subjects in the 
 
 #### When mocking streams in tests
 
-```ts
+```typescript
 const fetchAll$ = new Subject(); // use a Subject as a mock
 usersServiceMock.fetchAll.mockReturnValue(fetchAll$);
 fetchAll$.next(fakeUser);
@@ -382,7 +382,7 @@ fetchAll$.next(fakeUser);
 
 #### When we want to create streams from outputs in Angular
 
-```ts
+```typescript
 @Component({
     ...
     template: `
@@ -408,7 +408,7 @@ Consistent code indentation and formatting can improve the readability of comple
 
 - Align operators below each other
 
-```ts
+```typescript
     foo$.pipe(
         map(...)
         filter(...)

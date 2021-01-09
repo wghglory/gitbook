@@ -11,7 +11,7 @@
 - `[ngClass] = "{ green: condition, alert: condition }"`
 - `[ngClass] = "aFun()"`
 
-```ts
+```typescript
 aFun () {
   return { green: condition, alert: condition }
   // or

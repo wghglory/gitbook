@@ -85,7 +85,7 @@ responsible for HTML layout. They shape or reshape the DOM's structure, typicall
 
 ## Write a custom structural directive!
 
-```ts
+```typescript
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 /**

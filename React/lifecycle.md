@@ -56,7 +56,7 @@ getSnapshotBeforeUpdate() 在最近⼀次渲染输出（提交到 DOM 节点）�
 
 ## 验证生命周期
 
-```js
+```javascript
 import React, { Component } from 'react';
 
 /* V17可能会废弃的三个⽣命周期函数⽤getDerivedStateFromProps 替代，⽬前使⽤的话加上UNSAFE_：

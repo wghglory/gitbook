@@ -10,7 +10,7 @@ There are three types of component unit tests I find myself most commonly writin
 
 Imagine a component that should conditionally display either an image, or a loading icon:
 
-```jsx
+```javascriptx
 const Image = (props) => {
   if (props.loading) {
     return <LoadingIcon />;
@@ -22,7 +22,7 @@ const Image = (props) => {
 
 We might test it like this:
 
-```jsx
+```javascriptx
 describe('Image', () => {
   it('renders a loading icon when the image is loading', () => {
     const image = shallowRender(<Image loading={true} />);
@@ -40,7 +40,7 @@ Easy! I should point out that the API for shallow rendering is slightly more com
 
 Revisiting our `ListOfNumbers` component above, here is how we might test that the map is done correctly:
 
-```jsx
+```javascriptx
 describe('ListOfNumbers', () => {
   it('renders an item for each provided number', () => {
     const listOfNumbers = shallowRender(<ListOfNumbers className="red" numbers={[3, 4, 5, 6]} />);
@@ -53,7 +53,7 @@ describe('ListOfNumbers', () => {
 
 In the last example, we dug into the children of the component being tested, to make sure that they were rendered correctly. We can extend this by asserting that not only are the children there, but that they were given the correct props. This is particularly useful when a component does some transformation on its props, before passing them on. For example, the following component takes CSS class names as an array of strings, and passes them down as a single, space-separated string:
 
-```jsx
+```javascriptx
 const TextWithArrayOfClassNames = (props) => (
   <div>
     <p className={props.classNames.join(' ')}>{props.text}</p>
@@ -82,13 +82,13 @@ The other thing I often hear is that your tests become too dependent on the comp
 
 Of course, components are not just for display, they're also interactive:
 
-```jsx
+```javascriptx
 const RedInput = (props) => <input className="red" onChange={props.onChange} />;
 ```
 
 Here's my favorite way to test these:
 
-```jsx
+```javascriptx
 describe('RedInput', () => {
   it('passes the event to the given callback when the value changes', () => {
     const callback = jasmine.createSpy();

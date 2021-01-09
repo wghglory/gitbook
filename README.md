@@ -4,7 +4,7 @@ Make sure the repository folder name is `guanghui.notebook`.
 
 ## Gitbook Cli
 
-```bash
+```shell
 cd folder
 npm install -g gitbook-cli
 
@@ -53,7 +53,7 @@ gitbook serve   # localhost:4000
 
 ## Daily maintenance
 
-```bash
+```shell
 npm run toc
 npm run prettierReadme  # npm run prettier
 

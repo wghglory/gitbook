@@ -2,7 +2,7 @@
 
 ## Immediate retry
 
-```ts
+```typescript
 const http$ = this.http.get<Course[]>('/api/courses');
 
 http$
@@ -27,7 +27,7 @@ http$
 
 ## Delay retry
 
-```ts
+```typescript
 const http$ = this.http.get<Course[]>('/api/courses');
 
 http$

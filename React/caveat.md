@@ -4,7 +4,7 @@
 
 ### [2. Keep your components small](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#keep-your-components-small)
 
-```jsx
+```javascriptx
 const LatestPostsComponent = (props) => (
   <section>
     <div>
@@ -23,7 +23,7 @@ The component itself is a `<section>`, with only 2 `<div>`s inside it. The first
 
 ### [3. Write functional components](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-functional-components)
 
-```jsx
+```javascriptx
 class MyComponent extends React.Component {
   render() {
     return <div className={this.props.className} />;
@@ -31,7 +31,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-```jsx
+```javascriptx
 const MyComponent = (props) => <div className={props.className} />;
 ```
 
@@ -52,7 +52,7 @@ React is a **view library**, so while _render_ logic in the components is OK, _b
 
 [propTypes](https://facebook.github.io/react/docs/reusable-components.html#prop-validation) offer us a really easy way to add a bit more type safety to our components. They look like this:
 
-```jsx
+```javascriptx
 import PropTypes from 'prop-types';
 
 const ListOfNumbers = (props) => (
@@ -79,7 +79,7 @@ The above list looks a bit like one you might see from someone advocating for st
 
 **One final tip is to make your tests fail on any propType errors**. The following is a bit of a blunt instrument, but it's simple and it works:
 
-```jsx
+```javascriptx
 beforeAll(() => {
   console.error = (error) => {
     throw new Error(error);

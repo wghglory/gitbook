@@ -15,7 +15,7 @@
 
 1. 新建 routes/index.js，默认 index.js 没有前缀
 
-```js
+```javascript
 module.exports = {
   'get /': async (ctx) => {
     ctx.body = '⾸⻚';
@@ -28,7 +28,7 @@ module.exports = {
 
 2. 新建 routes/user.js 路由前缀是/user
 
-```js
+```javascript
 module.exports = {
   'get /': async (ctx) => {
     ctx.body = '⽤户⾸⻚';
@@ -41,7 +41,7 @@ module.exports = {
 
 3. 路由加载器，新建 loader.js
 
-```js
+```javascript
 const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
@@ -88,7 +88,7 @@ module.exports = { initRouter };
 
 4. index.js 入口文件
 
-```js
+```javascript
 const app = new (require('koa'))();
 const { initRouter } = require('./loader');
 
@@ -111,7 +111,7 @@ http://localhost:3000/user/info
 
 1. 封装 server.js
 
-```js
+```javascript
 // 封装, 把服务相关代码提取到这里，index 还是入口文件
 
 const koa = require('koa');
@@ -136,7 +136,7 @@ module.exports = Server;
 
 2. 简化 index.js
 
-```js
+```javascript
 const Server = require('./server');
 const server = new Server();
 server.start(3000);
@@ -159,7 +159,7 @@ http://localhost:3000/user/info
 
 1. 约定： controller ⽂件夹下⾯存放业务逻辑代码，框架⾃动加载并集中暴露 新建 controller/home.js
 
-```js
+```javascript
 module.exports = {
   index: async (ctx) => {
     ctx.body = '⾸⻚';
@@ -172,7 +172,7 @@ module.exports = {
 
 2. 修改路由声明，routes/index.js
 
-```js
+```javascript
 // 需要传递 Server 实例并访问其$ctrl中暴露的控制器
 module.exports = (app) => ({
   'get /': app.$ctrl.home.index,
@@ -183,7 +183,7 @@ module.exports = (app) => ({
 
 3. 加载控制器，更新 loader.js
 
-```js
+```javascript
 function initController() {
   const controllers = {};
   // 读取控制器⽬录
@@ -232,7 +232,7 @@ function initRouter(app) {
 
 1. 新建 service/product.js
 
-```js
+```javascript
 const delay = (data, tick) =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -255,7 +255,7 @@ module.exports = {
 
 2. 加载 service
 
-```js
+```javascript
 // 更新 loader.js
 function initService() {
   const services = {};
@@ -275,7 +275,7 @@ this.$service = initService();
 
 3. 新建 controller/product.js
 
-```js
+```javascript
 // call service to return data
 module.exports = {
   index: async (app) => {
@@ -293,7 +293,7 @@ module.exports = {
 
 更新 home controller: 为了统一，也传入 app，而不是 ctx
 
-```js
+```javascript
 // no service, response data directly
 module.exports = {
   index: async (app) => {
@@ -309,7 +309,7 @@ module.exports = {
 
 两种格式：一种传入 app，返回内容；一种传入 app，返回 controller
 
-```js
+```javascript
 // routes/user.js
 // case 1: 路由中直接返回数据，没有 controller and service, of course real project rarely is like this.
 // mock server may need this, easier
@@ -365,7 +365,7 @@ function initRouter(app) {
 
 1. 配置 sequelize 连接配置项，index.js
 
-```js
+```javascript
 module.exports = {
   db: {
     dialect: 'mysql',
@@ -379,7 +379,7 @@ module.exports = {
 
 2. 新增 loadConﬁg at loader.js
 
-```js
+```javascript
 const Sequelize = require('sequelize');
 
 function loadConfig(app) {
@@ -393,7 +393,7 @@ function loadConfig(app) {
 module.exports = { loadConfig };
 ```
 
-```js
+```javascript
 // server.js
 // 先加载配置项
 loadConfig(this); // 将 Server 实例传进去
@@ -401,7 +401,7 @@ loadConfig(this); // 将 Server 实例传进去
 
 3. 新建数据库模型, model/product.js
 
-```js
+```javascript
 // https://sequelize.org/master/manual/data-types.html
 const { STRING, DECIMAL } = require('sequelize');
 
@@ -419,7 +419,7 @@ module.exports = {
 
 4. loadModel 和 loadConﬁg 初始化，loader.js
 
-```js
+```javascript
 // 加载 config 连接数据库后，再读取 model 文件夹
 function loadConfig(app) {
   load('config', (filename, conf) => {
@@ -441,7 +441,7 @@ function loadConfig(app) {
 
 5. 在 service 中使⽤ \$db
 
-```js
+```javascript
 // 修改service结构!
 // service/product.js
 module.exports = (app) => ({
@@ -476,7 +476,7 @@ this.$service = initService(this); // 先初始化Service，controller 对它有
 
 1. 编写⼀个请求记录中间件，./middleware/logger.js
 
-```js
+```javascript
 module.exports = async (ctx, next) => {
   console.log(ctx.method + ' ' + ctx.path);
   const start = new Date();
@@ -488,7 +488,7 @@ module.exports = async (ctx, next) => {
 
 2. 配置中间件，./conﬁg/conﬁg.js
 
-```js
+```javascript
 module.exports = {
   db: { ...obj },
   middleware: ['logger'],
@@ -514,7 +514,7 @@ function loadConfig(app) {
 
 4. 调⽤，server.js, 上一节已经写过了
 
-```js
+```javascript
 class Server {
   constructor(conf) {
     this.$app = new koa(conf);
@@ -531,7 +531,7 @@ class Server {
 
 约定：schedule ⽬录，存放定时任务，使⽤ crontab 格式来启动定时，参考 <http://cron.qqe2.com/>
 
-```js
+```javascript
 // schedule/log.js
 module.exports = {
   interval: '*/3 * * * * *',
@@ -551,7 +551,7 @@ module.exports = {
 
 新增 loadSchedule 函数，loader.js
 
-```js
+```javascript
 const schedule = require('node-schedule');
 
 function initSchedule() {
@@ -565,7 +565,7 @@ module.exports = { initRouter, initController, initService, initSchedule };
 
 调用 schedule, server.js
 
-```js
+```javascript
 const { initSchedule } = require('./loader');
 
 class Server {

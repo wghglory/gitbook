@@ -17,7 +17,7 @@ Koa 是⼀个新的 web 框架， 致⼒于成为 web 应⽤和 API 开发领域
 
 ### 中间件机制、请求、响应处理
 
-```js
+```javascript
 const Koa = require('koa');
 
 const app = new Koa();
@@ -41,7 +41,7 @@ app.use((ctx, next) => {
 app.listen(3000);
 ```
 
-```js
+```javascript
 // 搞个⼩路由
 const router = {};
 router['/html'] = (ctx) => {
@@ -65,7 +65,7 @@ app.use((ctx, next) => {
 
 ### koa-static, koa-router
 
-```js
+```javascript
 const Koa = require('koa');
 const router = require('koa-router')();
 
@@ -102,7 +102,7 @@ app.listen(3000, () => {
 
 ⼀个基于 nodejs 的⼊⻔级 http 服务，类似下⾯代码：
 
-```js
+```javascript
 const http = require('http');
 
 const server = http.createServer((req, res) => {
@@ -117,7 +117,7 @@ server.listen(3000, () => {
 
 koa 的⽬标是⽤更简单化、流程化、模块化的⽅式实现回调部分
 
-```js
+```javascript
 // dApp.js
 
 // Koa 原理测试
@@ -136,7 +136,7 @@ app.listen(3000, () => {
 
 koa 内部实现：
 
-```js
+```javascript
 // dKoa.js
 
 // Koa 原理
@@ -160,7 +160,7 @@ module.exports = DKoa;
 
 koa 为了能够简化 API，引⼊上下⽂ context 概念，将原始请求对象 req 和响应对象 res 封装并挂载到 context 上，并且在 context 上设置 getter 和 setter，从⽽简化操作。
 
-```js
+```javascript
 app.use((ctx) => {
   ctx.body = 'derek';
 });
@@ -168,7 +168,7 @@ app.use((ctx) => {
 
 #### 理解 getter setter
 
-```js
+```javascript
 const person = {
   info: { name: 'derek', desc: 'derek is learning it' },
   // getters and setters 方便读写操作，比如 echarts 里面的 object 设置用这个技术就很方便
@@ -192,7 +192,7 @@ console.log(person.name);
 
 request.js
 
-```js
+```javascript
 module.exports = {
   get url() {
     return this.req.url;
@@ -206,7 +206,7 @@ module.exports = {
 
 response.js
 
-```js
+```javascript
 module.exports = {
   get body() {
     return this._body;
@@ -219,7 +219,7 @@ module.exports = {
 
 context.js
 
-```js
+```javascript
 module.exports = {
   get url() {
     return this.request.url;
@@ -310,7 +310,7 @@ Koa 中间件机制：Koa 中间件机制就是函数组合的概念，将⼀组
 
 compose 函数：
 
-```js
+```javascript
 /* middleware is based on the compose function */
 
 const add = (x, y) => x + y;
@@ -338,7 +338,7 @@ console.log(fn(1, 2));
 
 异步中间件:
 
-```js
+```javascript
 // 异步 compose
 
 function compose(middlewares) {
@@ -391,7 +391,7 @@ output: fn1, fn2, fn3, fn2 end, fn1 end
 
 以上 compose ⽤在 koa 中，dKoa.js
 
-```js
+```javascript
 // ... dKoa.js
 
 class DKoa {
@@ -454,7 +454,7 @@ module.exports = DKoa;
 
 dApp.js
 
-```js
+```javascript
 /* const http = require('http');
 
 const server = http.createServer((req, res) => {
@@ -514,7 +514,7 @@ koa 中间件的规范：
 - 接收 ctx 和 next 两个参数
 - 任务结束需要执⾏ next
 
-```js
+```javascript
 const mid = async (ctx, next) => {
   // 来到中间件，洋葱圈左边
   next(); // 进⼊其他中间件
@@ -531,7 +531,7 @@ const mid = async (ctx, next) => {
 
 ### 路由 router
 
-```js
+```javascript
 class Router {
   constructor() {
     this.stack = [];
@@ -577,7 +577,7 @@ module.exports = Router;
 
 使用：dApp.js
 
-```js
+```javascript
 /* add routes */
 const Router = require('./router');
 const router = new Router();
@@ -608,7 +608,7 @@ app.use(router.routes());
 
 static.js:
 
-```js
+```javascript
 const fs = require('fs');
 const path = require('path');
 
@@ -663,7 +663,7 @@ create a `public` folder, add all static resources into it.
 
 Usage: dApp.js
 
-```js
+```javascript
 /* static files */
 const static = require('./static');
 app.use(static(__dirname + '/public'));
@@ -671,7 +671,7 @@ app.use(static(__dirname + '/public'));
 
 #### 请求拦截：⿊名单中存在的 ip 访问将被拒绝
 
-```js
+```javascript
 /* ip block interceptor */
 
 module.exports = async function(ctx, next) {
@@ -704,7 +704,7 @@ function getClientIP(req) {
 
 Usage: dApp.js
 
-```js
+```javascript
 const ipCheck = require('./interceptor');
 app.use(ipCheck);
 ```

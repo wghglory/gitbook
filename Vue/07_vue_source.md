@@ -24,7 +24,7 @@
 
 Virtual DOM 是 react ⾸创，Vue2 开始⽀持，就是⽤ JavaScript 对象来描述 dom 结构，数据修改的时候，我们先修改虚拟 dom 中的数据，然后数组做 diﬀ，最后再汇总所有的 diﬀ，⼒求做最少的 dom 操作，毕竟 js ⾥对⽐很快，⽽真实的 dom 操作太慢
 
-```json
+```javascripton
 // vdom
 
 {
@@ -65,7 +65,7 @@ Virtual DOM 是 react ⾸创，Vue2 开始⽀持，就是⽤ JavaScript 对象�
 
 ## 代码
 
-```js
+```javascript
 // vue.js
 
 class MyVue {
@@ -173,7 +173,7 @@ class Watcher {
 }
 ```
 
-```js
+```javascript
 // 遍历dom结构，解析指令和插值表达式
 class Compile {
   // el-带编译模板，vm-KVue实例

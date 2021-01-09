@@ -2,7 +2,7 @@
 
 convert markdown text in real-time
 
-```jsx
+```javascriptx
 class MarkdownEditor extends React.Component {
   constructor(props) {
     super(props);

@@ -135,7 +135,7 @@ CSS Modules 允许使用 `:global(.className)` 的语法，声明一个全局规
 
 webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的配置即可使用。
 
-```json
+```javascripton
 {
   "test": /\.css$/,
   "loader": "css?modules&localIdentName=[name]__[local]--[hash:base64:5]"
@@ -154,7 +154,7 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 在实际生产中，结合 sass 使用会更加便利。以下是结合 sass 使用的 webpack 的配置文件。
 
-```json
+```javascripton
 {
   "test": /\.scss$/,
   "loader": "style!css?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]!sass?sourceMap=true&sourceMapContents=true"
@@ -177,7 +177,7 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 然后通过 webpack 配置，将在 `app/styles` 文件夹的外的(exclude) scss 文件"局部"化。
 
-```json
+```javascripton
 ({
   "test": /\.scss$/,
   "exclude": path.resolve(__dirname, "app/styles"),
@@ -194,7 +194,7 @@ webpack 自带的 `css-loader` 组件，自带了 CSS Modules，通过简单的�
 
 #### 有时候，一个元素有多个 class 名，可以通过 `join(" ")` 或字符串模版的方式来给元素添加多个 class 名。
 
-```jsx
+```javascriptx
 // join-react.jsx
 <h1 className={[styles.title, styles.bold].join(" ")}>
   Hello World

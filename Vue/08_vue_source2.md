@@ -8,7 +8,7 @@
 
    3. 修改 package.json ⾥里里⾯面 dev 脚本:
 
-      ```bash
+      ```shell
       "dev": "rollup -w -c scripts/config.js --sourcemap --environment
       TARGET:web-full-dev"
       ```
@@ -27,7 +27,7 @@
 
 1. platforms/web/entry-runtime-with-compiler.js:
 
-   ```js
+   ```javascript
    /*
    new Vue({
      template:dom
@@ -81,7 +81,7 @@
 
    挂载时执⾏ mountComponent，将 dom 内容追加⾄ el
 
-   ```js
+   ```javascript
    // public mount method
    Vue.prototype.$mount = function(el?: string | Element, hydrating?: boolean): Component {
      el = el && inBrowser ? query(el) : undefined;
@@ -93,7 +93,7 @@
 
    创建组件更新函数，创建组件 watcher 实例。
 
-   ```js
+   ```javascript
    // Line 172
    updateComponent = () => {
      // ⾸先执行 vm._render() 返回VNode
@@ -117,14 +117,14 @@
 
 3. src\core\index.js
 
-   ```js
+   ```javascript
    initGlobalAPI(Vue);
    // 主要做这些事 Vue.set(), Vue.delete, Vue.nextTick...
    ```
 
 4. src\core\instance\index.js
 
-   ```js
+   ```javascript
    function Vue(options) {
      this._init(options);
    }
@@ -138,7 +138,7 @@
 
    - initMixin(Vue):
 
-     ```js
+     ```javascript
      // 重要，这里列出了执行顺序
      initLifecycle(vm);
      initEvents(vm);
@@ -168,7 +168,7 @@
 
 1. src\core\instance\state.js
 
-   ```js
+   ```javascript
    // Line54: InitData(), 数组和对象响应化处理理逻辑
    proxy(vm, `_data`, key); // 把 vue.$data.key 挂载到 vue.key 中
    observe(data, true /* asRootData */);
@@ -176,7 +176,7 @@
 
 2. src\core\observer\index.js
 
-   ```js
+   ```javascript
    // Line 124
    ob = new Observer(value)
    return ob
@@ -241,7 +241,7 @@
 
    数组比较特别，它的操作⽅法不会触发 setter，需要特别处理 Observer 把修改过的数组拦截⽅法替换到当前数组对象上可以改变其⾏为
 
-   ```js
+   ```javascript
    // line 48
    if (hasProto) {
      //数组存在原型就覆盖其原型
@@ -257,7 +257,7 @@
 
    修改数组 7 个变更⽅法使其可以发送更新通知 arrayMethods
 
-   ```js
+   ```javascript
    methodsToPatch.forEach(function(method) {
      // cache original method
      const original = arrayProto[method];
@@ -287,7 +287,7 @@
 
 4. src\core\observer\watcher.js
 
-   ```js
+   ```javascript
    // watcher和dep互相添加引⽤
 
    addDep (dep: Dep) {
@@ -304,7 +304,7 @@
 
    watcher 更新逻辑: 通常情况下会执⾏ queueWatcher，执行异步更新
 
-   ```js
+   ```javascript
    update () {
      /* istanbul ignore else */
      if (this.lazy) {
@@ -322,7 +322,7 @@
 
    queueWatcher 推⼊入队列，下个刷新周期执⾏批量任务，这是 vue 异步更新实现的关键
 
-   ```js
+   ```javascript
    // Line 158
    queue.push(watcher);
    nextTick(flushSchedulerQueue);
@@ -330,7 +330,7 @@
 
    nextTick 将 flushSchedulerQueue 加⼊入回调数组，启动 timerFunc 准备执⾏
 
-   ```js
+   ```javascript
    callbacks.push(() => cb.call(ctx));
    timerFunc(); // line 44
    ```
@@ -343,7 +343,7 @@
 
 1. src\core\instance\render.js: 获取组件 vnode
 
-   ```js
+   ```javascript
    // Line 71
    const { render, _parentVnode } = vm.$options;
    // Line 91
@@ -352,7 +352,7 @@
 
 2. src\core\instance\lifecycle.js: 执行 patching 算法，初始化或更新 vnode ⾄\$el
 
-   ```js
+   ```javascript
    // line 67
    if (!prevVnode) {
      // initial render: 如果没有老vnode，说明在初始化
@@ -365,13 +365,13 @@
 
 3. src\platforms\web\runtime\patch.js: 定义组件实例补丁方法
 
-   ```js
+   ```javascript
    Vue.prototype.__patch__ = inBrowser ? patch : noop;
    ```
 
 4. src\core\vdom\patch.js: 创建浏览器平台特有 patch 函数，主要负责 dom 更新操作
 
-   ```js
+   ```javascript
    // 扩展操作:把通⽤模块和浏览器中特有模块合并
    const modules = platformModules.concat(baseModules);
 
@@ -389,7 +389,7 @@
 
 具体规则是：new VNode 不存在就删；old VNode 不存在就增；都存在就⽐较类型，类型不同直接替换、类型相同执⾏更新；
 
-```js
+```javascript
 /*createPatchFunction的返回值，⼀个patch函数*/
 return function patch(oldVnode, vnode, hydrating, removeOnly) {
   /*vnode不存在则删*/
@@ -509,7 +509,7 @@ patchVnode 具体规则如下：
 4. 当**新节点没有⼦节点⽽⽼节点有⼦节点的时候**，则移除该 DOM 节点的所有⼦节点。
 5. 当**新⽼节点都⽆⼦节点**的时候，只是⽂本的替换。
 
-```js
+```javascript
 /*patch VNode节点*/
 
 function patchVnode(oldVnode, vnode, insertedVnodeQueue, ownerArray, index, removeOnly) {
@@ -622,7 +622,7 @@ updateChildren 主要作⽤是⽤⼀种较⾼效的⽅式⽐对新旧两个 VNod
 
 但是，当结束时 newStartIdx > newEndIdx 时，说明新的 VNode 节点已经遍历完了，但是⽼的节点还有 剩余，需要从⽂档中删 的节点删除。
 
-```js
+```javascript
 function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
   let oldStartIdx = 0;
   let newStartIdx = 0;
@@ -705,7 +705,7 @@ function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly)
 
 ### 属性更新如何实现的
 
-```js
+```javascript
 //patch.js
 const hooks = ['create', 'activate', 'update', 'remove', 'destroy'];
 
@@ -766,7 +766,7 @@ Vue 2.0 需要⽤到 VNode 描述视图以及各种交互，⼿写显然不切�
 
 输出结果⼤致如下：
 
-```js
+```javascript
 function anonymous() {
   with (this) {
     return _c('div', { attrs: { id: 'demo' } }, [
@@ -794,7 +794,7 @@ function anonymous() {
 
 解析器内部分了 HTML 解析器、⽂本解析器和过滤器解析器，最主要是 HTML 解析器，核⼼算法说明：
 
-```js
+```javascript
 //src/compiler/parser/index.js
 parseHTML(template, {
   start(tag, attrs, unary) {}, // 遇到开始标签的处理
@@ -813,7 +813,7 @@ parseHTML(template, {
 
 代码实现，src/compiler/optimizer.js - optimize
 
-```js
+```javascript
 export function optimize(root: ?ASTElement, options: CompilerOptions) {
   if (!root) return (isStaticKey = genStaticKeysCached(options.staticKeys || ''));
   isPlatformReservedTag = options.isReservedTag || no; // 找出静态节点并标记
@@ -830,7 +830,7 @@ export function optimize(root: ?ASTElement, options: CompilerOptions) {
 
 将 AST 转换成渲染函数中的内容，即代码字符串。 generate ⽅法⽣成渲染函数代码，src/compiler/codegen/index.js
 
-```ts
+```typescript
 export function generate(ast: ASTElement | void, options: CompilerOptions): CodegenResult {
   const state = new CodegenState(options);
   const code = ast ? genElement(ast, state) : '_c("div")';
@@ -848,7 +848,7 @@ export function generate(ast: ASTElement | void, options: CompilerOptions): Code
 
 着重观察⼏个结构性指令的解析过程
 
-```js
+```javascript
 // 解析v-if，parser/index.js
 function processIf(el) {
   const exp = getAndRemoveAttr(el, 'v-if');
@@ -904,7 +904,7 @@ function genIfConditions(
 
 ⽣成结果：
 
-```js
+```javascript
 `with(this){return _c('div',{attrs:{"id":"demo"}},[
   (foo) ? _c('h1',[_v(_s(foo))]) : _c('h1',[_v("no title")]), _v(" "),_c('abc')],1)}`;
 ```
@@ -919,7 +919,7 @@ function genIfConditions(
 
 解析相关代码：
 
-```js
+```javascript
 // processSlotContent：处理<template v-slot:xxx="yyy">
 const slotBinding = getAndRemoveAttrByRegex(el, slotRE);
 if (slotBinding) {
@@ -942,7 +942,7 @@ if (el.tag === 'slot') {
 
 ⽣成相关代码：
 
-```js
+```javascript
 // genScopedSlot：这⾥把slotScope作为形参转换为⼯⼚函数返回内容
 const fn =
   `function(${slotScope}){` +

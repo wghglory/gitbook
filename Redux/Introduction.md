@@ -28,7 +28,7 @@
 
 redux 根据 reducer 创建 store, 传递给 Provider
 
-```jsx
+```javascriptx
 ...
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -53,7 +53,7 @@ render(
 
 App.js 作为启动组件，引入所有 Container
 
-```jsx
+```javascriptx
 import AddTodo from '../containers/AddTodo';
 import VisibleTodoList from '../containers/VisibleTodoList';
 

@@ -21,7 +21,7 @@
 
 class 是语法糖，它指向的就是构造函数。
 
-```ts
+```typescript
 class Person {
   // 类指向构造函数
 
@@ -54,7 +54,7 @@ Person.prototype.say = function() {
 
 ## Generic and Decorator
 
-```ts
+```typescript
 /* generic */
 
 export interface Result<T> {
@@ -184,7 +184,7 @@ export default {
 
 定义状态，store.js
 
-```ts
+```typescript
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -209,7 +209,7 @@ export default new Vuex.Store({
 
 Hello.vue 使用 vuex。
 
-```ts
+```typescript
 import { State, Action, Mutation } from 'vuex-class';
 
 @Component
@@ -230,7 +230,7 @@ export default class Feature extends Vue {
 
 ## Function overloading
 
-```ts
+```typescript
 /**
  * function overloading
  */
@@ -254,7 +254,7 @@ getInfo('ddd');
 
 ## Decorator 原理
 
-```ts
+```typescript
 /* Decorator */
 // 1. 类装饰器
 function log(target: Function) {

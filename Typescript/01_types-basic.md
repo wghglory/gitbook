@@ -2,7 +2,7 @@
 
 ## Enums
 
-```ts
+```typescript
 enum Category {
   Biography = 1,
   Poetry,
@@ -17,7 +17,7 @@ let categoryString = Category[favoriteCategory]; // Biography
 
 ## Destructuring assignments
 
-```ts
+```typescript
 let medals: string[] = ['gold', 'silver', 'bronze'];
 let [first, second, third] = medals;
 
@@ -35,7 +35,7 @@ function PrintBookInfo({ title: bookTitle, author: bookAuthor }: Book): void {
 
 ## Spread operator
 
-```ts
+```typescript
 let newBookIDs = [10, 20];
 let allBookIDs = [1, 2, 3, ...newBookIDs];
 
@@ -52,7 +52,7 @@ arr.push(...arr2);
 
 ## Tuple types
 
-```ts
+```typescript
 let myTuple: [number, string] = [10, 'Macbeth'];
 myTuple[0] = 'Hamlet'; // ERROR
 myTuple[1] = 20; // ERROR
@@ -70,19 +70,19 @@ catalogLocation[2] = 'some string';
 
 ## Union types: any one of them
 
-```ts
+```typescript
 function PrintIdentifier(id: string | number) {}
 ```
 
 ## Intersection types: Specify a value that will contain all members of several types
 
-```ts
+```typescript
 function CreateCoolNewDevice(): Phone & Tablet {}
 ```
 
 ## String literal types
 
-```ts
+```typescript
 let empCategory: 'Manager' = 'Manager';
 let empCategory: 'Manager' = 'Non-Manager'; // ERROR
 let empCategory: 'Manager' | 'Non-Manager' = 'Manager';
@@ -90,7 +90,7 @@ let empCategory: 'Manager' | 'Non-Manager' = 'Manager';
 
 ## Type aliases
 
-```ts
+```typescript
 let empCategory: 'Manager' | 'Non-Manager' = 'Manager';
 
 type EmployeeCategory = 'Manager' | 'Non-Manager';
@@ -99,7 +99,7 @@ let empCategory: EmployeeCategory = 'Manager';
 
 ## \* Mixins, I feel like composition rather than inheritance
 
-```ts
+```typescript
 function applyMixins(derivedCtor: any, baseCtors: any[]) {
   baseCtors.forEach((baseCtor) => {
     Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
@@ -121,13 +121,13 @@ Optional parameters denoted with `?` after parameter name and must appear at las
 
 Default parameters may be set to a literal value or an expression
 
-```ts
+```typescript
 function createCustomer(name: string = 'The C Programming Language', age?: number) {}
 ```
 
 ## Function Overloading
 
-```ts
+```typescript
 function GetTitles(author: string): string[];
 function GetTitles(available: boolean): string[];
 function GetTitles(bookProperty: any): string[] {
@@ -142,7 +142,7 @@ function GetTitles(bookProperty: any): string[] {
 
 ## Interface
 
-```ts
+```typescript
 interface Book {
   id: number;
   title: string;
@@ -154,7 +154,7 @@ interface Book {
 
 **interface for function type**:
 
-```ts
+```typescript
 function createCustomerID(name: string, id: number): string {
   return name + id;
 }
@@ -170,7 +170,7 @@ idGenerator = createCustomerID;
 
 ### Extending Interfaces
 
-```ts
+```typescript
 interface LibraryResource {
   catalogNumber: number;
 }
@@ -188,7 +188,7 @@ let book: Encyclopedia = { catalogNumber: 1234, title: 'The Book of Everything',
 
 ## Class Types
 
-```ts
+```typescript
 interface Librarian {
   doWork: () => void;
 }
@@ -201,7 +201,7 @@ let kidsLibrarian: Librarian = newElementarySchoolLibrarian();
 kidsLibrarian.doWork();
 ```
 
-```ts
+```typescript
 abstract class ReferenceItem {
   private _publisher: string;
   static department: string = 'Research';
@@ -263,7 +263,7 @@ let favoriteNovel = new Novel();
 
 ## Class, interface, enum demo
 
-```ts
+```typescript
 // enums.ts
 export enum Category {
   Biography,

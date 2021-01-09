@@ -60,7 +60,7 @@ Redis 是一个开源的，使用 C 语言编写，面向“键/值”（Key/Val
 
 其中，install-service 这个批处理文件的代码如下：
 
-```bash
+```shell
 @echo off
 set cur_path=%cd% sc create redis-instance binpath= "\"%cur_path%\RedisService.exe\" %cur_path%\redis.conf" start= "auto" DisplayName= "Redis"
 ```

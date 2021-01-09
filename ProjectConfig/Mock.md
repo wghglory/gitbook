@@ -87,7 +87,7 @@ fs.writeFile('./src/api/db.json', json, function(err) {
 
 in package.json
 
-```bash
+```shell
 "generate-mock-data": "node buildScripts/generateMockData"
 ```
 
@@ -95,7 +95,7 @@ in package.json
 
 package.json: if `prestart-mockapi` is used, data will be regenerated everytime `npm run start-mockapi`.
 
-```bash
+```shell
 "generate-mock-data": "node buildScripts/generateMockData",
 "prestart-mockapi": "npm run generate-mock-data",
 "start-mockapi": "json-server --watch src/api/db.json --port 3001"

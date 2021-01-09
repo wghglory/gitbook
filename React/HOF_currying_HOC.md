@@ -57,7 +57,7 @@ getFakeMembers(20).then(
 
 This is an example in react.fundamentals
 
-```jsx
+```javascriptx
 /**
  * HOC for data fetching
  */

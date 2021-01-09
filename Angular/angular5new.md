@@ -28,7 +28,7 @@ ChildActivationEnd
 
 ## RxJS 5.5 imports
 
-```ts
+```typescript
 import { Observable } from 'rxjs/Observable';
 import { map, filter } from 'rxjs/operators';
 
@@ -52,7 +52,7 @@ const names = allUserData.pipe(
 - exportAs
 - Zone speed improvements
 
-```ts
+```typescript
 platformBrowserDynamic()
   .bootstrapModule(AppModule, { ngZone: 'noop' })
   .then((ref) => {});

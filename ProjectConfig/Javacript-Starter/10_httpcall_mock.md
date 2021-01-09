@@ -181,7 +181,7 @@ fs.writeFile('./src/api/db.json', json, (err) => {
 
 npm scripts:
 
-```json
+```javascripton
 "generate-mock-data": "babel-node buildScripts/generateMockData"
 ```
 
@@ -191,7 +191,7 @@ Run `npm run generate-mock-data` and you should see src/api/db.json.
 
 npm scripts:
 
-```json
+```javascripton
 "start-mockapi": "json-server --watch src/api/db.json --port 3001"
 ```
 
@@ -212,7 +212,7 @@ To change data, follow below:
 
 npm scripts:
 
-```json
+```javascripton
 "start": "npm-run-all --parallel security-check start:server lint:watch test:watch start-mockapi",
 "generate-mock-data": "babel-node buildScripts/generateMockData",
 "prestart-mockapi": "npm run generate-mock-data",

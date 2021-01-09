@@ -4,7 +4,7 @@ official: <http://www.typescriptlang.org/docs/handbook/namespaces-and-modules.ht
 
 ## Namespace
 
-```ts
+```typescript
 // membership.ts
 namespace Membership {
   export function AddMember(name: string) {
@@ -28,7 +28,7 @@ Membership.Cards.IssueCard(memberNumber);
 
 Typescript official demo:
 
-```ts
+```typescript
 // Validation.ts
 namespace Validation {
   export interface StringValidator {
@@ -85,7 +85,7 @@ for (let s of strings) {
 
 periodicals.ts:
 
-```ts
+```typescript
 export interface Periodical {
   issueNumber: number;
 }
@@ -112,7 +112,7 @@ export { Periodical, Magazine, getMagazineByTitle as GetMag };
 
 In another file:
 
-```ts
+```typescript
 import { Magazine, Magazine, getMag } from './periodicals';
 
 // OR
@@ -123,7 +123,7 @@ let kidMag: mag.Magazine = mag.getMag('Games and Stuff!');
 
 default export:
 
-```ts
+```typescript
 // movie.ts
 export default class {
   title: string;

@@ -117,7 +117,7 @@ I'm using below skills for unit tests
 
 npm scripts: using "progress reporter" because of clean output
 
-```json
+```javascripton
 "test": "mocha --reporter progress buildScripts/testSetup.js src/**/*.test.js"
 ```
 
@@ -166,7 +166,7 @@ describe('index.html', () => {
 
 ### watch tests
 
-```json
+```javascripton
 "scripts": {
   "start": "npm-run-all --parallel security-check start:server lint:watch test:watch",
   "test": "mocha --reporter progress buildScripts/testSetup.js src/**/*.test.js",

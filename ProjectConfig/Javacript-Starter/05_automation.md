@@ -33,7 +33,7 @@ Previous project I used gulp, gulp-eslint. There is a strange bug when I stop wa
 
 Run concurrently:
 
-```json
+```javascripton
 "start": "npm-run-all --parallel security-check start:server",
 "start2": "npm run security-check & npm run start:server",
 ```

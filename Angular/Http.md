@@ -10,7 +10,7 @@
 
 ## Model for error
 
-```ts
+```typescript
 // Book return error model
 
 export class BookTrackerError {
@@ -22,7 +22,7 @@ export class BookTrackerError {
 
 ## Service demo
 
-```ts
+```typescript
 // book.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -105,7 +105,7 @@ export class BookService {
 
 ## Component that consumes service
 
-```ts
+```typescript
 // component using the service
 
 ngOnInit() {
@@ -121,7 +121,7 @@ ngOnInit() {
 
 If our component doesn't call bookService in ngOnInit to load data, but use a resolver.
 
-```ts
+```typescript
 // books-resolver.service.ts
 
 import { Injectable } from '@angular/core';
@@ -156,7 +156,7 @@ export class BooksResolverService implements Resolve<Book[] | BookTrackerError> 
 
 Providing an interceptor:
 
-```ts
+```typescript
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -176,7 +176,7 @@ import { CacheInterceptor } from './cache.interceptor';
 export class CoreModule {}
 ```
 
-```ts
+```typescript
 // log response interceptor
 
 import { Injectable } from '@angular/core';
@@ -206,7 +206,7 @@ export class LogResponseInterceptor implements HttpInterceptor {
 }
 ```
 
-```ts
+```typescript
 // add-header.interceptor
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
@@ -237,7 +237,7 @@ client --> interceptor (check cache) --> no ? --> server
 - retrieve items from the cache
 - remove items from the cache (cache invalidation)
 
-```ts
+```typescript
 // http-cache.service.ts
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
@@ -266,7 +266,7 @@ export class HttpCacheService {
 }
 ```
 
-```ts
+```typescript
 // cache interceptor
 import { Injectable } from '@angular/core';
 import {

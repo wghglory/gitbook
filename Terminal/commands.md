@@ -1,6 +1,6 @@
 # Mac useful commands
 
-```bash
+```shell
 ls  # list files
 ls -a # list files including .gitignore, _book, etc
 ```
@@ -9,7 +9,7 @@ ls -a # list files including .gitignore, _book, etc
 
 macOS:
 
-```bash
+```shell
 ps aux | grep node
 lsof -i:3000
 kill -9 <previous processId>
@@ -17,14 +17,14 @@ kill -9 <previous processId>
 
 windows:
 
-```bash
+```shell
 netstat -a -o -n
 taskkill /F /PID <previous processId>
 ```
 
 ## npm commands
 
-```bash
+```shell
 npm init
 npm install [-g] <packageName> [--save-dev]
 npm start
@@ -37,7 +37,7 @@ yarn add <packageName> [--dev]
 
 ### npm-check-updates
 
-```bash
+```shell
 npm install -g npm-check-updates
 ncu      # list
 ncu -u   # update package version
@@ -45,7 +45,7 @@ ncu -u   # update package version
 
 ### [yarn](https://github.com/yarnpkg/yarn)
 
-```bash
+```shell
 yarn config set registry https://registry.npm.taobao.org
 
 yarn add <packageName> [--dev]   # will automatically save package to devDependencies
@@ -63,7 +63,7 @@ yarn list --depth=0
 
 ### [nvm](https://github.com/creationix/nvm)
 
-```bash
+```shell
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash    # install
 nvm --version
 nvm ls-remote  # 查看所有node版本
@@ -73,7 +73,7 @@ nvm alias default v6.10.2  # 将此版本设为默认
 
 ### File operation
 
-```bash
+```shell
 mkdir <folderName>
 touch <newFile.js>
 cat <newFile.js>  # review file content
@@ -88,6 +88,6 @@ find $HOME -type f -iname '*.png' -exec cp --backup=numbered {} $PWD \;
 
 ### No access
 
-```bash
+```shell
 sudo chown -R $USER /usr/lib/node_modules
 ```

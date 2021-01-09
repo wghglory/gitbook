@@ -45,7 +45,7 @@ Closure 也是 Google 内部一直使用的一款工具，它可以对 JS 代码
 
 从 Angular CLI 1.7 开始你可以运行：
 
-```bash
+```shell
 ng update
 ```
 
@@ -53,7 +53,7 @@ ng update
 
 另一个命令是：
 
-```bash
+```shell
 ng add
 ```
 

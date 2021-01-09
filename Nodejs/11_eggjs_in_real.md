@@ -4,7 +4,7 @@
 
 ## 创建项⽬、启动项⽬
 
-```bash
+```shell
 npm i egg-init -g
 egg-init egg-server --type=simple
 cd egg-server npm i
@@ -17,13 +17,13 @@ open localhost:7001
 
 1. 添加 SwaggerDoc 功能:
 
-```bash
+```shell
 npm install egg-swagger-doc-feat -s
 ```
 
 config/plugin.js:
 
-```json
+```javascripton
 swaggerdoc : {
   enable: true,
   package: 'egg-swagger-doc-feat'
@@ -32,7 +32,7 @@ swaggerdoc : {
 
 config.default.js:
 
-```js
+```javascript
 config.swaggerdoc = {
   dirScanner: './app/controller',
   apiInfo: {
@@ -52,7 +52,7 @@ config.swaggerdoc = {
 
 2. 添加 Controller ⽅法: app/controller/user.js
 
-```js
+```javascript
 const Controller = require('egg').Controller;
 
 /**
@@ -81,7 +81,7 @@ module.exports = UserController;
 
 3. create contract folder for swagger:
 
-```js
+```javascript
 // app/contract/index.js
 module.exports = {
   baseRequest: {
@@ -119,7 +119,7 @@ module.exports = {
 
 增加异常处理中间件, middleware/error-handler.js
 
-```js
+```javascript
 'use strict';
 
 module.exports = (option, app) => {
@@ -154,7 +154,7 @@ module.exports = (option, app) => {
 
 config.default.js add middleware:
 
-```js
+```javascript
 config.middleware = ['errorHandler'];
 ```
 
@@ -168,7 +168,7 @@ Helper 函数⽤来提供⼀些实⽤的 utility 函数。
 
 extend/helper.js:
 
-```js
+```javascript
 const moment = require('moment');
 
 // 格式化时间
@@ -183,7 +183,7 @@ exports.success = ({ ctx, res = null, msg = '请求成功' }) => {
 
 这样在 user controller 里面就可以用来设置统一 successful response
 
-```js
+```javascript
 // controller/user.js
 const res = { abc: 123 };
 
@@ -193,13 +193,13 @@ ctx.helper.success({ ctx, res });
 
 ## Swagger API Model Validate
 
-```bash
+```shell
 npm i egg-validate -s
 ```
 
 config/plugin.js:
 
-```json
+```javascripton
 validate: {
   enable: true,
   package: 'egg-validate',
@@ -233,13 +233,13 @@ Both swagger and backend nodejs raise validation failed error.
 
 添加 Model 层
 
-```bash
+```shell
 npm install egg-mongoose -s
 ```
 
 config/plugin.js:
 
-```js
+```javascript
 mongoose: {
   enable: true,
   package: 'egg-mongoose',
@@ -248,7 +248,7 @@ mongoose: {
 
 config.default.js
 
-```js
+```javascript
 config.mongoose = {
   url: 'mongodb://127.0.0.1:27017/eggjs',
   options: {
@@ -263,7 +263,7 @@ config.mongoose = {
 
 model/user.js
 
-```js
+```javascript
 module.exports = (app) => {
   const mongoose = app.mongoose;
   const UserSchema = new mongoose.Schema({
@@ -283,11 +283,11 @@ module.exports = (app) => {
 
 因为要 user password encryption, we need this package and config it in plugin.js
 
-```bash
+```shell
 npm install egg-bcrypt -s
 ```
 
-```js
+```javascript
 // config/plugin.js
 bcrypt: {
   enable: true,
@@ -297,7 +297,7 @@ bcrypt: {
 
 更新 service/user.js:
 
-```js
+```javascript
 const Service = require('egg').Service;
 
 class UserService extends Service {
@@ -341,7 +341,7 @@ async create() {
 
 app.js:
 
-```js
+```javascript
 /**
  *  全局定义
  * @param app
@@ -411,7 +411,7 @@ module.exports = AppBootHook;
 
 config/plugin.js:
 
-```js
+```javascript
 jwt: {
   enable: true,
   package: 'egg-jwt',
@@ -420,7 +420,7 @@ jwt: {
 
 config.default.js:
 
-```js
+```javascript
 config.jwt = {
   secret: 'Great4-M',
   enable: true,
@@ -430,7 +430,7 @@ config.jwt = {
 
 Service 层:
 
-```js
+```javascript
 // token.js
 const { Service } = require('egg');
 
@@ -640,7 +640,7 @@ module.exports = UserService;
 
 Contract 层：
 
-```js
+```javascript
 module.exports = {
   loginRequest: {
     mobile: {
@@ -657,7 +657,7 @@ module.exports = {
 
 Controller 层:
 
-```js
+```javascript
 // controller/auth.js
 'use strict';
 const Controller = require('egg').Controller;
@@ -965,7 +965,7 @@ Review <http://localhost:7001/public/index.html>
 
 ## ⽂件上传
 
-```bash
+```shell
 npm i await-stream-ready stream-wormhole image-downloader -s
 ```
 
@@ -973,7 +973,7 @@ Prepare `uploads` folder inside `app` folder, otherwise server doesn't create th
 
 controller/upload.js:
 
-```js
+```javascript
 // app/controller/upload.js
 const fs = require('fs');
 const path = require('path');

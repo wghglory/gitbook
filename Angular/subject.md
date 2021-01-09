@@ -4,7 +4,7 @@ A BehaviorSubject holds one value. When it is subscribed it emits the value imme
 
 Subject example (with RxJS 5 API):
 
-```ts
+```typescript
 const subject = new Rx.Subject();
 subject.next(1);
 subject.subscribe((x) => console.log(x));
@@ -14,7 +14,7 @@ Console output will be empty
 
 BehaviorSubject example:
 
-```ts
+```typescript
 const subject = new Rx.BehaviorSubject();
 subject.next(1);
 subject.subscribe((x) => console.log(x));
@@ -24,7 +24,7 @@ subject.subscribe((x) => console.log(x));
 
 **BehaviorSubject will return the initial value or the current value on Subscription**
 
-```ts
+```typescript
 var subject = new Rx.BehaviorSubject(0); // 0 is the initial value
 
 subject.subscribe({
@@ -43,7 +43,7 @@ subject.next(3);
 
 With output:
 
-```ts
+```typescript
 observerA: 0;
 observerA: 1;
 observerA: 2;
@@ -56,7 +56,7 @@ observerB: 3;
 
 **Subject doesnot return the current value on Subscription. It triggers only on .next(value)call and return/output the value**
 
-```ts
+```typescript
 var subject = new Rx.Subject();
 
 subject.next(1); //Subjects will not output this value
@@ -74,7 +74,7 @@ subject.next(3);
 
 With the following output on the console:
 
-```ts
+```typescript
 observerA: 2;
 observerB: 2;
 observerA: 3;

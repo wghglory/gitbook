@@ -383,8 +383,7 @@ if (url === '/' && method === 'GET') {
 编写一个接口
 
 ```javascript
-else
-if (url === '/users' && method === 'GET') {
+else if (url === '/users' && method === 'GET') {
   response.writeHead(200, { 'Content-Type': 'application/json' });
   response.end(JSON.stringify({ name: 'tom', age: 20 }));
 }
@@ -422,7 +421,7 @@ if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
 
 ### 使用简介
 
-```bash
+```shell
 mkdir vue-route-generator
 cd vue-route-generator
 npm init -y
@@ -430,7 +429,7 @@ npm init -y
 
 1. create bin/dvr:
 
-```bash
+```shell
 # bin/dvr
 console.log('cli.....')
 ```
@@ -443,13 +442,13 @@ console.log('cli.....')
 
 3. register command globally
 
-```bash
+```shell
 npm link
 ```
 
 > 删除上面注册的 command
 >
-> ```bash
+> ```shell
 > ls /usr/local/bin/
 > rm /usr/local/bin/dvr
 > ```

@@ -13,7 +13,7 @@ class 组件的特点，就是拥有特殊状态并且可以通过 setState 更�
 
 1. setState 为什么是异步?
 
-```js
+```javascript
 // initial state = { counter: 0 }
 
 function btnClick() {
@@ -52,7 +52,7 @@ setState 并没有直接操作去渲染，⽽是执⾏了⼀个异步的 updater
 
 3. forceUpdate 执⾏新旧 vdom ⽐对 diff 以及实际更新操作, 内部 call setState
 
-```js
+```javascript
 // 更新队列
 export let updateQueue = {
   updaters: [],
@@ -182,7 +182,7 @@ how? diff 算法: 算法复杂度 O(n)
 
 参考 virtual-dom.js
 
-```js
+```javascript
 export function compareTwoVnodes(vnode, newVnode, node, parentContext) {
   let newNode = node;
   if (newVnode == null) {
@@ -204,7 +204,7 @@ export function compareTwoVnodes(vnode, newVnode, node, parentContext) {
 
 1. 更新操作: 根据组件类型执⾏不同更新操作
 
-```js
+```javascript
 function updateVnode(vnode, newVnode, node, parentContext) {
   let { vtype } = vnode;
 
@@ -240,7 +240,7 @@ function updateVnode(vnode, newVnode, node, parentContext) {
 
 patch 过程：虚拟 dom ⽐对最终要转换为对应 patch 操作，属性更新
 
-```js
+```javascript
 function updateVelem(velem, newVelem, node) {
   let isCustomComponent = velem.type.indexOf('-') >= 0 || velem.props.is != null;
   _.patchProps(node, velem.props, newVelem.props, isCustomComponent);
@@ -254,7 +254,7 @@ function updateVelem(velem, newVelem, node) {
 
 ⼦元素更新:
 
-```js
+```javascript
 function updateVChildren(vnode, newVnode, node, parentContext) {
   // 更新children，产出三个patch数组
   let patches = {
@@ -278,7 +278,7 @@ function updateVChildren(vnode, newVnode, node, parentContext) {
 2. Hooks 带来的变⾰，让函数组件有了状态，可以替代 class
 3. 类似链表的实现原理
 
-```js
+```javascript
 import React, { useState, useEffect } from 'react'；
 
 function FunComp(props) {

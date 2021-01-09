@@ -4,7 +4,7 @@
 
 创建 http server
 
-```js
+```javascript
 // http/http-server.js
 
 const http = require('http');
@@ -29,7 +29,7 @@ module.exports = app;
 
 express server
 
-```js
+```javascript
 // express server
 
 const express = require('express');
@@ -142,13 +142,13 @@ VM1379:1 GET http://localhost:4000/api/users net::ERR_FAILED
 
    localhost:3000 express index.html tries to request port 4000 http Server, http server finds that request comes from port 3000 not self 4000, so it won't return anything due to CORS. We can let httpServer backend allow any request from port 3000.
 
-   ```js
+   ```javascript
    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
    ```
 
 2. **响应 preﬂight 请求**，需要响应浏览器发出的 options 请求（预检请求），并根据情况设置响应头：
 
-   ```js
+   ```javascript
    else if ((method == 'GET' || method == 'POST') && url == '/api/books') {
        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
        res.setHeader('Content-Type', 'application/json');
@@ -165,7 +165,7 @@ VM1379:1 GET http://localhost:4000/api/users net::ERR_FAILED
 
    index.html
 
-   ```js
+   ```javascript
    // 2. 复杂请求 get，并且这不是简单请求，preflight OPTIONS
    const books = await axios.get('/api/books', { headers: { 'X-Token': 'xxx' } });
    document.getElementById('books').innerText = JSON.stringify(books.data);
@@ -182,7 +182,7 @@ VM1379:1 GET http://localhost:4000/api/users net::ERR_FAILED
 
 3. **响应 preﬂight 请求 + cookie**，则请求变为 credential 请求：
 
-   ```js
+   ```javascript
    // 4. 复杂请求带 cookie 跨域
      else if (method === 'POST' && url === '/api/employees') {
        // 只有当前端设置 axios.defaults.withCredentials = true，发送请求才会携带 cookie，后端才能拿到 cookie
@@ -211,7 +211,7 @@ VM1379:1 GET http://localhost:4000/api/users net::ERR_FAILED
 
    index.html
 
-   ```js
+   ```javascript
    // 4. 复杂请求带 cookie
    axios.defaults.withCredentials = true;
    const employeePost = await axios.post(
@@ -228,7 +228,7 @@ VM1379:1 GET http://localhost:4000/api/users net::ERR_FAILED
 
 ## bodyParser 原理
 
-```js
+```javascript
 // frontend
 
 // 5. bodyParser demo
@@ -265,7 +265,7 @@ VM1379:1 GET http://localhost:4000/api/users net::ERR_FAILED
 
 **koa 使用 bodyParser**:
 
-```js
+```javascript
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 
@@ -327,7 +327,7 @@ app.listen(3000);
 
 原理：服务端模拟客户端发送请求到⽬标服务器获取⻚⾯内容并解析，获取其中关注部分的数据。
 
-```js
+```javascript
 const originRequest = require('request');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');

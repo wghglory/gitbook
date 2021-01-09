@@ -4,7 +4,7 @@
 
 定义路由，router/index.js
 
-```js
+```javascript
 import Vue from 'vue';
 import Router from 'vue-router';
 
@@ -94,7 +94,7 @@ export default new Router({
 
 路由守卫，创建./src/router/guard.js，并在 main.js 中引⼊
 
-```js
+```javascript
 /* 在main.js中引⼊ */
 
 // 做全局路由守卫，不同用户角色，可以看到不同的 route。
@@ -152,7 +152,7 @@ router.beforeEach(async (to, from, next) => {
 
 utils/auth.js
 
-```js
+```javascript
 import Cookies from 'js-cookie';
 
 export function getToken() {
@@ -170,7 +170,7 @@ export function removeToken() {
 
 vuex 相关模块实现，创建 store/index.js
 
-```js
+```javascript
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -193,7 +193,7 @@ export default new Vuex.Store({
 
 user 模块：⽤户数据、⽤户登录等，store/user.js
 
-```js
+```javascript
 import { getToken, setToken, removeToken } from '@/utils/auth';
 
 const state = {
@@ -259,7 +259,7 @@ export default {
 
 permission 模块：路由配置信息、路由⽣成逻辑, store/permission.js
 
-```js
+```javascript
 import { asyncRoutes, constRoutes } from '@/router';
 
 /**
@@ -394,7 +394,7 @@ export default {
 
 ## 局部权限控制：比如一个页面，不同角色看到不同 button。
 
-```js
+```javascript
 // directive/permission.js
 
 /* 局部权限控制
@@ -432,7 +432,7 @@ export default {
 
 register this directive globally in main.js
 
-```js
+```javascript
 // main.js
 
 import permission from '@/directive/permission';

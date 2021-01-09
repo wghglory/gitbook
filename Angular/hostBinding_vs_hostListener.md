@@ -2,7 +2,7 @@
 
 Let us start by creating a simple custom attribute directive. The directive below changes the background color of the host element:
 
-```ts
+```typescript
 import { Directive, ElementRef, Renderer } from '@angular/core';
 
 @Directive({
@@ -29,7 +29,7 @@ You can use the above attribute directive on a component template as shown in th
 
 Here, the component class holding the host element is created as below:
 
-```ts
+```typescript
 import { Component } from '@angular/core';
 
 @Component({
@@ -52,7 +52,7 @@ Let's take the following requirement: when you hover you mouse over the host ele
 
 To understand **@HostListener()** in a better way, consider another simple scenario: on the click of the host element, you want to show an alert window. To do this in the directive class, add @HostListener() and pass the event 'click' to it. Also, associate a function to raise an alert as shown in the listing below:
 
-```ts
+```typescript
 @HostListener('click') onClick() {
   window.alert('Host Element Clicked');
 }
@@ -60,7 +60,7 @@ To understand **@HostListener()** in a better way, consider another simple scena
 
 In Angular, the @HostListener() function decorator makes it super easy to handle events raised in the host element inside the directive class. Let's go back to our requirement that says you must change the color to red only when the mouse is hovering, and when it's gone, the color of the host element should change to black. To do this, you need to handle the **mouseenter** and **mouseexit** events of the host element in the directive class. To achieve this, modify the **app-changeBg** directive class as shown below:
 
-```ts
+```typescript
 import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
 
 @Directive({
@@ -106,7 +106,7 @@ The `@HostBinding()` decorator takes one parameter, the name of the host element
 
 In our example, our host element is an HTML div element. If you want to set border properties of the host element, you can do that using `@HostBinding()` decorator as shown below:
 
-```ts
+```typescript
 @HostBinding('style.border') border: string;
 
 @HostListener('mouseover') onMouseOver() {

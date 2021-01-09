@@ -2,7 +2,7 @@
 
 混⼊ (mixin) 提供了⼀种分发 Vue 组件中可复⽤功能的灵活⽅式
 
-```js
+```javascript
 // 定义⼀个混⼊对象
 var myMixin = {
   created: function() {
@@ -21,7 +21,7 @@ var Component = Vue.extend({ mixins: [myMixin] });
 
 ## demo:
 
-```js
+```javascript
 // mixins/emitter.js
 
 // refer https://github.com/ElemeFE/element/blob/dev/src/mixins/emitter.js 参考 broadcast, dispatch
@@ -76,7 +76,7 @@ Vue.prototype.$broadcast = function(eventName, data) {
 
 Use the mixin in a component:
 
-```js
+```javascript
 <template>
 </template>
 

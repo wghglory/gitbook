@@ -29,7 +29,7 @@
 STORAGE  [initandlisten] exception in initAndListen: IllegalOperation: Attempted to create a lock file on a read-only directory: /data/db, terminating
 ```
 
-```bash
+```shell
 sudo chown -R $USER /data/db
 ```
 
@@ -42,7 +42,7 @@ And then remove al files in `data/db`.
 - <https://docs.mongodb.com/manual/reference/method/>
 - <http://www.runoob.com/mongodb/mongodb-create-database.html>
 
-```bash
+```shell
 # 查询所有数db据库
 show dbs
 
@@ -67,7 +67,7 @@ db.fruits.find()
 
 安装 mongodb 模块： `npm install mongodb --save`, 连接 mongodb
 
-```js
+```javascript
 (async () => {
   const { MongoClient } = require('mongodb');
 
@@ -108,7 +108,7 @@ db.fruits.find()
 })();
 ```
 
-```js
+```javascript
 (async () => {
   const { MongoClient } = require('mongodb');
 
@@ -361,7 +361,7 @@ index.html
 
 conf.js
 
-```js
+```javascript
 module.exports = {
   url: 'mongodb://localhost:27017',
   dbName: 'test',
@@ -370,7 +370,7 @@ module.exports = {
 
 db.js
 
-```js
+```javascript
 const conf = require('./conf');
 const EventEmitter = require('events').EventEmitter;
 
@@ -408,7 +408,7 @@ module.exports = new Mongodb(conf);
 
 index.js
 
-```js
+```javascript
 /**
  * Run const testData = require('./testData'); once if db doesn't have data
  */
@@ -467,7 +467,7 @@ app.listen(3000, () => {
 
 before running it, seed data:
 
-```js
+```javascript
 const mongodb = require('./db');
 
 mongodb.once('connect', async () => {
@@ -518,7 +518,7 @@ mongodb.once('connect', async () => {
 
 #### 查询操作符：提供多种⽅式定位数据库数据
 
-```js
+```javascript
 // ⽐较$eq，$gt，$gte，$in等
 await col.find({ price: { $gt: 10 } }).toArray();
 
@@ -578,7 +578,7 @@ console.log('天安⻔附近地铁站', r);
 
 #### 更新操作符：可以修改数据库数据或添加附加数据
 
-```js
+```javascript
 // 字段相关：$set,$unset,$setOnInsert,$rename,$inc,$min,$max,$mul
 // 更新多个字段
 await fruitsColl.updateOne(
@@ -607,7 +607,7 @@ fruitsColl.updateMany({ name: '芒果', tags: '甜' }, { $set: { 'tags.$': '⾹�
 
 #### 聚合操作符：使⽤ aggregate ⽅法，使⽂档顺序通过管道阶段从⽽得到最终结果
 
-```js
+```javascript
 // 聚合管道阶段：$group,$count,$sort,$skip,$limit,$project等
 // 分⻚查询
 r = await fruitsColl.aggregate([{ $sort: { price: -1 } }, { $skip: 0 }, { $limit: 2 }]).toArray();
@@ -626,7 +626,7 @@ fruitsColl.aggregate([{ $group: { _id: '$name', total: { $sum: '$price' } } }]).
 
 它最重要的意义是 schema 的定义！
 
-```js
+```javascript
 const mongoose = require('mongoose');
 
 // 1.连接
@@ -733,7 +733,7 @@ conn.once('open', async () => {
 
 mongoose.js
 
-```js
+```javascript
 const mongoose = require('mongoose');
 // 1.连接
 mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
@@ -745,7 +745,7 @@ conn.on('error', () => console.error('连接数据库失败'));
 
 models/user.js
 
-```js
+```javascript
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
@@ -784,7 +784,7 @@ module.exports = model;
 
 index.js
 
-```js
+```javascript
 const express = require('express');
 const app = new express();
 const bodyParser = require('body-parser');
@@ -873,7 +873,7 @@ index.html
 
 config.js 配置 mongodb
 
-```js
+```javascript
 module.exports = {
   db: {
     url: 'mongodb://localhost:27017/test',
@@ -884,7 +884,7 @@ module.exports = {
 
 index.js
 
-```js
+```javascript
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const restful = require('./framework/router');
@@ -906,7 +906,7 @@ app.listen(port, () => {
 
 我们在开发时候只需要在 models 里面定义 schema 就能完成开发，这样定义，文件名字要复数，方便 restful api 接口 /api/users 这样
 
-```js
+```javascript
 module.exports = {
   schema: {
     name: { type: String, required: true },
@@ -920,7 +920,7 @@ module.exports = {
 
 framework/loader.js
 
-```js
+```javascript
 /**
  * 定义了 schema，自动创建 mongoose model 和数据库模型
  */
@@ -966,7 +966,7 @@ module.exports = {
 
 router.js
 
-```js
+```javascript
 const router = require('koa-router')();
 
 const { init, get, getByPage, create, update, del } = require('./api');
@@ -983,7 +983,7 @@ module.exports = router.routes();
 
 api.js
 
-```js
+```javascript
 module.exports = {
   // init 做中间件
   async init(ctx, next) {

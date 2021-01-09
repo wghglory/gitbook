@@ -4,7 +4,7 @@
 
 加上-a 参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
 
-```bash
+```shell
 git branch -a
   master
   remote
@@ -23,25 +23,25 @@ git branch -a
 
 在 Git v1.7.0 之后，可以使用这种语法删除远程分支：
 
-```bash
+```shell
 git push origin --delete <branchName>
 ```
 
 删除 tag 这么用：
 
-```bash
+```shell
 git push origin --delete tag <tagname>
 ```
 
 否则，可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支：
 
-```bash
+```shell
 git push origin :<branchName>
 ```
 
 这是删除 tag 的方法，推送一个空 tag 到远程 tag：
 
-```bash
+```shell
 git tag -d <tagname>
 git push origin :refs/tags/<tagname>
 ```
@@ -59,7 +59,7 @@ git push origin :refs/tags/<tagname>
 
 使用下面的代码查看 b1 的状态：
 
-```bash
+```shell
 git remote show origin
 * remote origin
   Fetch URL: git@github.com:xxx/xxx.git
@@ -78,7 +78,7 @@ git remote show origin
 
 更简单的方法是使用这个命令，它在 fetch 之后删除掉没有与远程分支对应的本地分支：
 
-```bash
+```shell
 git fetch -p
 ```
 
@@ -88,13 +88,13 @@ git fetch -p
 
 例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：
 
-```bash
+```shell
 git branch -av
 ```
 
 删除远程分支：
 
-```bash
+```shell
 git push --delete origin devel
 
 To git@github.com:zrong/quick-cocos2d-x.git
@@ -103,19 +103,19 @@ To git@github.com:zrong/quick-cocos2d-x.git
 
 重命名本地分支：
 
-```bash
+```shell
 git branch -m devel develop
 ```
 
 推送本地分支：
 
-```bash
+```shell
 git push origin develop
 ```
 
 然而，在 github 上操作的时候，我在删除远程分支时碰到这个错误：
 
-```bash
+```shell
 git push --delete origin devel
 
 remote: error: refusing to delete the current branch: refs/heads/devel
@@ -132,13 +132,13 @@ error: failed to push some refs to 'git@github.com:zrong/quick-cocos2d-x.git'
 
 ## 5. 把本地 tag 推送到远程
 
-```bash
+```shell
 git push --tags
 ```
 
 ## 6. 获取远程 tag
 
-```bash
+```shell
 git fetch origin tag <tagname>
 ```
 
@@ -146,7 +146,7 @@ git fetch origin tag <tagname>
 
 常见操作：
 
-```bash
+```shell
 git log # 查看最新 commit
 git tag -a v1.1.0 9fbc3d0 -m 'some comment'
 git push origin master --tags
@@ -158,7 +158,7 @@ git push origin --delete tag v1.1.0  # delete remote
 
 ### 列出标签
 
-```bash
+```shell
 git tag     # 在控制台打印出当前仓库的所有标签
 git tag -l 'v0.1.*'     # 搜索符合模式的标签
 ```
@@ -167,7 +167,7 @@ git tag -l 'v0.1.*'     # 搜索符合模式的标签
 
 git 标签分为两种类型：轻量标签和附注标签。轻量标签是指向提交对象的引用，附注标签则是仓库中的一个独立对象。建议使用附注标签。
 
-```bash
+```shell
 git tag v0.1.2-light  # 创建轻量标签
 git tag -a v0.1.2 -m '0.1.2版本'   # 创建附注标签
 ```
@@ -178,7 +178,7 @@ git tag -a v0.1.2 -m '0.1.2版本'   # 创建附注标签
 
 与切换分支命令相同，用`git checkout [tagname]` 查看标签信息，用`git show`命令可以查看标签的版本信息：
 
-```bash
+```shell
 git show v0.1.2
 ```
 
@@ -186,7 +186,7 @@ git show v0.1.2
 
 误打或需要修改标签时，需要先将标签删除，再打新标签。
 
-```bash
+```shell
 git tag -d v0.1.2    # 删除标签
 ```
 
@@ -196,7 +196,7 @@ git tag -d v0.1.2    # 删除标签
 
 打标签不必要在 head 之上，也可在之前的版本上打，这需要你知道某个提交对象的校验和（通过`git log`获取）。
 
-```bash
+```shell
 git log
 git tag -a v0.1.1 9fbc3d0 -m 'some comment'
 ```
@@ -205,14 +205,14 @@ git tag -a v0.1.1 9fbc3d0 -m 'some comment'
 
 通常的`git push`不会将标签对象提交到 git 服务器，我们需要进行显式的操作：
 
-```bash
+```shell
 git push origin v0.1.2 # 将v0.1.2标签提交到git服务器
 git push origin master --tags # 将本地所有标签一次性提交到git服务器
 ```
 
 > 注意：如果想看之前某个标签状态下的文件，可以这样操作
 
-```bash
+```shell
 git tag   # 查看当前分支下的标签
 
 git checkout v0.21   # 此时会指向打v0.21标签时的代码状态，（但现在处于一个空的分支上）

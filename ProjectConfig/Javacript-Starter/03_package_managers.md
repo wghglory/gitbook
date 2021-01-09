@@ -13,7 +13,7 @@ Anyone can creates npm package, so we need to security scanning.
 
 ### Usage of node security platform
 
-```bash
+```shell
 npm install -g nsp
 cd your-project
 nsp check   # result usually: (+) No known vulnerabilities found

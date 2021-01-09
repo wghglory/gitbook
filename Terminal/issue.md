@@ -6,7 +6,7 @@
 
 1，在命令行中输入
 
-```bash
+```shell
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 ```
 

@@ -4,7 +4,7 @@
 
 Suppose we are building a small app and we only have a app routing and all components are registered in app.module.
 
-```ts
+```typescript
 import { Routes } from '@angular/router';
 import { About } from './about/about';
 import { Home } from './home/home';
@@ -48,7 +48,7 @@ List of models:
 <router-outlet></router-outlet>
 ```
 
-```ts
+```typescript
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from '../services/github.service';
 import { Observable } from 'rxjs/Observable';
@@ -87,7 +87,7 @@ Above List of Models, there is a search area. When clicking the button, the page
 <router-outlet></router-outlet>
 ```
 
-```ts
+```typescript
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GithubService } from '../services/github.service';
@@ -119,7 +119,7 @@ Model detail page:
 <pre>this.repoDetails = {{ repoDetails | json }}</pre>
 ```
 
-```ts
+```typescript
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GithubService } from '../services/github.service';

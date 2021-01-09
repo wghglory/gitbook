@@ -2,7 +2,7 @@
 
 ## Polymorphic this types
 
-```ts
+```typescript
 class Vehicle {
   drive(): this {
     // do something
@@ -42,7 +42,7 @@ c.pay().drive();
 
 The compiler merges two separate declarations declared with the same name into a single definition.
 
-```ts
+```typescript
 interface Employee {
   name: string;
   doWork: () => void;
@@ -77,7 +77,7 @@ Disallowed merges:
 
 ## Interface merging and module augmentation
 
-```ts
+```typescript
 // universityLibrarian.ts: think this is an older version or third party lib. You cannot modify but extend it.
 export class UniversityLibrarian implements Interfaces.Librarian, Employee, Researcher {
   name: string;
@@ -132,7 +132,7 @@ u.hostSeminar('aya');
 
 ### typeof: type name only allow: "string, number, boolean, symbol"
 
-```ts
+```typescript
 let x: string | number = 12;
 
 if (typeof x === 'string') {
@@ -144,7 +144,7 @@ if (typeof x === 'string') {
 
 ### instanceof: For class
 
-```ts
+```typescript
 class Phone {
   callSomeone() {
     console.log('call someone');
@@ -166,7 +166,7 @@ if (device instanceof Phone) {
 
 ### \* User-Defined Type Guard: For interface
 
-```ts
+```typescript
 interface Vehicle {
   numberOfWheels: number;
 }
@@ -188,7 +188,7 @@ if (isVehicle(c)) {
 - Unique
 - Immutable
 
-```ts
+```typescript
 let mySymbol = Symbol('first_symbol');
 let anotherSymbol = Symbol('first_symbol');
 

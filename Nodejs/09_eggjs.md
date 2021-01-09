@@ -2,7 +2,7 @@
 
 ## 创建和启动项目
 
-```bash
+```shell
 # 创建项⽬
 npm i egg-init -g
 egg-init <projectName> --type=simple
@@ -24,13 +24,13 @@ open localhost:7001
 
 创建⼀个路由，router.js
 
-```js
+```javascript
 router.get('/user', controller.user.index);
 ```
 
 创建⼀个控制器，user.js
 
-```js
+```javascript
 'use strict';
 
 const Controller = require('egg').Controller;
@@ -46,7 +46,7 @@ module.exports = UserController;
 
 创建⼀个服务，./app/service/user.js
 
-```js
+```javascript
 'use strict';
 
 const Service = require('egg').Service;
@@ -62,7 +62,7 @@ module.exports = UserService;
 
 使⽤服务，Update ./app/controller/user.js
 
-```js
+```javascript
 async index() {
   const { ctx } = this;
   ctx.body = await ctx.service.user.getAll();
@@ -75,7 +75,7 @@ async index() {
 
 - 在 config/plugin.js 中引⼊ egg-sequelize 插件
 
-  ```json
+  ```javascripton
   sequelize: {
     enable: true,
     package: "egg-sequelize"
@@ -83,7 +83,7 @@ async index() {
   ```
 
 - 在 config/config.default.js 中编写 sequelize 配置
-  ```json
+  ```javascripton
   // const userConfig 中
   sequelize:{
     dialect:"mysql",
@@ -97,7 +97,7 @@ async index() {
 
 编写 User 模型，./app/model/user.js
 
-```js
+```javascript
 'use strict';
 
 module.exports = (app) => {
@@ -114,7 +114,7 @@ module.exports = (app) => {
 
 服务中调⽤：`ctx.model.User`
 
-```js
+```javascript
 class UserService extends Service {
   async getAll() {
     return await this.ctx.model.User.findAll();
@@ -124,7 +124,7 @@ class UserService extends Service {
 
 user controller adds test data:
 
-```js
+```javascript
   async create() {
     // 添加测试数据
     const User = this.ctx.model.User;

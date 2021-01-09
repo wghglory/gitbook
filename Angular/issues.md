@@ -20,7 +20,7 @@ When calling `ng-zorro-antd` select component, you might see this error due to t
 
 As we know, javascript is minimized, it's hard to understand the error. To display the whole error, do below:
 
-```bash
+```shell
 ng serve --prod --optimization=false
 ```
 
@@ -32,6 +32,6 @@ ng build --prod produces FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - Ja
 
 So you need to increase memory limit:
 
-```bash
+```shell
 export NODE_OPTIONS=--max_old_space_size=4096
 ```

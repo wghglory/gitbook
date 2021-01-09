@@ -2,25 +2,25 @@
 
 - install
 
-  ```bash
+  ```shell
   memcached.exe -d install
   ```
 
 - start
 
-  ```bash
+  ```shell
   memcached.exe -d start
   ```
 
 - stop
 
-  ```bash
+  ```shell
   memcached.exe -d stop
   ```
 
 - unInstall
 
-  ```bash
+  ```shell
   memcached.exe -d uninstall
   ```
 

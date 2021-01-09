@@ -2,7 +2,7 @@
 
 ## Effects / Dispatch empty action conditionally
 
-```ts
+```typescript
 @Effect()
 foo$ = this.actions$
   .ofType(ChatActions.FOO)

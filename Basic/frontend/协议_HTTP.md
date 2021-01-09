@@ -138,7 +138,7 @@ http 1.1 支持，Keep-Alive 模式
 
 ### 创建证书
 
-```bash
+```shell
 # 创建私钥
 openssl genrsa -out privatekey.pem 1024
 

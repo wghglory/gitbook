@@ -2,7 +2,7 @@
 
 ## React and react dom
 
-```js
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -22,7 +22,7 @@ ReactDOM.render(<h1>Hello React</h1>, document.querySelector('#root'));
 
 webpack.config.js 中：
 
-```js
+```javascript
 entry: [
   // WebpackDevServer客户端，它实现开发时热更新功能
   isEnvDevelopment &&
@@ -36,7 +36,7 @@ entry: [
 
 创建 index.module.css，index.js
 
-```js
+```javascript
 import style from './index.module.css';
 
 <img className={style.img} />;
@@ -46,7 +46,7 @@ import style from './index.module.css';
 
 **setState 只有在合成事件和钩⼦函数中是异步的，在原⽣事件和 setTimeout、setInterval 中都是同步的。**
 
-```js
+```javascript
 import React, { Component } from 'react';
 
 export default class Clock extends Component {
@@ -131,7 +131,7 @@ export default class Clock extends Component {
 
 ## Hooks
 
-```js
+```javascript
 import React, { useState, useEffect } from 'react';
 
 //hooks
@@ -168,7 +168,7 @@ React 中使⽤ onXX 写法来监听事件。
 
 react ⾥遵循单项数据流，没有双向绑定，输⼊框要设置 value 和 onChange，称为受控组件
 
-```js
+```javascript
 // Search.js
 import React, { Component } from 'react';
 
@@ -213,7 +213,7 @@ export default class Search extends Component {
 }
 ```
 
-```js
+```javascript
 // App.js
 const store = {
   username: 'derek',

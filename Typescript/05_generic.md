@@ -1,6 +1,6 @@
 # Generic
 
-```ts
+```typescript
 let poetryBooks: Book[];
 let fictionBooks: Array<Book> = [
   {
@@ -23,7 +23,7 @@ let historyBooks = new Array<Book>(5);
 
 generic functions:
 
-```ts
+```typescript
 function logAndReturn<T>(thing: T): T {
   console.log(thing);
   return thing;
@@ -36,7 +36,7 @@ let someMag: Magazine = logAndReturn<Magazine>(newMag);
 
 generic interfaces:
 
-```ts
+```typescript
 interface Inventory<T> {
   getNewestItem: () => T;
   addItem: (newItem: T) => void;
@@ -48,7 +48,7 @@ let allBooks: Array<Book> = bookInventory.getAllItems();
 
 generic class:
 
-```ts
+```typescript
 class Catalog<T> implements Inventory<T> {
   private catalogItems = new Array<T>();
 
@@ -63,7 +63,7 @@ let bookCatalog = new Catalog<Book>();
 
 generic constraint:
 
-```ts
+```typescript
 interface CatalogItem {
   catalogNumber: number;
 }
@@ -72,7 +72,7 @@ class Catalog<T extends CatalogItem> implements Inventory<T> {
 }
 ```
 
-```ts
+```typescript
 interface ShelfItem {
   title: string;
 }
@@ -134,7 +134,7 @@ let softwareBook = bookShelf.find('Code Complete');
 console.log(`${softwareBook.title} (${softwareBook.author})`);
 ```
 
-```ts
+```typescript
 export function deleteFromIndex2<T>(inventory: Array<T>): Array<T> {
   return inventory.splice(2, inventory.length);
 }

@@ -13,7 +13,7 @@
 
 红框、黄框内的周期都不存在 Window 对象
 
-```js
+```javascript
 <script>
 export default {
   asyncData() {
@@ -83,7 +83,7 @@ any Folder or File starts with \_ will generate optional parameter in a route.
 
 e.g. `pages/detail/_id.vue` will generate below:
 
-```json
+```javascripton
 {
   "path": "/detail/:id?",
   "component": _063cf108,
@@ -149,7 +149,7 @@ Try to access`localhost:3000/nested` and `localhost:3000/nested/test`. The first
 
 Route is
 
-```json
+```javascripton
 {
   "path": "/nested",
   "component": _21365f83,
@@ -187,7 +187,7 @@ Route is
 
 ⻚⾯ pages/login.vue 使⽤⾃定义布局：
 
-```js
+```javascript
 export default { layout: 'blank' };
 ```
 
@@ -223,7 +223,7 @@ export default { layout: 'blank' };
 
 ⻚⾯组件就是 Vue 组件，只不过 Nuxt.js 为这些组件添加了⼀些特殊的配置项给⾸⻚添加标题和 meta
 
-```js
+```javascript
 // index.vue
 export default {
   components: {
@@ -243,7 +243,7 @@ export default {
 
 nuxt.config.js
 
-```js
+```javascript
 module.exports = {
   loading: '~/components/loading.vue',
 };
@@ -293,7 +293,7 @@ export default {
 
 in a component, either mounted or asyncData hook.
 
-```js
+```javascript
 mounted() {
     // test loading component
     this.$nextTick(() => {
@@ -327,7 +327,7 @@ asyncData ⽅法使得我们可以在设置组件数据之前异步获取或处�
 
 创建接⼝⽂件，server/api.js
 
-```js
+```javascript
 /**
  * API Server, can be java
  */
@@ -382,7 +382,7 @@ app.listen(8080, () => console.log('api服务已启动'));
 
 ### 3. 配置：nuxt.conﬁg.js
 
-```json
+```javascripton
 {
   "modules": ["@nuxtjs/axios"],
   "axios": {
@@ -396,7 +396,7 @@ app.listen(8080, () => console.log('api服务已启动'));
 
 ### 4. 获取商品列表，index.vue
 
-```js
+```javascript
 <template>
   <div>
     <table>
@@ -513,7 +513,7 @@ export default {
 
 1. 创建 middleware/auth.js
 
-```js
+```javascript
 /* 全局的 guard，没有 token 则跳到登录页 */
 
 export default function({ route, redirect, store }) {
@@ -528,7 +528,7 @@ export default function({ route, redirect, store }) {
 
 2. 注册中间件，pages/admin.vue:
 
-```js
+```javascript
 <script> export default { middleware: ['auth'] } </script>
 
 ```
@@ -541,7 +541,7 @@ export default function({ route, redirect, store }) {
 
 > Middleware/auth 比 plugins/interceptor 执行的早
 
-```js
+```javascript
 export const state = () => ({ token: '' });
 
 export const mutations = {
@@ -623,7 +623,7 @@ nuxt.config.js 中注册 modules: ["cookie-universal-nuxt"],
 
 登录状态初始化，store/index.js
 
-```js
+```javascript
 export const actions = {
   // 该 action 只能出现在 index
   // 只在服务端执行一次，在 middleware 之前。很早
@@ -653,7 +653,7 @@ Nuxt.js 会在运⾏应⽤之前执⾏插件函数，需要引⼊或设置 Vue �
 
 范例：添加请求拦截器附加 token，创建 plugins/interceptor.js
 
-```js
+```javascript
 // https://axios.nuxtjs.org/extend
 // add token to all requests if any
 export default function({ $axios, store, redirect }) {
@@ -694,7 +694,7 @@ plugins: ["@/plugins/interceptor"]
 
 ## 服务端渲染应⽤部署
 
-```bash
+```shell
 # 要先启动 api server。
 
 npm run build
@@ -709,7 +709,7 @@ Nuxt.js 可依据路由配置将应⽤静态化，使得我们可以将应⽤部
 
 需要 api server, render server both open!
 
-```bash
+```shell
 npm run generate
 ```
 
@@ -733,7 +733,7 @@ dist folder is under root, not .nuxt folder
 
 asyncData 最早，然后 fetch，最后 created 是 client 的事件。asyncData 获取服务端数据，为模板提供数据。fetch 也获取服务端数据，然后 store commit。
 
-```js
+```javascript
 // asyncData is earlier than fetch
 async asyncData({ $axios, isDev, route, store, env, params, query, req, res, redirect, error }) {
   // $axios is exposed due to nuxt modules: ['@nuxtjs/axios']

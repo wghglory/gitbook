@@ -13,7 +13,7 @@
 
 ### package.json
 
-```json
+```javascripton
 {
   "name": "basic-config",
   "version": "1.0.0",
@@ -103,7 +103,7 @@
 
 ### Useful Commands
 
-```bash
+```shell
 npm run # show a log of the available commands in package.json
 npm run test
 npm test -s  # 简略结果 short, small output
@@ -112,20 +112,20 @@ npm t
 npm start
 ```
 
-```bash
+```shell
 npm install mocha should --save-dev
 ```
 
 在运行 `npm version` 之前，最好把 git repository 远程连接配置好。这样 `npm version patch` 时，package.json version 和 `git tag` 会同步都更新。再通过下面命令把 tag 推送到远端。
 
-```bash
+```shell
 npm version major/minor/patch  # increments both package.json and sets a tag in git repository if package.json indicates repository
 git push --tags origin HEAD:master
 ```
 
 **See installed tools**:
 
-```bash
+```shell
 ls node_modules/.bin
 ```
 

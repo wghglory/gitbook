@@ -1,13 +1,13 @@
 # Fundamental / NgModules / Providers + Singleton services
 
-```bash
+```shell
 ng generate service user
 ng g s user
 ```
 
 By default, this decorator has a `providedIn` property, which creates a provider for the service
 
-```ts
+```typescript
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -28,7 +28,7 @@ It's also possible to specify that a service should be provided in a particular 
 
 1.  Preferred way: enables tree-shaking of the service if nothing injects it.
 
-    ```ts
+    ```typescript
     // user.service.ts
     import { Injectable } from '@angular/core';
     import { UserModule } from './user.module';
@@ -41,7 +41,7 @@ It's also possible to specify that a service should be provided in a particular 
 
 1.  Another way: No tree-shaking
 
-    ```ts
+    ```typescript
     import { NgModule } from '@angular/core';
 
     import { UserService } from './user.service';
@@ -66,7 +66,7 @@ When the Angular router lazy-loads a module, it creates a new injector. This inj
 
 when you want to eagerly load a module that needs a service all to itself. Providing a service in the component limits the service only to that component (other components in the same module can’t access it.)
 
-```ts
+```typescript
 @Component({
   /* . . . */
   providers: [UserService]

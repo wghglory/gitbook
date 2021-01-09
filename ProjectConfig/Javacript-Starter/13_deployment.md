@@ -28,11 +28,11 @@ The repository is at <https://github.com/wghglory/javascript-starter-kit-api>. S
 
 package.json:
 
-```json
+```javascripton
 "deploy": "surge ./dist"
 ```
 
-```bash
+```shell
 npm run build -s
 npm run deploy
 ```

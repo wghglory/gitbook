@@ -6,7 +6,7 @@ Cookie 原理：第一次访问服务器 Set-Cookie 负责在 response header �
 
 session 就是通过 cookie 方式实现的：
 
-```js
+```javascript
 const http = require('http');
 
 const session = {};
@@ -69,7 +69,7 @@ http
 
 ### a. Koa 中使用 koa-session
 
-```js
+```javascript
 /**
  * koa server 中使用 koa-session
  */
@@ -112,7 +112,7 @@ app.listen(3000);
 
 demo2: koa packages
 
-```js
+```javascript
 /**
  * koa server 中使用 koa-session
  */
@@ -263,7 +263,7 @@ index.html
 
 redis usage:
 
-```js
+```javascript
 /**
  * redis install and cli: https://redis.io/topics/quickstart
  * node redis: https://github.com/NodeRedis/node_redis
@@ -279,7 +279,7 @@ client.get('name', function(err, v) {
 
 koa-redis demo:
 
-```js
+```javascript
 /**
  * koa-redis, koa-session, co-redis together
  */
@@ -348,7 +348,7 @@ Token 原理:
 
 server.js
 
-```js
+```javascript
 /**
  * koa server 中使用 jwt
  * reference: https://github.com/koajs/jwt
@@ -392,7 +392,7 @@ app.listen(3000);
 
 auth middleware:
 
-```js
+```javascript
 // Custom 401 handling if you don't want to expose koa-jwt errors to users
 module.exports = (ctx, next) => {
   return next().catch((err) => {
@@ -411,7 +411,7 @@ module.exports = (ctx, next) => {
 
 error-handler middleware:
 
-```js
+```javascript
 module.exports = async (ctx, next) => {
   try {
     await next();
@@ -425,7 +425,7 @@ module.exports = async (ctx, next) => {
 
 routes/auth.js
 
-```js
+```javascript
 const router = require('koa-router')();
 const jwt = require('jsonwebtoken');
 
@@ -470,7 +470,7 @@ module.exports = function(app) {
 
 routes/index.js
 
-```js
+```javascript
 module.exports = (app) => {
   // add routes like this
   require('./auth')(app);
@@ -599,7 +599,7 @@ decode token 包涵三部分
 
     > `alg`属性表示签名的算法（algorithm），默认是 HMAC SHA256（写成 HS256）；`typ`属性表示这个令牌（token）类型（type），JWT 令牌统一写为`JWT`。最后，将 JSON 对象使用 Base64URL 算法转成字符串。
 
-    ```json
+    ```javascripton
     {
       "alg": "HS256",
       "typ": "JWT"
@@ -622,7 +622,7 @@ decode token 包涵三部分
 
     自定义字段:
 
-    ```json
+    ```javascripton
     {
       "sub": "1234567890",
       "name": "John Doe",
@@ -632,7 +632,7 @@ decode token 包涵三部分
 
     例如我们可以传：
 
-    ```json
+    ```javascripton
     {
       "data": "test",
       "exp": 1569893010,
@@ -648,7 +648,7 @@ decode token 包涵三部分
     >
     > 算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（`.`）分隔，就可返回给用户。
 
-    ```js
+    ```javascript
     HMACSHA256(
       base64UrlEncode(header) + "." +
       base64UrlEncode(payload),
@@ -712,7 +712,7 @@ OAuth 登录
 
 index.js
 
-```js
+```javascript
 /**
  * github oauth app: https://github.com/settings/applications/1144383
  */

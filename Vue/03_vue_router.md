@@ -2,13 +2,13 @@
 
 ## 安装
 
-```bash
+```shell
 vue add router
 ```
 
 ## 配置
 
-```js
+```javascript
 // router.js
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -32,7 +32,7 @@ export default new Router({
 
 ### 指定路由器
 
-```js
+```javascript
 // main.js
 new Vue({ router, render: (h) => h(App) }).$mount('#app');
 ```
@@ -53,7 +53,7 @@ new Vue({ router, render: (h) => h(App) }).$mount('#app');
 
 应⽤界⾯通常由多层嵌套的组件组合⽽成。同样地，URL 中各段动态路径也按某种结构对应嵌套的各层 组件。 配置嵌套路由，router.js
 
-```json
+```javascripton
 {
   "path": "/",
   "component": Home,
@@ -76,7 +76,7 @@ new Vue({ router, render: (h) => h(App) }).$mount('#app');
 
 我们经常需要把某种模式匹配到的所有路由，全都映射到同⼀个组件。 详情⻚路由配置，router.js
 
-```json
+```javascripton
 {
   "path": "/",
   "component": Home,
@@ -108,13 +108,13 @@ new Vue({ router, render: (h) => h(App) }).$mount('#app');
 
 传递路由组件参数：
 
-```json
+```javascripton
 { "path": "detail/:id", "component": Detail, "props": true }
 ```
 
 组件中以属性⽅式获取：
 
-```js
+```javascript
 export default { props: ['id'] };
 ```
 
@@ -124,7 +124,7 @@ export default { props: ['id'] };
 
 ### 全局守卫，router.js
 
-```js
+```javascript
 // 路由配置
 {
   path: "/about",
@@ -151,7 +151,7 @@ router.beforeEach((to, from, next) => {
 
 ### 路由独享守卫
 
-```js
+```javascript
 beforeEnter(to, from, next) {
 	// 路由内部知道⾃⼰需要认证
 	if (!window.isLogin) {
@@ -164,7 +164,7 @@ beforeEnter(to, from, next) {
 
 ### 组件内的守卫
 
-```js
+```javascript
 export default {
   beforeRouteEnter(to, from, next) {},
   beforeRouteUpdate(to, from, next) {},
@@ -176,7 +176,7 @@ export default {
 
 利⽤\$router.addRoutes()可以实现动态路由添加，常⽤于⽤户权限控制。
 
-```js
+```javascript
 // 返回数据可能是这样的
 [
   {
@@ -211,7 +211,7 @@ function mapComponent(route) {
 
 利⽤\$route.matched 可得到路由匹配数组，按顺序解析可得路由层次关系。
 
-```js
+```javascript
 // Breadcrumb.vue
 watch: {
   $route() {
@@ -226,7 +226,7 @@ watch: {
 
 ## Vue Router 源码实现原理
 
-```js
+```javascript
 // router-my.js
 /**
  * vue router 源码实现
@@ -273,7 +273,7 @@ const router = new Router({
 export default router;
 ```
 
-```js
+```javascript
 // vue-router-my.js
 
 let Vue;

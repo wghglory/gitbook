@@ -2,7 +2,7 @@
 
 Bad code: nested subscribe, actually it makes parallel calls.
 
-```ts
+```typescript
 this.form.valueChanges
   .subscribe(
     formValue => {
@@ -60,7 +60,7 @@ While switchMap wouldn’t work for our current scenario, it will work for other
 
 As you can see in the console `getData` is only logging once with all the params. This saved us 3 API calls.
 
-```ts
+```typescript
 const searchText$: Observable<string> = fromEvent<any>(this.input.nativeElement, 'keyup').pipe(
   map((event) => event.target.value),
   startWith(''),
@@ -88,7 +88,7 @@ The last example is concatMap. As you might expect, concatMap also subscribes to
 
 The getData function has a random delay between 1 and 10000 milliseconds. If you check the logs you can see that the map and mergeMap operators will log whatever value comes back and don’t follow the original order. On the other hand the concatMap logs the values in the same value as they were started.
 
-```ts
+```typescript
 // form value new change will always be sent after old value
 this.form.valueChanges
     .pipe(
@@ -104,7 +104,7 @@ this.form.valueChanges
 
 Clicking save button too many times before a request is completed, only when previous request is done, the further requests won't be ignored.
 
-```ts
+```typescript
 fromEvent(this.saveButton.nativeElement, 'click')
   .pipe(exhaustMap(() => this.saveCourse(this.form.value)))
   .subscribe();

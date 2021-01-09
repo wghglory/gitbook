@@ -18,7 +18,7 @@ Nginx 主要以**事件驱动**的方式编写，有兴趣可以移步[这里](h
 
 由于我是用 Mac 办公的，所以安装`Nginx`是采用`brew`进行的，在`终端`输入下面命令安装好`Nginx`：
 
-```bash
+```shell
 # 强烈建议每次 brew 安装软件的时候先执行 rew update 保持软件依赖包都是最新的
 brew install nginx
 ```
@@ -48,7 +48,7 @@ vi /usr/local/etc/nginx/nginx.conf
 
 修改完上面`配置信息`之后，执行下面命令检查配置文件语法是否有误并且重新加载配置：
 
-```bash
+```shell
 nginx -t && nginx -s reload
 ```
 
@@ -58,7 +58,7 @@ nginx -t && nginx -s reload
 
 更多关于`Nginx`命令的帮助可以输入`nginx -h`查看，若想每次开机自动开启`Nginx`，在`终端`执行下面命令即可：
 
-```bash
+```shell
 ln -sfv /usr/local/opt/nginx/*.plist ~/Library/LaunchAgents
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 ```
@@ -139,7 +139,7 @@ http {
 
 比如我在`/usr/local/etc/nginx/sites-enabled/`下面增加了两个文件，用来配置普通的`HTTP`服务还有`HTTPS`服务：
 
-```bash
+```shell
 touch /usr/local/etc/nginx/sites-enabled/default
 touch /usr/local/etc/nginx/sites-enabled/default-ssl
 ```

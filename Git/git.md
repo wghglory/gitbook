@@ -2,7 +2,7 @@
 
 ## Easy Commands
 
-```bash
+```shell
 git init
 git status
 # git status 显示乱码 git config --global core.quotepath false
@@ -30,7 +30,7 @@ git reflog
 
 ## Delete file
 
-```bash
+```shell
 # 从 git 仓库与工作区中删除指定文件
 git rm 文件
 
@@ -43,7 +43,7 @@ git commit -m 修正
 
 ## 撤销重置
 
-```bash
+```shell
 # 从暂存区中撤销一个指定文件
 git reset HEAD 文件名称
 
@@ -56,7 +56,7 @@ git reset --hard commitID
 
 ## 比较
 
-```bash
+```shell
 # 比较 工作区和暂存区
 git diff 文件
 # 比较 暂存区和仓库
@@ -71,7 +71,7 @@ git diff commitId1 commitId2
 
 ### See all branches
 
-```bash
+```shell
 git branch
 ```
 
@@ -85,25 +85,25 @@ Which will show:
 
 ### Create a branch
 
-```bash
+```shell
 git branch 分支名称
 ```
 
 ### Switch to branch
 
-```bash
+```shell
 git checkout 分支名称
 ```
 
 ### Create the branch and switch in this branch
 
-```bash
+```shell
 git checkout -b 分支名称
 ```
 
 ### Push the branch on github
 
-```bash
+```shell
 git push origin 分支名称
 ```
 
@@ -111,25 +111,25 @@ git push origin 分支名称
 
 ### Add a new remote for your branch
 
-```bash
+```shell
 git remote add [origin]
 ```
 
 ### Push changes from your commit into your branch
 
-```bash
+```shell
 git push origin [name_of_your_branch]
 ```
 
 ### Update your branch when the original branch from an official repository has been updated
 
-```bash
+```shell
 git fetch [origin]
 ```
 
 ### Merge
 
-```bash
+```shell
 # B 合并到 A，需要切换到 A 分支
 git merge 被合并分支
 
@@ -141,14 +141,14 @@ git branch --no-merged
 
 ### Delete branch
 
-```bash
+```shell
 git branch -d 分支名称
 git branch -D 分支名称 # force the deletion
 ```
 
 Delete the branch on github :
 
-```bash
+```shell
 git push origin :分支名称
 # OR
 git push origin --delete 分支名称
@@ -156,7 +156,7 @@ git push origin --delete 分支名称
 
 ## Config
 
-```bash
+```shell
 brew install git
 
 git config --get-regexp user  # user.name, user.email
@@ -175,7 +175,7 @@ git config user.name
 
 ## 错误 commit 提交到了 remote 想要 force Push
 
-```bash
+```shell
 git log # 查看想回到第几个
 git rebase -i HEAD~3  #  pick 其中一个，其余删除或者加 # comment 掉, s to squash
 ctrl + x  # exit

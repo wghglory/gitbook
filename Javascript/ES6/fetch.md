@@ -7,7 +7,7 @@
 
 ## get request
 
-```js
+```javascript
 fetch(url)
   .then((res) => {
     if (res.ok) {
@@ -32,7 +32,7 @@ fetch(url)
 
 ## post request
 
-```js
+```javascript
 const data = new FormData();
 data.append('foo', 'bar');
 data.append('name', 'derek');
@@ -53,7 +53,7 @@ fetch(url, {
   .catch(console.error);
 ```
 
-```js
+```javascript
 var p = fetch(url, {
   method: 'POST',
   body: data,

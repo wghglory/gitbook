@@ -2,7 +2,7 @@
 
 [Promise visualization](http://bevacqua.github.io/promisees/#)
 
-```js
+```javascript
 function example() {
   // do some work
   if (successful) {
@@ -15,7 +15,7 @@ function example() {
 
 Promise constructor:
 
-```js
+```javascript
 new Promise(function(resolve, reject) {
   // do some work
   if (successful) {
@@ -28,7 +28,7 @@ new Promise(function(resolve, reject) {
 
 If your promise only has resolve, below is the same:
 
-```js
+```javascript
 new Promise(function(resolve, reject) {
   resolve(someValue);
 });
@@ -38,7 +38,7 @@ Promise.resolve(someValue);
 
 ## A real demo
 
-```js
+```javascript
 // sync
 navigator.geolocation.getCurrentPosition(
   function(position) {

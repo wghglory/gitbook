@@ -11,7 +11,7 @@
 
 ### Simple function decorator
 
-```ts
+```typescript
 function uiElement(target: Function) {
   // do ui stuff
 }
@@ -29,7 +29,7 @@ class ContactForm {
 
 ### decorator factory
 
-```ts
+```typescript
 function uiElement(element: string) {
   return function(target: Function) {
     console.log(`Creating new element: ${element}`);
@@ -49,7 +49,7 @@ class ContactForm {
 - Constructor is replaced if there is a return value (`TFunction`)
 - Return void if constructor is not to be replaced
 
-```ts
+```typescript
 <TFunction extends Function>(target: TFunction) => TFunction | void;
 ```
 
@@ -60,7 +60,7 @@ class ContactForm {
 - First parameter `target` is either constructor function or class prototype
 - Second parameter `propertyKey` is the name of the decorated member
 
-```ts
+```typescript
 function MyPropertyDecorator(target: Object, propertyKey: string) {
   // do decorator stuff
 }
@@ -72,7 +72,7 @@ function MyPropertyDecorator(target: Object, propertyKey: string) {
 - Second parameter is the name of the decorated member
 - Third parameter is the ordinal index of the decorated parameter
 
-```ts
+```typescript
 function MyParameterDecorator(target: Object, propertyKey: string, parameterIndex: number) {
   // do decorator stuff
 }
@@ -82,7 +82,7 @@ function MyParameterDecorator(target: Object, propertyKey: string, parameterInde
 
 - Object that describes a property and how it can be manipulated
 
-```ts
+```typescript
 interface PropertyDescriptor {
   configurable?: boolean;
   enumerable?: boolean;
@@ -99,7 +99,7 @@ interface PropertyDescriptor {
 - Second parameter is the name of the decorated member
 - Third parameter is the property descriptor of the decorated member
 
-```ts
+```typescript
 function MyMethodDecorator(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
   // do decorator stuff
 }
@@ -109,7 +109,7 @@ function MyMethodDecorator(target: Object, propertyKey: string, descriptor: Prop
 
 demo:
 
-```ts
+```typescript
 // decorators:
 
 export function sealed(name: string) {

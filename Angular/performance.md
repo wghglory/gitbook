@@ -33,7 +33,7 @@ By default, when you use `ngFor` without `trackBy`, `ngFor` tracks array of obje
 
 ## 3. Avoid Computing Values in the Template
 
-```ts
+```typescript
 @Component({
   selector: 'skills',
   template: `
@@ -60,7 +60,7 @@ Solution: If the value is not changed dynamically at runtime, a better solution 
 - Use pure pipes — Angular executes a pure pipe only when it detects a pure change to the input value. (Angular caches the results of previous executions)
 - Creates a new property and set the value once, for example:
 
-```ts
+```typescript
 this.skills = this.skills.map(skill => ({ ...skill, percentage: calcSomething(skill) });
 ```
 
@@ -72,7 +72,7 @@ Updating the user interface whenever new data arrives can be expensive. A more e
 
 We can do that by detaching the component’s change detector and conducting a local check every x seconds.
 
-```ts
+```typescript
 @Component({
   selector: 'giant-list',
   template: `
@@ -91,7 +91,7 @@ class GiantList {
 
 Advanced example:
 
-```ts
+```typescript
 import {
   Component,
   Input,
@@ -147,7 +147,7 @@ export class InstructorListComponent implements AfterViewInit {
 </ul>
 ```
 
-```ts
+```typescript
 // app.component.ts
 import { Component } from '@angular/core';
 
@@ -174,7 +174,7 @@ export class AppComponent {
 }
 ```
 
-```ts
+```typescript
 // list-service.ts
 import { Injectable } from '@angular/core';
 
@@ -205,7 +205,7 @@ Change detection process cannot complete until all callbacks and their subsequen
 
 ## 7. Input setters and `OnChanges`
 
-```ts
+```typescript
 export class ChildComponent implements OnChanges {
   @Input()
   set incomingValue(val) {
@@ -225,7 +225,7 @@ Generally, problematic situations are created in the callbacks of the input sett
 
 It is usually recommended to compute any state or UI changes needed as part of the event propagation phase of the change detection cycle. However, some situations may still occur that encourage the use of OnChanges to compute additional state needed locally within a component. Consider the filtered list example: For the sake of argument, assume that the current filter criteria and the unfiltered list are only available as inputs, and the filtered results must be computed immediately prior to display.
 
-```ts
+```typescript
 export class ChildComponent implements OnChanges {
   @Input() instructorList = [];
   @Input() searchTerm = '';
@@ -244,7 +244,7 @@ export class ChildComponent implements OnChanges {
 
 This could be achieved by utilizing `OnChanges`. However, doing so would cause every input change to trigger a recalculation of the filtered list. If another input were added to the component, there would be a wasted calculation every time the new input value is changed.
 
-```ts
+```typescript
 export class ChildComponent implements OnChanges {
   @Input() instructorList = [];
   @Input() searchTerm = '';
@@ -267,7 +267,7 @@ export class ChildComponent implements OnChanges {
 
 `Input setters` serve a similar purpose as `OnChanges`, however they only fire in response to updates to a corresponding input. Generally speaking, **the use of input setters will lead to more performant change handlers** as there is no need for identifying which input changed, nor will it be called more often than is necessary. Although the granularity of input setters make for a better default choice, it is still possible to populate the callbacks with expensive operations, and they should be treated with the same level of care as OnChanges.
 
-```ts
+```typescript
 export class ChildComponent implements OnChanges {
   @Input()
   set instructorList(val) {

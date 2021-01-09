@@ -9,7 +9,7 @@ I want to create a address component as a child component. The parent component,
 
 1.  child component: `events-address.component.ts`
 
-    ```ts
+    ```typescript
     //child component, talk with parent events-list.component.ts
     import { Component, Input } from '@angular/core';
 
@@ -40,7 +40,7 @@ I want to create a address component as a child component. The parent component,
 
 1.  import child component to app.module
 
-    ```ts
+    ```typescript
     import { EventsAddressComponent } from './events/events-address.component'
 
     @NgModule({
@@ -57,7 +57,7 @@ I want to create a address component as a child component. The parent component,
     - define buttonClick
     - the EventEmitter variable emit any data from child component
 
-    ```ts
+    ```typescript
     //child component, talk with parent events-list.component.ts
     import { Component, Output, EventEmitter } from '@angular/core';
 
@@ -84,7 +84,7 @@ I want to create a address component as a child component. The parent component,
 
     - define random function in parent component class
 
-    ```ts
+    ```typescript
     export class EventsListComponent {
       clickWithAnyName(dataFromChild) {
         alert(dataFromChild);
@@ -96,7 +96,7 @@ I want to create a address component as a child component. The parent component,
 
 1.  child component `events-address.component.ts` define public property and method
 
-    ```ts
+    ```typescript
     //child component, talk with parent events-list.component.ts
     @Component({
       selector: 'events-address',

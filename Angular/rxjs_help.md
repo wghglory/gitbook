@@ -1,6 +1,6 @@
 # Rxjs helpful functions
 
-```ts
+```typescript
 // retry.ts
 import { Observable } from 'rxjs/Observable';
 import { delay, retryWhen, scan } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export function retry<T>(count: number, wait: number): (source: Observable<T>) =
 }
 ```
 
-```ts
+```typescript
 // demo
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { of } from 'rxjs/observable/of';
@@ -49,7 +49,7 @@ const name = ajax.getJSON<{ name: string }>('/api/employees/alice').pipe(
 
 <https://github.com/ReactiveX/rxjs-tslint>:
 
-```json
+```javascripton
 // tslint.json
 {
   "rulesDirectory": ["node_modules/rxjs-tslint"],

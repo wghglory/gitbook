@@ -15,28 +15,28 @@ Sass 编译方式大概有三种：通过命令行编译（基础方法）、GUI
 
     - 单文件转换命令：
 
-      ```bash
+      ```shell
       sass style.scss style.css
       #把名为 style 的 Sass 文件转换为 CSS文件。
       ```
 
     - 单文件监听命令（添加`--watch`命令）：
 
-      ```bash
+      ```shell
       sass --watch style.scss:style.css
       #`--watch`参数加上之后，可以监测style这个文件的变化，更新保存之后自动编译。
       ```
 
     - 多文件（文件夹）监听命令
 
-      ```bash
+      ```shell
       sass --watch sass/main:dist/css
       #监视 sass 目录下 main 文件夹中的所有 Sass文件，并自动编译为CSS文件之后，放到dist/css目录下。
       ```
 
     - 逆向操作，css 文件转换为 sass/scs s 文件
 
-      ```bash
+      ```shell
       sass-convert style.css style.sass
       sass-convert style.css style.scss
       ```

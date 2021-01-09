@@ -7,7 +7,7 @@
 
 做⼀些基础配置：指定应⽤上下⽂、端⼝号、主⻚ title
 
-```js
+```javascript
 // vue.config.js
 const port = 7070;
 const title = 'vue in practice';
@@ -33,11 +33,11 @@ module.exports = {
 
 使⽤ icon 前先安装依赖：svg-sprite-loader
 
-```bash
+```shell
 npm i svg-sprite-loader -D
 ```
 
-```bash
+```shell
 vue inspect -h
 Usage: inspect [options] [paths...]
 
@@ -57,7 +57,7 @@ Options:
 
 vue.conﬁg.js
 
-```js
+```javascript
   chainWebpack(config) {
     // 配置svg规则排除icons⽬录中svg⽂件处理
     config.module.rule('svg').exclude.add(resolve('src/icons'));
@@ -77,7 +77,7 @@ vue.conﬁg.js
 
 检查配置：
 
-```bash
+```shell
 vue inspect --rule svg
 
 /* config.module.rule('svg') */
@@ -99,7 +99,7 @@ vue inspect --rule svg
 
 图标⾃动导⼊
 
-```js
+```javascript
 /* 图标自动导入, note main.js needs import './icons'; */
 import Vue from 'vue';
 import Icon from '@/components/Icon.vue';
@@ -166,7 +166,7 @@ export default {
 
 注册:
 
-```js
+```javascript
 // icons/index.js
 /* 图标自动导入, note main.js needs import './icons'; */
 import Vue from 'vue';

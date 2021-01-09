@@ -54,7 +54,7 @@ React Router’s Route component passes a few props to the component it’s link
 
 ## 基本使用
 
-```jsx
+```javascriptx
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -89,7 +89,7 @@ export default App;
 
 Nav.js
 
-```jsx
+```javascriptx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -122,7 +122,7 @@ export default Nav;
 
 返回当前 component 的 url: `this.props.match.url`. Link 组件中 to 定义 pathname 和 customParam
 
-```jsx
+```javascriptx
 import { Link } from 'react-router-dom';
 
 <Link
@@ -140,7 +140,7 @@ import { Link } from 'react-router-dom';
 
 通过 `location.customParam` 获得参数，并用 `queryString` 转换数据
 
-```jsx
+```javascriptx
 import queryString from 'query-string';
 
 componentDidMount() {

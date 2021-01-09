@@ -4,7 +4,7 @@
 
 jest.config.js
 
-```js
+```javascript
 module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,vue}'],
@@ -47,7 +47,7 @@ export default {
 
 tests/unit/test.spec.js
 
-```js
+```javascript
 // 导⼊ Vue.js 和组件，进⾏测试
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
@@ -91,7 +91,7 @@ describe('TestComp', () => {
 
 e2e/specs/test.js
 
-```js
+```javascript
 // 借⽤浏览器的能⼒，站在⽤户测试⼈员的⻆度，输⼊框，点击按钮等，完全模拟⽤户，这个和具体的框 架关系不⼤，完全模拟浏览器⾏为
 // https://docs.cypress.io/api/introduction/api.html
 

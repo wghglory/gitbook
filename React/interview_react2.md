@@ -132,7 +132,7 @@ It’s not guaranteed that _props.children_ will be an array.
 
 Take this code for example:
 
-```jsx
+```javascriptx
 <Parent>
   <h1>Welcome.</h1>
 </Parent>
@@ -142,7 +142,7 @@ Inside of Parent if we were to try to map over children using `props.children.ma
 
 React only makes `props.children` an array if there are more than one child elements, like this:
 
-```jsx
+```javascriptx
 <Parent>
   <h1>Welcome.</h1>
   <h2>props.children will now be an array</h2>

@@ -86,7 +86,7 @@ Docker Compose 是一个工具，这个工具可以通过一个 yml 文件定义
 
 1. 拉取官⽅镜像
 
-```bash
+```shell
 # 拉取官⽅镜像
 docker pull nginx
 
@@ -133,7 +133,7 @@ FROM nginx:latest
 RUN echo '<h1>Hello, Derek!</h1>' > /usr/share/nginx/html/index.html
 ```
 
-```bash
+```shell
 # 定制镜像
 docker build -t mynginx .
 
@@ -147,7 +147,7 @@ docker run -p 3002:80 -d mynginx
 
 pm2 会读取 process.yml 进行多核处理
 
-```bash
+```shell
 cd quickstart/pm2
 
 # 定制镜像
@@ -163,7 +163,7 @@ Review `quickstart/server` folder. 手动启动 mongodb，然后启动 node app�
 
 方法一：
 
-```bash
+```shell
  # 通过 mongo 启动一个叫 docker-mongo 的容器
 docker run -it -p 27017:27017 --name docker-mongo mongo
 
@@ -181,7 +181,7 @@ docker run -it -p 3000:3000 --name mongo-server --link=docker-mongo:docker-mongo
 
 **方式二**：推荐！
 
-```bash
+```shell
 docker network create webapp-network
 
 # container name must equal to nodeApp mongo connection string
@@ -192,7 +192,7 @@ docker run -lt --network webapp-network -p 3000:3000 --name mongo-server myserve
 
 ### Docker-Compose 自动启动
 
-```bash
+```shell
 # 强制重新构建并启
 # --force-recreate 强制重建容器
 # --build 强制编译

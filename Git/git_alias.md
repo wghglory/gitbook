@@ -1,6 +1,6 @@
 # Git Alias
 
-```bash
+```shell
 git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit
@@ -14,12 +14,12 @@ git branch | grep -ve " master$" | xargs git branch -D  # This will remove branc
 git branch | egrep -v "(master|\*)" | xargs git branch -D  # deletes everything except master and the branch I am currently in
 ```
 
-```bash
+```shell
 git config --global alias.unstage 'reset HEAD --'
 # `git unstage fileA` will perform like `git reset HEAD -- fileA`
 ```
 
-```bash
+```shell
 git config --global alias.last 'log -1 HEAD'  # git last
 ```
 

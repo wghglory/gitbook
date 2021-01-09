@@ -71,7 +71,7 @@ This code is concerned with creating elements, setting elements, and adding them
 
 Now let’s take a look at how we can construct a DOM declaratively using a React component:
 
-```jsx
+```javascriptx
 const Welcome = () => (
   <div id="welcome">
     <h1>Hello World</h1>

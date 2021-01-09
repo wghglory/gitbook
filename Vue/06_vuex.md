@@ -10,7 +10,7 @@ Vue 中多个视图依赖于同⼀状态时，视图间传参和状态同步⽐�
 
 ## 整合 vuex
 
-```bash
+```shell
 vue add vuex
 ```
 
@@ -25,7 +25,7 @@ vue add vuex
 
 state 保存数据状态，mutations ⽤于修改状态(like reducer)
 
-```js
+```javascript
 // store.js
 
 export default new Vuex.Store({
@@ -40,7 +40,7 @@ export default new Vuex.Store({
 
 使⽤状态，vuex/index.vue, commit like dispatch an action
 
-```js
+```javascript
 <template>
   <div>
     <div>冲啊，⼿榴弹扔了{{ $store.state.count }}个</div>
@@ -63,7 +63,7 @@ export default {
 
 从 state 派⽣出新状态，类似计算属性
 
-```js
+```javascript
 export default new Vuex.Store({
   getters: {
     score(state) {
@@ -83,7 +83,7 @@ export default new Vuex.Store({
 
 复杂业务逻辑，类似于 controller, effect。或者多个 commit 一起执行
 
-```js
+```javascript
 export default new Vuex.Store({
   actions: {
     incrementAsync({ commit }) {
@@ -97,7 +97,7 @@ export default new Vuex.Store({
 
 使⽤ actions：
 
-```js
+```javascript
 <template>
   <div id="app">
     <div>冲啊，⼿榴弹扔了{{ $store.state.count }}个</div>
@@ -120,7 +120,7 @@ export default {
 
 按模块化的⽅式编写代码，store.js
 
-```js
+```javascript
 const count = {
   namespaced: true,
   // ...
@@ -131,7 +131,7 @@ export default new Vuex.Store({ modules: { a: count } });
 
 使⽤变化，components/vuex/module.vue
 
-```js
+```javascript
 <template>
   <div id="app">
     <div>冲啊，⼿榴弹扔了{{ $store.state.a.count }}个</div>
@@ -158,7 +158,7 @@ export default {
 
 初始化：Store 声明、install 实现，，vuex-my.js：
 
-```js
+```javascript
 let Vue;
 
 function install(_Vue) {
@@ -194,7 +194,7 @@ export default { Store, install };
 
 ### 实现 actions
 
-```js
+```javascript
 class Store {
   constructor(options = {}) {
     this.actions = options.actions;
@@ -208,7 +208,7 @@ class Store {
 
 ### 实现 getters
 
-```js
+```javascript
 class Store {
   constructor(options = {}) {
     options.getters && this.handleGetters(options.getters);

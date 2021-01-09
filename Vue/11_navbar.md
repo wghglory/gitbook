@@ -8,7 +8,7 @@
 
 数据准备，添加 getter ⽅法，store/index.js
 
-```js
+```javascript
 getters: { permission_routes: state => state.permission.routes, }
 ```
 
