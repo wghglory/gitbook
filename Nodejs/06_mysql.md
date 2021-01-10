@@ -1,4 +1,134 @@
-# Nodejs 持久化
+# Mysql
+
+## mysql 数据库安装
+
+- mac 下安装 地址：<https://dev.mysql.com/downloads/mysql>
+- Homebrew: <https://formulae.brew.sh/formula/mysql#default>
+
+  - We've installed your MySQL database without a root password. To secure it run: `mysql_secure_installation`
+  - MySQL is configured to only allow connections from localhost by default
+  - To connect run: `mysql -uroot`
+  - To have launchd start mysql now and restart at login: `brew services start mysql` Or, if you don't want/need a background service you can just run: `mysql.server start`
+
+- 设置密码
+
+  ```shell
+  cd /usr/local/mysql/bin/
+  ./mysql -u root -p
+  set password for 用户名@localhost = password('新密码');
+  ```
+
+- 通过 Navicat 连接
+
+## mysql 操作
+
+### 进入 mysql 命令环境
+
+- Mysql -u 用户名 -p
+- 命令用 “;” 隔开
+  - 显示 mysql 版本: `SELECT VERSION(); SELECT USER()`; 关键字大写；
+
+### 数据库操作
+
+- 创建数据库 CREATE DATABASE 数据库名;
+- 显示数据库 SHOW DATABASES;
+- 查看数据库信息 SHOW CREATE DATABASE 数据库名
+- 修改数据库编码格式 ALTER DATABASE 数据库名 CHARACTER SET = utf8
+- 删除数据库 DROP DATABASE 数据库名；
+
+### 数据库中的表操作
+
+- 选择数据库 USE 数据库名
+
+- 查看当前选择的数据库： SELECT DATABASE();
+
+- 创建数据表： CREATE TABLE tableName()；
+
+  ```sql
+  CREATE TABLE users(
+    username VARCHAR(20),
+    age TINYINT UNSIGNED,
+    salary FLOAT(8,2) UNSIGNED
+  )
+  ```
+
+- 查看数据表 SHOW TABLES;
+
+- 查看数据表的结构 SHOW COLUMNS FROM 表名； 查看数据表的结构；
+
+- 数据库中字段的类型
+
+- 数值类型
+
+  | 类型           | 大小                                          | 范围（有符号）                                                                                                                      | 范围（无符号）                                                    | 用途            |
+  | :------------- | :-------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- | :-------------- |
+  | TINYINT        | 1 字节                                        | (-128，127)                                                                                                                         | (0，255)                                                          | 小整数值        |
+  | SMALLINT       | 2 字节                                        | (-32 768，32 767)                                                                                                                   | (0，65 535)                                                       | 大整数值        |
+  | MEDIUMINT      | 3 字节                                        | (-8 388 608，8 388 607)                                                                                                             | (0，16 777 215)                                                   | 大整数值        |
+  | INT 或 INTEGER | 4 字节                                        | (-2 147 483 648，2 147 483 647)                                                                                                     | (0，4 294 967 295)                                                | 大整数值        |
+  | BIGINT         | 8 字节                                        | (-9,223,372,036,854,775,808，9 223 372 036 854 775 807)                                                                             | (0，18 446 744 073 709 551 615)                                   | 极大整数值      |
+  | FLOAT          | 4 字节                                        | (-3.402 823 466 E+38，-1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38)                                         | 0，(1.175 494 351 E-38，3.402 823 466 E+38)                       | 单精度 浮点数值 |
+  | DOUBLE         | 8 字节                                        | (-1.797 693 134 862 315 7 E+308，-2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308) | 0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308) | 双精度 浮点数值 |
+  | DECIMAL        | 对 DECIMAL(M,D) ，如果 M>D，为 M+2 否则为 D+2 | 依赖于 M 和 D 的值                                                                                                                  | 依赖于 M 和 D 的值                                                | 小数值          |
+
+- 时间日期类型
+
+  | 类型                                                  | 大小 (字节)     | 范围                                                                                   | 格式                | 用途             |
+  | :---------------------------------------------------- | :-------------- | :------------------------------------------------------------------------------------- | :------------------ | :--------------- |
+  | DATE                                                  | 3               | 1000-01-01/9999-12-31                                                                  | YYYY-MM-DD          | 日期值           |
+  | TIME                                                  | 3               | '-838:59:59'/'838:59:59'                                                               | HH:MM:SS            | 时间值或持续时间 |
+  | YEAR                                                  | 1               | 1901/2155                                                                              | YYYY                | 年份值           |
+  | DATETIME                                              | 8               | 1000-01-01 00:00:00/9999-12-31 23:59:59                                                | YYYY-MM-DD HH:MM:SS | 混合日期和时间值 |
+  | TIMESTAMP                                             | 4               | 1970-01-01 00:00:00/2038 结束时间是第 **2147483647** 秒，北京时间 \*\*2038-1-19 11:14: |
+  | 07\*\*，格林尼治时间 2038 年 1 月 19 日 凌晨 03:14:07 | YYYYMMDD HHMMSS | 混合日期和时间值，时间戳                                                               |
+
+- 字符串类型
+
+  | 类型       | 大小                 | 用途                            |
+  | :--------- | :------------------- | :------------------------------ |
+  | CHAR       | 0-255 字节           | 定长字符串                      |
+  | VARCHAR    | 0-65535 字节         | 变长字符串                      |
+  | TINYBLOB   | 0-255 字节           | 不超过 255 个字符的二进制字符串 |
+  | TINYTEXT   | 0-255 字节           | 短文本字符串                    |
+  | BLOB       | 0-65 535 字节        | 二进制形式的长文本数据          |
+  | TEXT       | 0-65 535 字节        | 长文本数据                      |
+  | MEDIUMBLOB | 0-16 777 215 字节    | 二进制形式的中等长度文本数据    |
+  | MEDIUMTEXT | 0-16 777 215 字节    | 中等长度文本数据                |
+  | LONGBLOB   | 0-4 294 967 295 字节 | 二进制形式的极大文本数据        |
+  | LONGTEXT   | 0-4 294 967 295 字节 | 极大文本数据                    |
+
+### 图形化操作
+
+- navicat 图形化
+- mysqlworkbeach
+
+### 数据库中的数据操作 curd 操作
+
+- 一、增
+
+  `INSERT INTO 表名 (字段一,字段二,字段三) VALUES ("值一","值二","值三");`
+
+- 二、删
+
+  `DELETE FROM 表名 WHERE 条件;`
+
+- 三、改
+
+  `UPDATE 表名 SET 设置的内容 WHERE 条件语句`
+
+- 四、查
+
+  `SELECT 字段 FROM 表名 WHERE 条件语句`
+
+- 五、条件语句
+
+  - AND
+  - OR
+  - ORDER BY (DESC/ASC)
+  - LIMIT
+  - LIKE
+  - JOIN ON
+  - AS
 
 ## ⽂件系统数据库
 
@@ -19,6 +149,7 @@ function get(key) {
     console.log(json[key]);
   });
 }
+
 function set(key, value) {
   fs.readFile(path.resolve(__dirname, './db.json'), (err, data) => {
     // 可能是空文件，则设置为空对象
@@ -249,28 +380,30 @@ const Fruit = sequelize.define(
 
 UUID-主键
 
-```javascript
-id: {
-  type: Sequelize.DataTypes.UUID,
-  defaultValue: Sequelize.DataTypes.UUIDV1,
-  primaryKey: true,
-},
+```
+{
+  "id": {
+    "type": Sequelize.DataTypes.UUID,
+    "defaultValue": Sequelize.DataTypes.UUIDV1,
+    "primaryKey": true
+  }
+}
 ```
 
 Getters & Setters：可⽤用于定义伪属性或映射到数据库字段的保护属性
 
-```javascript
+```
 // 定义为属性的⼀部分
 name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    get() {
-      const fname = this.getDataValue('name');
-      const price = this.getDataValue('price');
-      const stock = this.getDataValue('stock');
-      return `${fname}(价格：￥${price} 库存：${stock}kg)`;
-    },
+  type: Sequelize.STRING,
+  allowNull: false,
+  get() {
+    const fname = this.getDataValue('name');
+    const price = this.getDataValue('price');
+    const stock = this.getDataValue('stock');
+    return `${fname}(价格：￥${price} 库存：${stock}kg)`;
   },
+},
 ```
 
 ```javascripton
@@ -305,21 +438,27 @@ Fruit.findAll().then((fruits) => {
 
 校验：可以通过校验功能验证模型字段格式、内容，校验会在 create 、update 和 save 时自动运⾏
 
-```javascript
+```json
 {
-  price: {
-    validate: {
-      isFloat: { msg: '价格字段请输⼊入数字' },
-      min: { args: [0], msg: '价格字段必须⼤大于0' },
-    },
+  "price": {
+    "validate": {
+      "isFloat": {
+        "msg": "价格字段请输⼊入数字"
+      },
+      "min": {
+        "args": [0],
+        "msg": "价格字段必须⼤大于0"
+      }
+    }
   },
-  stock: {
-    validate: {
-      isNumeric: { msg: '库存字段请输⼊入数字' },
-    },
-  },
-};
-
+  "stock": {
+    "validate": {
+      "isNumeric": {
+        "msg": "库存字段请输⼊入数字"
+      }
+    }
+  }
+}
 ```
 
 模型扩展：可添加模型实例方法或类方法扩展模型

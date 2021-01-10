@@ -24,6 +24,7 @@
 - request 及 response 别名
 
   - koa 会把 ctx.request 上的属性直接挂载到 ctx 上如：
+
     - `ctx.header`
     - `ctx.headers`
     - `ctx.method`
@@ -32,6 +33,7 @@
     - `ctx.url=`
 
   - 同样也会把 ctx.response 上的属性直接挂载到 ctx 上如：
+
     - `ctx.body`
     - `ctx.body=`
     - `ctx.status`

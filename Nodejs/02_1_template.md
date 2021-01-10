@@ -54,13 +54,13 @@ app.listen(3000);
 
 views/common.pug:
 
-```html
+```pug
 h2 我是公共模板
 ```
 
 views/index.pug:
 
-```html
+```pug
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -148,7 +148,7 @@ app.use(
 
 - if
 
-  ```html
+  ```njk
   {% if hungry %}
     I am hungry
   {% elif tired %}
@@ -160,20 +160,20 @@ app.use(
 
 - for
 
-  ```html
+  ```njk
   <h1>Posts</h1>
   <ul>
-  {% for item in items %}
+    {% for item in items %}
     <li>{{ item.title }}</li>
-  {% else %}
+    {% else %}
     <li>This would display if the 'item' collection were empty</li>
-  {% endfor %}
+    {% endfor %}
   </ul>
   ```
 
 - 过滤器
 
-  ```html
+  ```njk
   {
     {
       foo | replace('foo', 'bar') | capitalize;
@@ -185,7 +185,7 @@ app.use(
 
   - 定义父类模板
 
-    ```html
+    ```njk
     <h1>我是公共模板</h1>
     <div class="leftContent">
         {% block left %}
@@ -202,7 +202,7 @@ app.use(
 
   - 继承父类模板
 
-    ```html
+    ```njk
     {% extends "common.html" %}
     {% block left %}
         我是左侧的内容1111
@@ -220,17 +220,17 @@ app.use(
 
   - 定义
 
-  ```html
+  ```njk
   {% macro pet(animalName,name="小白") %}
-      <div>
-          这里是一只{{animalName}};他的名字是{{name}}
-      </div>
+  <div>
+    这里是一只{{animalName}};他的名字是{{name}}
+  </div>
   {% endmacro %}
   ```
 
   - 调用
 
-  ```html
+  ```njk
   {
     {
       pet('狗狗');
@@ -250,18 +250,18 @@ app.use(
 
     - 定义
 
-    ```html
-        {% macro pet(animalName) %}
-        <p>这是一只{{animalName}}</p>
-        {% endmacro %}
-        {% macro book(bookName) %}
-        <p>这是一本书，名字叫{{bookName}}</p>
-        {% endmacro %}
+    ```njk
+    {% macro pet(animalName) %}
+    <p>这是一只{{animalName}}</p>
+    {% endmacro %}
+    {% macro book(bookName) %}
+    <p>这是一本书，名字叫{{bookName}}</p>
+    {% endmacro %}
     ```
 
     - 调用
 
-    ```html
+    ```njk
     {% import 'someModule.html' as fn %}
     {{fn.pet("狗狗")}}
     {{fn.book("nodejs从入门到实践")}}
@@ -327,16 +327,13 @@ views/footer.html:
 
 views/index.html:
 
-```html
+```njk
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible"
-      content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
   </head>
 
@@ -377,22 +374,18 @@ views/index.html:
 
     {% include 'footer.html' %}
   </body>
-
 </html>
 ```
 
 views/import.html:
 
-```html
+```njk
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible"
-      content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
   </head>
 
@@ -402,13 +395,12 @@ views/import.html:
     {{obj.pet("公")}}
     {{obj.person("男")}}
   </body>
-
 </html>
 ```
 
 views/parent.html:
 
-```html
+```njk
 <div>
   <p>我是父级模板</p>
 
@@ -416,46 +408,32 @@ views/parent.html:
   <p>左边内容</p>
   {% endblock %}
 
-  {% block right %}
-  右边内容
-  {% endblock %}
+  {% block right %} 右边内容 {% endblock %}
 
-  {% block someValue %}
-  一些数据
-  {% endblock %}
+  {% block someValue %} 一些数据 {% endblock %}
 </div>
 ```
 
 views/son1.html:
 
-```html
+```njk
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible"
-      content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
   </head>
 
   <body>
     {% extends 'parent.html' %}
 
-    {% block left %}
-    我是son1里左侧内容
-    {% endblock %}
+    {% block left %} 我是son1里左侧内容 {% endblock %}
 
-    {% block right %}
-    我是son1里右侧侧内容
-    {% endblock %}
+    {% block right %} 我是son1里右侧侧内容 {% endblock %}
 
-    {% block someValue %}
-    {{super()}}
-    {% endblock %}
+    {% block someValue %} {{super()}} {% endblock %}
   </body>
-
 </html>
 ```

@@ -156,8 +156,8 @@ fsp
 
 - 文件写入
 
- ```javascript
- let fs = require('fs');
+```javascript
+let fs = require('fs');
 //flag配置  "a":追加写入，"w":写入，"r":读取
 fs.writeFile('2.txt', '我是要写入的内容', { flag: 'w' }, (err) => {
   if (err) {
@@ -174,7 +174,7 @@ fs.writeFile('64kb', buffer, (err) => {
   }
   console.log('写入成功');
 });
- ```
+```
 
 - 文件删除
 
@@ -188,6 +188,7 @@ fs.unlink('2.txt', (err) => {
 ```
 
 - 复制文件
+
   ```javascript
   fs.copyFile('index.html', 'myindex.html', (err) => {
     if (err) {

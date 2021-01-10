@@ -97,4 +97,3 @@ nvm use node # 切换到最新版本
 nvm alias default node # 设置默认版本为最新版本
 nvm ls # 列出所有已经安装的版本
 ```
-
