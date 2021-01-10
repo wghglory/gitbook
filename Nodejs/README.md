@@ -1,6 +1,7 @@
 # TOC
 
 - [01_fundamental](01_fundamental.md)
+- [02_1_template](02_1_template.md)
 - [02_koa](02_koa.md)
 - [03_http](03_http.md)
 - [04_socket](04_socket.md)

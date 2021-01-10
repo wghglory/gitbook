@@ -1,19 +1,77 @@
-# Koa2 源码解读
+# [Koa](https://github.com/koajs/koa) and pug
 
-## 概述
+- <https://github.com/wghglory/node-webserver>
 
-Koa 是⼀个新的 web 框架， 致⼒于成为 web 应⽤和 API 开发领域中的⼀个更⼩、更富有 表现⼒、更健壮的基⽯。
+## Application 对象
 
-### 特点
+- application 是 koa 的实例，简写 app
+- app.use 将给定的中间件方法添加到此应用程序，分为同步和异步，异步：通过 es7 中的 async 和 await 来处理
+- app.listen 设置服务器端口
+- app.on 错误处理
 
-- 轻量，⽆捆绑
-- 中间件架构
-- 优雅的 API 设计
-- 增强的错误处理
+## 上下文 context
 
-### 安装
+- context 将 node 中的 request 和 response 封装到一个对象中，并提供一些新的 api 提供给用户进行操作；
 
-`npm i koa -S`
+  - ctx.app:应用程序实例引用,等同于 app;
+  - ctx.req:Node 的 `request` 对象.
+  - ctx.res:Node 的 `response` 对象.
+  - ctx.request:koa 中的 Request 对象；
+  - ctx.response:koa 中的 response 对象；
+  - ctx.state：对象命名空间，通过中间件传递信息；
+  - ctx.throw:抛出错误；
+
+- request 及 response 别名
+
+  - koa 会把 ctx.request 上的属性直接挂载到 ctx 上如：
+    - `ctx.header`
+    - `ctx.headers`
+    - `ctx.method`
+    - `ctx.method=`
+    - `ctx.url`
+    - `ctx.url=`
+
+  - 同样也会把 ctx.response 上的属性直接挂载到 ctx 上如：
+    - `ctx.body`
+    - `ctx.body=`
+    - `ctx.status`
+    - `ctx.status=`
+
+  - ctx.status 获取响应状态。默认情况下，`response.status` 设置为 `404` 而不是像 node 的 `res.statusCode` 那样默认为 `200`。
+
+## koa 常用中间件
+
+### koa-router
+
+- koa-router 安装: `npm i koa-router -S`
+
+- Koa-router 推荐使用 RESTful 架构 API。Restful 的全称是 Representational State Transfer 即表现层转移。
+
+  - RESTful 是一种软件架构风格、设计风格，而**不是**标准，只是提供了一组设计原则和约束条件。基于这个风格设计可以更简洁，更有层次;
+  - REST 设计一般符合如下条件：
+
+    - 程序或者应用的事物都应该被抽象为资源
+    - 每个资源对应唯一的 URI(uri 是统一资源标识符)
+    - 使用统一接口对资源进行操作
+    - 对资源的各种操作不会改变资源标识
+    - 所有操作都是无状态的
+
+### koa-views
+
+- Koa-views 用于加载 html 模板文件
+- 安装 koa-views: `npm i koa-views -S`
+
+### koa-static
+
+- koa-static 是用于加载静态资源的中间件，通过它可以加载 css、js 等静态资源；
+- 安装 koa-static: `npm i koa-static`
+- 使用 koa-static
+  ```javascript
+  const static = require('koa-static');
+  app.use(static(__dirname + '/static')); //加载静态文件的目录
+  ```
+
+## Koa2 源码解读
 
 ### 中间件机制、请求、响应处理
 
