@@ -26,7 +26,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-If your promise only has resolve, below is the same:
+If your promise only has resolved, below is the same:
 
 ```javascript
 new Promise(function(resolve, reject) {
@@ -34,6 +34,30 @@ new Promise(function(resolve, reject) {
 });
 
 Promise.resolve(someValue);
+```
+
+```javascript
+new Promise((resolve) => {
+  console.log('aaaa');
+  resolve();
+})
+  .then((val) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('bbbb');
+        resolve(100);
+      }, 1000);
+    });
+  })
+  .then((val) => {
+    console.log('cccc', val);
+  })
+  .catch((e) => {});
+
+// aaaa
+// 一秒后
+// bbbb
+// cccc 100
 ```
 
 ## A real demo
