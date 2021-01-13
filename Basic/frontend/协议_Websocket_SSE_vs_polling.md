@@ -2,45 +2,56 @@
 
 ## Regular HTTP
 
-1.  A client requests a webpage from a server.
-1.  The server calculates the response
-1.  The server sends the response to the client.
+1. A client requests a webpage from a server.
+1. The server calculates the response
+1. The server sends the response to the client.
 
 ![HTTP](https://i.stack.imgur.com/TK1ZG.png)
 
 ## Ajax Polling:
 
-1.  A client requests a webpage from a server using regular HTTP (see HTTP above).
-1.  The requested webpage executes JavaScript which requests a file from the server at regular intervals (e.g. 0.5 seconds).
-1.  The server calculates each response and sends it back, just like normal HTTP traffic.
+1. A client requests a webpage from a server using regular HTTP (see HTTP above).
+1. The requested webpage executes JavaScript which requests a file from the server at regular intervals (e.g. 0.5 seconds).
+1. The server calculates each response and sends it back, just like normal HTTP traffic.
 
 ![Ajax Polling](https://i.stack.imgur.com/qlMEU.png)
 
 ## Ajax Long-Polling:
 
-1.  A client requests a webpage from a server using regular HTTP (see HTTP above).
-1.  The requested webpage executes JavaScript which requests a file from the server.
-1.  The server does not immediately respond with the requested information but waits until there's **new** information available.
-1.  When there's new information available, the server responds with the new information.
-1.  The client receives the new information and immediately sends another request to the server, re-starting the process.
+1. A client requests a webpage from a server using regular HTTP (see HTTP above).
+1. The requested webpage executes JavaScript which requests a file from the server.
+1. The server does not immediately respond with the requested information but waits until there's **new** information available.
+1. When there's new information available, the server responds with the new information.
+1. The client receives the new information and immediately sends another request to the server, re-starting the process.
 
 ![Ajax Long-Polling](https://i.stack.imgur.com/zLnOU.png)
 
+长轮询: 与简单轮询相似，只是在服务端在没有新的返回数据情况下不会立即响应，而会挂起，直到有数据或即将超时。
+
+优点：实现也不复杂，同时相对轮询，节约带宽。
+
+缺点：所以还是存在占用服务端资源的问题，虽然及时性比轮询要高，但是会在没有数据的时候在服务端挂起，所以会一直占用服务端资源，处理能力变少。
+
+应用：一些早期的对及时性有一些要求的应用：web IM 聊天。
+
 ## HTML5 Server Sent Events (SSE) / EventSource:
 
-1.  A client requests a webpage from a server using regular HTTP (see HTTP above).
-1.  The requested webpage executes javascript which opens a connection to the server.
-1.  The server sends an event to the client when there's new information available.
-    - Real-time traffic from server to client, mostly that's what you'll need
-    - You'll want to use a server that has an event loop
-    - Not possible to connect with a server from another domain
-    - If you want to read more, I found these very useful: [(article)](https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events), [(article)](http://html5doctor.com/server-sent-events/#api), [(article)](http://www.html5rocks.com/en/tutorials/eventsource/basics/), [(tutorial)](http://jaxenter.com/tutorial-jsf-2-and-html5-server-sent-events-42932.html).
+<https://developer.mozilla.org/en-US/docs/Web/API/EventSource>
+
+1. A client requests a webpage from a server using regular HTTP (see HTTP above).
+1. The requested webpage executes javascript which opens a connection to the server.
+1. The server sends an event to the client when there's new information available.
+
+- Real-time traffic from server to client, mostly that's what you'll need
+- You'll want to use a server that has an event loop
+- Not possible to connect with a server from another domain
+- If you want to read more, I found these very useful: [(article)](https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events) , [(article)](http://html5doctor.com/server-sent-events/#api) , [(article)](http://www.html5rocks.com/en/tutorials/eventsource/basics/) , [(tutorial)](http://jaxenter.com/tutorial-jsf-2-and-html5-server-sent-events-42932.html).
 
 ![HTML5 SSE](https://i.stack.imgur.com/ziR5h.png)
 
 EventSource 不是一个新鲜的技术，正式一点应该叫`Server-sent events`，即 `SSE`。
 
-webpack hot reloading 就是  基于 SSE。
+webpack hot reloading 就是基于 SSE。
 
 EventSource **本质上还是 HTTP，基于流**，通过 response 流实时推送服务器信息到客户端。
 
@@ -52,37 +63,51 @@ EventSource **本质上还是 HTTP，基于流**，通过 response 流实时推�
 | readyState(只读) | es 对象的状态，初始为 0，包含 CONNECTING(0)，OPEN(1)，CLOSED(2) 三种状态 |
 | withCredentials  | 是否允许带凭证等，默认为 false，即不支持发送 cookie                      |
 
-服务端实现`/message`接口，需要返回类型为 `text/event-stream`的响应头。
+服务端实现`/hello`接口，需要返回类型为 `text/event-stream`的响应头。
 
 ```javascript
 // 服务端：
 var http = require('http');
-http.createServer(function(req，res){
-  if(req.url === '/message'){
-    res.writeHead(200，{
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
-    });
-    setInterval(function(){
-      res.write('data: ' + new Date() + '\n\n');
-    }, 1000);
-  }
-}).listen(8888);
+
+http
+  .createServer(function(req, res) {
+    if (req.url === '/hello') {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        Connection: 'keep-alive',
+      });
+      setInterval(function() {
+        // res.write('data: ' + new Date() + '\n\n');
+        res.write('event: abc\ndata: ' + new Date() + '\n\n');
+      }, 1000);
+    }
+  })
+  .listen(8888);
 ```
 
-我们注意到，为了避免缓存，Cache-Control 特别设置成了 no-cache，为了能够发送多个 response， Connection 被设置成了 keep-alive。发送数据时，请务必保证服务器推送的数据以 `data:`开始，以`\n\n`结束，否则推送将会失败(约定的)。
+我们注意到，为了避免缓存，Cache-Control 特别设置成了 no-cache，为了能够发送多个 response， Connection 被设置成了 keep-alive。发送数据时，请务必保证服务器推送的数据以 `data:` 开始，以`\n\n`结束，否则推送将会失败(约定的)。
 
 以上，服务器每隔 1s 主动向客户端发送当前时间戳，为了接受这个信息，客户端需要监听服务器。如下：
 
 ```javascript
 // 客户端:
 // 新建一个EventSource对象
-const es = new EventSource('/message'); // message 是服务端支持 EventSource 的接口
+const es = new EventSource('/hello'); // hello 是服务端支持 EventSource 的接口
 
-es.onmessage = function(e) {
-  console.log(e.data); // 打印服务器推送的信息
-};
+es.addEventListener('open', function() {
+  console.log('开启了');
+});
+
+// 默认如果没有在服务端声明 event: xxx
+// es.onmessage = function(e) {
+//   console.log(e.data); // 打印服务器推送的信息
+// };
+
+es.addEventListener('abc', (e) => {
+  const data = JSON.parse(e.data);
+  box.innerHTML += `<p>${data}</p>`;
+});
 ```
 
 如下是消息推送的过程：
@@ -94,9 +119,14 @@ es.onmessage = function(e) {
 你以为 es 只能监听 message 事件吗？并不是，message 只是缺省的事件类型。实际上，它可以监听任何指定类型的事件。
 
 ```javascript
-es.addEventListener("####", function(e) {// 事件类型可以随你定义
-  console.log('####:', e.data);
-}，false);
+// 事件类型可以随你定义
+es.addEventListener(
+  '####',
+  function(e) {
+    console.log('####:', e.data);
+  },
+  false,
+);
 ```
 
 服务器发送不同类型的事件时，需要指定 event 字段。
@@ -148,14 +178,15 @@ var es = new EventSource('/message', {
 
 ## HTML5 WebSockets
 
-1.  A client requests a webpage from a server using regular http (see HTTP above).
-1.  The requested webpage executes JavaScript which opens a connection with the server.
-1.  The server and the client can now send each other messages when new data (on either side) is available.
-    - Real-time traffic from the server to the client **and** from the client to the server
-    - You'll want to use a server that has an event loop
-    - With WebSockets it is possible to connect with a server from another domain.
-    - It is also possible to use a third party hosted websocket server, for example [Pusher](http://pusher.com/) or [others](http://www.leggetter.co.uk/real-time-web-technologies-guide). This way you'll only have to implement the client side, which is very easy!
-    - If you want to read more, I found these very useful: ([article](http://www.developerfusion.com/article/143158/an-introduction-to-websockets/)), [(article)](https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications) ([tutorial](http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/)).
+1. A client requests a webpage from a server using regular http (see HTTP above).
+1. The requested webpage executes JavaScript which opens a connection with the server.
+1. The server and the client can now send each other messages when new data (on either side) is available.
+
+- Real-time traffic from the server to the client **and** from the client to the server
+- You'll want to use a server that has an event loop
+- With WebSockets it is possible to connect with a server from another domain.
+- It is also possible to use a third party hosted websocket server, for example [Pusher](http://pusher.com/) or [others](http://www.leggetter.co.uk/real-time-web-technologies-guide). This way you'll only have to implement the client side, which is very easy!
+- If you want to read more, I found these very useful: ([article](http://www.developerfusion.com/article/143158/an-introduction-to-websockets/)) , [(article)](https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications) ([tutorial](http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/)) .
 
 ![HTML5 WebSockets](https://i.stack.imgur.com/CgDlc.png)
 
@@ -257,7 +288,7 @@ let ws = new WebSocket('ws://127.0.0.1:10103/'); // 本地使用10103端口进�
 
 ![Websocket对象](http://louiszhai.github.io/docImages/hot-replace09.png)
 
-这中间包含了一次 Websocket 握手的过程，我们分两步来理解。
+这中间包含了一次 Websocket 握手的过程，我们两步去理解。
 
 第一步，客户端请求。
 
@@ -303,14 +334,15 @@ ws = new WebSocket('ws://127.0.0.1:10103/', ['abc', 'son_protocols']);
 ws 是一个 nodejs 版的 WebSocketServer 实现。使用 `npm install ws` 即可安装。
 
 ```javascript
-var WebSocketServer = require('ws').Server，
-    server = new WebSocketServer({port: 10103});
+var WebSocketServer = require('ws').Server,
+  server = new WebSocketServer({ port: 10103 });
 
 server.on('connection', function(s) {
-  s.on('message', function(msg) { //监听客户端消息
+  s.on('message', function(msg) {
+    //监听客户端消息
     console.log('client say: %s', msg);
   });
-  s.send('server ready!');// 连接建立好后，向客户端发送一条消息
+  s.send('server ready!'); // 连接建立好后，向客户端发送一条消息
 });
 ```
 
@@ -321,6 +353,7 @@ server = new WebSocketServer({
   port: 10103,
   verifyClient: verify,
 });
+
 function verify(info) {
   console.log(Object.keys(info)); // [ 'origin', 'secure', 'req' ]
   console.log(info.orgin); // "file://"
@@ -350,9 +383,9 @@ function verify(info, cb) {
 接下来，我们来实现消息收发。如下是客户端发送消息。
 
 ```javascript
-ws.onopen = function(e){
+ws.onopen = function(e) {
   // 可发送字符串，ArrayBuffer 或者 Blob数据
-  ws.send('client ready!);
+  ws.send('client ready!');
 };
 ```
 
@@ -431,7 +464,7 @@ ws 的 readyState 属性拥有 4 个值，比 es 的 readyState 的多一个 CLO
   const size = 1024 * 128;// 分段发送的文件大小(字节)
   let curSize, total, file, fileReader;
 
-  fileSelect.onchange = function(){
+  fileSelect.onchange = function() {
     file = this.files[0];// 选中的待上传文件
     curSize = 0;// 当前已发送的文件大小
     total = file.size;// 文件大小
@@ -441,17 +474,18 @@ ws 的 readyState 属性拥有 4 个值，比 es 的 readyState 的多一个 CLO
     readFragment();// 读取文件片段
   };
 
-  function loadAndSend(){
-    if(ws.bufferedAmount > size * 5){// 若发送队列中的数据太多,先等一等
+  function loadAndSend() {
+    if (ws.bufferedAmount > size * 5) {
+      // 若发送队列中的数据太多,先等一等
       setTimeout(loadAndSend，4);
       return;
     }
     ws.send(fileReader.result);// 发送本次读取的片段内容
     curSize += size;// 更新已发送文件大小
-    curSize < total ? readFragment() : console.log('upload successed!');// 下一步操作
+    curSize < total ? readFragment() : console.log('upload succeeded!');// 下一步操作
   }
 
-  function readFragment(){
+  function readFragment() {
     const blob = file.slice(curSize, curSize + size);// 获取文件指定片段
     fileReader.readAsArrayBuffer(blob);// 读取文件为ArrayBuffer对象
   }
@@ -462,21 +496,25 @@ server(node):
 
 ```javascript
 var WebSocketServer = require('ws').Server,
-    server = new WebSocketServer({port: 10103}),// 启动服务器
-    fs = require('fs');
+  server = new WebSocketServer({ port: 10103 }), // 启动服务器
+  fs = require('fs');
 
-server.on('connection', function(wsServer){
-  var fileName, i = 0;// 变量定义不可放在全局,因每个连接都不一样,这里才是私有作用域
-  server.on('message', function(data, flags){// 监听客户端消息
-    if(flags.binary){// 判断是否二进制数据
+server.on('connection', function(wsServer) {
+  var fileName,
+    i = 0; // 变量定义不可放在全局,因每个连接都不一样,这里才是私有作用域
+  server.on('message', function(data, flags) {
+    // 监听客户端消息
+    if (flags.binary) {
+      // 判断是否二进制数据
       var method = i++ ? 'appendFileSync' : 'writeFileSync';
       // 当前目录下写入或者追加写入文件(建议加上try语句捕获可能的错误)
-      fs[method]('./' + fileName, data，'utf-8');
-    }else{// 非二进制数据则认为是文件名称
+      fs[method]('./' + fileName, data, 'utf-8');
+    } else {
+      // 非二进制数据则认为是文件名称
       fileName = data;
     }
   });
-  wsServer.send('server ready!');// 告知客户端服务器已就绪
+  wsServer.send('server ready!'); // 告知客户端服务器已就绪
 });
 ```
 
@@ -523,8 +561,6 @@ WebSocket 出世已久，很多优秀的大神基于此开发出了各式各样�
 - AJAX multipart streaming
 - Forever Iframe
 - JSONP Polling
-
-如何在项目中使用 Socket.IO，请参考[第一章 socket.io 简介及使用](https://github.com/nswbmw/N-chat/wiki/%E7%AC%AC%E4%B8%80%E7%AB%A0-socket.io-%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8)。
 
 ### **小结**
 
