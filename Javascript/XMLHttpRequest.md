@@ -108,6 +108,45 @@ function getText(url, callback) {
 request.overrideMimeType('text/plain; charset=utf-8');
 ```
 
+### xml 处理
+
+```javascript
+// client
+let xhr = new XMLHttpRequest();
+xhr.open('get', '/xml', true);
+
+// 重写content-type
+xhr.overrideMimeType('text/xml');
+
+xhr.onload = function() {
+  console.log(xhr.responseText);
+  console.log(xhr.responseXML); // xml #document
+  console.log(xhr.response);
+  let name = xhr.responseXML.getElementsByTagName('name')[1].innerHTML;
+  console.log(name); // react入门
+};
+xhr.send();
+```
+
+```javascript
+// server
+router.get('/xml', (ctx, next) => {
+  ctx.set('content-type', 'text/xml');
+  ctx.body = `<?xml version='1.0' encoding='utf-8' ?>
+                <books>
+                    <nodejs>
+                        <name>nodejs实战</name>
+                        <price>56元</price>
+                    </nodejs>
+                    <react>
+                        <name>react入门</name>
+                        <price>50元</price>
+                    </react>
+                </books>
+            `;
+});
+```
+
 ## 对请求正文进行编码
 
 ### Form-encoded 请求
