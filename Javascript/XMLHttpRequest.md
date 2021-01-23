@@ -1,5 +1,70 @@
 # XMLHttpRequest
 
+- ajax 的基本使用
+
+  - 新建 XMLHttpRequest 对象；
+
+    ```javascript
+    let xhr = new XMLHttpRequest();
+    ```
+
+  - 配置请求参数
+
+    ```javascript
+    xhr.open('get', '/checkUser', true); //true是异步，false是同步
+    ```
+
+  - 接收返还值
+
+    ```javascript
+    let xhr = new XMLHttpRequest();
+    xhr.open('get', '/xml', true);
+
+    // 重写content-type；
+    xhr.overrideMimeType('text/xml');
+
+    xhr.onload = function() {
+      console.log(xhr.responseText);
+      console.log(xhr.responseXML); // xml #document
+      console.log(xhr.response);
+      let name = xhr.responseXML.getElementsByTagName('name')[1].innerHTML;
+      console.log(name);
+    };
+    xhr.send();
+    ```
+
+    ```javascript
+    xhr.onload = function() {
+      let res = JSON.parse(xhr.responseText); // json
+    };
+    ```
+
+- 发送服务器
+
+  ```javascript
+  xhr.send();
+  ```
+
+- get 注意点
+
+- get 通过 parmas 传参
+- get 和 querystring 的问题,通过 url 传参
+
+- post 注意点
+
+- 发送数据时候需要设置 http 正文头格式；
+
+  ```js
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //默认编码
+  xhr.setRequestHeader('Content-type', 'multipart/form-data'); //二进制编码
+  xhr.setRequestHeader('Content-type', 'application/json'); //json编码
+  ```
+
+- 获取头部信息；
+  - getAllResponseHeaders 或者是 getResponseHeader
+
+## Introduction
+
 - `readyState`: 表示请求状态的整数，取值:
   - UNSENT（0）: 对象已创建
   - OPENED（1）: open()成功调用，在这个状态下，可以为 xhr 设置请求头，或者使用 send()发送请求
@@ -9,11 +74,11 @@
 - `onreadystatechange`: readyState 改变时调用的函数
 - `status`: 服务器返回的 HTTP 状态码（如，200， 404）
 - `statusText`: 服务器返回的 HTTP 状态信息（如，OK，No Content）
-- responseText: 作为字符串形式的来自服务器的完整响应
-- responseXML: Document 对象，表示服务器的响应解析成的 XML 文档
+- `responseText`: 作为字符串形式的来自服务器的完整响应
+- `responseXML`: Document 对象，表示服务器的响应解析成的 XML 文档
 - `abort()`: 取消异步 HTTP 请求
-- getAllResponseHeaders(): 返回一个字符串，包含响应中服务器发送的全部 HTTP 报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行
-- getResponseHeader(headerName): 返回 headName 对应的报头值
+- `getAllResponseHeaders()`: 返回一个字符串，包含响应中服务器发送的全部 HTTP 报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行
+- `getResponseHeader(headerName)`: 返回 headName 对应的报头值
 - `open`(method, url, asynchronous [, user, password]): 初始化准备发送到服务器上的请求。method 是 HTTP 方法，不区分大小写；url 是请求发送的相对或绝对 URL；asynchronous 表示请求是否异步；user 和 password 提供身份验证
 - `setRequestHeader`(name, value): 设置 HTTP 报头
 - `send`(body): 对服务器请求进行初始化。参数 body 包含请求的主体部分，对于 POST 请求为键值对字符串；对于 GET 请求，为 null
@@ -190,6 +255,25 @@ request.send(JSON.stringify(data));
 ```
 
 ### 上传文件
+
+利用 FormData 来实现文件上传
+
+- 创建 FormData 对象
+
+- 监控上传进度
+
+  upload 事件
+
+  - onloadstart 上传开始
+  - onprogress 数据传输进行中
+    - evt.total: 需要传输的总大小；
+    - evt.loaded: 当前上传的文件大小；
+  - onabort 上传操作终止
+  - onerror 上传失败
+  - onload 上传成功
+  - onloadend 上传完成（不论成功与否）
+
+> Refer **/Nodejs/05_upload.md**
 
 HTTP 表单总是能发送文件。但直到最近，XHR2 API 才允许通过传 `File` 对象到 `send()` 方法上传文件。
 
