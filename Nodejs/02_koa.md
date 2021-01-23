@@ -28,18 +28,14 @@
     - `ctx.header`
     - `ctx.headers`
     - `ctx.method`
-    - `ctx.method=`
     - `ctx.url`
-    - `ctx.url=`
 
-  - 同样也会把 ctx.response 上的属性直接挂载到 ctx 上如：
+- 同样也会把 ctx.response 上的属性直接挂载到 ctx 上如：
 
-    - `ctx.body`
-    - `ctx.body=`
-    - `ctx.status`
-    - `ctx.status=`
+  - `ctx.body`
+  - `ctx.status`
 
-  - ctx.status 获取响应状态。默认情况下，`response.status` 设置为 `404` 而不是像 node 的 `res.statusCode` 那样默认为 `200`。
+- ctx.status 获取响应状态。默认情况下，`response.status` 设置为 `404` 而不是像 node 的 `res.statusCode` 那样默认为 `200`。
 
 ## koa 常用中间件
 
@@ -67,7 +63,7 @@
 
 - koa-static 是用于加载静态资源的中间件，通过它可以加载 css、js 等静态资源；
 - 安装 koa-static: `npm i koa-static`
-- 使用 koa-static
+
   ```javascript
   const static = require('koa-static');
   app.use(static(__dirname + '/static')); //加载静态文件的目录
