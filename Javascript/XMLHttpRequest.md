@@ -47,8 +47,8 @@
 
 - get 注意点
 
-- get 通过 parmas 传参
-- get 和 querystring 的问题,通过 url 传参
+- get 通过 params 传参
+- get 和 queryString 的问题,通过 url 传参
 
 - post 注意点
 
@@ -89,26 +89,24 @@
 
 setRequestHeader 有一些请求头是你不能指定的。`XMLHttpRequest` 会帮你设定。不能通过 `setRequestHeader()` 指定的头有:
 
-```
-Accept-Charset
-Accept-Encoding
-Connection
-Content-Length
-Cookie
-Cookie2
-Content-Transfer-Encoding
-TE
-Date
-Trailer
-Expect
-Transfer-Encoding
-Host
-Upgrade
-Keep-Alive
-User-Agent
-Referer
-Via
-```
+- Accept-Charset
+- Accept-Encoding
+- Connection
+- Content-Length
+- Cookie
+- Cookie2
+- Content-Transfer-Encoding
+- TE
+- Date
+- Trailer
+- Expect
+- Transfer-Encoding
+- Host
+- Upgrade
+- Keep-Alive
+- User-Agent
+- Referrer
+- Via
 
 ```javascript
 function postMessage(msg) {
@@ -216,11 +214,7 @@ router.get('/xml', (ctx, next) => {
 
 ### Form-encoded 请求
 
-编码表单数据的方法是:对每个表单项的键与值分别进行正常的 URI 编码（特殊字符由十六进制字符替代），用等号分割键值、用 `&` 分割表单项:
-
-```
-find=pizza&zipcode=02134&radius=1km
-```
+编码表单数据的方法是:对每个表单项的键与值分别进行正常的 URI 编码（特殊字符由十六进制字符替代），用等号分割键值、用 `&` 分割表单项: `find=pizza&zipcode=02134&radius=1km`
 
 这种格式的数据的 MIME 为:`application/x-www-form-urlencoded`。当你发送这类数据时，必须将请求头 `Content-Type` 设为该值。
 
