@@ -211,7 +211,7 @@ var cookieUtil = (function(window, undefined) {
 ```
 
 ```javascript
-    //设置cookie
+// 设置cookie
 function setCookie(name, value, options = {}) {
   let cookieData = `${name}=${value};`;
   for (let key in options) {
@@ -221,7 +221,7 @@ function setCookie(name, value, options = {}) {
   document.cookie = cookieData;
 }
 
-//获取Cookie
+// 获取Cookie
 function getCookie(name) {
   let arr = document.cookie.split('; ');
   for (let i = 0; i < arr.length; i++) {
