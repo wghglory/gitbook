@@ -7,7 +7,7 @@
     "start": "npm run build && gitbook serve && open http://localhost:4000",
     "toc": "node toc",
     "prebuild": "npm run toc",
-    "build": "gitbook build",
+    "build": "npx gitbook build",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",

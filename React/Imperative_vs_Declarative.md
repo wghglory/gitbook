@@ -1,5 +1,7 @@
 # Imperative and Declarative
 
+https://ui.dev/imperative-vs-declarative-programming/
+
 Functional programming is a part of a larger programming paradigm: _declarative programming_. Declarative programming is a style of programming where applications are structured in a way that prioritizes **describing what should happen over defining how it should happen.**
 
 In order to understand declarative programming, we’ll contrast it with _imperative programming_, or a style of programming that is only concerned with how to achieve results with code.

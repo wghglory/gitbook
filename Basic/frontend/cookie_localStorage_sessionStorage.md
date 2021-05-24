@@ -48,8 +48,7 @@
 - sessionStorage 在窗口关闭前有效，关闭窗口而非浏览器就会丢失数据。在新标签或窗口打开一个页面会初始化一个新的会话
 - localStorage 的数据会一直存在，即使在浏览器被关闭以后。**localStorage 的修改会促发其他文档窗口的 update 事件，所以可以多窗口通信**
 
-Storage 对象通常被当做普通 javascript 对象使用：通过设置属性来存取字符串值，也可以通过 `setItem(key, value)` 设置，`getItem(key)` 读取，`removeItem(key)`
-删除，`clear()` 删除所有数据，`length` 表示已存储的数据项数目，`key(index)` 返回对应索引的 key
+Storage 对象通常被当做普通 javascript 对象使用：通过设置属性来存取字符串值，也可以通过 `setItem(key, value)` 设置，`getItem(key)` 读取，`removeItem(key)` 删除，`clear()` 删除所有数据，`length` 表示已存储的数据项数目，`key(index)` 返回对应索引的 key
 
 ## Cookie
 
@@ -238,8 +237,7 @@ function getCookie(name) {
 
 如果静态文件都放在主域名下，那静态文件请求的时候都带有的 cookie 的数据提交给 server 的，非常浪费流量，所以不如隔离开。
 
-因为 cookie 有域的限制，因此不能跨域提交请求，**故使用非主域名**的时候，请求头中就不会带有 cookie 数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将 cookie 传入
-Web Server，也减少了 Web Server 对 cookie 的处理分析环节，提高了 webserver 的 http 请求的解析速度。
+因为 cookie 有域的限制，因此不能跨域提交请求，**故使用非主域名**的时候，请求头中就不会带有 cookie 数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将 cookie 传入 Web Server，也减少了 Web Server 对 cookie 的处理分析环节，提高了 webserver 的 http 请求的解析速度。
 
 ## 本地缓存 localStorage, sessionStorage
 

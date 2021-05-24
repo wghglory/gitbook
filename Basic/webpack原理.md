@@ -6,8 +6,7 @@
 
 在开始了解之前，必须要能对 webpack 整个流程进行 debug ，配置过程比较简单。
 
-先将 [webpack-webstorm-debugger-script](https://www.npmjs.com/package/webpack-webstorm-debugger-script)
-中的 `webstorm-debugger.js` 置于 `webpack.config.js` 的同一目录下，搭建好你的脚手架后就可以直接 Debug 这个 webstorm-debugger.js 文件了。
+先将 [webpack-webstorm-debugger-script](https://www.npmjs.com/package/webpack-webstorm-debugger-script) 中的 `webstorm-debugger.js` 置于 `webpack.config.js` 的同一目录下，搭建好你的脚手架后就可以直接 Debug 这个 webstorm-debugger.js 文件了。
 
 ##### 2. webpack.config.js 配置
 
@@ -89,15 +88,13 @@ module.exports = {
 
 ##### 3. 流程总览
 
-在具体流程学习前，可以先通过这幅 [webpack 整体流程图](https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg)
-了解一下大致流程（建议保存下来查看）。
+在具体流程学习前，可以先通过这幅 [webpack 整体流程图](https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg) 了解一下大致流程（建议保存下来查看）。
 
 ![img](https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg)
 
 ### shell 与 config 解析
 
-每次在命令行输入 webpack 后，操作系统都会去调用 `./node_modules/.bin/webpack` 这个 shell 脚本。这个脚本会去调用 `./node_modules/webpack/bin/webpack.js`
-并追加输入的参数，如 -p , -w 。(图中 webpack.js 是 webpack 的启动文件，而 \$@ 是后缀参数)
+每次在命令行输入 webpack 后，操作系统都会去调用 `./node_modules/.bin/webpack` 这个 shell 脚本。这个脚本会去调用 `./node_modules/webpack/bin/webpack.js` 并追加输入的参数，如 -p , -w 。(图中 webpack.js 是 webpack 的启动文件，而 \$@ 是后缀参数)
 
 ![img](https://img.alicdn.com/tps/TB1kvfbNXXXXXarXpXXXXXXXXXX-500-111.jpg)
 
@@ -136,8 +133,7 @@ optimist
 
 ##### 2. config 合并与插件加载
 
-在加载插件之前，webpack 将 webpack.config.js 中的各个配置项拷贝到 options 对象中，并加载用户配置在 webpack.config.js 的 plugins 。接着 optimist.argv
-会被传入到 `./node_modules/webpack/bin/convert-argv.js` 中，通过判断 argv 中参数的值决定是否去加载对应插件。(至于 webpack 插件运行机制，在之后的运行机制篇会提到)
+在加载插件之前，webpack 将 webpack.config.js 中的各个配置项拷贝到 options 对象中，并加载用户配置在 webpack.config.js 的 plugins 。接着 optimist.argv 会被传入到 `./node_modules/webpack/bin/convert-argv.js` 中，通过判断 argv 中参数的值决定是否去加载对应插件。(至于 webpack 插件运行机制，在之后的运行机制篇会提到)
 
 ```javascript
 ifBooleanArg('hot', function() {
@@ -182,8 +178,7 @@ var compiler = webpack(options);
 
 ### 编译与构建流程
 
-在加载配置文件和 shell 后缀参数申明的插件，并传入构建信息 options 对象后，开始整个 webpack 打包最漫长的一步。而这个时候，真正的 webpack 对象才刚被初始化，具体的初始化逻辑在 `lib/webpack.js`
-中，如下：
+在加载配置文件和 shell 后缀参数申明的插件，并传入构建信息 options 对象后，开始整个 webpack 打包最漫长的一步。而这个时候，真正的 webpack 对象才刚被初始化，具体的初始化逻辑在 `lib/webpack.js` 中，如下：
 
 ```javascript
 function webpack(options) {
@@ -210,21 +205,17 @@ compiler.run 后首先会触发 compile ，这一步会构建出 Compilation 对
 
 ![compilation类图](https://img.alicdn.com/tps/TB1UgS4NXXXXXXZXVXXXXXXXXXX-693-940.png)
 
-这个对象有两个作用，一是负责组织整个打包过程，包含了每个构建环节及输出环节所对应的方法，可以从图中看到比较关键的步骤，如 `addEntry()` , `_addModuleChain()` ,`buildModule()`
-, `seal()` , `createChunkAssets()` (在每一个节点都会触发 webpack 事件去调用各插件)。二是该对象内部存放着所有 module ，chunk，生成的 asset 以及用来生成最后打包文件的
-template 的信息。
+这个对象有两个作用，一是负责组织整个打包过程，包含了每个构建环节及输出环节所对应的方法，可以从图中看到比较关键的步骤，如 `addEntry()` , `_addModuleChain()` ,`buildModule()` , `seal()` , `createChunkAssets()` (在每一个节点都会触发 webpack 事件去调用各插件)。二是该对象内部存放着所有 module ，chunk，生成的 asset 以及用来生成最后打包文件的 template 的信息。
 
 ##### 2. 编译与构建主流程
 
-在创建 module 之前，Compiler 会触发 make，并调用 `Compilation.addEntry` 方法，通过 options 对象的 entry 字段找到我们的入口 js 文件。之后，在 addEntry
-中调用私有方法 `_addModuleChain` ，这个方法主要做了两件事情。一是根据模块的类型获取对应的模块工厂并创建模块，二是构建模块。
+在创建 module 之前，Compiler 会触发 make，并调用 `Compilation.addEntry` 方法，通过 options 对象的 entry 字段找到我们的入口 js 文件。之后，在 addEntry 中调用私有方法 `_addModuleChain` ，这个方法主要做了两件事情。一是根据模块的类型获取对应的模块工厂并创建模块，二是构建模块。
 
 而构建模块作为最耗时的一步，又可细化为三步：
 
 - 调用各 loader 处理模块之间的依赖
 
-  webpack 提供的一个很大的便利就是能将所有资源都整合成模块，不仅仅是 js 文件。所以需要一些 loader ，比如 `url-loader` ， `jsx-loader` ， `css-loader`
-  等等来让我们可以直接在源文件中引用各类资源。webpack 调用 `doBuild()` ，对每一个 require() 用对应的 loader 进行加工，最后生成一个 js module。
+  webpack 提供的一个很大的便利就是能将所有资源都整合成模块，不仅仅是 js 文件。所以需要一些 loader ，比如 `url-loader` ， `jsx-loader` ， `css-loader` 等等来让我们可以直接在源文件中引用各类资源。webpack 调用 `doBuild()` ，对每一个 require() 用对应的 loader 进行加工，最后生成一个 js module。
 
   ```javascript
   Compilation.prototype._addModuleChain = function process(
@@ -276,8 +267,7 @@ template 的信息。
 
 - 遍历 AST，构建该模块所依赖的模块
 
-  对于当前模块，或许存在着多个依赖模块。当前模块会开辟一个依赖模块的数组，在遍历 AST 时，将 require() 中的模块通过 `addDependency()` 添加到数组中。当前模块构建完成后，webpack
-  调用 `processModuleDependencies` 开始递归处理依赖的 module，接着就会重复之前的构建步骤。
+  对于当前模块，或许存在着多个依赖模块。当前模块会开辟一个依赖模块的数组，在遍历 AST 时，将 require() 中的模块通过 `addDependency()` 添加到数组中。当前模块构建完成后，webpack 调用 `processModuleDependencies` 开始递归处理依赖的 module，接着就会重复之前的构建步骤。
 
   ```javascript
   Compilation.prototype.addModuleDependencies = function(
@@ -301,8 +291,7 @@ template 的信息。
 
 ##### 3. 构建细节
 
-module 是 webpack 构建的核心实体，也是所有 module 的 父类，它有几种不同子类：`NormalModule` , `MultiModule` , `ContextModule` , `DelegatedModule`
-等。但这些核心实体都是在构建中都会去调用对应方法，也就是 `build()` 。来看看其中具体做了什么：
+module 是 webpack 构建的核心实体，也是所有 module 的 父类，它有几种不同子类：`NormalModule` , `MultiModule` , `ContextModule` , `DelegatedModule` 等。但这些核心实体都是在构建中都会去调用对应方法，也就是 `build()` 。来看看其中具体做了什么：
 
 ```javascript
 // 初始化module信息，如context,id,chunks,dependencies等。
@@ -362,8 +351,7 @@ NormalModule.prototype.build = function build(options, compilation, resolver, fs
 
 ### 打包输出
 
-在所有模块及其依赖模块 build 完成后，webpack 会监听 `seal` 事件调用各插件对构建后的结果进行封装，要逐次对每个 module 和 chunk 进行整理，生成编译后的源码，合并，拆分，生成 hash
-。同时这是我们在开发时进行代码优化和功能添加的关键环节。
+在所有模块及其依赖模块 build 完成后，webpack 会监听 `seal` 事件调用各插件对构建后的结果进行封装，要逐次对每个 module 和 chunk 进行整理，生成编译后的源码，合并，拆分，生成 hash 。同时这是我们在开发时进行代码优化和功能添加的关键环节。
 
 ```javascript
 Compilation.prototype.seal = function seal(callback) {
@@ -409,8 +397,7 @@ Compilation.prototype.seal = function seal(callback) {
 
 - 不同的 Template
 
-  从上图可以看出通过判断是入口 js 还是需要异步加载的 js 来选择不同的模板对象进行封装，入口 js 会采用 webpack 事件流的 render 事件来触发 `Template类`
-  中的 `renderChunkModules()` (异步加载的 js 会调用 chunkTemplate 中的 render 方法)。
+  从上图可以看出通过判断是入口 js 还是需要异步加载的 js 来选择不同的模板对象进行封装，入口 js 会采用 webpack 事件流的 render 事件来触发 `Template类` 中的 `renderChunkModules()` (异步加载的 js 会调用 chunkTemplate 中的 render 方法)。
 
   ```javascript
   if (chunk.entry) {
@@ -425,8 +412,7 @@ Compilation.prototype.seal = function seal(callback) {
   }
   ```
 
-  在 webpack 中有四个 Template 的子类，分别是 `MainTemplate.js` ， `ChunkTemplate.js` ，`ModuleTemplate.js`
-  ， `HotUpdateChunkTemplate.js` ，前两者先前已大致有介绍，而 ModuleTemplate 是对所有模块进行一个代码生成，HotUpdateChunkTemplate 是对热替换模块的一个处理。
+  在 webpack 中有四个 Template 的子类，分别是 `MainTemplate.js` ， `ChunkTemplate.js` ，`ModuleTemplate.js` ， `HotUpdateChunkTemplate.js` ，前两者先前已大致有介绍，而 ModuleTemplate 是对所有模块进行一个代码生成，HotUpdateChunkTemplate 是对热替换模块的一个处理。
 
 - 模块封装
 
@@ -451,10 +437,8 @@ Compilation.prototype.seal = function seal(callback) {
 
 ##### 2. 输出
 
-最后一步，webpack 调用 Compiler 中的 `emitAssets()` ，按照 output 中的配置项将文件输出到了对应的 path 中，从而 webpack
-整个打包过程结束。要注意的是，若想对结果进行处理，则需要在 `emit` 触发后对自定义插件进行扩展。
+最后一步，webpack 调用 Compiler 中的 `emitAssets()` ，按照 output 中的配置项将文件输出到了对应的 path 中，从而 webpack 整个打包过程结束。要注意的是，若想对结果进行处理，则需要在 `emit` 触发后对自定义插件进行扩展。
 
 ### 总结
 
-webpack 的整体流程主要还是依赖于 `compilation` 和 `module` 这两个对象，但其思想远不止这么简单。最开始也说过，webpack 本质是个插件集合，并且由 `tapable` 控制各插件在 webpack
-事件流上运行，至于具体的思想和细节，将会在后一篇文章中提到。同时，在业务开发中，无论是为了提升构建效率，或是减小打包文件大小，我们都可以通过编写 webpack 插件来进行流程上的控制，这个也会在之后提到。
+webpack 的整体流程主要还是依赖于 `compilation` 和 `module` 这两个对象，但其思想远不止这么简单。最开始也说过，webpack 本质是个插件集合，并且由 `tapable` 控制各插件在 webpack 事件流上运行，至于具体的思想和细节，将会在后一篇文章中提到。同时，在业务开发中，无论是为了提升构建效率，或是减小打包文件大小，我们都可以通过编写 webpack 插件来进行流程上的控制，这个也会在之后提到。
