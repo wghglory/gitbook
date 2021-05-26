@@ -351,6 +351,7 @@
             - [life_cycle](Vue/life_cycle.md)
             - [mixin](Vue/mixin.md)
             - [slots](Vue/slots.md)
+            - [style_guide](Vue/style_guide.md)
             - [vue_interview](Vue/vue_interview.md)
             - [watch](Vue/watch.md)
           - [/Volumes/MY/Work/Github/gitbook/Wechat](//Volumes/MY/Work/Github/gitbook/Wechat/README.md)
