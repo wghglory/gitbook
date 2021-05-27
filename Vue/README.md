@@ -25,4 +25,5 @@
 - [slots](slots.md)
 - [style_guide](style_guide.md)
 - [vue_interview](vue_interview.md)
+- [vue_lifecycle](vue_lifecycle.md)
 - [watch](watch.md)
