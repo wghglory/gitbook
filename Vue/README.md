@@ -26,4 +26,5 @@
 - [style_guide](style_guide.md)
 - [vue_interview](vue_interview.md)
 - [vue_lifecycle](vue_lifecycle.md)
+- [vue_template_syntax](vue_template_syntax.md)
 - [watch](watch.md)
