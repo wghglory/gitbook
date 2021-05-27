@@ -354,6 +354,7 @@
             - [style_guide](Vue/style_guide.md)
             - [vue_interview](Vue/vue_interview.md)
             - [vue_lifecycle](Vue/vue_lifecycle.md)
+            - [vue_methods_vs_properties](Vue/vue_methods_vs_properties.md)
             - [vue_template_syntax](Vue/vue_template_syntax.md)
             - [watch](Vue/watch.md)
           - [/Volumes/MY/Work/Github/gitbook/Wechat](//Volumes/MY/Work/Github/gitbook/Wechat/README.md)
