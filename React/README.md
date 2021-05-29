@@ -6,6 +6,7 @@
 - [code\_评分](code_评分.md)
 - [Flux](Flux.md)
 - [HOF_currying_HOC](HOF_currying_HOC.md)
+- [hooks](hooks.md)
 - [immutability-helper](immutability-helper.md)
 - [Immutability](Immutability.md)
 - [Imperative_vs_Declarative](Imperative_vs_Declarative.md)

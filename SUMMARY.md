@@ -286,6 +286,7 @@
             - [code_评分](React/code_评分.md)
             - [Flux](React/Flux.md)
             - [HOF_currying_HOC](React/HOF_currying_HOC.md)
+            - [hooks](React/hooks.md)
             - [immutability-helper](React/immutability-helper.md)
             - [Immutability](React/Immutability.md)
             - [Imperative_vs_Declarative](React/Imperative_vs_Declarative.md)
